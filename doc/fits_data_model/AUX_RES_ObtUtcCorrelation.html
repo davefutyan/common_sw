@@ -1,0 +1,212 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>AUX_RES_ObtUtcCorrelation</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>AUX_RES_ObtUtcCorrelation</h1></div>
+<div class="row">
+<b>Brief: </b>Pairs of UTC_N and OBT_N times </div>
+<div class="row">
+<b>Description: </b>The pairs of UTC_N and OBT_N define the correlation between
+        these two time units. Correlations at times between two pairs have
+        to be interpolated: UTC =  OFFSET + TC_OFFSET + UTC_N + GRADIENT * (OBT - OBT_N).
+        According to MOC-SOC IDC the TC_OFFSET and GRADIENT are valid from 
+        this data point (UTC_TIMESTAMP) until the next data point (UTC_TIMESTAMP),
+        which defines the next the TC_OFFSET and GRADIENT. 
+        There will be one OBT-UTC Correlation file per pass. About 5 to 10
+        time correlation records are expected per pass. </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>10.1</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>AUX</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UTC_TIMESTAMP</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>UTC of the record creation time. The time correlation is valid until next time-stamp.</td>
+</tr>
+<tr>
+<td>UTC_N</td>
+<td>double</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td>number of elapsed TAI seconds since 1.1.2000</td>
+</tr>
+<tr>
+<td>OBT_N</td>
+<td>double</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td>number of elapsed OBT seconds since 1.1.2000</td>
+</tr>
+<tr>
+<td>UTC</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>same as UTC_N, but as UTC</td>
+</tr>
+<tr>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td></td>
+<td>same as OBT_N, but in OBT ticks</td>
+</tr>
+<tr>
+<td>GRADIENT</td>
+<td>double</td>
+<td></td>
+<td></td>
+<td></td>
+<td>slope of UTC / OBT starting at this data point</td>
+</tr>
+<tr>
+<td>OFFSET</td>
+<td>double</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td>constant OFFSET, depending on 0-base of UTC_N and OBT_N</td>
+</tr>
+<tr>
+<td>TC_OFFSET</td>
+<td>double</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td>variable OFFSET</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

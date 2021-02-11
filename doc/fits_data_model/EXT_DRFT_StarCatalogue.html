@@ -1,0 +1,462 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>EXT_DRFT_StarCatalogue</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>EXT_DRFT_StarCatalogue</h1></div>
+<div class="row">
+<b>Brief: </b>CHEOPS Star Catalogue</div>
+<div class="row">
+<b>Description: </b>One table list the target star and the background stars of one visit. 
+                     It is derived from CHEOPS Star Catalogue. 
+                     First the EXT_DRFT_StarCatalogue is created by the 
+                     star_catalogueExtraction tool. visit_combination then 
+                     creates the EXT_PRE_StarCatalogu and sets the VISITCTR.</div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>13.1.3</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATANAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>data name of this star catalogue</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>EXT</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Visit</td></tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter for this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target</td></tr>
+<tr>
+<td>TARGNAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Name of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>SPECTYPE</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Spectral type of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>T_EFF</td>
+<td></td>
+<td>unsigned int</td>
+<td>Kelvin</td>
+<td>true</td>
+<td>Effective temperature of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>MAG_G</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_GERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_CHPS</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in CHEOPS band</td>
+</tr>
+<tr>
+<td>MAG_CERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in CHEOPS band</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target Coordinates</td></tr>
+<tr>
+<td>RA_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>RA of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>DEC_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>DEC of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>EQUINOX</td>
+<td>2000.0</td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>Equinox of celestial coord. system</td>
+</tr>
+<tr>
+<td>RADESYS</td>
+<td>ICRS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Coordinate reference frame for the RA and DEC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target Star</td></tr>
+<tr>
+<td>EXTINCT</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>Extinction for the target star</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Catalogue attributes</td></tr>
+<tr>
+<td>OBSEPOCH</td>
+<td></td>
+<td>real</td>
+<td>year</td>
+<td></td>
+<td>Position of stars are at this observation epoch</td>
+</tr>
+<tr>
+<td>CENT_RA</td>
+<td></td>
+<td>real</td>
+<td>deg</td>
+<td></td>
+<td>Center of field RA (OBSEPOCH)</td>
+</tr>
+<tr>
+<td>CENT_DEC</td>
+<td></td>
+<td>real</td>
+<td>deg</td>
+<td></td>
+<td>Center of field DEC (OBSEPOCH)</td>
+</tr>
+<tr>
+<td>GAIN</td>
+<td></td>
+<td>real</td>
+<td>ADU/e</td>
+<td></td>
+<td>Gain used to estimate the CCD_ADU</td>
+</tr>
+<tr>
+<td>FOV</td>
+<td></td>
+<td>real</td>
+<td>arcsec</td>
+<td></td>
+<td>Radius of field of view</td>
+</tr>
+<tr>
+<td>PITL</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+<td>Payload in the loop</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>ID</td>
+<td>string</td>
+<td></td>
+<td>20</td>
+<td></td>
+<td>Gaia ID of the star</td>
+</tr>
+<tr>
+<td>TARGET</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td>true if star is the target star</td>
+</tr>
+<tr>
+<td>RA</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>Right ascension of star at the epoch of the visit (OBSEPOCH)</td>
+</tr>
+<tr>
+<td>RA_ERR</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>Error of the right ascension</td>
+</tr>
+<tr>
+<td>DEC</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>Declination of star at the epoch of the visit (OBSEPOCH)</td>
+</tr>
+<tr>
+<td>DEC_ERR</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>Error of the declination</td>
+</tr>
+<tr>
+<td>DISTANCE</td>
+<td>float</td>
+<td>arcsec</td>
+<td></td>
+<td></td>
+<td>angular distance to the target star</td>
+</tr>
+<tr>
+<td>MAG_GAIA</td>
+<td>double</td>
+<td>mag</td>
+<td></td>
+<td></td>
+<td>Brightness of the star in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_GAIA_ERR</td>
+<td>double</td>
+<td>mag</td>
+<td></td>
+<td></td>
+<td>Error of the brightness of the star in Gaia band</td>
+</tr>
+<tr>
+<td>T_EFF</td>
+<td>double</td>
+<td>Kelvin</td>
+<td></td>
+<td></td>
+<td>Effective temperature of the star</td>
+</tr>
+<tr>
+<td>T_EFF_ERR</td>
+<td>double</td>
+<td>Kelvin</td>
+<td></td>
+<td></td>
+<td>Error of effective temperature</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

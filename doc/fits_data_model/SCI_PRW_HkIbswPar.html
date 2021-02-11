@@ -1,0 +1,492 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SCI_PRW_HkIbswPar</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SCI_PRW_HkIbswPar</h1></div>
+<div class="row">
+<b>Brief: </b> L0.5 product : IBSW Parameters (SID = 5) </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>L0.5</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Pass and Visit</td></tr>
+<tr>
+<td>PASS_ID</td>
+<td>00000000</td>
+<td>PassId</td>
+<td></td>
+<td>common</td>
+<td>PassId, when the data were received, 0 if non-applicable</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter of this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>OBT_TIME</td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td>On board time</td>
+</tr>
+<tr>
+<td>SEM_ON_CODE</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Code to be applied to the DPU FPGA to switch on the SEM</td>
+</tr>
+<tr>
+<td>SEM_OFF_CODE</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Code to be applied to the DPU FPGA to switch off the SEM</td>
+</tr>
+<tr>
+<td>ACQ_PH</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Phase of acquisition algorthm notification within an image acquisition interval</td>
+</tr>
+<tr>
+<td>milFrameDelay</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EL1_CHIP</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flash chip where the first error log block is stored</td>
+</tr>
+<tr>
+<td>EL2_CHIP</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flash chip where the second error log block is stored</td>
+</tr>
+<tr>
+<td>EL1_ADDR</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Address of first error log block within the chip EL1_CHIP</td>
+</tr>
+<tr>
+<td>EL2_ADDR</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Address of second error log block within the chip EL2_CHIP</td>
+</tr>
+<tr>
+<td>ERR_LOG_ENB</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status of Error Log</td>
+</tr>
+<tr>
+<td>FBF_BLCK_WR_DUR</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum period with which FBF write operations may be done (in cycles)</td>
+</tr>
+<tr>
+<td>FBF_BLCK_RD_DUR</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum period with which FBF read operations may be done (in cycles)</td>
+</tr>
+<tr>
+<td>THR_MA_A_1</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coefficient in formula for computation of average execution time</td>
+</tr>
+<tr>
+<td>THR_MA_A_2</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coefficient in formula for computation of average execution time</td>
+</tr>
+<tr>
+<td>THR_MA_A_3</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coefficient in formula for computation of average execution time</td>
+</tr>
+<tr>
+<td>THR_MA_A_4</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coefficient in formula for computation of average execution time</td>
+</tr>
+<tr>
+<td>THR_MA_A_5</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coefficient in formula for computation of average execution time</td>
+</tr>
+<tr>
+<td>OTA_TM1A_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM1A_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM1B_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM1B_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM2A_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM2A_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM2B_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM2B_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM3A_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM3A_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM3B_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM3B_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM4A_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM4A_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM4B_NOM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>OTA_TM4B_RED</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,1964 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SCI_PRW_HkIaswDg</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SCI_PRW_HkIaswDg</h1></div>
+<div class="row">
+<b>Brief: </b> L0.5 product : Diagnostic IASW Telemetry (SID = 3) </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>L0.5</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Pass and Visit</td></tr>
+<tr>
+<td>PASS_ID</td>
+<td>00000000</td>
+<td>PassId</td>
+<td></td>
+<td>common</td>
+<td>PassId, when the data were received, 0 if non-applicable</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter of this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>OBT_TIME</td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td>On board time</td>
+</tr>
+<tr>
+<td>NofAllocatedInRep</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InFactoryGetNOfAllocatedInRep</td>
+</tr>
+<tr>
+<td>NofAllocatedInCmd</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InFactoryGetNofAllocatedInCmd</td>
+</tr>
+<tr>
+<td>Sem_NOfPendingInCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InManagerGetNOfPendingInCmp for the InManagerSem</td>
+</tr>
+<tr>
+<td>Sem_NOfLoadedInCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InManagerGetNOfLoadedInCmp for the InManagerSem</td>
+</tr>
+<tr>
+<td>GrdObc_NOfPendingInCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InManagerGetNOfPendingInCmp for the InManagerGrdObc</td>
+</tr>
+<tr>
+<td>NOfAllocatedOutCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutFactoryGetNofAllocatedOutCmp</td>
+</tr>
+<tr>
+<td>NOfInstanceId</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutFactoryGetNofInstanceId</td>
+</tr>
+<tr>
+<td>OutMg1_NOfPendingOutCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutManagerGetNofPendingOutCmp for the OutManager1</td>
+</tr>
+<tr>
+<td>OutMg1_NOfLoadedOutCmp</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutManagerGetNofLoadedOutCmp for the OutManager1</td>
+</tr>
+<tr>
+<td>OutMg2_NOfPendingOutCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutManagerGetNofPendingOutCmp for the OutManager2</td>
+</tr>
+<tr>
+<td>OutMg2_NOfLoadedOutCmp</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutManagerGetNofLoadedOutCmp for the OutManager2</td>
+</tr>
+<tr>
+<td>OutMg3_NOfPendingOutCmp</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutManagerGetNofPendingOutCmp for the OutManager3</td>
+</tr>
+<tr>
+<td>OutMg3_NOfLoadedOutCmp</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutManagerGetNofLoadedOutCmp for the OutManager3</td>
+</tr>
+<tr>
+<td>InSem_NOfPendingPckts</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InStreamGetNofPendingPckts for the InStreamSem</td>
+</tr>
+<tr>
+<td>InObc_NOfPendingPckts</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InStreamGetNofPendingPckts for the InStreamObc</td>
+</tr>
+<tr>
+<td>InGrd_NOfPendingPckts</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function InStreamGetNofPendingPckts for the InStreamGrd</td>
+</tr>
+<tr>
+<td>OutSem_NOfPendingPckts</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutStreamSemGetNofPendingPckts for the OutStreamSem</td>
+</tr>
+<tr>
+<td>OutObc_NOfPendingPckts</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutStreamGetNofPendingPckts for OutStreamObc</td>
+</tr>
+<tr>
+<td>OutGrd_NOfPendingPckts</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function OutStreamGetNofPendingPckts for OutStreamGrd</td>
+</tr>
+<tr>
+<td>sdbStateCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of cycles since current state of SDB State Machine was entered</td>
+</tr>
+<tr>
+<td>lastPatchedAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Last start address to have been patched</td>
+</tr>
+<tr>
+<td>lastDumpAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Last start address to have been dumped</td>
+</tr>
+<tr>
+<td>sdu2BlockCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Block count for SDU2 State Machine</td>
+</tr>
+<tr>
+<td>sdu4BlockCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Block count for SDU4 State Machine</td>
+</tr>
+<tr>
+<td>FdCheckTTMIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of TTM FdCheck</td>
+</tr>
+<tr>
+<td>RpTTMIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of TTM recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckTTMCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for TTM FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckTTMSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for TTM FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSDSCIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SDSC FdCheck</td>
+</tr>
+<tr>
+<td>RpSDSCIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SDSC recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSDSCCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SDSC FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSDSCSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SDSC FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckComErrIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Communication Error FdCheck</td>
+</tr>
+<tr>
+<td>RpComErrIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Communication Error recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckComErrCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SEM Communication Error FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckComErrSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SEM Communication Error FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckTimeOutIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Mode Time-Out FdCheck</td>
+</tr>
+<tr>
+<td>RpTimeOutIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Mode Time-Out recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckTimeOutCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SEM Mode Time-Out FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckTimeOutSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SEM Mode Time-Out FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSafeModeIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Safe Mode FdCheck</td>
+</tr>
+<tr>
+<td>RpSafeModeIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Safe Mode recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSafeModeCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SEM Safe Mode FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSafeModeSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SEM Safe Mode FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckAliveIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>RpAliveIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Alive recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckAliveCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckAliveSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemAnoEvtIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Error Event 1 FdCheck</td>
+</tr>
+<tr>
+<td>RpSemAnoEvtIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Error Event 1 recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSemAnoEvtCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SEM Error Event 1 FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemAnoEvtSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SEM Error Event 1 FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemLimitIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Limit FdCheck</td>
+</tr>
+<tr>
+<td>RpSemLimitIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of SEM Limit recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSemLimitCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for SEM Limit FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemLimitSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for SEM Limit FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckDpuHkIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of DPU Housekeeping FdCheck</td>
+</tr>
+<tr>
+<td>RpDpuHkIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of DPU Housekeeping recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckDpuHkCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for DPU Housekeeping FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckDpuHkSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for DPU Housekeeping FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckCentConsIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of Centroid Consistency FdCheck</td>
+</tr>
+<tr>
+<td>RpCentConsIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of Centroid Consistency recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckCentConsCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for Centroid Consistency FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckCentConsSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for Centroid Consistency FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckResIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of Resource FdCheck</td>
+</tr>
+<tr>
+<td>RpResIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Internal enable status of Resource recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckResCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter for Resource FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckResSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Spurious counter for Resource FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemConsIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RpSemConsIntEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FdCheckSemConsCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FdCheckSemConsSpCnt</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>semStateCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of SEM State Machine</td>
+</tr>
+<tr>
+<td>semOperStateCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of SEM Operational State Machine</td>
+</tr>
+<tr>
+<td>imageCycleCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since start of acquisition of current image</td>
+</tr>
+<tr>
+<td>acqImageCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of images acquired since entry into science mode</td>
+</tr>
+<tr>
+<td>LastSemPckt</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>iaswStateCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of IASW State Machine</td>
+</tr>
+<tr>
+<td>prepScienceCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Prepare Science Procedure</td>
+</tr>
+<tr>
+<td>controlledSwitchOffCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Controlled Switch-Off Procedure</td>
+</tr>
+<tr>
+<td>algoCent0Cnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of Centroding 0 Algorithm State Machine</td>
+</tr>
+<tr>
+<td>algoCent1Cnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of Centroding 1 Algorithm State Machine</td>
+</tr>
+<tr>
+<td>algoAcq1Cnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of Acquisition 1 Algorithm State Machine</td>
+</tr>
+<tr>
+<td>algoCcCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of Compression/Collection Algorithm State Machine</td>
+</tr>
+<tr>
+<td>algoTTC1Cnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of Telescope Temperature Control 1 Algorithm State Machine</td>
+</tr>
+<tr>
+<td>ttc1AvTempAft</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average temperature measurement made by TTC1 from aft thermistors</td>
+</tr>
+<tr>
+<td>ttc1AvTempFrt</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average temperature measurement made by TTC1 from front thermistors</td>
+</tr>
+<tr>
+<td>algoTTC2Cnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current state of Telescope Temperature Control 2 Algorithm State Machine</td>
+</tr>
+<tr>
+<td>intTimeAft</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Integral of temperature from aft thermistors</td>
+</tr>
+<tr>
+<td>onTimeAft</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>On-time requested by TTC2 algorithm for aft heaters</td>
+</tr>
+<tr>
+<td>intTimeFront</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Integral of temperature from front thermistors</td>
+</tr>
+<tr>
+<td>onTimeFront</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>On-time requested by TTC2 algorithm for front heaters</td>
+</tr>
+<tr>
+<td>HbSem</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>semEvtCounter</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pExpTime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>pImageRep</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>pAcqNum</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_ACQUISITION_ NUM of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>pDataOs</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_DATA_ OVERSAMPLING of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>pCcdRdMode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_CCD_ READOUT_MODE command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>pWinPosX</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_CCD_ WINDOW_STAR_POS_X of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pWinPosY</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_CCD_ WINDOW_STAR_POS_Y of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pWinSizeX</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_CCD_ WINDOW_STAR_SIZE_X of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pWinSizeY</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_CCD_ WINDOW_STAR_SIZE_Y of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pDtAcqSrc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_DATA_ ACQ_SRC of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pTempCtrlTarget</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_TEMP_CONTROL_ TARGET of command (220,4) to the SEM</td>
+</tr>
+<tr>
+<td>pVoltFeeVod</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_VOLT_FEE_VOD of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pVoltFeeVrd</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_VOLT_FEE_VRD of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pVoltFeeVss</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_VOLT_FEE_VSS of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pHeatTempFpaCCd</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_HEAT_TEMP_FPA_CCD of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pHeatTempFeeStrap</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_HEAT_TEMP_FEE_STRAP of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pHeatTempFeeAnach</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_HEAT_TEMP_FEE_ANACH of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pHeatTempSpare</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter PAR_HEAT_TEMP_SPARE of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>pStepEnDiagCcd</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepEnDiagFee</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepEnDiagTemp</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepEnDiagAna</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepEnDiagExpos</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepDebDiagCcd</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepDebDiagFee</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepDebDiagTemp</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepDebDiagAna</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>pStepDebDiagExpos</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>saveImagesCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Save Images Procedure</td>
+</tr>
+<tr>
+<td>SaveImages_pSaveTarget</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The target of the save operation (either the ground or the flash memory)</td>
+</tr>
+<tr>
+<td>SaveImages_pFbfInit</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of first FBF to which images are saved</td>
+</tr>
+<tr>
+<td>SaveImages_pFbfEnd</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of last FBF to which images may be saved</td>
+</tr>
+<tr>
+<td>acqFullDropCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Acquire Full Drop Procedure</td>
+</tr>
+<tr>
+<td>AcqFullDrop_pExpTime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>AcqFullDrop_pImageRep</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>calFullSnapCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Calibrate Full Snap Procedure</td>
+</tr>
+<tr>
+<td>CalFullSnap_pExpTime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>CalFullSnap_pImageRep</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>CalFullSnap_pNmbImages</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of images to be acquired </td>
+</tr>
+<tr>
+<td>CalFullSnap_pCentSel</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SciWinCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of science Window Stack/Snap Procedure</td>
+</tr>
+<tr>
+<td>SciWin_pNmbImages</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of images to be acquired </td>
+</tr>
+<tr>
+<td>SciWin_pCcdRdMode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ READOUT_MODE command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pExpTime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pImageRep</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pWinPosX</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_X of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pWinPosY</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_Y of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pWinSizeX</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_X of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pWinSizeY</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_Y of command (220,11) to the SEM</td>
+</tr>
+<tr>
+<td>SciWin_pCentSel</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated</td>
+</tr>
+<tr>
+<td>fbfLoadCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of FBF Load Procedure</td>
+</tr>
+<tr>
+<td>fbfSaveCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of FBF Save Procedure</td>
+</tr>
+<tr>
+<td>FbfLoad_pFbfId</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The FBF Identifier</td>
+</tr>
+<tr>
+<td>FbfLoad_pFbfNBlocks</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Number of blocks to be loaded from the FBF</td>
+</tr>
+<tr>
+<td>FbfLoad_pFbfRamAreaId</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of RAM Data Area where FBF blocks are loaded or zero if RAM Data Area is specified as a raw RAM Address through parameter texttt{pFbfRamAddr}</td>
+</tr>
+<tr>
+<td>FbfLoad_pFbfRamAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Address in RAM where the FBF blocks are loaded (or don't care if texttt{pFbfRamAreaId} is not zero)</td>
+</tr>
+<tr>
+<td>FbfSave_pFbfId</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The FBF dentifier</td>
+</tr>
+<tr>
+<td>FbfSave_pFbfNBlocks</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Number of blocks to be transferred to the FBF</td>
+</tr>
+<tr>
+<td>FbfSave_pFbfRamAreaId</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of RAM Data Area from where FBF blocks are saved or zero if RAM Data Area is specified as a raw RAM Address through parameter texttt{pFbfRamAddr}</td>
+</tr>
+<tr>
+<td>FbfSave_pFbfRamAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Address in RAM from which the FBF blocks are transferred  (or don't care if texttt{pFbfRamAreaId} is not zero)</td>
+</tr>
+<tr>
+<td>fbfLoadBlockCounter</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of blocks transferred to Target RAM Data Area by FBF Load Procedure since the procedure was last started</td>
+</tr>
+<tr>
+<td>fbfSaveBlockCounter</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of blocks transferred to Targt FBF by FBF Save Procedure since the procedure was last started</td>
+</tr>
+<tr>
+<td>transFbfToGrndCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Transfer FBF To Ground Procedure</td>
+</tr>
+<tr>
+<td>TransFbfToGrnd_pNmbFbf</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of FBFs to be transferred to ground</td>
+</tr>
+<tr>
+<td>TransFbfToGrnd_pFbfInit</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of first FBF to be transferred to ground</td>
+</tr>
+<tr>
+<td>TransFbfToGrnd_pFbfSize</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Size in number of blocks of the FBFs to be transferred to ground (same size for all FBFs)</td>
+</tr>
+<tr>
+<td>nomSciCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycles elapsed since entry into current node of Nominal Science Procedure</td>
+</tr>
+<tr>
+<td>NomSci_pAcqFlag</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: If flag is true, the procedure performs the initial target acquisition observation</td>
+</tr>
+<tr>
+<td>NomSci_pCal1Flag</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: If flag is true, the procedure performs the calibration observation before the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pSciFlag</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: If flag is true, the procedure performs the science observation </td>
+</tr>
+<tr>
+<td>NomSci_pCal2Flag</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: If flag is true, the procedure performs the calibration observation after the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pCibNFull</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of CIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pCibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the CIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pSibNFull</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of SIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pSibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the SIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pGibNFull</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of GIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pGibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the GIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pSibNWin</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of SIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pSibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the SIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pCibNWin</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of CIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pCibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the CIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pGibNWin</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of GIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pGibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the GIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>NomSci_pExpTimeAcq</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the acquisition observation</td>
+</tr>
+<tr>
+<td>NomSci_pImageRepAcq</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the acquisition observation</td>
+</tr>
+<tr>
+<td>NomSci_pExpTimeCal1</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the first calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pImageRepCal1</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the first calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pNmbImagesCal1</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of images to be acquired  during the first calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pCentSelCal1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated during the first calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pNmbImagesSci</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of images to be acquired  during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pCcdRdModeSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ READOUT_MODE command (220,3) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pExpTimeSci</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pImageRepSci</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pWinPosXSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_X of command (220,11) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pWinPosYSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_Y of command (220,11) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pWinSizeXSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_X of command (220,11) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pWinSizeYSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_Y of command (220,11) to the SEM during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pCentSelSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated during the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pExpTimeCal2</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the second calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pImageRepCal2</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the second calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pNmbImagesCal2</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of images to be acquired  during the second calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pCentSelCal2</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated during the second calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pSaveTarget</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The target of the save operation (either the ground or the flash memory)</td>
+</tr>
+<tr>
+<td>NomSci_pFbfInit</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of first FBF to which images are saved</td>
+</tr>
+<tr>
+<td>NomSci_pFbfEnd</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Identifier of last FBF to which images may be saved</td>
+</tr>
+<tr>
+<td>NomSci_pStckOrderCal1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Stacking order to be used in first calibration observation</td>
+</tr>
+<tr>
+<td>NomSci_pStckOrderSci</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Stacking order to be used in the science observation</td>
+</tr>
+<tr>
+<td>NomSci_pStckOrderCal2</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: Stacking order to be used in second calibration observation</td>
+</tr>
+<tr>
+<td>ConfigSdb_pSdbCmd</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The reconfiguration command to the SDB</td>
+</tr>
+<tr>
+<td>ConfigSdb_pCibNFull</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of CIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pCibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the CIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pSibNFull</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of SIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pSibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the SIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pGibNFull</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of GIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pGibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the GIBs for Full CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pSibNWin</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of SIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pSibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the SIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pCibNWin</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of CIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pCibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the CIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pGibNWin</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The number of GIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>ConfigSdb_pGibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Procedure Parameter: The size in kBytes of the GIBs for Window CCD Images</td>
+</tr>
+<tr>
+<td>HbSemCounter</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

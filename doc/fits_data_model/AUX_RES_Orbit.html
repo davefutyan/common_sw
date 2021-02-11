@@ -1,0 +1,273 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>AUX_RES_Orbit</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>AUX_RES_Orbit</h1></div>
+<div class="row">
+<b>Brief: </b>Restituted Orbit Data </div>
+<div class="row">
+<b>Description: </b>Orbit data copied from the restituted orbit XML file,  
+                     which is provided by MOC. Each row defines for 
+                     one time (EPOCH) a state vector with the position and
+                     velocity of the spacecraft. </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>5.3</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>AUX</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">OEM Metadata</td></tr>
+<tr>
+<td>CNT_NAME</td>
+<td>EARTH</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Origin of reference frame</td>
+</tr>
+<tr>
+<td>REF_FRAM</td>
+<td>EME2000</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Name of the reference frame</td>
+</tr>
+<tr>
+<td>TIME_SYS</td>
+<td>UTC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time system</td>
+</tr>
+<tr>
+<td>USE_STTM</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td>Start of useable time</td>
+</tr>
+<tr>
+<td>USE_ENTM</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td>End of useable time</td>
+</tr>
+<tr>
+<td>INTERPOL</td>
+<td>Lagrange</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Recommended interpolation method</td>
+</tr>
+<tr>
+<td>DEG_INRT</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td></td>
+<td>Recommended interpolation degree</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EPOCH</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>UTC time of the state vector</td>
+</tr>
+<tr>
+<td>X</td>
+<td>double</td>
+<td>km</td>
+<td></td>
+<td></td>
+<td>x component of position</td>
+</tr>
+<tr>
+<td>Y</td>
+<td>double</td>
+<td>km</td>
+<td></td>
+<td></td>
+<td>y component of position</td>
+</tr>
+<tr>
+<td>Z</td>
+<td>double</td>
+<td>km</td>
+<td></td>
+<td></td>
+<td>z component of position</td>
+</tr>
+<tr>
+<td>X_DOT</td>
+<td>double</td>
+<td>km/s</td>
+<td></td>
+<td></td>
+<td>x component of velocity</td>
+</tr>
+<tr>
+<td>Y_DOT</td>
+<td>double</td>
+<td>km/s</td>
+<td></td>
+<td></td>
+<td>x component of velocity</td>
+</tr>
+<tr>
+<td>Z_DOT</td>
+<td>double</td>
+<td>km/s</td>
+<td></td>
+<td></td>
+<td>x component of velocity</td>
+</tr>
+<tr>
+<td>LATITUDE</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>latitude of spacecraft</td>
+</tr>
+<tr>
+<td>LONGITUDE</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>longitude of spacecraft</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

@@ -1,0 +1,627 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SCI_RAW_SubArray</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SCI_RAW_SubArray</h1></div>
+<div class="row">
+<b>Brief: </b> L05 Product : raw sub-array image.</div>
+<div class="row">
+<b>Description: </b>There is no processing step applied.
+                     The pixel values are as they were received from the instrument.
+                     The images in the cube are sorted by time, 
+                     with no overlap between two consecutive products.
+                     There is no processing step of the raw pixel data applied.
+                     Only time conversion from on-board-time to JD is applied.
+        </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>13.1</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>L0.5</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr>
+<td>BUNIT</td>
+<td>ADU</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Unit of image data</td>
+</tr>
+<tr>
+<td>MRG_MODE</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>On-board processing mode of the CCD margins</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Pass and Visit</td></tr>
+<tr>
+<td>PASS_ID</td>
+<td>00000000</td>
+<td>PassId</td>
+<td></td>
+<td>common</td>
+<td>PassId, when the data were received, 0 if non-applicable</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter of this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target</td></tr>
+<tr>
+<td>TARGNAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Name of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>SPECTYPE</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Spectral type of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>T_EFF</td>
+<td></td>
+<td>unsigned int</td>
+<td>Kelvin</td>
+<td>true</td>
+<td>Effective temperature of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>MAG_G</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_GERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_CHPS</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in CHEOPS band</td>
+</tr>
+<tr>
+<td>MAG_CERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in CHEOPS band</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Exposure</td></tr>
+<tr>
+<td>T_STRT_O</td>
+<td></td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td>OBT of the first measurement</td>
+</tr>
+<tr>
+<td>T_STOP_O</td>
+<td></td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td>OBT of the last measurement</td>
+</tr>
+<tr>
+<td>T_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td>UTC of the first measurement</td>
+</tr>
+<tr>
+<td>T_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td>UTC of the last measurement</td>
+</tr>
+<tr>
+<td>T_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>MJD of the first measurement</td>
+</tr>
+<tr>
+<td>T_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>MJD of the last measurement</td>
+</tr>
+<tr>
+<td>NEXP</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td></td>
+<td>Number of co-added measurements</td>
+</tr>
+<tr>
+<td>EXPTIME</td>
+<td></td>
+<td>real</td>
+<td>sec</td>
+<td></td>
+<td>Exposure time of the individual exposures</td>
+</tr>
+<tr>
+<td>TEXPTIME</td>
+<td></td>
+<td>real</td>
+<td>sec</td>
+<td></td>
+<td>Total exposure time of stacked images</td>
+</tr>
+<tr>
+<td>EXPT_TYP</td>
+<td>commanded</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Defines the type of EXPTIME and TEXPTIME, either commanded or executed</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target Coordinates</td></tr>
+<tr>
+<td>RA_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>RA of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>DEC_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>DEC of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>EQUINOX</td>
+<td>2000.0</td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>Equinox of celestial coord. system</td>
+</tr>
+<tr>
+<td>RADESYS</td>
+<td>ICRS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Coordinate reference frame for the RA and DEC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Sub - Array Location on CCD</td></tr>
+<tr>
+<td>X_WINOFF</td>
+<td></td>
+<td>integer</td>
+<td>pixel</td>
+<td></td>
+<td>X offset of the Sub Array image relative to the Full Array image without margins</td>
+</tr>
+<tr>
+<td>Y_WINOFF</td>
+<td></td>
+<td>integer</td>
+<td>pixel</td>
+<td></td>
+<td>Y offset of the Sub Array image relative to the Full Array image without margins</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Image Attributes</td></tr>
+<tr>
+<td>SHAPE</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>rectangular or circular</td>
+</tr>
+<tr>
+<td>STACKING</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>on-board stacking of image data</td>
+</tr>
+<tr>
+<td>ROUNDING</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td></td>
+<td>number of bits that are rounded off</td>
+</tr>
+<tr>
+<td>NLIN_COR</td>
+<td></td>
+<td>boolean</td>
+<td></td>
+<td></td>
+<td>on-board nonlinearity correction</td>
+</tr>
+<tr>
+<td>RO_SCRPT</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td></td>
+<td>id of the CCD readout timing script</td>
+</tr>
+<tr>
+<td>RO_HW</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>used on-board hw: main or redundant</td>
+</tr>
+<tr>
+<td>RO_FREQU</td>
+<td></td>
+<td>integer</td>
+<td>Hz</td>
+<td></td>
+<td>CCD readout frequency</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div class="section-heading">Image</div>
+<div><table>
+<tr>
+<th class="no-stretch-cell">Data type</th>
+<td>uint32</td>
+</tr>
+<tr>
+<th class="no-stretch-cell">Null value</th>
+<td>0</td>
+</tr>
+</table></div>
+<table>
+<thead><tr>
+<th>Column</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>naxis</td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>axis1</td>
+<td>0</td>
+<td>pixel</td>
+<td>X axis of the CCD</td>
+</tr>
+<tr>
+<td>axis2</td>
+<td>0</td>
+<td>pixel</td>
+<td>Y axis of the CCD</td>
+</tr>
+<tr>
+<td>axis3</td>
+<td> 0 </td>
+<td>#images</td>
+<td>Scan successive subarray images (sorted by date) with no overlap between two consecutive L05 products</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Associated HDUs</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Optional</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>SCI_RAW_ImageMetadata</td>
+<td>table</td>
+<td>
+						no
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_UnstackedImageMetadata</td>
+<td>table</td>
+<td>
+						no
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_DarkLeft</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_DarkRight</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_DarkTop</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_BlankLeft</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_BlankRight</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_OverscanLeft</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_OverscanRight</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+<tr>
+<td>SCI_RAW_OverscanTop</td>
+<td>image</td>
+<td>
+						yes
+					</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

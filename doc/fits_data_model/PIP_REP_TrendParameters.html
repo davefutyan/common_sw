@@ -1,0 +1,254 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>PIP_REP_TrendParameters</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>PIP_REP_TrendParameters</h1></div>
+<div class="row">
+<b>Brief: </b> A generic table to store parameters in a table useful for trend reports. </div>
+<div class="row">
+<b>Description: </b>It can be used to store parameters per star detected in the images.</div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>9.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATANAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>data name of this report</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Report Classification</td></tr>
+<tr>
+<td>REP_TYPE</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>type of report</td>
+</tr>
+<tr>
+<td>REP_WP</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>work package creating the report</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>UTC_START</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>time of the first data entry considered for this parameter</td>
+</tr>
+<tr>
+<td>MJD_START</td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td></td>
+<td>time of the first data entry considered for this parameter</td>
+</tr>
+<tr>
+<td>UTC_STOP</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>time of the last data entry considered for this parameter</td>
+</tr>
+<tr>
+<td>MJD_STOP</td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td></td>
+<td>time of the last data entry considered for this parameter</td>
+</tr>
+<tr>
+<td>NUM_DATA</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of data entries that was aggregated or used in this trend parameter</td>
+</tr>
+<tr>
+<td>RELATED_DATA</td>
+<td>string</td>
+<td></td>
+<td>32</td>
+<td></td>
+<td>Structure name, the value was derived from.</td>
+</tr>
+<tr>
+<td>NAME</td>
+<td>string</td>
+<td></td>
+<td>32</td>
+<td></td>
+<td>the name of the QL parameter</td>
+</tr>
+<tr>
+<td>VALUE</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>value of the variable</td>
+</tr>
+<tr>
+<td>UNIT</td>
+<td>string</td>
+<td></td>
+<td>16</td>
+<td></td>
+<td>unit of the variable</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

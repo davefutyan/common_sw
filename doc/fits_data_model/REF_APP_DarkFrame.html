@@ -1,0 +1,246 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>REF_APP_DarkFrame</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>REF_APP_DarkFrame</h1></div>
+<div class="row">
+<b>Brief: </b> Dark Frame FullArray</div>
+<div class="row">
+<b>Description: </b>The Frame is a result of ground based calibrations or
+                     IOC observations.
+                     It will be updated using the result of M and C observations
+                     The bias value is already subtracted and it is corrected
+                     for non-linearity.
+                     </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.1.5</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>BUNIT</td>
+<td>e-/s</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Unit of the data in the image</td>
+</tr>
+<tr>
+<td>IMAGE1</td>
+<td>dark current</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>description of image 1</td>
+</tr>
+<tr>
+<td>IMAGE2</td>
+<td>dark error</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>description of image 2</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>REF</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Data provenance</td></tr>
+<tr>
+<td>PROVIDER</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>where/by whom was this file generated?</td>
+</tr>
+<tr>
+<td>DESCRIP</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>what distinguishes this file from others?</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div class="section-heading">Image</div>
+<div><table>
+<tr>
+<th class="no-stretch-cell">Data type</th>
+<td>float</td>
+</tr>
+<tr>
+<th class="no-stretch-cell">Null value</th>
+<td>
+									N/A
+								</td>
+</tr>
+</table></div>
+<table>
+<thead><tr>
+<th>Column</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>naxis</td>
+<td>3</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>axis1</td>
+<td>1024</td>
+<td></td>
+<td>X axis</td>
+</tr>
+<tr>
+<td>axis2</td>
+<td>1024</td>
+<td></td>
+<td>Y axis</td>
+</tr>
+<tr>
+<td>axis3</td>
+<td>2</td>
+<td></td>
+<td>data type</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Associated HDUs</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Optional</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>REF_APP_DarkFrameLeft</td>
+<td>image</td>
+<td>
+						no
+					</td>
+</tr>
+<tr>
+<td>REF_APP_DarkFrameRight</td>
+<td>image</td>
+<td>
+						no
+					</td>
+</tr>
+<tr>
+<td>REF_APP_DarkFrameTop</td>
+<td>image</td>
+<td>
+						no
+					</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

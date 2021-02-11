@@ -1,0 +1,1068 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SCI_PRW_HkIbswDg</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SCI_PRW_HkIbswDg</h1></div>
+<div class="row">
+<b>Brief: </b> L0.5 product : Diagnostic IBSW Telemetry (SID = 4) </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>L0.5</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Pass and Visit</td></tr>
+<tr>
+<td>PASS_ID</td>
+<td>00000000</td>
+<td>PassId</td>
+<td></td>
+<td>common</td>
+<td>PassId, when the data were received, 0 if non-applicable</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter of this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>OBT_TIME</td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td>On board time</td>
+</tr>
+<tr>
+<td>ADC_P3V3_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_P5V_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_P1V8_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_P2V5_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_N5V_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_PGND_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH1A_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMP1_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH2A_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH1B_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH3A_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH2B_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH4A_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH3B_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_TEMPOH4B_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P15V_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P30V_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P5V0_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P7V0_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_N5V0_RAW</td>
+<td>int16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>missedMsgCnt</td>
+<td>int32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter of missed synchronization messages</td>
+</tr>
+<tr>
+<td>missedPulseCnt</td>
+<td>int32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter of missed synchronization pulses</td>
+</tr>
+<tr>
+<td>isErrLogValid</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Validity status of flash-based error log</td>
+</tr>
+<tr>
+<td>wcet_1</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Worst-case execution time of RT container 1</td>
+</tr>
+<tr>
+<td>wcet_2</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Worst-case execution time of RT container 2</td>
+</tr>
+<tr>
+<td>wcet_3</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Worst-case execution time of RT container 3</td>
+</tr>
+<tr>
+<td>wcet_4</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Worst-case execution time of RT container 4</td>
+</tr>
+<tr>
+<td>wcet_5</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Worst-case execution time of RT container 5</td>
+</tr>
+<tr>
+<td>wcetAver_1</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average WCET for RT Container 1</td>
+</tr>
+<tr>
+<td>wcetAver_2</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average WCET for RT Container 2</td>
+</tr>
+<tr>
+<td>wcetAver_3</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average WCET for RT Container 3</td>
+</tr>
+<tr>
+<td>wcetAver_4</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average WCET for RT Container 4</td>
+</tr>
+<tr>
+<td>wcetAver_5</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Average WCET for RT Container 5</td>
+</tr>
+<tr>
+<td>wcetMax_1</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum WCET for RT Container 1</td>
+</tr>
+<tr>
+<td>wcetMax_2</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum WCET for RT Container 2</td>
+</tr>
+<tr>
+<td>wcetMax_3</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum WCET for RT Container 3</td>
+</tr>
+<tr>
+<td>wcetMax_4</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum WCET for RT Container 4</td>
+</tr>
+<tr>
+<td>wcetMax_5</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum WCET for RT Container 5</td>
+</tr>
+<tr>
+<td>nOfNotif_1</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Notification counter for RT Container 1</td>
+</tr>
+<tr>
+<td>nOfNotif_2</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Notification counter for RT Container 2</td>
+</tr>
+<tr>
+<td>nOfNotif_3</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Notification counter for RT Container 3</td>
+</tr>
+<tr>
+<td>nOfNotif_4</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Notification counter for RT Container 4</td>
+</tr>
+<tr>
+<td>nOfNotif_5</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Notification counter for RT Container 5</td>
+</tr>
+<tr>
+<td>nofFuncExec_1</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of functional executions of RT Container 1</td>
+</tr>
+<tr>
+<td>nofFuncExec_2</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of functional executions of RT Container 2</td>
+</tr>
+<tr>
+<td>nofFuncExec_3</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of functional executions of RT Container 3</td>
+</tr>
+<tr>
+<td>nofFuncExec_4</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of functional executions of RT Container 4</td>
+</tr>
+<tr>
+<td>nofFuncExec_5</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of functional executions of RT Container 5</td>
+</tr>
+<tr>
+<td>wcetTimeStampFine_1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Fine part of time when worst-case execution time is recorded for RT container 1</td>
+</tr>
+<tr>
+<td>wcetTimeStampFine_2</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Fine part of time when worst-case execution time is recorded for RT container 2</td>
+</tr>
+<tr>
+<td>wcetTimeStampFine_3</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Fine part of time when worst-case execution time is recorded for RT container 3</td>
+</tr>
+<tr>
+<td>wcetTimeStampFine_4</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Fine part of time when worst-case execution time is recorded for RT container 4</td>
+</tr>
+<tr>
+<td>wcetTimeStampFine_5</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Fine part of time when worst-case execution time is recorded for RT container 5</td>
+</tr>
+<tr>
+<td>wcetTimeStampCoarse_1</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coarse part of time when worst-case execution time is recorded for RT container 1</td>
+</tr>
+<tr>
+<td>wcetTimeStampCoarse_2</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coarse part of time when worst-case execution time is recorded for RT container 2</td>
+</tr>
+<tr>
+<td>wcetTimeStampCoarse_3</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coarse part of time when worst-case execution time is recorded for RT container 3</td>
+</tr>
+<tr>
+<td>wcetTimeStampCoarse_4</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coarse part of time when worst-case execution time is recorded for RT container 4</td>
+</tr>
+<tr>
+<td>wcetTimeStampCoarse_5</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Coarse part of time when worst-case execution time is recorded for RT container 5</td>
+</tr>
+<tr>
+<td>flashContStepCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>CyclicalActivitiesCtr</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>identifies the current IASW cycle</td>
+</tr>
+<tr>
+<td>ObcInputBufferPackets</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Nr of packets in OBC input buffer</td>
+</tr>
+<tr>
+<td>GrndInputBufferPackets</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Nr of packets in Ground input buffer</td>
+</tr>
+<tr>
+<td>MilBusBytesIn</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>link stats</td>
+</tr>
+<tr>
+<td>MilBusBytesOut</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>link stats</td>
+</tr>
+<tr>
+<td>MilBusDroppedBytes</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>received MilBus bytes dropped due to full buffers</td>
+</tr>
+<tr>
+<td>IRL1_AHBSTAT</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>AHB status interrupt</td>
+</tr>
+<tr>
+<td>IRL1_GRGPIO_6</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>sync pulse</td>
+</tr>
+<tr>
+<td>IRL1_GRTIMER</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>long timer (uptime)</td>
+</tr>
+<tr>
+<td>IRL1_GPTIMER_0</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>reserved</td>
+</tr>
+<tr>
+<td>IRL1_GPTIMER_1</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>syncpulse guard</td>
+</tr>
+<tr>
+<td>IRL1_GPTIMER_2</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>notification timer</td>
+</tr>
+<tr>
+<td>IRL1_GPTIMER_3</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>watchdog </td>
+</tr>
+<tr>
+<td>IRL1_IRQMP</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>multiprocessor/extended IRL</td>
+</tr>
+<tr>
+<td>IRL1_B1553BRM</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Milbus IRQ</td>
+</tr>
+<tr>
+<td>IRL2_GRSPW2_0</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>monitor link (routing mode)</td>
+</tr>
+<tr>
+<td>IRL2_GRSPW2_1</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>SEM link (routing mode)</td>
+</tr>
+<tr>
+<td>Spw1TxDescAvail</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>link stats</td>
+</tr>
+<tr>
+<td>Spw1RxPcktAvail</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>link stats</td>
+</tr>
+<tr>
+<td>MilCucCoarseTime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>coarse time from broadcast</td>
+</tr>
+<tr>
+<td>MilCucFineTime</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>fine time from broadcast</td>
+</tr>
+<tr>
+<td>CucCoarseTime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>(current) coarse time</td>
+</tr>
+<tr>
+<td>CucFineTime</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>(current) fine time</td>
+</tr>
+<tr>
+<td>Sram1ScrCurrAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>current address of memory scrubber for SRAM 1</td>
+</tr>
+<tr>
+<td>Sram2ScrCurrAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>current address of memory scrubber for SRAM 2</td>
+</tr>
+<tr>
+<td>Sram1ScrLength</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of words to scrub per cycle for SRAM 1</td>
+</tr>
+<tr>
+<td>Sram2ScrLength</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of words to scrub per cycle for SRAM 2</td>
+</tr>
+<tr>
+<td>EdacSingleRepaired</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>number of errors repaired in last cycle</td>
+</tr>
+<tr>
+<td>EdacDoubleFaults</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>cumulative number of double faults</td>
+</tr>
+<tr>
+<td>EdacDoubleFAddr</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>last double fault address</td>
+</tr>
+<tr>
+<td>HEARTBEAT_ENABLED</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>S1AllocDbs</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of Dbs area heap</td>
+</tr>
+<tr>
+<td>S1AllocSw</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of Ifsw heap</td>
+</tr>
+<tr>
+<td>S1AllocHeap</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of general purpose heap of SRAM1</td>
+</tr>
+<tr>
+<td>S1AllocFlash</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of heap in FLASH RAM area</td>
+</tr>
+<tr>
+<td>S1AllocAux</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of auxiliary heap (centroiding)</td>
+</tr>
+<tr>
+<td>S1AllocRes</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of reserved heap</td>
+</tr>
+<tr>
+<td>S1AllocSwap</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of swap data heap</td>
+</tr>
+<tr>
+<td>S2AllocSciHeap</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>usage of science data heap of SRAM2</td>
+</tr>
+<tr>
+<td>FPGA_Version</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FPGA_DPU_Status</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FPGA_DPU_Address</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FPGA_RESET_Status</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FPGA_SEM_Status</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FPGA_Oper_Heater_Status</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

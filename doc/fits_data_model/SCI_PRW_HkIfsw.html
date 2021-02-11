@@ -1,0 +1,1124 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SCI_PRW_HkIfsw</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SCI_PRW_HkIfsw</h1></div>
+<div class="row">
+<b>Brief: </b> L0.5 product : General HK for IFSW (SID = 1) </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>L0.5</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Pass and Visit</td></tr>
+<tr>
+<td>PASS_ID</td>
+<td>00000000</td>
+<td>PassId</td>
+<td></td>
+<td>common</td>
+<td>PassId, when the data were received, 0 if non-applicable</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter of this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>OBT_TIME</td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td>On board time</td>
+</tr>
+<tr>
+<td>buildNumber</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Build number of IBSW/IASW image</td>
+</tr>
+<tr>
+<td>AppErrCode</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Return value of CORDET framework function CrFwGetAppErrCode</td>
+</tr>
+<tr>
+<td>sibNFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of Single Image Buffers for Full images</td>
+</tr>
+<tr>
+<td>cibNFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of Combined Image Buffers for Full images</td>
+</tr>
+<tr>
+<td>gibNFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of Ground Image Buffers for Full images</td>
+</tr>
+<tr>
+<td>sibNWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of Single Image Buffers for Window images</td>
+</tr>
+<tr>
+<td>cibNWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of Combined Image Buffers for Window images</td>
+</tr>
+<tr>
+<td>gibNWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of Ground Image Buffers for Window images</td>
+</tr>
+<tr>
+<td>sibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Size in kBytes of one Single Image Buffer for Full Images</td>
+</tr>
+<tr>
+<td>cibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Size in kBytes of one Combined Image Buffer for Full Images</td>
+</tr>
+<tr>
+<td>gibSizeFull</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Size in kBytes of one Ground Image Buffer for Full Images</td>
+</tr>
+<tr>
+<td>sibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Size in kBytes of one Single Image Buffer for Window Images</td>
+</tr>
+<tr>
+<td>cibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Size in kBytes of one Combined Image Buffer for Window Images</td>
+</tr>
+<tr>
+<td>gibSizeWin</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Size in kBytes of one Ground Image Buffer for Window Images</td>
+</tr>
+<tr>
+<td>sibIn</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pointer to SIB which is being filled with raw data from SEM</td>
+</tr>
+<tr>
+<td>sibOut</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pointer to SIB which is being processed by science algorithms</td>
+</tr>
+<tr>
+<td>cibIn</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pointer to CIB which is being filled with stacked image data</td>
+</tr>
+<tr>
+<td>gibIn</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pointer to GIB which is being filled compresed science data</td>
+</tr>
+<tr>
+<td>gibOut</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Pointer to GIB which is being transferred to ground</td>
+</tr>
+<tr>
+<td>sdbState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SDB State Machine</td>
+</tr>
+<tr>
+<td>NOfTcAcc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of TC accepted for execution (return value of function CrFwInManagerGetNOfLoadedInCmp for InManagerGrdObc)</td>
+</tr>
+<tr>
+<td>NOfAccFailedTc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of TC which failed their acceptance check</td>
+</tr>
+<tr>
+<td>SeqCntLastAccTcFromObc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Sequence counter of last accepted TC from the OBC (return value of function CrFwInStreamGetSeqCnt for InStreamObc)</td>
+</tr>
+<tr>
+<td>SeqCntLastAccTcFromGrd</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Sequence counter of last accepted TC from the ground (return value of function CrFwInStreamGetSeqCnt for InStreamGrd)</td>
+</tr>
+<tr>
+<td>SeqCntLastAccFailTc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Sequence counter of last TC to have failed its acceptance check</td>
+</tr>
+<tr>
+<td>NOfStartFailedTc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of TC which failed their start check</td>
+</tr>
+<tr>
+<td>SeqCntLastStartFailTc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Sequence counter of last  TC which failed start check</td>
+</tr>
+<tr>
+<td>NOfTcTerm</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of TC which terminated execution</td>
+</tr>
+<tr>
+<td>NOfTermFailedTc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of TC which failed their termination check</td>
+</tr>
+<tr>
+<td>SeqCntLastTermFailTc</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Sequence counter of last  TC which failed termination check</td>
+</tr>
+<tr>
+<td>sdu2State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SDU2 State Machine</td>
+</tr>
+<tr>
+<td>sdu4State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SDU4 State Machine</td>
+</tr>
+<tr>
+<td>sdsCounter</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of images which have been discarded because their Science Data Suspend (SDS) Flag was true</td>
+</tr>
+<tr>
+<td>FdCheckTTMState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Telescope Temperature Monitor FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSDSCState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Incorrect Science Data Sequence Counter FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckComErrState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Communication Error FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckTimeOutState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Mode Time-Out FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSafeModeState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Safe Mode FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckAliveState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemAnoEvtState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Anomaly Event FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemLimitState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Limit FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckDpuHkState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of DPU Housekeeping FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckCentConsState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Centroid Consistency FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckResState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Resource FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemCons</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>semState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM State Machine</td>
+</tr>
+<tr>
+<td>semOperState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SEM Operational State Machine</td>
+</tr>
+<tr>
+<td>sciSubMode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Science sub-mode</td>
+</tr>
+<tr>
+<td>iaswState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of the IASW State Machine</td>
+</tr>
+<tr>
+<td>iaswCycleCnt</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Cycle elapsed since the IASW State Machine was started (i.e. since the start of the IASW)</td>
+</tr>
+<tr>
+<td>prepScienceNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Prepare Science Procedure</td>
+</tr>
+<tr>
+<td>controlledSwitchOffNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Controlled Switch Off Procedure</td>
+</tr>
+<tr>
+<td>algoCent0State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Centroiding 0 Algorithm (creates an invalid dummy centroid)</td>
+</tr>
+<tr>
+<td>algoCent1State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Centroiding 1 Algorithm</td>
+</tr>
+<tr>
+<td>algoAcq1State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Acquisition Algorithm 1</td>
+</tr>
+<tr>
+<td>algoCcState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Compression/Collection Algorithm</td>
+</tr>
+<tr>
+<td>algoTTC1State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Telescope Temperature Control 1 Algorithm</td>
+</tr>
+<tr>
+<td>algoTTC2State</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Telescope Temperature Control 2 Algorithm</td>
+</tr>
+<tr>
+<td>algoSaaEvalState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of SAA Evaluation Algorithm</td>
+</tr>
+<tr>
+<td>isSaaActive</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flag set to false when the spacecraft is outside the SAA</td>
+</tr>
+<tr>
+<td>saaCounter</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter holding the distance in time from the next entry into the SAA</td>
+</tr>
+<tr>
+<td>algoSdsEvalState</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>State of Science Data Suspend (SDS) Evaluation Algorithm</td>
+</tr>
+<tr>
+<td>isSdsActive</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flag set to true when transfer of science data to ground is suspended</td>
+</tr>
+<tr>
+<td>observationId</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Observation identifier as it was uploaded by the Star Map Command</td>
+</tr>
+<tr>
+<td>centValProcOutput</td>
+<td>int8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Output of Centroid Validity Procedure</td>
+</tr>
+<tr>
+<td>saveImagesNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Save Images Procedure</td>
+</tr>
+<tr>
+<td>acqFullDropNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Acquire Full Drop Procedure</td>
+</tr>
+<tr>
+<td>calFullSnapNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Calibrate Full Snap Procedure</td>
+</tr>
+<tr>
+<td>SciWinNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Science Window Stack/Snap Procedure</td>
+</tr>
+<tr>
+<td>fbfLoadNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of FBF Load Procedure</td>
+</tr>
+<tr>
+<td>fbfSaveNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of FBF Save Procedure</td>
+</tr>
+<tr>
+<td>transFbfToGrndNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Transfer FBF To Ground Procedure</td>
+</tr>
+<tr>
+<td>nomSciNode</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Current node of Nominal Science Procedure</td>
+</tr>
+<tr>
+<td>ADC_P3V3</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_P5V</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_P1V8</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_P2V5</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_N5V</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_PGND</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH1A</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMP1</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH2A</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH1B</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH3A</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH2B</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH4A</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH3B</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH4B</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>SEM_P15V</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>SEM_P30V</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>SEM_P5V0</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>SEM_P7V0</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>SEM_N5V0</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)</td>
+</tr>
+<tr>
+<td>isWatchdogEnabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of DPU watchdog</td>
+</tr>
+<tr>
+<td>isSynchronized</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Synchronization state of IBSW</td>
+</tr>
+<tr>
+<td>nOfErrLogEntries</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Total number of error log entries since the IBSW/IASW was last reset</td>
+</tr>
+<tr>
+<td>Core0Load</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>CPU load of core 0</td>
+</tr>
+<tr>
+<td>Core1Load</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>CPU load of core 1</td>
+</tr>
+<tr>
+<td>InterruptRate</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Interrupts / s</td>
+</tr>
+<tr>
+<td>Uptime</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>IBSW uptime</td>
+</tr>
+<tr>
+<td>IRL1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>total number of interrupts per second on line 1</td>
+</tr>
+<tr>
+<td>IRL2</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>total number of interrupts per second on line 2</td>
+</tr>
+<tr>
+<td>SemRoute</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>fast routing enable flag (SpW0 to SpW1)</td>
+</tr>
+<tr>
+<td>SpW1BytesIn</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>link stats</td>
+</tr>
+<tr>
+<td>SpW1BytesOut</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>link stats</td>
+</tr>
+<tr>
+<td>EdacSingleFaults</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>cumulative number of single faults</td>
+</tr>
+<tr>
+<td>EdacLastSingleFail</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>last single fault address</td>
+</tr>
+<tr>
+<td>Cpu2ProcStatus</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>processing status of CPU core 2</td>
+</tr>
+<tr>
+<td>CE_Counter</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>CE counter</td>
+</tr>
+<tr>
+<td>CE_Version</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>IFSW build number / SW version</td>
+</tr>
+<tr>
+<td>CE_Integrity</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>CE integrity</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

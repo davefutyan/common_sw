@@ -1,0 +1,521 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SIM_TRU_SubArray</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SIM_TRU_SubArray</h1></div>
+<div class="row">
+<b>Brief: </b> Truth information for simulated sub-frame images</div>
+<div class="row">
+<b>Description: </b> There is one row per two dimensional image in the
+                      associated image cube. It stores truth information for that image.
+                      The time is converted in UT and JD </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>13.1</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>SIM</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>BUNIT</td>
+<td>ADU</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Unit of image data</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Visit</td></tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter for this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target</td></tr>
+<tr>
+<td>TARGNAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Name of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>SPECTYPE</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Spectral type of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>T_EFF</td>
+<td></td>
+<td>unsigned int</td>
+<td>Kelvin</td>
+<td>true</td>
+<td>Effective temperature of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>MAG_G</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_GERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_CHPS</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in CHEOPS band</td>
+</tr>
+<tr>
+<td>MAG_CERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in CHEOPS band</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>OBT_TIME</td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td>On board time, middle of the measurements</td>
+</tr>
+<tr>
+<td>UTC_TIME</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>UTC time, middle of the measurements</td>
+</tr>
+<tr>
+<td>MJD_TIME</td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td></td>
+<td>Modified Julian Day, middle of the measurements</td>
+</tr>
+<tr>
+<td>VALID_AOCS</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td>flag to indicate whether or not the payload is in the loop (Earth occultation, SAA)</td>
+</tr>
+<tr>
+<td>VALID_SCIENCE</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td>flag to indicate whether or not the payload is valid for science (&gt;35 degrees from Earth limb)</td>
+</tr>
+<tr>
+<td>FULL_WELL_SATURATED</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td>flag to indicate whether or not the image contains one or more full well saturated pixels</td>
+</tr>
+<tr>
+<td>ADC_SATURATED</td>
+<td>bool</td>
+<td></td>
+<td></td>
+<td></td>
+<td>flag to indicate whether or not the image contains one or more ADC saturated pixels</td>
+</tr>
+<tr>
+<td>GLOBAL_THROUGHPUT</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Wavelength integral of Blackbody(target star) * Optical throughput * QE</td>
+</tr>
+<tr>
+<td>GAIN</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>ADC gain value at the CCD temperature corresponding to the image</td>
+</tr>
+<tr>
+<td>ZODIACAL_LIGHT</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Zodiacal light flux in photons per pixel</td>
+</tr>
+<tr>
+<td>STRAY_LIGHT</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Stray light flux in photons per pixel</td>
+</tr>
+<tr>
+<td>ROLL_ANGLE</td>
+<td>float</td>
+<td>degrees</td>
+<td></td>
+<td></td>
+<td>mean roll angle of the CCD w.r.t. celestial coordinate system</td>
+</tr>
+<tr>
+<td>TARGET_PSF_X</td>
+<td>float</td>
+<td>pixels</td>
+<td>600</td>
+<td></td>
+<td>x positions of target star PSF (1s intervals)</td>
+</tr>
+<tr>
+<td>TARGET_PSF_Y</td>
+<td>float</td>
+<td>pixels</td>
+<td>600</td>
+<td></td>
+<td>y positions of target star PSF (1s intervals)</td>
+</tr>
+<tr>
+<td>PSF_MEAN_X</td>
+<td>float</td>
+<td>pixels</td>
+<td>500</td>
+<td></td>
+<td>mean x position of PSF for each star</td>
+</tr>
+<tr>
+<td>PSF_MEAN_Y</td>
+<td>float</td>
+<td>pixels</td>
+<td>500</td>
+<td></td>
+<td>mean y position of PSF for each star</td>
+</tr>
+<tr>
+<td>PSF_FLUX</td>
+<td>float</td>
+<td>photons</td>
+<td>500</td>
+<td></td>
+<td>integrated flux from star incident on CCD</td>
+</tr>
+<tr>
+<td>COSMIC_XPIXEL</td>
+<td>int32</td>
+<td>pixels</td>
+<td>300</td>
+<td>-2147483648</td>
+<td>x position of pixel affected by cosmic</td>
+</tr>
+<tr>
+<td>COSMIC_YPIXEL</td>
+<td>int32</td>
+<td>pixels</td>
+<td>300</td>
+<td>-2147483648</td>
+<td>y position of pixel affected by cosmic</td>
+</tr>
+<tr>
+<td>COSMIC_NELECTRONS</td>
+<td>int32</td>
+<td>electrons</td>
+<td>300</td>
+<td>-2147483648</td>
+<td>number of electrons generated in pixel by cosmic</td>
+</tr>
+<tr>
+<td>HOT_XPIXEL</td>
+<td>int32</td>
+<td>pixels</td>
+<td>500</td>
+<td>-2147483648</td>
+<td>x position of hot pixel</td>
+</tr>
+<tr>
+<td>HOT_YPIXEL</td>
+<td>int32</td>
+<td>pixels</td>
+<td>500</td>
+<td>-2147483648</td>
+<td>y position of hot pixel</td>
+</tr>
+<tr>
+<td>HOT_NELECTRONS</td>
+<td>int32</td>
+<td>electrons</td>
+<td>500</td>
+<td>-2147483648</td>
+<td>number of electrons generated in hot pixel</td>
+</tr>
+<tr>
+<td>HOT_TYPE</td>
+<td>int32</td>
+<td></td>
+<td>500</td>
+<td>-2147483648</td>
+<td>0=hot, 1=warm, 2=telegraphic active, 3=telegraphic inactive</td>
+</tr>
+<tr>
+<td>DEAD_XPIXEL</td>
+<td>int32</td>
+<td>pixels</td>
+<td>200</td>
+<td>-2147483648</td>
+<td>x position of dead pixel</td>
+</tr>
+<tr>
+<td>DEAD_YPIXEL</td>
+<td>int32</td>
+<td>pixels</td>
+<td>200</td>
+<td>-2147483648</td>
+<td>y position of dead pixel</td>
+</tr>
+<tr>
+<td>DEAD_QE</td>
+<td>float</td>
+<td></td>
+<td>200</td>
+<td></td>
+<td>quantum efficiency of dead pixel</td>
+</tr>
+<tr>
+<td>SMEAR_ROW</td>
+<td>float</td>
+<td></td>
+<td>200</td>
+<td></td>
+<td>horizontal cross section through frame transfer smear trails</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

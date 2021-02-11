@@ -1,0 +1,403 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>MPS_PRE_Visits</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>MPS_PRE_Visits</h1></div>
+<div class="row">
+<b>Brief: </b> Table of planned visits, created by the mission planning system</div>
+<div class="row">
+<b>Description: </b>There shall be one FITS file with such a table as first externsion 
+                     per short term planning cycle, i.e. one per week. There is
+                     always a second extension of data type MPS_PRE_VisitConstraints.
+                     The parameters of one visit are defined in one row of the 
+                     table. Time periods between visits are not described here. 
+                     The rows shall be ordered by increasing time. </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>13.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>MPS</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>PROGRAMME_TYPE</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Type of the programme </td>
+</tr>
+<tr>
+<td>PROGRAMME_ID</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Programme Id of this type of programme</td>
+</tr>
+<tr>
+<td>REQUEST_ID</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Observation request Id of this programme</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>OBSID per visit as defined by MPS</td>
+</tr>
+<tr>
+<td>UTC_TIME_START</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>start time of the visit</td>
+</tr>
+<tr>
+<td>UTC_TIME_STOP</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>end time of the visit</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td>string</td>
+<td></td>
+<td>36</td>
+<td></td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Account ID of the PI at UGE</td>
+</tr>
+<tr>
+<td>E_MAIL</td>
+<td>string</td>
+<td></td>
+<td>128</td>
+<td></td>
+<td>E-mail of the PI</td>
+</tr>
+<tr>
+<td>PROP_FIRST_VISIT</td>
+<td>uint32</td>
+<td>days</td>
+<td></td>
+<td></td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PROP_LAST_VISIT</td>
+<td>uint32</td>
+<td>days</td>
+<td></td>
+<td></td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr>
+<td>TARGET_NAME</td>
+<td>string</td>
+<td></td>
+<td>24</td>
+<td></td>
+<td>Name of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>SPECTRAL_TYPE</td>
+<td>string</td>
+<td></td>
+<td>15</td>
+<td></td>
+<td>Spectral type of target star</td>
+</tr>
+<tr>
+<td>OBS_CATEGORY</td>
+<td>string</td>
+<td></td>
+<td>24</td>
+<td></td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>READOUT_MODE</td>
+<td>string</td>
+<td></td>
+<td>12</td>
+<td></td>
+<td>Requested readout mode: faint, bright or ultrabright</td>
+</tr>
+<tr>
+<td>MARGIN_MODE</td>
+<td>string</td>
+<td></td>
+<td>16</td>
+<td></td>
+<td>On-board processing mode of the CCD margins</td>
+</tr>
+<tr>
+<td>EXPTIME</td>
+<td>float</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td>Exposure time of the individual exposures</td>
+</tr>
+<tr>
+<td>NEXP</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of measurements that shall be stacked.</td>
+</tr>
+<tr>
+<td>NEXP_IMAGETTES</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of imagettes that shall be stacked on-board.</td>
+</tr>
+<tr>
+<td>N_FULLFRAME_EXP</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of un-stacked FullFrame exposures</td>
+</tr>
+<tr>
+<td>N_WINDOWFRAME_EXP</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Number of un-stacked WindowFrame exposures.</td>
+</tr>
+<tr>
+<td>MAG_TARG</td>
+<td>double</td>
+<td>mag</td>
+<td></td>
+<td></td>
+<td>Brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>RA_TARG</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>RA of the target at epoch of observation</td>
+</tr>
+<tr>
+<td>DEC_TARG</td>
+<td>double</td>
+<td>deg</td>
+<td></td>
+<td></td>
+<td>DEC of the target at epoch of observation</td>
+</tr>
+<tr>
+<td>TRANSIT_TIME</td>
+<td>BJD</td>
+<td>BJD(TT)</td>
+<td></td>
+<td></td>
+<td>Central time of a transit</td>
+</tr>
+<tr>
+<td>TRANSIT_PERIOD</td>
+<td>double</td>
+<td>day</td>
+<td></td>
+<td></td>
+<td>Time between two consecutive transits.</td>
+</tr>
+<tr>
+<td>TARGET_LOCATION_X</td>
+<td>float</td>
+<td>pixel</td>
+<td></td>
+<td></td>
+<td>Intended X location of the target on the Full Array CCD without margins. Center of first pixel = 0.50</td>
+</tr>
+<tr>
+<td>TARGET_LOCATION_Y</td>
+<td>float</td>
+<td>pixel</td>
+<td></td>
+<td></td>
+<td>Intended Y location of the target on the Full Array CCD without margins. Center of first pixel = 0.50</td>
+</tr>
+<tr>
+<td>STRAY_LIGHT_THRESHOLD</td>
+<td>double</td>
+<td>Photons/px/sec</td>
+<td></td>
+<td></td>
+<td>stray light threshold, used to discard images on-board</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Associated HDUs</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Optional</th>
+</tr></thead>
+<tbody><tr>
+<td>MPS_PRE_VisitConstraints</td>
+<td>table</td>
+<td>
+						no
+					</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</body></html>

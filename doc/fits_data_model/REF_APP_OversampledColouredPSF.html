@@ -1,0 +1,222 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>REF_APP_OversampledColouredPSF</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>REF_APP_OversampledColouredPSF</h1></div>
+<div class="row">
+<b>Brief: </b> Calibration product : approved oversampled PSF image data cube in 15 wavelengths</div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.1.5</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>REF</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Data provenance</td></tr>
+<tr>
+<td>PROVIDER</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>where/by whom was this file generated?</td>
+</tr>
+<tr>
+<td>DESCRIP</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>what distinguishes this file from others?</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">PSF attributes</td></tr>
+<tr>
+<td>BANDWID</td>
+<td></td>
+<td>real</td>
+<td>nm</td>
+<td></td>
+<td>band width of each wavelength bin</td>
+</tr>
+<tr>
+<td>OVERSAMP</td>
+<td>10</td>
+<td>integer</td>
+<td></td>
+<td></td>
+<td>oversampling factor of the PSF</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div class="section-heading">Image</div>
+<div><table>
+<tr>
+<th class="no-stretch-cell">Data type</th>
+<td>double</td>
+</tr>
+<tr>
+<th class="no-stretch-cell">Null value</th>
+<td>
+									N/A
+								</td>
+</tr>
+</table></div>
+<table>
+<thead><tr>
+<th>Column</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>naxis</td>
+<td>4</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>axis1</td>
+<td>2000</td>
+<td></td>
+<td>Oversampled PSF X axis</td>
+</tr>
+<tr>
+<td>axis2</td>
+<td>2000</td>
+<td></td>
+<td>Oversampled PSF Y axis</td>
+</tr>
+<tr>
+<td>axis3</td>
+<td>15</td>
+<td></td>
+<td>wavelength band</td>
+</tr>
+<tr>
+<td>axis4</td>
+<td>4</td>
+<td></td>
+<td>telescope temperature</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Associated HDUs</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Type</th>
+<th>Optional</th>
+</tr></thead>
+<tbody><tr>
+<td>REF_APP_ColouredPSFMetadata</td>
+<td>table</td>
+<td>
+						no
+					</td>
+</tr></tbody>
+</table>
+</div>
+</div>
+</body></html>

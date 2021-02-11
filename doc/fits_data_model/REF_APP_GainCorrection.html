@@ -1,0 +1,286 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>REF_APP_GainCorrection</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>REF_APP_GainCorrection</h1></div>
+<div class="row">
+<b>Brief: </b> A formula to correct the gain.</div>
+<div class="row">
+<b>Description: </b>The result of the formula specified in this table is the "System gain in ADU/e-".
+                     The formula has to be applied for every pixel of an image. 
+                     The formula is a polynomial expression that depends on up to 
+                     5 parameters. These are HK_VOLT_FEE_VOD, HK_VOLT_FEE_VRD, HK_VOLT_FEE_VOS,
+                     HK_VOLT_FEE_VSS and HK_TEMP_FEE_CCD.
+                     The values of these parameters have to be read from the SCI_RAW_ImageMetadata table
+                     that is locate in the same FITS file as the images that shall be corrected.
+                     That table has one column for each of these 5 parameters and one row for
+                     each of a 2-D image in the image-cube.
+                     
+                     The syntax of the formula is
+                     GAIN_NOM * (1 + 
+                     sum over n ( factor(n)  * (HK_VOLT_FEE_VSS                   - VSS_offset)  ** exp_VSS(n) *  
+                                               (HK_VOLT_FEE_VOD - HK_VOLT_FEE_VSS - VOD_offset)  ** exp_VOD(n) *
+                                               (HK_VOLT_FEE_VRD - HK_VOLT_FEE_VSS - VRG_offset)  ** exp_VRD(n) *
+                                               (HK_VOLD_FEE_VOG - HK_VOLT_FEE_VSS - VOG_offset)  ** exp_VOG(n) *
+                                               (HK_TEMP_FEE_CCD                   + TEMP_offset) ** exp_TEMP(n)    ) )
+                     The values of the 5 constant parameters VSS_offset, VOD_offset, VRG_offset, VOG_offset and TEMP_offset
+                     are stored in 5 header keywords.
+                     The values of the 6 parameters factor(n), exp_VSS(n), exp_VOD(n) exp_VRG(n), exp_VOG(n) and exp_TEMP(n)
+					 are stored in the 6 columns of this FITS table. The typical values of the exp_* parameters are 0, 1, 2, or 3
+                     For each (n) one row of the table is used.
+                     </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>12.1.5</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>REF</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Voltage offsets</td></tr>
+<tr>
+<td>VSS_OFF</td>
+<td></td>
+<td>real</td>
+<td>V</td>
+<td></td>
+<td>Nominal VSS voltage</td>
+</tr>
+<tr>
+<td>VOD_OFF</td>
+<td></td>
+<td>real</td>
+<td>V</td>
+<td></td>
+<td>Nominal VOD voltage relative to VSS</td>
+</tr>
+<tr>
+<td>VRD_OFF</td>
+<td></td>
+<td>real</td>
+<td>V</td>
+<td></td>
+<td>Nominal VRD voltage relative to VSS</td>
+</tr>
+<tr>
+<td>VOG_OFF</td>
+<td></td>
+<td>real</td>
+<td>V</td>
+<td></td>
+<td>Nominal VOG voltage relative to VSS</td>
+</tr>
+<tr>
+<td>TEMP_OFF</td>
+<td></td>
+<td>real</td>
+<td>degC</td>
+<td></td>
+<td>Nominal CCD temperature</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Data provenance</td></tr>
+<tr>
+<td>PROVIDER</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>where/by whom was this file generated?</td>
+</tr>
+<tr>
+<td>DESCRIP</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>what distinguishes this file from others?</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Gain attributes</td></tr>
+<tr>
+<td>RO_HW</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>used for on-board HW: main or redundant</td>
+</tr>
+<tr>
+<td>GAIN_NOM</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>nominal gain</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>FACTOR</td>
+<td>double</td>
+<td></td>
+<td></td>
+<td></td>
+<td>constant factor of the nth polynomial</td>
+</tr>
+<tr>
+<td>FACTOR_ERR</td>
+<td>double</td>
+<td></td>
+<td></td>
+<td></td>
+<td>error of factor</td>
+</tr>
+<tr>
+<td>EXP_VSS</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>exponent of HK_VOLT_FEE_VSS of the nth polynomial</td>
+</tr>
+<tr>
+<td>EXP_VOD</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>exponent of HK_VOLT_FEE_VOD of the nth polynomial</td>
+</tr>
+<tr>
+<td>EXP_VRD</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>exponent of HK_VOLT_FEE_VRD of the nth polynomial</td>
+</tr>
+<tr>
+<td>EXP_VOG</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>exponent of HK_VOLT_FEE_VOG of the nth polynomial</td>
+</tr>
+<tr>
+<td>EXP_TEMP</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>exponent of HK_TEMP_FEE_CCD of the nth polynomial</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

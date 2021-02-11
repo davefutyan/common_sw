@@ -1,7 +1,7 @@
 /**
  @mainpage 
 
- <b>Release Version: __trunk__</b>
+ <b>Release Version: r_13.1.4</b>
 
  The common software (common_sw) is one of the products of the
  CHEOPS Infrastructure software.

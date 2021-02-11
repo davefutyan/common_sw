@@ -1,0 +1,297 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SIM_TRU_FlatField</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SIM_TRU_FlatField</h1></div>
+<div class="row">
+<b>Brief: </b> Calibration product : Flat field frame combined over wavelengths according to target star spectrum</div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>5.1</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>SIM</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Visit</td></tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter for this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Flat field attributes</td></tr>
+<tr>
+<td>Teff</td>
+<td></td>
+<td>real</td>
+<td>Kelvin</td>
+<td></td>
+<td>Effective temperature of the target star</td>
+</tr>
+<tr>
+<td>FFref</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>name of flat field reference file</td>
+</tr>
+<tr>
+<td>FFscale</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>scale factor aplied to empirical FF, or sigma of Gauss FF</td>
+</tr>
+<tr>
+<td>thrptref</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>name of throughput reference file (OFF if throughput not applied)</td>
+</tr>
+<tr>
+<td>qeref</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>name of the QE reference file (OFF if QE not applied)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div class="section-heading">Image</div>
+<div><table>
+<tr>
+<th class="no-stretch-cell">Data type</th>
+<td>double</td>
+</tr>
+<tr>
+<th class="no-stretch-cell">Null value</th>
+<td>
+									N/A
+								</td>
+</tr>
+</table></div>
+<table>
+<thead><tr>
+<th>Column</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>naxis</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>axis1</td>
+<td>1024</td>
+<td></td>
+<td>X axis</td>
+</tr>
+<tr>
+<td>axis2</td>
+<td>1024</td>
+<td></td>
+<td>Y axis</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

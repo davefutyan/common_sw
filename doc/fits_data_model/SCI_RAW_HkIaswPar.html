@@ -1,0 +1,2887 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>SCI_RAW_HkIaswPar</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>SCI_RAW_HkIaswPar</h1></div>
+<div class="row">
+<b>Brief: </b> L0.5 product : IASW Parameters (SID = 2) </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>13.1</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>L0.5</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target</td></tr>
+<tr>
+<td>TARGNAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Name of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>SPECTYPE</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>true</td>
+<td>Spectral type of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>T_EFF</td>
+<td></td>
+<td>unsigned int</td>
+<td>Kelvin</td>
+<td>true</td>
+<td>Effective temperature of the target as provided by the proposal</td>
+</tr>
+<tr>
+<td>MAG_G</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_GERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in Gaia band</td>
+</tr>
+<tr>
+<td>MAG_CHPS</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td>true</td>
+<td>Brightness of the target in CHEOPS band</td>
+</tr>
+<tr>
+<td>MAG_CERR</td>
+<td></td>
+<td>real</td>
+<td>mag</td>
+<td></td>
+<td>Error of brightness of the target in CHEOPS band</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Pass and Visit</td></tr>
+<tr>
+<td>PASS_ID</td>
+<td>00000000</td>
+<td>PassId</td>
+<td></td>
+<td>common</td>
+<td>PassId, when the data were received, 0 if non-applicable</td>
+</tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter of this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target Coordinates</td></tr>
+<tr>
+<td>RA_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>RA of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>DEC_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>DEC of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>EQUINOX</td>
+<td>2000.0</td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>Equinox of celestial coord. system</td>
+</tr>
+<tr>
+<td>RADESYS</td>
+<td>ICRS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Coordinate reference frame for the RA and DEC</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Used reference files</td></tr>
+<tr>
+<td>HK_EN_RF</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>name of HK enum  reference file</td>
+</tr>
+<tr>
+<td>HK_PR_RF</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>name of HK Parameter  reference file</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div><span class="section-heading">Table</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>Bin size</th>
+<th>Null</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>OBT_TIME</td>
+<td>OBT</td>
+<td>OBT</td>
+<td></td>
+<td></td>
+<td>On board time</td>
+</tr>
+<tr>
+<td>UTC_TIME</td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td></td>
+<td></td>
+<td>UTC time</td>
+</tr>
+<tr>
+<td>MJD_TIME</td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td></td>
+<td>Modified Julian Day</td>
+</tr>
+<tr>
+<td>RdlEnabledList_0</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>List of enable status  of HK reports; the i-th element is the enable status of the i-th report in the RDL</td>
+</tr>
+<tr>
+<td>RdlEnabledList_1</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_2</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_3</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_4</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_5</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_6</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_7</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_8</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RdlEnabledList_9</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>EVTFILTERDEF</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Default value of evtEnabledList when an event type is enabled</td>
+</tr>
+<tr>
+<td>evtEnabledList_0</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>The i-th element is the maximum number of instances of the i-th event which may be generated in a cycle (a value of zero means that the event is disabled)</td>
+</tr>
+<tr>
+<td>evtEnabledList_1</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_2</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_3</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_4</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_5</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_6</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_7</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_8</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_9</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_10</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_11</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_12</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_13</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_14</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_15</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_16</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_17</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_18</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_19</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_20</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_21</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_22</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_23</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_24</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_25</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_26</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_27</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_28</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_29</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_30</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_31</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_32</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_33</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_34</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_35</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_36</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_37</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_38</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_39</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_40</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_41</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_42</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_43</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_44</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_45</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_46</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_47</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_48</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_49</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_50</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_51</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_52</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_53</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_54</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_55</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_56</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_57</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_58</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>evtEnabledList_59</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FdGlbEnable</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Global enable flags for FdChecks</td>
+</tr>
+<tr>
+<td>RpGlbEnable</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Global enable flags for recovery procedures</td>
+</tr>
+<tr>
+<td>FdCheckTTMExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of TTM FdCheck</td>
+</tr>
+<tr>
+<td>RpTTMExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of TTM recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckTTMCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for TTM FdCheck</td>
+</tr>
+<tr>
+<td>TTC_LL</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower limit for telescope temperature</td>
+</tr>
+<tr>
+<td>TTC_UL</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper  limit for telescope temperature</td>
+</tr>
+<tr>
+<td>TTM_LIM</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Margin for telescope temperature monitoring</td>
+</tr>
+<tr>
+<td>FdCheckSDSCExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SDSC FdCheck</td>
+</tr>
+<tr>
+<td>RpSDSCExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SDSC recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSDSCCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SDSC FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckComErrExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Communication Error FdCheck</td>
+</tr>
+<tr>
+<td>RpComErrExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Communication Error recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckComErrCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SEM Communication Error FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckTimeOutExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Mode Time-Out FdCheck</td>
+</tr>
+<tr>
+<td>RpTimeOutExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Mode Time-Out recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckTimeOutCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SEM Mode Time-Out FdCheck</td>
+</tr>
+<tr>
+<td>SEM_TO_POWERON</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (power-on to STANDBY)</td>
+</tr>
+<tr>
+<td>SEM_TO_SAFE</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (entry into SAFE)</td>
+</tr>
+<tr>
+<td>SEM_TO_STAB</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (entry into STABILIZE)</td>
+</tr>
+<tr>
+<td>SEM_TO_TEMP</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (entry into STABILIZE with temperature stabilized)</td>
+</tr>
+<tr>
+<td>SEM_TO_CCD</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (entry into SCIENCE)</td>
+</tr>
+<tr>
+<td>SEM_TO_DIAG</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (entry into DIAGNOSTICS)</td>
+</tr>
+<tr>
+<td>SEM_TO_STANDBY</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>SEM mode transition time-out (entry into STANDBY)</td>
+</tr>
+<tr>
+<td>FdCheckSafeModeExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Safe Mode FdCheck</td>
+</tr>
+<tr>
+<td>RpSafeModeExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Safe Mode recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSafeModeCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SEM Safe Mode FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckAliveExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>RpAliveExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Alive recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckAliveCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>SEM_HK_DEF_PER</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter of SEM Alive FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckSemAnoEvtExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Error Event 1 FdCheck</td>
+</tr>
+<tr>
+<td>RpSemAnoEvtExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Error Event 1 recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSemAnoEvtCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SEM Error Event 1 FdCheck</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_1</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_SG</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_2</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_EX</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_3</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_AC</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_4</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_PC</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_5</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_AF</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_6</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_CF</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_7</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_TMP_NS</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_8</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_FPA_HI</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_9</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_WR_EXP</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_10</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_WR_RPE</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_11</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_WR</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_12</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_APS_BT</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_13</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_REBOOT</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_14</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_WATCHD</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_15</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_SPW_RX</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_16</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_CP</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_17</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_CR</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_18</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_CS</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_19</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_REG_WR</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_20</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_CMD_BUF1</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_21</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_CMD_BUF2</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_22</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_DAT_DMA</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_23</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_PATTER</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_24</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event WAR_PACKWR</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_25</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_BIAS_SET</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_26</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_SYNC</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_27</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_SCRIPT</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_28</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_PWR</td>
+</tr>
+<tr>
+<td>semAnoEvtResp_29</td>
+<td>string</td>
+<td></td>
+<td>7</td>
+<td></td>
+<td>Response to SEM Anomaly Event FdCheck to SEM event ERR_SPW_TC</td>
+</tr>
+<tr>
+<td>FdCheckSemLimitExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Limit FdCheck</td>
+</tr>
+<tr>
+<td>RpSemLimitExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of SEM Limit recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckSemLimitCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for SEM Limit FdCheck</td>
+</tr>
+<tr>
+<td>SEM_LIM_DEL_T</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Length of time over which an out-of-limit situation must persist before the SEM Limit FdCheck declares an anomaly</td>
+</tr>
+<tr>
+<td>FdCheckDpuHkExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of DPU Housekeeping FdCheck</td>
+</tr>
+<tr>
+<td>RpDpuHkExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of DPU Housekeeping recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckDpuHkCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for DPU Housekeeping FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckCentConsExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of Centroid Consistency FdCheck</td>
+</tr>
+<tr>
+<td>RpCentConsExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of Centroid Consistency recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckCentConsCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for Centroid Consistency FdCheck</td>
+</tr>
+<tr>
+<td>FdCheckResExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of Resource FdCheck</td>
+</tr>
+<tr>
+<td>RpResExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>External enable status of Resource recovery procedure</td>
+</tr>
+<tr>
+<td>FdCheckResCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Counter threshold for Resource FdCheck</td>
+</tr>
+<tr>
+<td>CPU1_USAGE_MAX</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum fraction of DPU 1 core CPU which may be used</td>
+</tr>
+<tr>
+<td>MEM_USAGE_MAX</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Maximum fraction of memory available for dynamical allocation which may be used</td>
+</tr>
+<tr>
+<td>FdCheckSemConsExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>RpSemConsExtEn</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>FdCheckSemConsCntThr</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_INIT_T1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Time-out in SEM Initialization Procedure</td>
+</tr>
+<tr>
+<td>SEM_INIT_T2</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Time-out in SEM Initialization Procedure</td>
+</tr>
+<tr>
+<td>SEM_OPER_T1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Time-out in SEM Operational State Machine (time-out for transition from TR_STABILIZE to STABILIZE)</td>
+</tr>
+<tr>
+<td>SEM_SHUTDOWN_T1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Time-out in SEM Shutdown Procedure</td>
+</tr>
+<tr>
+<td>SEM_SHUTDOWN_T11</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_SHUTDOWN_T12</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_SHUTDOWN_T2</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Time-out in SEM Shutdown Procedure</td>
+</tr>
+<tr>
+<td>CTRLD_SWITCH_OFF_T1</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Time-out in Controlled Switch-Off Procedure</td>
+</tr>
+<tr>
+<td>algoCent0Enabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of Centroiding 0 Algorithm</td>
+</tr>
+<tr>
+<td>algoCent1Enabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of Centroiding 1 Algorithm</td>
+</tr>
+<tr>
+<td>CENT_EXEC_PHASE</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Phase of Centroiding Algorithms</td>
+</tr>
+<tr>
+<td>algoAcq1Enabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of Acquisition 1 Algorithm</td>
+</tr>
+<tr>
+<td>algoCcEnabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of Compression/Collection Algorithm</td>
+</tr>
+<tr>
+<td>STCK_ORDER</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Image Stacking Order (number of images to be co-added)</td>
+</tr>
+<tr>
+<td>algoTTC1Enabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of Telescope Temperature Control 1 Algorithm</td>
+</tr>
+<tr>
+<td>TTC1_EXEC_PER</td>
+<td>int32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Period of Telescope Temperature Control Algorithms</td>
+</tr>
+<tr>
+<td>TTC1_LL_FRT</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower temperature limit for TTC1 algorithm for front heaters</td>
+</tr>
+<tr>
+<td>TTC1_LL_AFT</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower temperature limit for TTC1 algorithm for aft heaters</td>
+</tr>
+<tr>
+<td>TTC1_UL_FRT</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper temperature limit for TTC1 algorithm for front heaters</td>
+</tr>
+<tr>
+<td>TTC1_UL_AFT</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper temperature limit for TTC1 algorithm for aft heaters</td>
+</tr>
+<tr>
+<td>algoTTC2Enabled</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enabled status of Telescope Temperature Control 2 Algorithm</td>
+</tr>
+<tr>
+<td>TTC2_EXEC_PER</td>
+<td>int32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Period of Telescope Temperature Control Algorithms</td>
+</tr>
+<tr>
+<td>TTC2_REF_TEMP</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Reference temperature for TTC2 algorithm</td>
+</tr>
+<tr>
+<td>TTC2_OFFSETA</td>
+<td>float</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TTC2_OFFSETF</td>
+<td>float</td>
+<td>sec</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>TTC2_PA</td>
+<td>float</td>
+<td>s/dC</td>
+<td></td>
+<td></td>
+<td>Proportional term of TTC2 PID algorithm for aft heaters</td>
+</tr>
+<tr>
+<td>TTC2_DA</td>
+<td>float</td>
+<td>s2/d</td>
+<td></td>
+<td></td>
+<td>Derivative term of TTC2 PID algorithm for aft heaters</td>
+</tr>
+<tr>
+<td>TTC2_IA</td>
+<td>float</td>
+<td>1/dC</td>
+<td></td>
+<td></td>
+<td>Integral term of TTC2 PID algorithm for aft heaters</td>
+</tr>
+<tr>
+<td>TTC2_PF</td>
+<td>float</td>
+<td>s/dC</td>
+<td></td>
+<td></td>
+<td>Proportional term of TTC2 PID algorithm for front heaters</td>
+</tr>
+<tr>
+<td>TTC2_DF</td>
+<td>float</td>
+<td>s2/d</td>
+<td></td>
+<td></td>
+<td>Derivative term of TTC2 PID algorithm for front heaters</td>
+</tr>
+<tr>
+<td>TTC2_IF</td>
+<td>float</td>
+<td>1/dC</td>
+<td></td>
+<td></td>
+<td>Integral term of TTC2 PID algorithm for front heaters</td>
+</tr>
+<tr>
+<td>SAA_EXEC_PHASE</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Phase of SAA Evaluation Algorithm</td>
+</tr>
+<tr>
+<td>SAA_EXEC_PER</td>
+<td>int32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Period of SAA Evaluation Algorithm</td>
+</tr>
+<tr>
+<td>SDS_EXEC_PHASE</td>
+<td>uint32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Phase of SAA Evaluation Algorithm</td>
+</tr>
+<tr>
+<td>SDS_EXEC_PER</td>
+<td>int32</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Period of SAA Evaluation Algorithm</td>
+</tr>
+<tr>
+<td>SDS_FORCED</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flag set to true by the ground to force suspension of science data transfer to ground</td>
+</tr>
+<tr>
+<td>SDS_INHIBITED</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flag set to true by the ground to inhibit suspension of science data transfer to ground</td>
+</tr>
+<tr>
+<td>EARTH_OCCULT_ACTIVE</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Flag set to true by the ground to indicate earth occulation</td>
+</tr>
+<tr>
+<td>CENT_OFFSET_LIM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter used by Centroid Validity Procedure (maximum distance between measured and target position relative to FOV size)</td>
+</tr>
+<tr>
+<td>CENT_FROZEN_LIM</td>
+<td>float</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Parameter used by Centroid Validity Procedure (number of consecutive frozen centroid measurements to declare centroid invalid)</td>
+</tr>
+<tr>
+<td>SEM_SERV1_1_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (1,1)</td>
+</tr>
+<tr>
+<td>SEM_SERV1_2_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (1,2)</td>
+</tr>
+<tr>
+<td>SEM_SERV1_7_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (1,7)</td>
+</tr>
+<tr>
+<td>SEM_SERV1_8_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (1,8)</td>
+</tr>
+<tr>
+<td>SEM_SERV3_1_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM housekeeping reports with SID 1 (default SEM housekeeping)</td>
+</tr>
+<tr>
+<td>SEM_SERV3_2_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM housekeeping reports with SID 2 (extended SEM housekeeping)</td>
+</tr>
+<tr>
+<td>TEMP_SEM_SCU_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_SEM_SCU</td>
+</tr>
+<tr>
+<td>TEMP_SEM_PCU_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_SEM_PCU</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P3_4_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_SCU_P3_4</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P5_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_SCU_P5</td>
+</tr>
+<tr>
+<td>TEMP_FEE_CCD_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_FEE_CCD</td>
+</tr>
+<tr>
+<td>TEMP_FEE_STRAP_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_FEE_STRAP</td>
+</tr>
+<tr>
+<td>TEMP_FEE_ADC_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_FEE_ADC</td>
+</tr>
+<tr>
+<td>TEMP_FEE_BIAS_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_FEE_BIAS</td>
+</tr>
+<tr>
+<td>TEMP_FEE_DEB_LW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter TEMP_FEE_DEB</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOD_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_VOD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VRD_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_VRD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOG_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_VOG</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VSS_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_VSS</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CCD_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_CCD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CLK_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_CLK</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P5_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_ANA_P5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_N5_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_ANA_N5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P3_3_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_FEE_ANA_P3_3</td>
+</tr>
+<tr>
+<td>CURR_FEE_CLK_BUF_LW</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VOLT_SCU_FPGA_P1_5_LW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter VOLT_SCU_FPGA_P1_5</td>
+</tr>
+<tr>
+<td>CURR_SCU_P3_4_LW</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td>Lower warning limit for SEM HK parameter CURR_SCU_P3_4</td>
+</tr>
+<tr>
+<td>TEMP_SEM_SCU_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_SEM_SCU</td>
+</tr>
+<tr>
+<td>TEMP_SEM_PCU_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_SEM_PCU</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P3_4_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_SCU_P3_4</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P5_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_SCU_P5</td>
+</tr>
+<tr>
+<td>TEMP_FEE_CCD_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_FEE_CCD</td>
+</tr>
+<tr>
+<td>TEMP_FEE_STRAP_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_FEE_STRAP</td>
+</tr>
+<tr>
+<td>TEMP_FEE_ADC_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_FEE_ADC</td>
+</tr>
+<tr>
+<td>TEMP_FEE_BIAS_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_FEE_BIAS</td>
+</tr>
+<tr>
+<td>TEMP_FEE_DEB_UW</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter TEMP_FEE_DEB</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOD_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_VOD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VRD_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_VRD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOG_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_VOG</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VSS_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_VSS</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CCD_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_CCD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CLK_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_CLK</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P5_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_ANA_P5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_N5_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_ANA_N5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P3_3_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_FEE_ANA_P3_3</td>
+</tr>
+<tr>
+<td>CURR_FEE_CLK_BUF_UW</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VOLT_SCU_FPGA_P1_5_UW</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter VOLT_SCU_FPGA_P1_5</td>
+</tr>
+<tr>
+<td>CURR_SCU_P3_4_UW</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td>Upper warning limit for SEM HK parameter CURR_SCU_P3_4</td>
+</tr>
+<tr>
+<td>TEMP_SEM_SCU_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_SEM_SCU</td>
+</tr>
+<tr>
+<td>TEMP_SEM_PCU_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_SEM_PCU</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P3_4_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_SCU_P3_4</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P5_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_SCU_P5</td>
+</tr>
+<tr>
+<td>TEMP_FEE_CCD_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_FEE_CCD</td>
+</tr>
+<tr>
+<td>TEMP_FEE_STRAP_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_FEE_STRAP</td>
+</tr>
+<tr>
+<td>TEMP_FEE_ADC_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_FEE_ADC</td>
+</tr>
+<tr>
+<td>TEMP_FEE_BIAS_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_FEE_BIAS</td>
+</tr>
+<tr>
+<td>TEMP_FEE_DEB_LA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter TEMP_FEE_DEB</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOD_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_VOD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VRD_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_VRD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOG_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_VOG</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VSS_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_VSS</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CCD_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_CCD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CLK_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_CLK</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P5_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_ANA_P5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_N5_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_ANA_N5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P3_3_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_FEE_ANA_P3_3</td>
+</tr>
+<tr>
+<td>CURR_FEE_CLK_BUF_LA</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VOLT_SCU_FPGA_P1_5_LA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter VOLT_SCU_FPGA_P1_5</td>
+</tr>
+<tr>
+<td>CURR_SCU_P3_4_LA</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td>Lower alarm limit for SEM HK parameter CURR_SCU_P3_4</td>
+</tr>
+<tr>
+<td>TEMP_SEM_SCU_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_SEM_SCU</td>
+</tr>
+<tr>
+<td>TEMP_SEM_PCU_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_SEM_PCU</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P3_4_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_SCU_P3_4</td>
+</tr>
+<tr>
+<td>VOLT_SCU_P5_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_SCU_P5</td>
+</tr>
+<tr>
+<td>TEMP_FEE_CCD_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_FEE_CCD</td>
+</tr>
+<tr>
+<td>TEMP_FEE_STRAP_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_FEE_STRAP</td>
+</tr>
+<tr>
+<td>TEMP_FEE_ADC_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_FEE_ADC</td>
+</tr>
+<tr>
+<td>TEMP_FEE_BIAS_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_FEE_BIAS</td>
+</tr>
+<tr>
+<td>TEMP_FEE_DEB_UA</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter TEMP_FEE_DEB</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOD_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_VOD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VRD_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_VRD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VOG_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_VOG</td>
+</tr>
+<tr>
+<td>VOLT_FEE_VSS_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_VSS</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CCD_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_CCD</td>
+</tr>
+<tr>
+<td>VOLT_FEE_CLK_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_CLK</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P5_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_ANA_P5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_N5_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_ANA_N5</td>
+</tr>
+<tr>
+<td>VOLT_FEE_ANA_P3_3_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_FEE_ANA_P3_3</td>
+</tr>
+<tr>
+<td>CURR_FEE_CLK_BUF_UA</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>VOLT_SCU_FPGA_P1_5_UA</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter VOLT_SCU_FPGA_P1_5</td>
+</tr>
+<tr>
+<td>CURR_SCU_P3_4_UA</td>
+<td>float</td>
+<td>mA</td>
+<td></td>
+<td></td>
+<td>Upper alarm limit for SEM HK parameter CURR_SCU_P3_4</td>
+</tr>
+<tr>
+<td>SEM_SERV5_1_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (5,1)</td>
+</tr>
+<tr>
+<td>SEM_SERV5_2_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (5,2)</td>
+</tr>
+<tr>
+<td>SEM_SERV5_3_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (5,3)</td>
+</tr>
+<tr>
+<td>SEM_SERV5_4_FORWARD</td>
+<td>uint8</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Enable status for forwarding of SEM reports (5,4)</td>
+</tr>
+<tr>
+<td>acqFullDropT1</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>Timer in Acquire Full Drop Procedure</td>
+</tr>
+<tr>
+<td>acqFullDropT2</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>Timer in Acquire Full Drop Procedure</td>
+</tr>
+<tr>
+<td>calFullSnapT1</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>Timer in Calibrate Full Snap Procedure</td>
+</tr>
+<tr>
+<td>calFullSnapT2</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>Timer in Calibrate Full Snap Procedure</td>
+</tr>
+<tr>
+<td>sciWinT1</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>Timer in Science Window Stack Procedure</td>
+</tr>
+<tr>
+<td>sciWinT2</td>
+<td>uint32</td>
+<td>cyc</td>
+<td></td>
+<td></td>
+<td>Timer in Science Window Stack Procedure</td>
+</tr>
+<tr>
+<td>ADC_P3V3_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_P5V_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_P1V8_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_P2V5_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_N5V_L</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>ADC_PGND_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_PGND</td>
+</tr>
+<tr>
+<td>ADC_PGND_L</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td>Lower limit for DPU housekeeping parameter ADC_PGND</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH1A_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH1A</td>
+</tr>
+<tr>
+<td>ADC_TEMP1_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMP1</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH2A_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH2A</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH1B_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH1B</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH3A_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH3A</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH2B_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH2B</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH4A_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH4A</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH3B_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH3B</td>
+</tr>
+<tr>
+<td>ADC_TEMPOH4B_U</td>
+<td>float</td>
+<td>degC</td>
+<td></td>
+<td></td>
+<td>Upper limit for DPU housekeeping parameter ADC_TEMPOH4B</td>
+</tr>
+<tr>
+<td>SEM_P15V_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P30V_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P5V0_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_P7V0_U</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>SEM_N5V0_L</td>
+<td>float</td>
+<td>V</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>HbSemPassword</td>
+<td>uint16</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>

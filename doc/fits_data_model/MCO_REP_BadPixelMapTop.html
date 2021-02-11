@@ -1,0 +1,308 @@
+<html><body>
+<head>
+<link rel="stylesheet" type="text/css" href="CHEOPS-SOC-fsd.css">
+<title>MCO_REP_BadPixelMapTop</title>
+</head>
+<div id="contents">
+<div id="contents-header"><h1>MCO_REP_BadPixelMapTop</h1></div>
+<div class="row">
+<b>Brief: </b>Bad Pixel Map of the CCD margin area top dark</div>
+<div class="row">
+<b>Description: </b>The Bad Pixel Map is derived from the dark MandC observations.
+                     First the MCO_REP_BadPixelMapTop is created. After
+                     an inspection by PSO / Instrument Team it will be approved 
+                     and copied to REF_APP_BadPixelMapTop. This approved
+                     data structure will be provided to the programs of the CHEOPS
+                     data processing. 
+                     The ground calibration also provides an approved Pad Pixel Map
+                     Pixels can have following values: -2: totally dead pixel, 
+                     -1 = partially dead pixel, 0 = good pixel, 1 = hot pixel, 
+                     2 = saturated pixel 3 = telegraphic pixel.  </div>
+<div class="row">
+<div><span class="section-heading">Header keywords</span></div>
+<table>
+<thead><tr>
+<th>Name</th>
+<th>Default</th>
+<th>Data type</th>
+<th>Unit</th>
+<th>DB</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>EXT_VER</td>
+<td>13.0</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>version of the data structure</td>
+</tr>
+<tr>
+<td>DATA_LVL</td>
+<td>QL</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Level of this data product</td>
+</tr>
+<tr>
+<td>PROC_CHN</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Processing chain creating this data structure</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">CHEOPS Data Structure</td></tr>
+<tr>
+<td>TELESCOP</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Telescope's name</td>
+</tr>
+<tr>
+<td>INSTRUME</td>
+<td>CHEOPS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Instrument's name</td>
+</tr>
+<tr>
+<td>ORIGIN</td>
+<td>SOC</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Processing site, creating this FITS file</td>
+</tr>
+<tr>
+<td>ARCH_REV</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Archive revision number</td>
+</tr>
+<tr>
+<td>PROC_NUM</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Processing Number</td>
+</tr>
+<tr>
+<td>PIPE_VER</td>
+<td>N/A</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Pipeline version</td>
+</tr>
+<tr>
+<td>TIMESYS</td>
+<td>TT</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Time frame system</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Start and Stop of Validity</td></tr>
+<tr>
+<td>V_STRT_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>Start of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STOP_U</td>
+<td></td>
+<td>UTC</td>
+<td>TIMESYS=UTC</td>
+<td>common</td>
+<td>End of validity time in UTC</td>
+</tr>
+<tr>
+<td>V_STRT_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>Start of validity time in MJD</td>
+</tr>
+<tr>
+<td>V_STOP_M</td>
+<td></td>
+<td>MJD</td>
+<td>day</td>
+<td></td>
+<td>End of validity time in MJD</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Visit</td></tr>
+<tr>
+<td>PI_NAME</td>
+<td></td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Name of the PI of the observing program</td>
+</tr>
+<tr>
+<td>PI_UID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>ID of the PI</td>
+</tr>
+<tr>
+<td>OBS_CAT</td>
+<td>undefined</td>
+<td>string</td>
+<td></td>
+<td>common</td>
+<td>Observation Category</td>
+</tr>
+<tr>
+<td>PROGTYPE</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Type of the program</td>
+</tr>
+<tr>
+<td>PROG_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Program Id of this type of program</td>
+</tr>
+<tr>
+<td>REQ_ID</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Observation request Id of this program</td>
+</tr>
+<tr>
+<td>VISITCTR</td>
+<td></td>
+<td>integer</td>
+<td></td>
+<td>common</td>
+<td>Visit counter for this target</td>
+</tr>
+<tr>
+<td>OBSID</td>
+<td></td>
+<td>unsigned int</td>
+<td></td>
+<td>common</td>
+<td>Unique identifier of a visit, defined by MPS</td>
+</tr>
+<tr>
+<td>PRP_VST1</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on first visit</td>
+</tr>
+<tr>
+<td>PRP_VSTN</td>
+<td></td>
+<td>unsigned int</td>
+<td>days</td>
+<td>common</td>
+<td>Proprietary period, depending on last visit</td>
+</tr>
+<tr><td colspan="6" class="group-separator-top">Target Coordinates</td></tr>
+<tr>
+<td>RA_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>RA of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>DEC_TARG</td>
+<td></td>
+<td>real</td>
+<td></td>
+<td>true</td>
+<td>DEC of the target at epoch J2000</td>
+</tr>
+<tr>
+<td>EQUINOX</td>
+<td>2000.0</td>
+<td>real</td>
+<td></td>
+<td></td>
+<td>Equinox of celestial coord. system</td>
+</tr>
+<tr>
+<td>RADESYS</td>
+<td>ICRS</td>
+<td>string</td>
+<td></td>
+<td></td>
+<td>Coordinate reference frame for the RA and DEC</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="row">
+<div class="section-heading">Image</div>
+<div><table>
+<tr>
+<th class="no-stretch-cell">Data type</th>
+<td>int16</td>
+</tr>
+<tr>
+<th class="no-stretch-cell">Null value</th>
+<td>
+									N/A
+								</td>
+</tr>
+</table></div>
+<table>
+<thead><tr>
+<th>Column</th>
+<th>Value</th>
+<th>Unit</th>
+<th>Comment</th>
+</tr></thead>
+<tbody>
+<tr>
+<td>naxis</td>
+<td>2</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>axis1</td>
+<td>0</td>
+<td></td>
+<td>X axis</td>
+</tr>
+<tr>
+<td>axis2</td>
+<td>3</td>
+<td></td>
+<td>Y axis</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</body></html>
