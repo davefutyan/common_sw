@@ -1,0 +1,12 @@
+<column name="CTYPE1"   data_type="string" bin_size="8"    comment="LONGPROJ where LONG can be RA, GLON, ELON " />
+<column name="CRPIX1"   data_type="float"                  comment="Pixel at reference point" />
+<column name="CRVAL1"   data_type="float"                  comment="LONG at the reference value" />
+<column name="CUNIT1"   data_type="string" bin_size="8"    comment="Physical units of axis 1"/>
+<column name="CTYPE2"   data_type="string" bin_size="8"    comment="TLAT-PROJ where LAT can be DEC, GLAT, ELAT" />
+<column name="CRPIX2"   data_type="float"                  comment="Pixel at reference point" />
+<column name="CRVAL2"   data_type="float"                  comment="LAT at the reference value" />
+<column name="CUNIT2"   data_type="string" bin_size="8"    comment="Physical units of axis 2"/>
+<column name="CD1_1"    data_type="double"                 comment="Element (1,1) of coordinate transf. matrix"/>
+<column name="CD1_2"    data_type="double"                 comment="Element (1,2) of coordinate transf. matrix"/>
+<column name="CD2_1"    data_type="double"                 comment="Element (2,1) of coordinate transf. matrix"/>
+<column name="CD2_2"    data_type="double"                 comment="Element (2,2) of coordinate transf. matrix"/>

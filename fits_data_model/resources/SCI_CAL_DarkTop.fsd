@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL1L2
+
+		version 8.1  21. 10. 2017 RRO
+		  - #14788 new data structure
+-->
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL1L2    SYSTEM "KeywordExposureL1L2.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubRowOrigin    SYSTEM "KeywordSubRowOrigin.ifsd">     
+    <!ENTITY KeywordMarginDataRow   SYSTEM "KeywordMarginDataRow.ifsd">     
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_CAL_DarkTop">
+        <brief>Data of the dark CCD margin area at the top of the CCD.</brief>
+        <description>Depending on the value of MRG_PROC the data can be either
+                     the complete margin image, 3 values per column (reduced)
+                     or just 4 values in total (total collapsed)
+                     In reduced and total collapsed mode the header keywords
+                     MRG_DTYx define for each row in the image the type 
+                     of data. It can be "mean", "stdev", "median" or "mad".  </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel1;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            &KeywordExposureL1L2;
+            &KeywordSkyPos;
+            &KeywordSubRowOrigin;
+            &KeywordMarginDataRow;
+        </header>
+        <!--  -->
+        <image data_type="double">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the dark area">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of the dark area">0</axis2>
+            <axis3 unit="#images" comment="Successive dark area (sorted by date) "> 0 </axis3>
+        </image>
+    </HDU>
+    
+    
+</FITS_schema>

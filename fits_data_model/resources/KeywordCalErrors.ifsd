@@ -1,0 +1,10 @@
+<!--
+		version 7.3  19. 05. 2017 RRO 
+		   - #11683 new keywords: STD_SP_B, STD_SP_D
+
+-->   
+
+<group description="Calculated Errors">
+	<keyword name="STD_SP_B" data_type="real"  comment="Spatial standard deviation of the bias"/>
+	<keyword name="STD_SP_D" data_type="real"  comment="Spatial standard deviation of the dark"/>
+</group>

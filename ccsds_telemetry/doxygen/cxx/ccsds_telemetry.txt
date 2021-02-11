@@ -1,0 +1,12 @@
+/**
+ @defgroup ccsds_telemetry  CCSDS Telemetry module
+ @author   Florian George ELSE
+
+ @brief    Provide CCSDS telemetry frames and packets processing functionalities
+           to conversion modules.
+ 
+ @req      CHEOPS-SOC-RS-PREP-GNRL-IMP-001: Preprocessing implementation
+ @req      CHEOPS-SOC-RS-PREP-GNRL-IMP-002: Preprocessing hosting and execution
+ @req      CHEOPS-SOC-RS-PREP-GNRL-FUN-004: Preprocessing of nominal data
+
+ **/

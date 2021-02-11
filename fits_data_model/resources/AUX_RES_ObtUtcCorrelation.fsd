@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 10.0.1    20. 08. 2018 RRO #16725
+			- new column : TC_OFFSET
+			- description updated, according MOC-SOC ICD 3.3
+
+        version 5.1  17. 03. 2016 RRO
+           - Update of the description and comments of the columns.
+           - change column name from OBT_N to OBT and UTC_N to UTC
+           - new columns: OBT_N, UTC_N
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelAux   SYSTEM "KeywordDataLevelAux.ifsd"> 
+    <!ENTITY KeywordProcChain      SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="AUX_RES_ObtUtcCorrelation">
+        <brief>Pairs of UTC_N and OBT_N times </brief>
+        <description>The pairs of UTC_N and OBT_N define the correlation between
+        these two time units. Correlations at times between two pairs have
+        to be interpolated: UTC =  OFFSET + TC_OFFSET + UTC_N + GRADIENT * (OBT - OBT_N).
+        According to MOC-SOC IDC the TC_OFFSET and GRADIENT are valid from 
+        this data point (UTC_TIMESTAMP) until the next data point (UTC_TIMESTAMP),
+        which defines the next the TC_OFFSET and GRADIENT. 
+        There will be one OBT-UTC Correlation file per pass. About 5 to 10
+        time correlation records are expected per pass. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="10.1" comment="version of the data structure"/>
+             &KeywordDataLevelAux;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+        </header>
+        
+        <table>
+            <column name="UTC_TIMESTAMP" data_type="UTC"    unit="TIMESYS=UTC"  comment="UTC of the record creation time. The time correlation is valid until next time-stamp."/>
+            <column name="UTC_N"         data_type="double" unit="sec"  comment="number of elapsed TAI seconds since 1.1.2000"/>
+            <column name="OBT_N"         data_type="double" unit="sec"  comment="number of elapsed OBT seconds since 1.1.2000"/>
+            <column name="UTC"           data_type="UTC"    unit="TIMESYS=UTC"  comment="same as UTC_N, but as UTC"/>
+            <column name="OBT"           data_type="OBT"                comment="same as OBT_N, but in OBT ticks"/>
+            <column name="GRADIENT"      data_type="double"             comment="slope of UTC / OBT starting at this data point"/>
+            <column name="OFFSET"        data_type="double" unit="sec"  comment="constant OFFSET, depending on 0-base of UTC_N and OBT_N"/>
+            <column name="TC_OFFSET"     data_type="double" unit="sec"  comment="variable OFFSET"/>
+       </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.0  28. 08. 2020 MBE
+			- #22260: Clean-up epoch for attitude information
+		
+		version 10.3    01. 11. 2018 RRO
+		    - #17482 new header keywords:
+		    	PROC_CHN, PI_NAME, PI_UID, OBS_CAT, PROGTYPE, PROG_ID, REQ_ID
+		    	VISITCTR, OBSID, PRP_VST1, PRP_VSTN, RA_TARG, DEC_TARG, EQUINOX,
+		    	RADESYS, V_STRT_M, V_STOP_M
+
+		version 10.1     10. 09. 2018 RRO
+			- new header keyword: DESCRIP, DARK_RF
+			- update of the description with now 6 possible values in the image
+			- #15724 new header keywords: METHOD, METH_LIM
+
+		version 10.0.1   16. 08. 2018
+			- new header keyword: GAIN_RF
+			- removed header keywords: BIAS_RF, DARK_RF, BP_RF, BPM_RF
+
+		version 9.3  12. 06. 2018 RRO #15181
+		    new header keywords: BIAS_RF, DARK_RF, BP_RF, FF_RF, BPM_RF
+
+        version 9.1  05. 02. 2018 RRO
+           - new data structure
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelQL      SYSTEM "KeywordDataLevelQL.ifsd"> 
+    <!ENTITY KeywordProcChain        SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops           SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity         SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit            SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordSkyPos           SYSTEM "KeywordSkyPos.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="MCO_REP_BadPixelMapLeft">
+        <brief>Bad Pixel Map of the CCD margin area left dark</brief>
+        <description>The Bad Pixel Map is derived from the dark MandC observations.
+                     First the MCO_REP_BadPixelMapLeft, MCO_REP_BadPixelRight is created. After
+                     an inspection by PSO / Instrument Team it will be approved 
+                     and copied to REF_APP_BadPixelMapLeft, REF_APP_BadPixelMapRight. This approved
+                     data structure will be provided to the programs of the CHEOPS
+                     data processing. 
+                     The ground calibration also provides an approved Pad Pixel Map
+                     Pixels can have following values: -2: totally dead pixel, 
+                     -1 = partially dead pixel, 0 = good pixel, 1 = hot pixel, 
+                     2 = saturated pixel 3 = telegraphic pixel.  </description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.0" comment="version of the data structure"/>
+             &KeywordDataLevelQL;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordVisit; 
+             &KeywordSkyPos;
+        </header>
+        <image data_type="int16">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">16</axis1>
+            <axis2 comment="Y axis">0</axis2>
+        </image>
+    </HDU>
+
+
+</FITS_schema>

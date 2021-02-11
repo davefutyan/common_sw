@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY ColumnTimeHKPrw        SYSTEM "ColumnTimeHKPrw.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_HkIbswDg">
+        <brief> L0.5 product : Diagnostic IBSW Telemetry (SID = 4) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.0" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidityUTC;
+             &KeywordPassVisit;
+        </header>
+        <table appId="322" SID="4">
+            &ColumnTimeHKPrw;
+            <column name="ADC_P3V3_RAW"            data_type="int16" />
+            <column name="ADC_P5V_RAW"             data_type="int16" />
+            <column name="ADC_P1V8_RAW"            data_type="int16" />
+            <column name="ADC_P2V5_RAW"            data_type="int16" />
+            <column name="ADC_N5V_RAW"             data_type="int16" />
+            <column name="ADC_PGND_RAW"            data_type="int16" />
+            <column name="ADC_TEMPOH1A_RAW"        data_type="int16" />
+            <column name="ADC_TEMP1_RAW"           data_type="int16" />
+            <column name="ADC_TEMPOH2A_RAW"        data_type="int16" />
+            <column name="ADC_TEMPOH1B_RAW"        data_type="int16" />
+            <column name="ADC_TEMPOH3A_RAW"        data_type="int16" />
+            <column name="ADC_TEMPOH2B_RAW"        data_type="int16" />
+            <column name="ADC_TEMPOH4A_RAW"        data_type="int16" />
+            <column name="ADC_TEMPOH3B_RAW"        data_type="int16" />
+            <column name="ADC_TEMPOH4B_RAW"        data_type="int16" />
+            <column name="SEM_P15V_RAW"            data_type="int16" />
+            <column name="SEM_P30V_RAW"            data_type="int16" />
+            <column name="SEM_P5V0_RAW"            data_type="int16" />
+            <column name="SEM_P7V0_RAW"            data_type="int16" />
+            <column name="SEM_N5V0_RAW"            data_type="int16" />
+            <column name="missedMsgCnt"            data_type="int32"  comment="Counter of missed synchronization messages"/>
+            <column name="missedPulseCnt"          data_type="int32"  comment="Counter of missed synchronization pulses"/>
+            <column name="isErrLogValid"           data_type="uint8"  comment="Validity status of flash-based error log"/>
+            <column name="wcet_1"                  data_type="float"  comment="Worst-case execution time of RT container 1"/>
+            <column name="wcet_2"                  data_type="float"  comment="Worst-case execution time of RT container 2"/>
+            <column name="wcet_3"                  data_type="float"  comment="Worst-case execution time of RT container 3"/>
+            <column name="wcet_4"                  data_type="float"  comment="Worst-case execution time of RT container 4"/>
+            <column name="wcet_5"                  data_type="float"  comment="Worst-case execution time of RT container 5"/>
+            <column name="wcetAver_1"              data_type="float"  comment="Average WCET for RT Container 1"/>
+            <column name="wcetAver_2"              data_type="float"  comment="Average WCET for RT Container 2"/>
+            <column name="wcetAver_3"              data_type="float"  comment="Average WCET for RT Container 3"/>
+            <column name="wcetAver_4"              data_type="float"  comment="Average WCET for RT Container 4"/>
+            <column name="wcetAver_5"              data_type="float"  comment="Average WCET for RT Container 5"/>
+            <column name="wcetMax_1"               data_type="float"  comment="Maximum WCET for RT Container 1"/>
+            <column name="wcetMax_2"               data_type="float"  comment="Maximum WCET for RT Container 2"/>
+            <column name="wcetMax_3"               data_type="float"  comment="Maximum WCET for RT Container 3"/>
+            <column name="wcetMax_4"               data_type="float"  comment="Maximum WCET for RT Container 4"/>
+            <column name="wcetMax_5"               data_type="float"  comment="Maximum WCET for RT Container 5"/>
+            <column name="nOfNotif_1"              data_type="uint32" comment="Notification counter for RT Container 1"/>
+            <column name="nOfNotif_2"              data_type="uint32" comment="Notification counter for RT Container 2"/>
+            <column name="nOfNotif_3"              data_type="uint32" comment="Notification counter for RT Container 3"/>
+            <column name="nOfNotif_4"              data_type="uint32" comment="Notification counter for RT Container 4"/>
+            <column name="nOfNotif_5"              data_type="uint32" comment="Notification counter for RT Container 5"/>
+            <column name="nofFuncExec_1"           data_type="uint32" comment="number of functional executions of RT Container 1"/>
+            <column name="nofFuncExec_2"           data_type="uint32" comment="number of functional executions of RT Container 2"/>
+            <column name="nofFuncExec_3"           data_type="uint32" comment="number of functional executions of RT Container 3"/>
+            <column name="nofFuncExec_4"           data_type="uint32" comment="number of functional executions of RT Container 4"/>
+            <column name="nofFuncExec_5"           data_type="uint32" comment="number of functional executions of RT Container 5"/>
+            <column name="wcetTimeStampFine_1"     data_type="uint16" comment="Fine part of time when worst-case execution time is recorded for RT container 1"/>
+            <column name="wcetTimeStampFine_2"     data_type="uint16" comment="Fine part of time when worst-case execution time is recorded for RT container 2"/>
+            <column name="wcetTimeStampFine_3"     data_type="uint16" comment="Fine part of time when worst-case execution time is recorded for RT container 3"/>
+            <column name="wcetTimeStampFine_4"     data_type="uint16" comment="Fine part of time when worst-case execution time is recorded for RT container 4"/>
+            <column name="wcetTimeStampFine_5"     data_type="uint16" comment="Fine part of time when worst-case execution time is recorded for RT container 5"/>
+            <column name="wcetTimeStampCoarse_1"   data_type="uint32" comment="Coarse part of time when worst-case execution time is recorded for RT container 1"/>
+            <column name="wcetTimeStampCoarse_2"   data_type="uint32" comment="Coarse part of time when worst-case execution time is recorded for RT container 2"/>
+            <column name="wcetTimeStampCoarse_3"   data_type="uint32" comment="Coarse part of time when worst-case execution time is recorded for RT container 3"/>
+            <column name="wcetTimeStampCoarse_4"   data_type="uint32" comment="Coarse part of time when worst-case execution time is recorded for RT container 4"/>
+            <column name="wcetTimeStampCoarse_5"   data_type="uint32" comment="Coarse part of time when worst-case execution time is recorded for RT container 5"/>
+            <column name="flashContStepCnt"        data_type="uint32"/>
+            <column name="CyclicalActivitiesCtr"   data_type="uint8"  comment="identifies the current IASW cycle"/>
+            <column name="ObcInputBufferPackets"   data_type="uint32" comment="Nr of packets in OBC input buffer"/>
+            <column name="GrndInputBufferPackets"  data_type="uint32" comment="Nr of packets in Ground input buffer"/>
+            <column name="MilBusBytesIn"           data_type="uint32" comment="link stats"/>
+            <column name="MilBusBytesOut"          data_type="uint32" comment="link stats"/>
+            <column name="MilBusDroppedBytes"      data_type="uint16" comment="received MilBus bytes dropped due to full buffers"/>
+            <column name="IRL1_AHBSTAT"            data_type="uint8"  comment="AHB status interrupt"/>
+            <column name="IRL1_GRGPIO_6"           data_type="uint8"  comment="sync pulse"/>
+            <column name="IRL1_GRTIMER"            data_type="uint8"  comment="long timer (uptime)"/>
+            <column name="IRL1_GPTIMER_0"          data_type="uint8"  comment="reserved"/>
+            <column name="IRL1_GPTIMER_1"          data_type="uint8"  comment="syncpulse guard"/>
+            <column name="IRL1_GPTIMER_2"          data_type="uint8"  comment="notification timer"/>
+            <column name="IRL1_GPTIMER_3"          data_type="uint8"  comment="watchdog "/>
+            <column name="IRL1_IRQMP"              data_type="uint8"  comment="multiprocessor/extended IRL"/>
+            <column name="IRL1_B1553BRM"           data_type="uint8"  comment="Milbus IRQ"/>
+            <column name="IRL2_GRSPW2_0"           data_type="uint8"  comment="monitor link (routing mode)"/>
+            <column name="IRL2_GRSPW2_1"           data_type="uint8"  comment="SEM link (routing mode)"/>
+            <column name="Spw1TxDescAvail"         data_type="uint8"  comment="link stats"/>
+            <column name="Spw1RxPcktAvail"         data_type="uint8"  comment="link stats"/>
+            <column name="MilCucCoarseTime"        data_type="uint32" comment="coarse time from broadcast"/>
+            <column name="MilCucFineTime"          data_type="uint16" comment="fine time from broadcast"/>
+            <column name="CucCoarseTime"           data_type="uint32" comment="(current) coarse time"/>
+            <column name="CucFineTime"             data_type="uint16" comment="(current) fine time"/>
+            <column name="Sram1ScrCurrAddr"        data_type="uint32" comment="current address of memory scrubber for SRAM 1"/>
+            <column name="Sram2ScrCurrAddr"        data_type="uint32" comment="current address of memory scrubber for SRAM 2"/>
+            <column name="Sram1ScrLength"          data_type="uint16" comment="number of words to scrub per cycle for SRAM 1"/>
+            <column name="Sram2ScrLength"          data_type="uint16" comment="number of words to scrub per cycle for SRAM 2"/>
+            <column name="EdacSingleRepaired"      data_type="uint8"  comment="number of errors repaired in last cycle"/>
+            <column name="EdacDoubleFaults"        data_type="uint8"  comment="cumulative number of double faults"/>
+            <column name="EdacDoubleFAddr"         data_type="uint32" comment="last double fault address"/>
+            <column name="HEARTBEAT_ENABLED"       data_type="uint8" />
+            <column name="S1AllocDbs"              data_type="uint32" comment="usage of Dbs area heap"/>
+            <column name="S1AllocSw"               data_type="uint32" comment="usage of Ifsw heap"/>
+            <column name="S1AllocHeap"             data_type="uint32" comment="usage of general purpose heap of SRAM1"/>
+            <column name="S1AllocFlash"            data_type="uint32" comment="usage of heap in FLASH RAM area"/>
+            <column name="S1AllocAux"              data_type="uint32" comment="usage of auxiliary heap (centroiding)"/>
+            <column name="S1AllocRes"              data_type="uint32" comment="usage of reserved heap"/>
+            <column name="S1AllocSwap"             data_type="uint32" comment="usage of swap data heap"/>
+            <column name="S2AllocSciHeap"          data_type="uint32" comment="usage of science data heap of SRAM2"/>
+            <column name="FPGA_Version"            data_type="uint16"/>
+            <column name="FPGA_DPU_Status"         data_type="uint16"/>
+            <column name="FPGA_DPU_Address"        data_type="uint16"/>
+            <column name="FPGA_RESET_Status"       data_type="uint16"/>
+            <column name="FPGA_SEM_Status"         data_type="uint16"/>
+            <column name="FPGA_Oper_Heater_Status" data_type="uint16"/>
+        </table>
+    </HDU>
+</FITS_schema>

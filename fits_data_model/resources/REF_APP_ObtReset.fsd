@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+           
+        version 5.0  05. 02. 2016 RRO
+           - New data structures
+           
+        version 5.1  17. 03. 2016 RRO
+        	- remove of the PassId column
+        	- new column: OBT_DIFF, OBT_START
+-->   
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_ObtReset">
+        <brief> Stores the OBT clock resets</brief>
+        <description>There will be a new instance of this reference file 
+                     each time a OBT clock reset happens with a new row.
+                     The reset counter is valid from the time defined in the 
+                     same row as the reset counter until the time of the next 
+                     row. The last row defines the current clock reset counter</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="OBT_RESET_COUNTER"    data_type="uint16"             comment="OBT clock reset counter"/>
+            <column name="RESET_UTC"            data_type="UTC"    unit="TIMESYS=UTC"  comment="Time of the reset"/>
+            <column name="OBT_DIFF"             data_type="int64"              comment="(OBT after reset) - (OBT before the reset); without reset counter"/> 
+            <column name="FIRST_OBT"            data_type="int64"              comment="first OBT value after the reset, without reset counter."/> 
+       </table>
+    </HDU>
+</FITS_schema>

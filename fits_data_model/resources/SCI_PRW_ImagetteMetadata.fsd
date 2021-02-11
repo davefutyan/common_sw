@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    version 12.1.6  11. 06. 2020 ABE
+      - #21804 Remove column ACQUISITION_ID.
+
+		version 9.3  29. 05. 2018 RRO
+			- #16112 new column: NEXP
+
+		version 7.3: 12. 05. 2017 RRO
+		   #13157 new columns X_OFF_FULL_ARRAY, Y_OFF_FULL_ARRAY, X_OFF_SUB_ARRAY. Y_OFF_SUB_ARRAY
+
+		version 6.2: 10. 09. 2016 RRO
+			update according to IFSW-SOC ICD Issue 2:
+			- remove HK data, they are now stored in SCI_PRW_UnstackedImageMetadata. 
+			- new column: CE_COUNTER
+
+        version 5.0  09. 02. 2016 RRO
+           - new data structure, derived from SCI_PRW_ImageMetadata
+        version 5.2  26. 04. 2016 RRO 
+        	- new columns:  ColumnFeeTempVolt and ColumnAftFrontTemp  
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY ColumnTimePrw          SYSTEM "ColumnTimePrw.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_ImagetteMetadata">
+        <brief> L05 Product : Meta data of the imagettes, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional imagette in the
+                      associated image cube. It stores meta data of that imagette.
+                      </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.6" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+            &KeywordPassVisit;   
+        </header>
+        
+        <table>
+            &ColumnTimePrw;
+
+            <column name="IMAGETTES_CE_KEY"    data_type="uint32"              comment="Product ID of imagettes"/>
+            <column name="IMAGETTES_ORG_SIZE"  data_type="uint32" unit="Byte"  comment="Uncompressed size of imagettes"/>
+            <column name="IMAGETTES_COMP_SIZE" data_type="uint32" unit="Byte"  comment="Compressed size of imagettes"/>
+            <column name="IMAGETTES_CHECKSUM"  data_type="uint16"              comment="Checksum of imagettes"/>
+            <column name="CE_COUNTER"          data_type="uint16"              comment="image counter per visit"/>
+            <column name="NEXP"                data_type="uint16"              comment="Number of co-added measurements"/>
+            <column name="X_OFF_FULL_ARRAY"    data_type="uint16" unit="pixel" comment="X offset of the Imagette image relative to the Full Array image without margins"/>
+            <column name="Y_OFF_FULL_ARRAY"    data_type="uint16" unit="pixel" comment="Y offset of the Imagette image relative to the Full Array image without margins"/>
+            <column name="X_OFF_SUB_ARRAY"     data_type="uint16" unit="pixel" comment="X offset of the Imagette image relative to the Sub Array image"/>
+            <column name="Y_OFF_SUB_ARRAY"     data_type="uint16" unit="pixel" comment="Y offset of the Imagette image relative to the Sub Array image"/>
+         </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 9.3  08. 06. 2018 RRO
+		   - #15181 new header keywords: EV_EN_RF, EV_PR_RF
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+        version 5.1  01. 02. 2016 RRO
+           - new data structure
+-->   
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_EventReport">
+        <brief> Event Reports, provided by Service 5 TM </brief>
+        <description> There is one row per reported event. All types of every 
+                      event IDs and of all severity levels are stored in 
+                      this table. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;   
+             &KeywordSkyPos;
+             <group description="Used reference files">
+				<keyword name="EV_EN_RF"  data_type="string" default="N/A" comment="name of event enum reference file"/>
+    			<keyword name="EV_PR_RF"  data_type="string" default="N/A" comment="name of event parameter reference file"/>
+             </group>
+             
+        </header>
+        
+        <table>
+            &ColumnTimeHKL05;
+			<column name="SEVERITY"      data_type="uint8"                                   comment="severity level of event, 1-4" />
+			<column name="EVT_ID"        data_type="uint16"                                  comment="ID of the event"/>
+			<column name="EVT_NAME"      data_type="string" bin_size="24"                    comment="Name of the event"/>
+			<column name="PARAM_1"       data_type="uint32"               null="4294967295"  comment="value of parameter 1" />
+			<column name="PARAM_1_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 1" />
+			<column name="PARAM_1_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 1" />
+			<column name="PARAM_2"       data_type="uint32"               null="4294967295"  comment="value of parameter 2" />
+			<column name="PARAM_2_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 2" />
+			<column name="PARAM_2_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 2" />
+			<column name="PARAM_3"       data_type="uint32"               null="4294967295"  comment="value of parameter 3" />
+			<column name="PARAM_3_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 3" />
+			<column name="PARAM_3_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 3" />
+			<column name="PARAM_4"       data_type="uint32"               null="4294967295"  comment="value of parameter 4" />
+			<column name="PARAM_4_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 4" />
+			<column name="PARAM_4_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 4" />
+			<column name="PARAM_5"       data_type="uint32"               null="4294967295"  comment="value of parameter 5" />
+			<column name="PARAM_5_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 5" />
+			<column name="PARAM_5_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 5" />
+			<column name="PARAM_6"       data_type="uint32"               null="4294967295"  comment="value of parameter 6" />
+			<column name="PARAM_6_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 6" />
+			<column name="PARAM_6_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 6" />
+			<column name="PARAM_7"       data_type="uint32"               null="4294967295"  comment="value of parameter 7" />
+			<column name="PARAM_7_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 7" />
+			<column name="PARAM_7_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 7" />
+			<column name="PARAM_8"       data_type="uint32"               null="4294967295"  comment="value of parameter 8" />
+			<column name="PARAM_8_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 8" />
+			<column name="PARAM_8_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 8" />
+			<column name="PARAM_9"       data_type="uint32"               null="4294967295"  comment="value of parameter 9" />
+			<column name="PARAM_9_NAME"  data_type="string" bin_size="24"                    comment="name of parameter 9" />
+			<column name="PARAM_9_CAL"   data_type="string" bin_size="30"                    comment="calibrated value of parameter 9" />
+			<column name="PARAM_10"      data_type="uint32"               null="4294967295"  comment="value of parameter 10" />
+			<column name="PARAM_10_NAME" data_type="string" bin_size="24"                    comment="name of parameter 10" />
+			<column name="PARAM_10_CAL"  data_type="string" bin_size="30"                    comment="calibrated value of parameter 10" />
+			<column name="PARAM_11"      data_type="uint32"               null="4294967295"  comment="value of parameter 11" />
+			<column name="PARAM_11_NAME" data_type="string" bin_size="24"                    comment="name of parameter 11" />
+			<column name="PARAM_11_CAL"  data_type="string" bin_size="30"                    comment="calibrated value of parameter 11" />
+			<column name="PARAM_12"      data_type="uint32"               null="4294967295"  comment="value of parameter 12" />
+			<column name="PARAM_12_NAME" data_type="string" bin_size="24"                    comment="name of parameter 12" />
+			<column name="PARAM_12_CAL"  data_type="string" bin_size="30"                    comment="calibrated value of parameter 12" />
+			<column name="PARAM_13"      data_type="uint32"               null="4294967295"  comment="value of parameter 13" />
+			<column name="PARAM_13_NAME" data_type="string" bin_size="24"                    comment="name of parameter 13" />
+			<column name="PARAM_13_CAL"  data_type="string" bin_size="30"                    comment="calibrated value of parameter 13" />
+        </table>
+    </HDU>
+</FITS_schema>

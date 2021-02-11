@@ -1,0 +1,15 @@
+<!--
+		version 7.3  15. 05. 2017 RRO #12801
+			- remove column VISIT_COUNTER, it will no be defined by Preprocessing
+
+        version 6.3  19. 10. 2016 
+           - removed columns: PROGRAM_TYPE,   PROGRAM_ID,   OBSERVATION_ID, VISIT_NUM
+
+        version 6.1  29. 07. 2016 RRO #11327
+           - new columns:        PROGRAMME_TYPE, PROGRAMME_ID, REQUEST_ID,     VISIT_COUNTER
+           - deprecated columns: PROGRAM_TYPE,   PROGRAM_ID,   OBSERVATION_ID, VISIT_NUM
+-->   
+
+<column name="PROGRAMME_TYPE"   data_type="uint8"    comment="Type of the programme " />
+<column name="PROGRAMME_ID"     data_type="uint16"   comment="Programme Id of this type of programme" />
+<column name="REQUEST_ID"       data_type="uint16"   comment="Observation request Id of this programme" />

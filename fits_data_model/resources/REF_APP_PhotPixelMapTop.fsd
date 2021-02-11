@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 11.3  08. 04. 2019 RRO
+           - #18615 new data structure
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_PhotPixelMapTop">
+        <brief>Pixel Map defining pixels that can be used for photometry of the CCD margin area top dark</brief>
+        <description>A pixel value of 0 indicates that the pixel can be used
+                     for photometry. Pixels with value 1 should be used for
+                     photometry.   </description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="11.3" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+            
+        </header>
+        <image data_type="uint8">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">0</axis1>
+            <axis2 comment="Y axis">3</axis2>
+        </image>
+    </HDU>
+
+
+</FITS_schema>

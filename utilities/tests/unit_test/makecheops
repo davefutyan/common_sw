@@ -1,0 +1,15 @@
+CXX_UNIT_TESTS += TestObt        
+CXX_UNIT_TESTS += TestUtc        
+CXX_UNIT_TESTS += TestMjd
+CXX_UNIT_TESTS += TestValidRefFile      
+CXX_UNIT_TESTS += TestTimeConversion
+CXX_UNIT_TESTS += TestTriggerFile
+CXX_UNIT_TESTS += TestTriggerFile_JobOrder_NoInput
+CXX_UNIT_TESTS += TestTriggerFile_JobOrder_OneInput
+CXX_UNIT_TESTS += TestTriggerFile_JobOrder_TwoInputs
+CXX_UNIT_TESTS += TestPassId
+CXX_UNIT_TESTS += TestVisitId
+
+UNIT_TESTS_PROG_PARAMS = resources/job_order.xml
+
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -llogger -lprogram_params -lfits_dal

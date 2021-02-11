@@ -1,0 +1,20 @@
+
+<!--
+        version 9.2  15. 05. 2018 ABE
+           - new keyword:     PIPE_VER
+           
+        version 6.2  05. 09. 2016 RRO
+           - removed keyword: DATA_VER
+           - new keywords:    ARCH_REV, PROC_NUM
+-->   
+
+
+<group description="CHEOPS Data Structure">
+	<keyword name="TELESCOP"  data_type="string"  default="CHEOPS"          comment="Telescope's name"  />
+	<keyword name="INSTRUME"  data_type="string"  default="CHEOPS"          comment="Instrument's name" />
+	<keyword name="ORIGIN"    data_type="string"  default="SOC"             comment="Processing site, creating this FITS file" />
+	<keyword name="ARCH_REV"  data_type="integer"              db="common"  comment="Archive revision number" />
+	<keyword name="PROC_NUM"  data_type="integer"              db="common"  comment="Processing Number" />
+	<keyword name="PIPE_VER"  data_type="string"  default="N/A"             comment="Pipeline version" />
+	<keyword name="TIMESYS"   data_type="string"  default="TT"              comment="Time frame system" />
+</group>

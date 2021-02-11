@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 8.1  11. 09. 2018 RRO
+			- set J2000 in comment of SC_RA and SC_DEC
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+-->
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit      	SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_Attitude">
+        <brief> L0.5 product : Attitude provided by the AOCS of the S/C</brief>
+        <description> The data are calculated from the attitude quaternions,
+                      see SCI_PRW_HkAsy30759. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;   
+             &KeywordSkyPos;
+        </header>
+        
+        <table>
+            &ColumnTimeHKL05;
+			<column name="SC_RA"         data_type="float" comment="RA of the spacecraft at the epoch of the observation" />
+			<column name="SC_DEC"        data_type="float" comment="DEC of the spacecraft at the epoch of the observation" />
+			<column name="SC_ROLL_ANGLE" data_type="float" comment="Roll angle of the spacecraft" />
+        </table>
+    </HDU>
+</FITS_schema>

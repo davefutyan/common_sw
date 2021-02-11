@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+-->
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+    <!ENTITY KeywordPPReferenceFiles  SYSTEM "KeywordPPReferenceFiles.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_HkIaswPar">
+        <brief> L0.5 product : IASW Parameters (SID = 2) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;
+             &KeywordSkyPos;
+             &KeywordPPReferenceFiles;
+       </header>
+
+        <table>
+            &ColumnTimeHKL05;
+            <column name="RdlEnabledList_0"       data_type="uint8"  comment="List of enable status  of HK reports; the i-th element is the enable status of the i-th report in the RDL"/>
+            <column name="RdlEnabledList_1"       data_type="uint8" />
+            <column name="RdlEnabledList_2"       data_type="uint8" />
+            <column name="RdlEnabledList_3"       data_type="uint8" />
+            <column name="RdlEnabledList_4"       data_type="uint8" />
+            <column name="RdlEnabledList_5"       data_type="uint8" />
+            <column name="RdlEnabledList_6"       data_type="uint8" />
+            <column name="RdlEnabledList_7"       data_type="uint8" />
+            <column name="RdlEnabledList_8"       data_type="uint8" />
+            <column name="RdlEnabledList_9"       data_type="uint8" />
+            <column name="EVTFILTERDEF"           data_type="uint8"  comment="Default value of evtEnabledList when an event type is enabled"/>
+            <column name="evtEnabledList_0"       data_type="uint8"  comment="The i-th element is the maximum number of instances of the i-th event which may be generated in a cycle (a value of zero means that the event is disabled)"/>
+            <column name="evtEnabledList_1"       data_type="uint8" />
+            <column name="evtEnabledList_2"       data_type="uint8" />
+            <column name="evtEnabledList_3"       data_type="uint8" />
+            <column name="evtEnabledList_4"       data_type="uint8" />
+            <column name="evtEnabledList_5"       data_type="uint8" />
+            <column name="evtEnabledList_6"       data_type="uint8" />
+            <column name="evtEnabledList_7"       data_type="uint8" />
+            <column name="evtEnabledList_8"       data_type="uint8" />
+            <column name="evtEnabledList_9"       data_type="uint8" />
+            <column name="evtEnabledList_10"      data_type="uint8" />
+            <column name="evtEnabledList_11"      data_type="uint8" />
+            <column name="evtEnabledList_12"      data_type="uint8" />
+            <column name="evtEnabledList_13"      data_type="uint8" />
+            <column name="evtEnabledList_14"      data_type="uint8" />
+            <column name="evtEnabledList_15"      data_type="uint8" />
+            <column name="evtEnabledList_16"      data_type="uint8" />
+            <column name="evtEnabledList_17"      data_type="uint8" />
+            <column name="evtEnabledList_18"      data_type="uint8" />
+            <column name="evtEnabledList_19"      data_type="uint8" />
+            <column name="evtEnabledList_20"      data_type="uint8" />
+            <column name="evtEnabledList_21"      data_type="uint8" />
+            <column name="evtEnabledList_22"      data_type="uint8" />
+            <column name="evtEnabledList_23"      data_type="uint8" />
+            <column name="evtEnabledList_24"      data_type="uint8" />
+            <column name="evtEnabledList_25"      data_type="uint8" />
+            <column name="evtEnabledList_26"      data_type="uint8" />
+            <column name="evtEnabledList_27"      data_type="uint8" />
+            <column name="evtEnabledList_28"      data_type="uint8" />
+            <column name="evtEnabledList_29"      data_type="uint8" />
+            <column name="evtEnabledList_30"      data_type="uint8" />
+            <column name="evtEnabledList_31"      data_type="uint8" />
+            <column name="evtEnabledList_32"      data_type="uint8" />
+            <column name="evtEnabledList_33"      data_type="uint8" />
+            <column name="evtEnabledList_34"      data_type="uint8" />
+            <column name="evtEnabledList_35"      data_type="uint8" />
+            <column name="evtEnabledList_36"      data_type="uint8" />
+            <column name="evtEnabledList_37"      data_type="uint8" />
+            <column name="evtEnabledList_38"      data_type="uint8" />
+            <column name="evtEnabledList_39"      data_type="uint8" />
+            <column name="evtEnabledList_40"      data_type="uint8" />
+            <column name="evtEnabledList_41"      data_type="uint8" />
+            <column name="evtEnabledList_42"      data_type="uint8" />
+            <column name="evtEnabledList_43"      data_type="uint8" />
+            <column name="evtEnabledList_44"      data_type="uint8" />
+            <column name="evtEnabledList_45"      data_type="uint8" />
+            <column name="evtEnabledList_46"      data_type="uint8" />
+            <column name="evtEnabledList_47"      data_type="uint8" />
+            <column name="evtEnabledList_48"      data_type="uint8" />
+            <column name="evtEnabledList_49"      data_type="uint8" />
+            <column name="evtEnabledList_50"      data_type="uint8" />
+            <column name="evtEnabledList_51"      data_type="uint8" />
+            <column name="evtEnabledList_52"      data_type="uint8" />
+            <column name="evtEnabledList_53"      data_type="uint8" />
+            <column name="evtEnabledList_54"      data_type="uint8" />
+            <column name="evtEnabledList_55"      data_type="uint8" />
+            <column name="evtEnabledList_56"      data_type="uint8" />
+            <column name="evtEnabledList_57"      data_type="uint8" />
+            <column name="evtEnabledList_58"      data_type="uint8" />
+            <column name="evtEnabledList_59"      data_type="uint8" />
+            <column name="FdGlbEnable"            data_type="uint8"  comment="Global enable flags for FdChecks"/>
+            <column name="RpGlbEnable"            data_type="uint8"  comment="Global enable flags for recovery procedures"/>
+            <column name="FdCheckTTMExtEn"        data_type="uint8"  comment="External enable status of TTM FdCheck"/>
+            <column name="RpTTMExtEn"             data_type="uint8"  comment="External enable status of TTM recovery procedure"/>
+            <column name="FdCheckTTMCntThr"       data_type="uint16" comment="Counter threshold for TTM FdCheck"/>
+            <column name="TTC_LL"                 data_type="float"  unit="degC" comment="Lower limit for telescope temperature"/>
+            <column name="TTC_UL"                 data_type="float"  unit="degC" comment="Upper  limit for telescope temperature"/>
+            <column name="TTM_LIM"                data_type="float"  unit="degC" comment="Margin for telescope temperature monitoring"/>
+            <column name="FdCheckSDSCExtEn"       data_type="uint8"  comment="External enable status of SDSC FdCheck"/>
+            <column name="RpSDSCExtEn"            data_type="uint8"  comment="External enable status of SDSC recovery procedure"/>
+            <column name="FdCheckSDSCCntThr"      data_type="uint16" comment="Counter threshold for SDSC FdCheck"/>
+            <column name="FdCheckComErrExtEn"     data_type="uint8"  comment="External enable status of SEM Communication Error FdCheck"/>
+            <column name="RpComErrExtEn"          data_type="uint8"  comment="External enable status of SEM Communication Error recovery procedure"/>
+            <column name="FdCheckComErrCntThr"    data_type="uint16" comment="Counter threshold for SEM Communication Error FdCheck"/>
+            <column name="FdCheckTimeOutExtEn"    data_type="uint8"  comment="External enable status of SEM Mode Time-Out FdCheck"/>
+            <column name="RpTimeOutExtEn"         data_type="uint8"  comment="External enable status of SEM Mode Time-Out recovery procedure"/>
+            <column name="FdCheckTimeOutCntThr"   data_type="uint16" comment="Counter threshold for SEM Mode Time-Out FdCheck"/>
+            <column name="SEM_TO_POWERON"         data_type="uint32" unit="cyc" comment="SEM mode transition time-out (power-on to STANDBY)"/>
+            <column name="SEM_TO_SAFE"            data_type="uint32" unit="cyc" comment="SEM mode transition time-out (entry into SAFE)"/>
+            <column name="SEM_TO_STAB"            data_type="uint32" unit="cyc" comment="SEM mode transition time-out (entry into STABILIZE)"/>
+            <column name="SEM_TO_TEMP"            data_type="uint32" unit="cyc" comment="SEM mode transition time-out (entry into STABILIZE with temperature stabilized)"/>
+            <column name="SEM_TO_CCD"             data_type="uint32" unit="cyc" comment="SEM mode transition time-out (entry into SCIENCE)"/>
+            <column name="SEM_TO_DIAG"            data_type="uint32" unit="cyc" comment="SEM mode transition time-out (entry into DIAGNOSTICS)"/>
+            <column name="SEM_TO_STANDBY"         data_type="uint32" unit="cyc" comment="SEM mode transition time-out (entry into STANDBY)"/>
+            <column name="FdCheckSafeModeExtEn"   data_type="uint8"  comment="External enable status of SEM Safe Mode FdCheck"/>
+            <column name="RpSafeModeExtEn"        data_type="uint8"  comment="External enable status of SEM Safe Mode recovery procedure"/>
+            <column name="FdCheckSafeModeCntThr"  data_type="uint16" comment="Counter threshold for SEM Safe Mode FdCheck"/>
+            <column name="FdCheckAliveExtEn"      data_type="uint8"  comment="External enable status of SEM Alive FdCheck"/>
+            <column name="RpAliveExtEn"           data_type="uint8"  comment="External enable status of SEM Alive recovery procedure"/>
+            <column name="FdCheckAliveCntThr"     data_type="uint16" comment="Counter threshold for SEM Alive FdCheck"/>
+            <column name="SEM_HK_DEF_PER"         data_type="uint16" comment="Parameter of SEM Alive FdCheck"/>
+            <column name="FdCheckSemAnoEvtExtEn"  data_type="uint8"  comment="External enable status of SEM Error Event 1 FdCheck"/>
+            <column name="RpSemAnoEvtExtEn"       data_type="uint8"  comment="External enable status of SEM Error Event 1 recovery procedure"/>
+            <column name="FdCheckSemAnoEvtCntThr" data_type="uint16" comment="Counter threshold for SEM Error Event 1 FdCheck"/>
+            <column name="semAnoEvtResp_1"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_SG"/>
+            <column name="semAnoEvtResp_2"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_EX"/>
+            <column name="semAnoEvtResp_3"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_AC"/>
+            <column name="semAnoEvtResp_4"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_PC"/>
+            <column name="semAnoEvtResp_5"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_AF"/>
+            <column name="semAnoEvtResp_6"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_EEP_CF"/>
+            <column name="semAnoEvtResp_7"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_TMP_NS"/>
+            <column name="semAnoEvtResp_8"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_FPA_HI"/>
+            <column name="semAnoEvtResp_9"        data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_WR_EXP"/>
+            <column name="semAnoEvtResp_10"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_WR_RPE"/>
+            <column name="semAnoEvtResp_11"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_WR"/>
+            <column name="semAnoEvtResp_12"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_APS_BT"/>
+            <column name="semAnoEvtResp_13"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_REBOOT"/>
+            <column name="semAnoEvtResp_14"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_WATCHD"/>
+            <column name="semAnoEvtResp_15"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_SPW_RX"/>
+            <column name="semAnoEvtResp_16"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_CP"/>
+            <column name="semAnoEvtResp_17"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_CR"/>
+            <column name="semAnoEvtResp_18"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_EEP_CS"/>
+            <column name="semAnoEvtResp_19"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_REG_WR"/>
+            <column name="semAnoEvtResp_20"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_CMD_BUF1"/>
+            <column name="semAnoEvtResp_21"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_CMD_BUF2"/>
+            <column name="semAnoEvtResp_22"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_DAT_DMA"/>
+            <column name="semAnoEvtResp_23"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_PATTER"/>
+            <column name="semAnoEvtResp_24"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event WAR_PACKWR"/>
+            <column name="semAnoEvtResp_25"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_BIAS_SET"/>
+            <column name="semAnoEvtResp_26"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_SYNC"/>
+            <column name="semAnoEvtResp_27"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_SCRIPT"/>
+            <column name="semAnoEvtResp_28"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_PWR"/>
+            <column name="semAnoEvtResp_29"       data_type="string" bin_size="7"   cal_curve="DPKT8104TM" comment="Response to SEM Anomaly Event FdCheck to SEM event ERR_SPW_TC"/>
+            <column name="FdCheckSemLimitExtEn"   data_type="uint8"  comment="External enable status of SEM Limit FdCheck"/>
+            <column name="RpSemLimitExtEn"        data_type="uint8"  comment="External enable status of SEM Limit recovery procedure"/>
+            <column name="FdCheckSemLimitCntThr"  data_type="uint16" comment="Counter threshold for SEM Limit FdCheck"/>
+            <column name="SEM_LIM_DEL_T"          data_type="uint16" comment="Length of time over which an out-of-limit situation must persist before the SEM Limit FdCheck declares an anomaly"/>
+            <column name="FdCheckDpuHkExtEn"      data_type="uint8"  comment="External enable status of DPU Housekeeping FdCheck"/>
+            <column name="RpDpuHkExtEn"           data_type="uint8"  comment="External enable status of DPU Housekeeping recovery procedure"/>
+            <column name="FdCheckDpuHkCntThr"     data_type="uint16" comment="Counter threshold for DPU Housekeeping FdCheck"/>
+            <column name="FdCheckCentConsExtEn"   data_type="uint8"  comment="External enable status of Centroid Consistency FdCheck"/>
+            <column name="RpCentConsExtEn"        data_type="uint8"  comment="External enable status of Centroid Consistency recovery procedure"/>
+            <column name="FdCheckCentConsCntThr"  data_type="uint16" comment="Counter threshold for Centroid Consistency FdCheck"/>
+            <column name="FdCheckResExtEn"        data_type="uint8"  comment="External enable status of Resource FdCheck"/>
+            <column name="RpResExtEn"             data_type="uint8"  comment="External enable status of Resource recovery procedure"/>
+            <column name="FdCheckResCntThr"       data_type="uint16" comment="Counter threshold for Resource FdCheck"/>
+            <column name="CPU1_USAGE_MAX"         data_type="float"  comment="Maximum fraction of DPU 1 core CPU which may be used"/>
+            <column name="MEM_USAGE_MAX"          data_type="float"  comment="Maximum fraction of memory available for dynamical allocation which may be used"/>
+            <column name="FdCheckSemConsExtEn"    data_type="uint8" />
+            <column name="RpSemConsExtEn"         data_type="uint8" />
+            <column name="FdCheckSemConsCntThr"   data_type="uint16"/>
+            <column name="SEM_INIT_T1"            data_type="uint16" comment="Time-out in SEM Initialization Procedure"/>
+            <column name="SEM_INIT_T2"            data_type="uint16" comment="Time-out in SEM Initialization Procedure"/>
+            <column name="SEM_OPER_T1"            data_type="uint16" comment="Time-out in SEM Operational State Machine (time-out for transition from TR_STABILIZE to STABILIZE)"/>
+            <column name="SEM_SHUTDOWN_T1"        data_type="uint16" comment="Time-out in SEM Shutdown Procedure"/>
+            <column name="SEM_SHUTDOWN_T11"       data_type="uint16"/>
+            <column name="SEM_SHUTDOWN_T12"       data_type="uint16"/>
+            <column name="SEM_SHUTDOWN_T2"        data_type="uint16" comment="Time-out in SEM Shutdown Procedure"/>
+            <column name="CTRLD_SWITCH_OFF_T1"    data_type="uint16" comment="Time-out in Controlled Switch-Off Procedure"/>
+            <column name="algoCent0Enabled"       data_type="uint8"  comment="Enabled status of Centroiding 0 Algorithm"/>
+            <column name="algoCent1Enabled"       data_type="uint8"  comment="Enabled status of Centroiding 1 Algorithm"/>
+            <column name="CENT_EXEC_PHASE"        data_type="uint32" comment="Phase of Centroiding Algorithms"/>
+            <column name="algoAcq1Enabled"        data_type="uint8"  comment="Enabled status of Acquisition 1 Algorithm"/>
+            <column name="algoCcEnabled"          data_type="uint8"  comment="Enabled status of Compression/Collection Algorithm"/>
+            <column name="STCK_ORDER"             data_type="uint16" comment="Image Stacking Order (number of images to be co-added)"/>
+            <column name="algoTTC1Enabled"        data_type="uint8"  comment="Enabled status of Telescope Temperature Control 1 Algorithm"/>
+            <column name="TTC1_EXEC_PER"          data_type="int32"  comment="Period of Telescope Temperature Control Algorithms"/>
+            <column name="TTC1_LL_FRT"            data_type="float"  unit="degC" comment="Lower temperature limit for TTC1 algorithm for front heaters"/>
+            <column name="TTC1_LL_AFT"            data_type="float"  unit="degC" comment="Lower temperature limit for TTC1 algorithm for aft heaters"/>
+            <column name="TTC1_UL_FRT"            data_type="float"  unit="degC" comment="Upper temperature limit for TTC1 algorithm for front heaters"/>
+            <column name="TTC1_UL_AFT"            data_type="float"  unit="degC" comment="Upper temperature limit for TTC1 algorithm for aft heaters"/>
+            <column name="algoTTC2Enabled"        data_type="uint8"  comment="Enabled status of Telescope Temperature Control 2 Algorithm"/>
+            <column name="TTC2_EXEC_PER"          data_type="int32"  comment="Period of Telescope Temperature Control Algorithms"/>
+            <column name="TTC2_REF_TEMP"          data_type="float"  unit="degC" comment="Reference temperature for TTC2 algorithm"/>
+            <column name="TTC2_OFFSETA"           data_type="float"  unit="sec"/>
+            <column name="TTC2_OFFSETF"           data_type="float"  unit="sec"/>
+            <column name="TTC2_PA"                data_type="float"  unit="s/dC" comment="Proportional term of TTC2 PID algorithm for aft heaters"/>
+            <column name="TTC2_DA"                data_type="float"  unit="s2/d" comment="Derivative term of TTC2 PID algorithm for aft heaters"/>
+            <column name="TTC2_IA"                data_type="float"  unit="1/dC" comment="Integral term of TTC2 PID algorithm for aft heaters"/>
+            <column name="TTC2_PF"                data_type="float"  unit="s/dC" comment="Proportional term of TTC2 PID algorithm for front heaters"/>
+            <column name="TTC2_DF"                data_type="float"  unit="s2/d" comment="Derivative term of TTC2 PID algorithm for front heaters"/>
+            <column name="TTC2_IF"                data_type="float"  unit="1/dC" comment="Integral term of TTC2 PID algorithm for front heaters"/>
+            <column name="SAA_EXEC_PHASE"         data_type="uint32" comment="Phase of SAA Evaluation Algorithm"/>
+            <column name="SAA_EXEC_PER"           data_type="int32"  comment="Period of SAA Evaluation Algorithm"/>
+            <column name="SDS_EXEC_PHASE"         data_type="uint32" comment="Phase of SAA Evaluation Algorithm"/>
+            <column name="SDS_EXEC_PER"           data_type="int32"  comment="Period of SAA Evaluation Algorithm"/>
+            <column name="SDS_FORCED"             data_type="uint8"  comment="Flag set to true by the ground to force suspension of science data transfer to ground"/>
+            <column name="SDS_INHIBITED"          data_type="uint8"  comment="Flag set to true by the ground to inhibit suspension of science data transfer to ground"/>
+            <column name="EARTH_OCCULT_ACTIVE"    data_type="uint8"  comment="Flag set to true by the ground to indicate earth occulation"/>
+            <column name="CENT_OFFSET_LIM"        data_type="float"  comment="Parameter used by Centroid Validity Procedure (maximum distance between measured and target position relative to FOV size)"/>
+            <column name="CENT_FROZEN_LIM"        data_type="float"  comment="Parameter used by Centroid Validity Procedure (number of consecutive frozen centroid measurements to declare centroid invalid)"/>
+            <column name="SEM_SERV1_1_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (1,1)"/>
+            <column name="SEM_SERV1_2_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (1,2)"/>
+            <column name="SEM_SERV1_7_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (1,7)"/>
+            <column name="SEM_SERV1_8_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (1,8)"/>
+            <column name="SEM_SERV3_1_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM housekeeping reports with SID 1 (default SEM housekeeping)"/>
+            <column name="SEM_SERV3_2_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM housekeeping reports with SID 2 (extended SEM housekeeping)"/>
+            <column name="TEMP_SEM_SCU_LW"        data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_SEM_SCU"/>
+            <column name="TEMP_SEM_PCU_LW"        data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_SEM_PCU"/>
+            <column name="VOLT_SCU_P3_4_LW"       data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_SCU_P3_4"/>
+            <column name="VOLT_SCU_P5_LW"         data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_SCU_P5"/>
+            <column name="TEMP_FEE_CCD_LW"        data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_FEE_CCD"/>
+            <column name="TEMP_FEE_STRAP_LW"      data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_FEE_STRAP"/>
+            <column name="TEMP_FEE_ADC_LW"        data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_FEE_ADC"/>
+            <column name="TEMP_FEE_BIAS_LW"       data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_FEE_BIAS"/>
+            <column name="TEMP_FEE_DEB_LW"        data_type="float"  unit="degC" comment="Lower warning limit for SEM HK parameter TEMP_FEE_DEB"/>
+            <column name="VOLT_FEE_VOD_LW"        data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_VOD"/>
+            <column name="VOLT_FEE_VRD_LW"        data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_VRD"/>
+            <column name="VOLT_FEE_VOG_LW"        data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_VOG"/>
+            <column name="VOLT_FEE_VSS_LW"        data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_VSS"/>
+            <column name="VOLT_FEE_CCD_LW"        data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_CCD"/>
+            <column name="VOLT_FEE_CLK_LW"        data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_CLK"/>
+            <column name="VOLT_FEE_ANA_P5_LW"     data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_ANA_P5"/>
+            <column name="VOLT_FEE_ANA_N5_LW"     data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_ANA_N5"/>
+            <column name="VOLT_FEE_ANA_P3_3_LW"   data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_FEE_ANA_P3_3"/>
+            <column name="CURR_FEE_CLK_BUF_LW"    data_type="float"  unit="mA"/>
+            <column name="VOLT_SCU_FPGA_P1_5_LW"  data_type="float"  unit="V" comment="Lower warning limit for SEM HK parameter VOLT_SCU_FPGA_P1_5"/>
+            <column name="CURR_SCU_P3_4_LW"       data_type="float"  unit="mA" comment="Lower warning limit for SEM HK parameter CURR_SCU_P3_4"/>
+            <column name="TEMP_SEM_SCU_UW"        data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_SEM_SCU"/>
+            <column name="TEMP_SEM_PCU_UW"        data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_SEM_PCU"/>
+            <column name="VOLT_SCU_P3_4_UW"       data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_SCU_P3_4"/>
+            <column name="VOLT_SCU_P5_UW"         data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_SCU_P5"/>
+            <column name="TEMP_FEE_CCD_UW"        data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_FEE_CCD"/>
+            <column name="TEMP_FEE_STRAP_UW"      data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_FEE_STRAP"/>
+            <column name="TEMP_FEE_ADC_UW"        data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_FEE_ADC"/>
+            <column name="TEMP_FEE_BIAS_UW"       data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_FEE_BIAS"/>
+            <column name="TEMP_FEE_DEB_UW"        data_type="float"  unit="degC" comment="Upper warning limit for SEM HK parameter TEMP_FEE_DEB"/>
+            <column name="VOLT_FEE_VOD_UW"        data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_VOD"/>
+            <column name="VOLT_FEE_VRD_UW"        data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_VRD"/>
+            <column name="VOLT_FEE_VOG_UW"        data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_VOG"/>
+            <column name="VOLT_FEE_VSS_UW"        data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_VSS"/>
+            <column name="VOLT_FEE_CCD_UW"        data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_CCD"/>
+            <column name="VOLT_FEE_CLK_UW"        data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_CLK"/>
+            <column name="VOLT_FEE_ANA_P5_UW"     data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_ANA_P5"/>
+            <column name="VOLT_FEE_ANA_N5_UW"     data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_ANA_N5"/>
+            <column name="VOLT_FEE_ANA_P3_3_UW"   data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_FEE_ANA_P3_3"/>
+            <column name="CURR_FEE_CLK_BUF_UW"    data_type="float"  unit="mA"/>
+            <column name="VOLT_SCU_FPGA_P1_5_UW"  data_type="float"  unit="V" comment="Upper warning limit for SEM HK parameter VOLT_SCU_FPGA_P1_5"/>
+            <column name="CURR_SCU_P3_4_UW"       data_type="float"  unit="mA" comment="Upper warning limit for SEM HK parameter CURR_SCU_P3_4"/>
+            <column name="TEMP_SEM_SCU_LA"        data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_SEM_SCU"/>
+            <column name="TEMP_SEM_PCU_LA"        data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_SEM_PCU"/>
+            <column name="VOLT_SCU_P3_4_LA"       data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_SCU_P3_4"/>
+            <column name="VOLT_SCU_P5_LA"         data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_SCU_P5"/>
+            <column name="TEMP_FEE_CCD_LA"        data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_FEE_CCD"/>
+            <column name="TEMP_FEE_STRAP_LA"      data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_FEE_STRAP"/>
+            <column name="TEMP_FEE_ADC_LA"        data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_FEE_ADC"/>
+            <column name="TEMP_FEE_BIAS_LA"       data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_FEE_BIAS"/>
+            <column name="TEMP_FEE_DEB_LA"        data_type="float"  unit="degC" comment="Lower alarm limit for SEM HK parameter TEMP_FEE_DEB"/>
+            <column name="VOLT_FEE_VOD_LA"        data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_VOD"/>
+            <column name="VOLT_FEE_VRD_LA"        data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_VRD"/>
+            <column name="VOLT_FEE_VOG_LA"        data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_VOG"/>
+            <column name="VOLT_FEE_VSS_LA"        data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_VSS"/>
+            <column name="VOLT_FEE_CCD_LA"        data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_CCD"/>
+            <column name="VOLT_FEE_CLK_LA"        data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_CLK"/>
+            <column name="VOLT_FEE_ANA_P5_LA"     data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_ANA_P5"/>
+            <column name="VOLT_FEE_ANA_N5_LA"     data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_ANA_N5"/>
+            <column name="VOLT_FEE_ANA_P3_3_LA"   data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_FEE_ANA_P3_3"/>
+            <column name="CURR_FEE_CLK_BUF_LA"    data_type="float"  unit="mA"/>
+            <column name="VOLT_SCU_FPGA_P1_5_LA"  data_type="float"  unit="V" comment="Lower alarm limit for SEM HK parameter VOLT_SCU_FPGA_P1_5"/>
+            <column name="CURR_SCU_P3_4_LA"       data_type="float"  unit="mA" comment="Lower alarm limit for SEM HK parameter CURR_SCU_P3_4"/>
+            <column name="TEMP_SEM_SCU_UA"        data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_SEM_SCU"/>
+            <column name="TEMP_SEM_PCU_UA"        data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_SEM_PCU"/>
+            <column name="VOLT_SCU_P3_4_UA"       data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_SCU_P3_4"/>
+            <column name="VOLT_SCU_P5_UA"         data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_SCU_P5"/>
+            <column name="TEMP_FEE_CCD_UA"        data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_FEE_CCD"/>
+            <column name="TEMP_FEE_STRAP_UA"      data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_FEE_STRAP"/>
+            <column name="TEMP_FEE_ADC_UA"        data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_FEE_ADC"/>
+            <column name="TEMP_FEE_BIAS_UA"       data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_FEE_BIAS"/>
+            <column name="TEMP_FEE_DEB_UA"        data_type="float"  unit="degC" comment="Upper alarm limit for SEM HK parameter TEMP_FEE_DEB"/>
+            <column name="VOLT_FEE_VOD_UA"        data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_VOD"/>
+            <column name="VOLT_FEE_VRD_UA"        data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_VRD"/>
+            <column name="VOLT_FEE_VOG_UA"        data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_VOG"/>
+            <column name="VOLT_FEE_VSS_UA"        data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_VSS"/>
+            <column name="VOLT_FEE_CCD_UA"        data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_CCD"/>
+            <column name="VOLT_FEE_CLK_UA"        data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_CLK"/>
+            <column name="VOLT_FEE_ANA_P5_UA"     data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_ANA_P5"/>
+            <column name="VOLT_FEE_ANA_N5_UA"     data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_ANA_N5"/>
+            <column name="VOLT_FEE_ANA_P3_3_UA"   data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_FEE_ANA_P3_3"/>
+            <column name="CURR_FEE_CLK_BUF_UA"    data_type="float"  unit="mA"/>
+            <column name="VOLT_SCU_FPGA_P1_5_UA"  data_type="float"  unit="V" comment="Upper alarm limit for SEM HK parameter VOLT_SCU_FPGA_P1_5"/>
+            <column name="CURR_SCU_P3_4_UA"       data_type="float"  unit="mA" comment="Upper alarm limit for SEM HK parameter CURR_SCU_P3_4"/>
+            <column name="SEM_SERV5_1_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (5,1)"/>
+            <column name="SEM_SERV5_2_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (5,2)"/>
+            <column name="SEM_SERV5_3_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (5,3)"/>
+            <column name="SEM_SERV5_4_FORWARD"    data_type="uint8"  comment="Enable status for forwarding of SEM reports (5,4)"/>
+            <column name="acqFullDropT1"          data_type="uint32" unit="cyc" comment="Timer in Acquire Full Drop Procedure"/>
+            <column name="acqFullDropT2"          data_type="uint32" unit="cyc" comment="Timer in Acquire Full Drop Procedure"/>
+            <column name="calFullSnapT1"          data_type="uint32" unit="cyc" comment="Timer in Calibrate Full Snap Procedure"/>
+            <column name="calFullSnapT2"          data_type="uint32" unit="cyc" comment="Timer in Calibrate Full Snap Procedure"/>
+            <column name="sciWinT1"               data_type="uint32" unit="cyc" comment="Timer in Science Window Stack Procedure"/>
+            <column name="sciWinT2"               data_type="uint32" unit="cyc" comment="Timer in Science Window Stack Procedure"/>
+            <column name="ADC_P3V3_U"             data_type="float"  unit="V"/>
+            <column name="ADC_P5V_U"              data_type="float"  unit="V"/>
+            <column name="ADC_P1V8_U"             data_type="float"  unit="V"/>
+            <column name="ADC_P2V5_U"             data_type="float"  unit="V"/>
+            <column name="ADC_N5V_L"              data_type="float"  unit="V"/>
+            <column name="ADC_PGND_U"             data_type="float"  unit="V" comment="Upper limit for DPU housekeeping parameter ADC_PGND"/>
+            <column name="ADC_PGND_L"             data_type="float"  unit="V" comment="Lower limit for DPU housekeeping parameter ADC_PGND"/>
+            <column name="ADC_TEMPOH1A_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH1A"/>
+            <column name="ADC_TEMP1_U"            data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMP1"/>
+            <column name="ADC_TEMPOH2A_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH2A"/>
+            <column name="ADC_TEMPOH1B_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH1B"/>
+            <column name="ADC_TEMPOH3A_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH3A"/>
+            <column name="ADC_TEMPOH2B_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH2B"/>
+            <column name="ADC_TEMPOH4A_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH4A"/>
+            <column name="ADC_TEMPOH3B_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH3B"/>
+            <column name="ADC_TEMPOH4B_U"         data_type="float"  unit="degC" comment="Upper limit for DPU housekeeping parameter ADC_TEMPOH4B"/>
+            <column name="SEM_P15V_U"             data_type="float"  unit="V"/>
+            <column name="SEM_P30V_U"             data_type="float"  unit="V"/>
+            <column name="SEM_P5V0_U"             data_type="float"  unit="V"/>
+            <column name="SEM_P7V0_U"             data_type="float"  unit="V"/>
+            <column name="SEM_N5V0_L"             data_type="float"  unit="V"/>
+            <column name="HbSemPassword"          data_type="uint16"/>
+        </table>
+    </HDU>
+</FITS_schema>

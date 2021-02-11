@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+
+<param>
+	<name>MinDefParam</name>
+</param>
+
+ <param>
+	<name>CommandLine</name>
+</param>
+
+<param>
+	<name>StringParam</name>
+	<value>test string</value>
+	<type>string</type>
+	<help>This is the help of the StringParam</help>
+	<min>t</min>
+	<max>u</max>
+</param>
+
+<param>
+    <name>StringVectorParam</name>
+	<value>test string</value>
+    <type>string</type>
+    <help>This is the help of the String Vector Param</help>
+    <min>t</min>
+    <max>u</max>
+    <repeatable>true</repeatable>
+</param>
+
+<param>
+	<name>IntParam</name>
+	<value>456</value>
+	<type>int</type>
+	<help>This is the help of the Int Param</help>
+	<min>456</min>
+	<max>456</max>
+</param>
+
+<param>
+    <name>IntVectorParam</name>
+	<value>456</value>
+    <type>int</type>
+    <help>This is the help of the Int Vector Param</help>
+	<min>456</min>
+	<max>456</max>
+    <repeatable>true</repeatable>
+</param>
+
+<param>
+	<name>DoubleParam</name>
+	<value>-1.65e-4</value>
+	<type>double</type>
+	<help>This is the help of the Double</help>
+	<min>-2</min>
+	<max>0</max>
+</param>
+
+<param>
+    <name>DoubleVectorParam</name>
+    <value>-1.65e-4</value>
+    <type>double</type>
+    <help>This is the help of the Double Vector Param</help>
+    <min>-2</min>
+    <max>0</max>
+    <repeatable>true</repeatable>
+</param>
+
+<param>
+	<name>BoolParam</name>
+	<value>true</value>
+	<type>bool</type>
+	<help>This is the help of the BoolParam</help>
+</param>
+
+<param>
+    <name>BoolVectorParam</name>
+    <value>true</value>
+    <type>bool</type>
+    <help>This is the help of the Bool Vector Param</help>
+    <repeatable>true</repeatable>
+</param>
+
+
+</program_params>

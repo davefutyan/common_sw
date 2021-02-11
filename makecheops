@@ -1,0 +1,10 @@
+SUBDIRS += makefiles
+SUBDIRS += logger
+SUBDIRS += program_params
+SUBDIRS += fits_dal
+SUBDIRS += utilities
+SUBDIRS += fits_data_model
+SUBDIRS += bookkeeping
+SUBDIRS += ccsds_telemetry
+
+RELEASE_VERSION = r_13.1.4

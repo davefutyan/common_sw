@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 5.1  18. 03. 2016 RRO
+           - Redefinition of the data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelExt    SYSTEM "KeywordDataLevelExt.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    	SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="EXT_APP_SAAMap">
+        <brief>Describing the SAA at a specific altitude.</brief>
+        <description>The purpose of this table is to define the SAA.
+                     Each row of the table defines for a point on a
+                     latitude / longitude - net if it inside the SAA 
+                     (SAA_FLAG == true) or if it is outside the SAA
+                     (SAA_FLAG == false). </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelExt;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+            <group description="SAA Parameters">
+               <keyword name="ALTITUDE" data_type="real" unit="km" comment="altitude of the provided SAA" />
+            </group>
+        </header>
+        
+        <table>
+           <column name="LATITUDE"   data_type="int16" unit="deg"    comment="Geodetic latitude " />
+           <column name="LONGITUDE"  data_type="int16" unit="deg"    comment="Geodetic longitude" />       
+           <column name="SAA_FLAG"   data_type="bool"                comment="true if coordinates define a point inside the SAA" />       
+       </table>
+    </HDU>
+</FITS_schema>

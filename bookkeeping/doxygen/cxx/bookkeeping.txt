@@ -1,0 +1,107 @@
+/** ****************************************************************************
+   @defgroup bookkeeping  Bookkeeping
+   @author Reiner Rohlfs UGE
+  
+   @brief This module provides a class to book the status of the progress of
+          the processing of observation requests. 
+    
+  
+  <h3> Use Cases </h3>
+  
+  Currently 2 use cases of this bookkeeping module are envisaged: 
+  
+  -# <b>To assign the next visit counter to a visit of a given observation
+     request.</b>\n
+     A visit counter shall be assigned by Prerocessing to the data of a 
+     visit. The counter shall be increased for each new visit of an observation
+     request and the same
+     counter shall not be assigned to two different visits of the same
+     observation request.\n
+     Following has to be considered:
+     - There are three programs which may first process the data of a new visit:
+       hk_conversion, science_conversion and event_conversion.
+     - The same visit counter should be assigned to re-processed data as it was
+       done for the first processing of the visit data.
+     
+  -# <b>To keep track for which visits the Data Reduction chain has already been 
+     kicked off.</b>\n
+     Once all data of a visit are available at SOC the Data Reduction chain
+     shall be kicked-off.\n
+     Following has to be considered:
+     - There are three programs which may process the last data of a visit:
+       pass_combination, obtutc_conversoin and orbit_conversion for restituted
+       orbit data.
+     - The Visit Timeout shall kick-off the Data Reduction chain if after a 
+       timeout not all data of a visit have arrived at SOC. Therefore this
+       program has to "know" which visits are not yet processed by Data 
+       Reduction.
+     - The Data Reduction chain shall not be kicked off twice for the same
+       visit, except for re-processing.    
+  
+  <h3> Design  </h3>
+  
+   - Independent groups of bookkeeping can be handled. Each group is for
+     example one of the use cases, described above. 
+   - A bookkeeping group keeps track of the bookkeeping items. In the use cases 
+     described above each visit is a bookkeeping item.
+   - The status of an item is either available or not available. Once an item is 
+     created it will not be updated any more.   
+   - A bookkeeping item is defined by several numbers. Each number has a name.
+     The bookkeeping group defines the names of the numbers that belong the the
+     group. Therefore all items of the same bookkeeping 
+     group have values for the same numbers. For the use cases above following 
+     numbers are defined:
+     -# <b>Visit Counter</b>\n
+       - Start time of the visit
+       - End time of the visit
+       - Programme Type
+       - Programme Id
+       - Observation Request Id
+       - Visit Counter
+     -# <b>Visits processed by Data Reduction chain</b>\n
+       - Start time of the visit
+       - End time of the visit
+       - Programme Type
+       - Programme Id
+       - Observation Request Id
+       - Visit Counter
+       - Archive revision number (ARCH_REV)
+       - Processing Number (PROC_NUM)	        
+   - Each bookkeeping item is implemented as a file. There is no content of the
+     file. All the values of the item are defined in the filename.\n
+     The files with their correct filename will be created with a mv command. 
+     They exist or do not exist for other programs which may read the status
+     of the bookkeeping in parallel, i.e. the status of the item is either
+     existing or not existing. 
+   - All files of a bookkeeping group are located in the same directory. Such
+     a directory of bookkeeping items build the bookkeeping group.
+     
+   Note: Assuming two programs are looking "at the same time" for a new visit
+   counter for new data of a visit. They may both find the status that 
+   this visit is new and will create a new item-file for the new visit. As long
+   as both programs implement the same decision to define the next visit counter 
+   and create a new bookkeeping item the visit counter is correct. The same
+   item-file will be created twice, but the second will just overwrite the first
+   instance.                     	              
+               
+  <h3> Implementation </h3>
+  
+  - Except for the start and end of a visit the item-numbers are implemented 
+    by the BKNumber struct. Two different data types of a number are 
+    currently implemented. A bookkeeping number can be a key-number. This is
+    used by the Bookkeeping::Find() methods.
+    
+  - A bookkeeping item is implemented by the BKItem struct. It stores the start 
+    and end time of the item, i.e. of the visit, and a vector of BKNumber.   
+    
+  - A bookkeeping group is implemented by the Bookkeeping class. The constructor
+    of this class expects a vector of BKNumber. This list defines the
+    names of the numbers of all items of the bookkeeping group when the 
+    bookkeeping group is instantiated for the very first time, i.e. 
+    when the group is created. If the
+    group exist already, i. e. the group directory exist already, the 
+    constructor verifies the item names.\n
+    Note: the vector of item numbers is stored as filename of a specific file
+    in the directory of the bookkeeping group. 
+ 
+ */

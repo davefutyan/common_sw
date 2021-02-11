@@ -1,0 +1,13 @@
+CXX_CFLAGS +=  -DNO_UTILITIES
+
+CXX_UNIT_TESTS += TestUpdateTable 
+CXX_UNIT_TESTS += TestCreateTable 
+CXX_UNIT_TESTS += TestReadTable
+CXX_UNIT_TESTS += TestNullValuesTable  
+CXX_UNIT_TESTS += TestCreateImage
+CXX_UNIT_TESTS += TestReadImage
+CXX_UNIT_TESTS += TestWriteCurrentStatus
+
+CXX_CFLAGS += -DNO_UTILITIES
+
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -llogger -lprogram_params

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 6.1  15. 08. 2016 RRO
+           - renamed data structure from REF_APP_LeapSeconds
+
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SOC_APP_LeapSeconds">
+        <brief> Stores the leap seconds.</brief>
+        <description>This file shall be used to convert UTC to MJD
+                     and visa versa in the CHEOPS system.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelUndef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="UTC_TIME"    data_type="UTC"   unit="TIMESYS=UTC"  comment="First second after a leap second"/>
+            <column name="TAI_UTC"     data_type="int16" unit="s"            comment="number of leap seconds"/>
+       </table>
+    </HDU>
+</FITS_schema>

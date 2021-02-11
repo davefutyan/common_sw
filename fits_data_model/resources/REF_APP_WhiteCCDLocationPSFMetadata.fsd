@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 8.0  18. 07. 2017 RRO
+           - #14234 new data structure
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    	SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_WhiteCCDLocationPSFMetadata">
+        <brief> Calibration Product : Meta data for the wavelength integrated PSFs, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube. It defines the offset of the PSF image on the full CCD without margins.
+                      The offset is defined as the difference in pixels between the lower left pixel of the full CCD
+                      and the lower left pixel of the PSF image on the full CCD.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="8.0" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+        </header>
+        <table>
+			<column name="X_OFF_FULL_ARRAY"  data_type="uint16" unit="pixel" comment="X offset of the PSF image relative to the Full Array image without margins"/>
+			<column name="Y_OFF_FULL_ARRAY"  data_type="uint16" unit="pixel" comment="Y offset of the PSF image relative to the Full Array image without margins"/>
+        </table>
+    </HDU>
+</FITS_schema>

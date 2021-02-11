@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL05
+
+		version 10.1 19. 09. 2018
+			- #17107 keyword SHAPE is now a string
+			- #17107 keyword CROPPING is now a string
+			
+		version 9.3  29. 05. 2018 RRO
+	      - #15763 change data type of pixel from uint16 to uint32 to be 
+			       able to store stacked imagettes
+		version 9.3  10. 05. 2018 RRO
+		  - #16049 new header keywords: ROUNDING, NLIN_COR   
+			         
+		version 8.1  21. 10. 2017 RRO
+		  - new header keyword : STACKING
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+		version 7.3: 12. 05. 2017 RRO
+			- #13157 remove keywords X_WINOFF and Y_WINOFF, i.e. 
+			         remove KeywordSubArrayOrigin
+			         The offset is now defined in the ImagetteMetadata table
+
+		version 6.4: 28. 11. 2016 RRO
+			- 12002 define "0' as NULL value for the image
+
+		version 6.2: 10. 09. 2016 RRO
+			update according to IFSW-SOC ICD Issue 2:
+			- new header keyword: CROPPING
+
+        version 5.0  10. 02. 2016 RRO
+           - use SCI_RAW_ImagetteMetadata instead of SCI_RAW_ImageMetadata as associated HDU
+           - new header keyword: SHAPE
+
+        version 5.2.1  14. 06. 2016 RRO  
+           - use KeywordSkyPos instead of KeywordSkyPosAngle
+           
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL05     SYSTEM "KeywordExposureL05.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_Imagette">
+        <brief> L05 Product : raw imagette.</brief>
+        <description>There is no processing step applied.
+                     The pixel values are as they were received from the instrument.
+                     The images in the cube are sorted by time, 
+                     with no overlap between two consecutive products.
+                     There is no processing step of the raw pixel data applied.
+                     Only time conversion from on-board-time to JD is applied.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordPassVisit;   
+            &KeywordTarget;
+            &KeywordExposureL05;
+            &KeywordSkyPos;
+            <group description="Imagette Attributes">
+ 	            <keyword name="SHAPE"     data_type="string"     comment="rectangular or circular"/>
+ 	            <keyword name="STACKING"  data_type="string"     comment="on-board stacking of image data"/>
+ 	            <keyword name="CROPPING"  data_type="string"     comment="static window or moving window"/>
+  	            <keyword name="ROUNDING"  data_type="integer"    comment="number of bits that are rounded off"/>
+ 	            <keyword name="NLIN_COR"  data_type="boolean"    comment="on-board nonlinearity correction"/>
+            </group>  
+          
+        </header>
+        <!--  -->
+        <image data_type="uint32"  null="0">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the CCD">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of the CCD">0</axis2>
+            <axis3 unit="#images" comment="Scan successive imagettes (sorted by date) with no overlap between two consecutive L05 products"> 0 </axis3>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >SCI_RAW_ImagetteMetadata</Associated_HDU>
+    </List_of_Associated_HDUs>
+    
+</FITS_schema>

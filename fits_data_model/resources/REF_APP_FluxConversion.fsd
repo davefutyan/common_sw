@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+		version 7.4: 30. 05. 2017 RRO
+			#13327 new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_FluxConversion">
+        <brief>The file provides a set of parameters to convert ADUs, 
+        electrons, photons (flux) and magnitudes consistently.</brief>
+	    <description>For details, see: https://redmine.astro.unige.ch/projects/cheops/wiki/Flux_Conversion
+        </description>
+        <header>
+            <keyword name="EXT_VER"    data_type="string" default="12.1.5" comment="version of the data structure"/>
+            <keyword name="THR_AREV"   data_type="integer"	comment="Archive revision number of REF_APP_Throughput used to generate this file"/>
+            <keyword name="THR_PNUM"   data_type="integer"	comment="Processing Number of REF_APP_Throughput used to generate this file"/>
+            <keyword name="QE_AREV"    data_type="integer"	comment="Archive revision number of REF_APP_QE used to generate this file"/>
+            <keyword name="QE_PNUM"    data_type="integer"	comment="Processing Number of REF_APP_QE used to generate this file"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+             <group description="Vega star">
+                 <keyword name="F0_X" data_type="real" unit="electrons/s"  comment="CHEOPS Flux of Vega star"/>
+                 <keyword name="X0"   data_type="real" unit="mag"        comment="CHEOPS magnitude of Vega star"/>
+             </group>
+        </header>
+        
+        <table>
+            <column name="T_EFF"           data_type="double" unit="Kelvin" comment="Effective temperature of the star"/>
+            <column name="CHEOPSMAG_MINUS_GMAG"  data_type="double" unit="mag"    comment="CHEOPS magnitude - Gaia magnitude"/>
+            <column name="ELECTRONS_PER_PHOTON"   data_type="double"               comment="integral[spectrum(Teff)*transmission*QE]/integral[spectrum(Teff)*transmission]"/>
+       </table>
+    </HDU>
+</FITS_schema>

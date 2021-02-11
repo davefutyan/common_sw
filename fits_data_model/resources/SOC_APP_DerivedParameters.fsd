@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  05. 05. 2020 
+           - ABE #21546 new data structure
+
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef  SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SOC_APP_DerivedParameters">
+        <brief>Defines HK paremeters for which to calculated derived parameters.</brief>
+        <description>Defines the name and data structure of HK parameters for 
+        which derived parameters, like mean and meadian, are calculated in Quick
+        Look. Each line defines one HK parameter and the derived parameters to 
+        be calculated for it. 
+        </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelUndef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="PARAM_NAME"      data_type="string" bin_size="32"  comment="Name of the parameter"/>
+            <column name="STRUCT_NAME"     data_type="string" bin_size="32"  comment="Data structure containing the parameter."/>
+            <column name="DERIVE_MEAN"     data_type="bool"                  comment="The arithmetic mean shall be calculated"/>
+            <column name="DERIVE_MEDIAN"   data_type="bool"                  comment="The median shall be calculated"/>
+            <column name="DERIVE_SD"       data_type="bool"                  comment="The standard deviation shall be calculated"/>
+            <column name="DERIVE_P2P"      data_type="bool"                  comment="The P2P variation shall be calculated"/>
+            <column name="DERIVE_LSTSQ"    data_type="bool"                  comment="The linear least square shall be calculated"/>
+       </table>
+    </HDU>
+</FITS_schema>

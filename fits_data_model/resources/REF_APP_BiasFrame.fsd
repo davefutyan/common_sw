@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 13.1.2  04. 01. 2021 ABE
+            - #23222 New secondary extension REF_APP_BiasOffset
+                     Remove header keyword RO_HW
+        
+        version 12.1.5  22. 05. 2020 ABE
+            - #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+        version 10.1  10. 09. 2018 RRO
+            - restructured to store the bais data of the calibration campaign
+
+        version 6.3  17. 09. 2016 RRO
+            - new associated HDUs
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_BiasFrame">
+        <brief> Calibration product: bias frame</brief>
+        <description>The image cube consist of 6 images.
+                     The standard data are as describe here. The REF_APP_BiasFrameMetadata
+                     defined the actual data in the FITS file.
+                     1 = bias frame in ADU, to be used for read-out frequency 230 kHz
+                     2 = bias error frame in ADU, to be used for read-out frequency 230 kHz
+                     3 = RON (read-out noise) in ADU, to be used for read-out frequency 230 kHz
+                     1 = bias frame in ADU, to be used for read-out frequency 100 kHz
+                     2 = bias error frame in ADU, to be used for read-out frequency 100 kHz
+                     3 = RON (read-out noise) in ADU, to be used for read-out frequency 100 kHz
+                     </description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.1.2" comment="version of the data structure"/>
+            <keyword name="BUNIT"		data_type="string" default="ADU"  comment="unit of the data in the image"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        <image data_type="float">
+            <naxis>3</naxis>
+            <axis1 comment="X axis">1024</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+            <axis3 comment="data type">6</axis3>
+        </image>
+    </HDU>
+
+    <List_of_Associated_HDUs>
+        <Associated_HDU HDU_Type="table">REF_APP_BiasFrameMetadata</Associated_HDU>
+        <Associated_HDU HDU_Type="image">REF_APP_BiasDarkLeftFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image">REF_APP_BiasDarkRightFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image">REF_APP_BiasDarkTopFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image">REF_APP_BiasBlankLeftFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image">REF_APP_BiasBlankRightFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image" optional="true">REF_APP_BiasOverscanRightFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image" optional="true">REF_APP_BiasOverscanLeftFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="image">REF_APP_BiasOverscanTopFrame</Associated_HDU>
+        <Associated_HDU HDU_Type="table">REF_APP_BiasOffset</Associated_HDU>
+    </List_of_Associated_HDUs>
+
+</FITS_schema>

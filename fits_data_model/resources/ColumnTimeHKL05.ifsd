@@ -1,0 +1,3 @@
+<column name="OBT_TIME" data_type="OBT" unit="OBT"          comment="On board time"/>
+<column name="UTC_TIME" data_type="UTC" unit="TIMESYS=UTC"  comment="UTC time" />
+<column name="MJD_TIME" data_type="MJD" unit="day"          comment="Modified Julian Day" />

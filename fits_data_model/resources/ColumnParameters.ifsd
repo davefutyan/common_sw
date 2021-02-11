@@ -1,0 +1,11 @@
+<column name="PARAM01"    data_type="float"   comment="data of first parameter"/>
+<column name="PARAM02"    data_type="float"   comment="data of second parameter"/>
+<column name="PARAM03"    data_type="float"   comment="data of third parameter"/>
+<column name="PARAM04"    data_type="float"   comment="data of fourth parameter"/>
+<column name="PARAM05"    data_type="float"   comment="data of fifth parameter"/>
+<column name="PARAM06"    data_type="float"   comment="data of sixth parameter"/>
+<column name="PARAM07"    data_type="float"   comment="data of seventh parameter"/>
+<column name="PARAM08"    data_type="float"   comment="data of eighth parameter"/>
+<column name="PARAM09"    data_type="float"   comment="data of ninth parameter"/>
+<column name="PARAM10"    data_type="float"   comment="data of tenth parameter"/>
+ 

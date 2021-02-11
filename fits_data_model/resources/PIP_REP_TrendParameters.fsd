@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 9.0  13. 12. 2017 RRO #15058
+			- new column: UNIT
+
+		version 7.4  07. 06. 2017 RRO #13298
+			- column name IMAGE_REGION replaced by RELATED_DATA
+			  bin_size changed to 32, comment updated
+
+        version 7.2  03. 04. 2017 RRO
+           - #12933 remove keyword REP_TIME
+
+        version 6.1  29. 07. 2016 RRO
+           - # 11248 New data structure  
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef         SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordProcChain              SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops                 SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity               SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordReportClassification   SYSTEM "KeywordReportClassification.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_TrendParameters">
+        <brief> A generic table to store parameters in a table useful for trend reports. </brief>
+        <description>It can be used to store parameters per star detected in the images.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="9.0" comment="version of the data structure"/>
+            <keyword name="DATANAME" data_type="string"  db="true"   comment="data name of this report"/>
+             &KeywordDataLevelUndef;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordReportClassification; 
+        </header>
+        
+        <table>
+			<column name="UTC_START"    data_type="UTC"    unit="TIMESYS=UTC"     comment="time of the first data entry considered for this parameter" />
+			<column name="MJD_START"    data_type="MJD"    unit="day"     comment="time of the first data entry considered for this parameter" />
+			<column name="UTC_STOP"     data_type="UTC"    unit="TIMESYS=UTC"     comment="time of the last data entry considered for this parameter" />
+			<column name="MJD_STOP"     data_type="MJD"    unit="day"     comment="time of the last data entry considered for this parameter" />
+            <column name="NUM_DATA"     data_type="uint16"                comment="number of data entries that was aggregated or used in this trend parameter"/>
+            <column name="RELATED_DATA" data_type="string" bin_size="32"  comment="Structure name, the value was derived from."/>            
+	        <column name="NAME"         data_type="string" bin_size="32"  comment="the name of the QL parameter"/>
+	        <column name="VALUE"        data_type="float"                 comment="value of the variable"/>
+	        <column name="UNIT"         data_type="string" bin_size="16"  comment="unit of the variable"/>
+       </table>
+    </HDU>
+</FITS_schema>

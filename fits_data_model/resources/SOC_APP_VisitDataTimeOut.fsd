@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 9.3  04. 06. 2018 RRO
+           - possible values of WINDOW_TYPE are window, full frame or all
+
+        version 9.1  05. 02. 2018 RRO
+           - #15402 new data structure
+
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SOC_APP_VisitDataTimeOut">
+        <brief> Defines the Time Out of the Visit Data.</brief>
+        <description>The Time Out of Visit Data defines how long the processing
+        of visit data shall be suspended to wait for missing data. The time out
+        starts when the first TM data of a visit arrives as SOC.
+        The Data Reduction procession shall start anyhow if the missing data are 
+        still not available at SOC after waiting for this time out period.
+        </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelUndef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+        	<column name="OBS_CATEGORY"    data_type="string"  bin_size="24"             comment="Observation Category"/>
+        	<column name="WINDOW_TYPE"     data_type="string"  bin_size="12"             comment="either window, full frame or all"/>
+        	<column name="TIME_OUT"        data_type="uint16"           unit="hour"      comment="time out period"/>
+       </table>
+    </HDU>
+</FITS_schema>

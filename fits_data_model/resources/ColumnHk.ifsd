@@ -1,0 +1,42 @@
+
+<!--
+    version 12.1.5 22. 05. 2020 ABE
+        - #21680 correction of all column comments. The comments are now identical
+                 to those in ColumnCeHk.ifsd
+
+    version 10.5.1 19. 12. 2018 RRO
+        - Same as previously ColumnCeHk.ifsd, but now used only by SCI_RAW_ImageMetadata
+
+    version 9.3    04. 06  2018 RRO
+        - #16351 new columns: ADC_N5V, ADC_TEMP1
+
+    version 6.4.1  04. 01. 2016 RRO
+        - #12339 set units of the column data 
+      
+    version 6.2    10. 10. 2016 RRO
+        - merge of ColumnFeeTempVolt.ifsd and ColumnAftFrontTempEncoded.ifsd
+-->   
+
+<!-- units are defined in CHEOPS-DLR-INST-MA-001, appendix 3 in packet of service 21/3 -->
+<!-- Francois:  these parameters are needed for the processing of the CCD data. (13. 11. 15) -->
+
+<column name="HK_VOLT_FEE_VOD"   data_type="float" unit="V"    comment="FEE voltage to CCD (DAC output)" />
+<column name="HK_VOLT_FEE_VRD"   data_type="float" unit="V"    comment="FEE voltage to CCD (DAC output)" />
+<column name="HK_VOLT_FEE_VOG"   data_type="float" unit="V"    comment="FEE voltage to CCD" />
+<column name="HK_VOLT_FEE_VSS"   data_type="float" unit="V"    comment="FEE voltage to CCD (DAC output)" />
+<column name="HK_TEMP_FEE_CCD"   data_type="float" unit="degC" comment="FPA/CCD (two sensors for main and redundant channel)" />
+<column name="HK_TEMP_FEE_ADC"   data_type="float" unit="degC" comment="ADC/analog chain area (two sensors on one PCB for main and redundant channel)" />
+<column name="HK_TEMP_FEE_BIAS"  data_type="float" unit="degC" comment="BIAS voltage area (two sensors on one PCB for main and redundant channel)" />
+
+<column name="ADC_N5V"           data_type="float" unit="V"    comment="Value from resistor measurement" />
+<column name="ADC_TEMP1"         data_type="float" unit="degC" comment="Value from thermistor" />
+
+<!-- Temperatures used to determine the correct PSF  -->
+<column name="thermAft_1"    data_type="float" unit="degC" comment="Temperature acquired from aft thermistor 1" />
+<column name="thermAft_2"    data_type="float" unit="degC" comment="Temperature acquired from aft thermistor 2" />
+<column name="thermAft_3"    data_type="float" unit="degC" comment="Temperature acquired from aft thermistor 3" />
+<column name="thermAft_4"    data_type="float" unit="degC" comment="Temperature acquired from aft thermistor 4" />
+<column name="thermFront_1"  data_type="float" unit="degC" comment="Temperature acquired from front thermistor 1" />
+<column name="thermFront_2"  data_type="float" unit="degC" comment="Temperature acquired from front thermistor 2" />
+<column name="thermFront_3"  data_type="float" unit="degC" comment="Temperature acquired from front thermistor 3" />
+<column name="thermFront_4"  data_type="float" unit="degC" comment="Temperature acquired from front thermistor 4" />

@@ -1,0 +1,4 @@
+<group description="Start and Stop of Validity">
+	<keyword name="V_STRT_U" data_type="UTC" unit="TIMESYS=UTC" db="common" comment="Start of validity time in UTC"/>
+	<keyword name="V_STOP_U" data_type="UTC" unit="TIMESYS=UTC" db="common" comment="End of validity time in UTC"/>
+</group>

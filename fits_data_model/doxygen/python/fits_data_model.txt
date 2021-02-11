@@ -1,0 +1,238 @@
+/** 
+  @defgroup FitsDataModel  FITS Data Model
+  @author Reiner Rohlfs UGE
+  @author Anja Bekkelien UGE
+  
+  @brief This is an auto generated Python package for accessing FITS data.
+ 
+   @req  already implemented: CHEOPS-SOC-RS-INFR-DAL-FUN-002 Scripting Language
+ 
+   @req not yet implemented: none
+  
+  This package is a Python interface for the C++ module `fits_data_model`, 
+  providing the same functionality. Internally, the Python classes rely on the
+  C++ classes from `fits_data_module`. For an in-depth description of these classes
+  and the FITS Schama Definition (.fsd) files from which they are generated,
+  please refer to the C++ documentation for this module. 
+  
+  The package contains one class for each fsd file defined in the resources 
+  directory of the `fits_data_model` cheops module. These classes are accessed
+  by importing the `fits_data_model` package:
+  
+  @code{.py}
+  import fits_data_model
+  
+  image = fits_data_model.SciRawSubarray("image.fits", "CREATE", [200, 200, 10])
+  table = fits_data_model.SciRawImagemetadata("table.fits", "CREATE")
+  @endcode
+  
+  The fits files are saved to disk when the object is destroyed, for instance 
+  when it goes out of scope or is deleted with the `del` command.
+  
+  <h4>FITS images</h4>
+  
+  The data unit of a FITS image can be accessed as a numpy array by calling the 
+  `getData()` method on the FITS image object. 
+  
+  @code{.py}
+  import fits_data_model
+  
+  image = fits_data_model.SciRawSubarray("image.fits", "CREATE", [200, 200, 10])
+  
+  data = image.getData()  # data is a numpy array
+  
+  z = 1
+  x = 100
+  y = 100
+  
+  # Update the middle pixel of the second image in the image cube
+  data[z,y,x] = 1
+  @endcode
+  
+  Note that the fits image object will be kept alive as long as there exist
+  references to the numpy array holding the image data.
+  
+  <h4>FITS tables</h4>
+  
+  The FITS table object is iterable and the rows in its table can be iterated 
+  over as shown below. The methods for accessing individual cells of each row are 
+  called on the `row` object returned by the iterator. The methods follow the 
+  naming convention `getCellColum` and `setCellColumn`, where `Column` is 
+  replaced by the actual column name as camel case. 
+  It is not possible to access cells using indices. 
+  The methods available for the different FITS table classes are described in 
+  the individual classes' documentation. 
+  
+  @code{.py}
+  import fits_data_model
+  
+  table = fits_data_model.SciRawImagemetadata("table.fits")
+  
+  # Print the OBT and UTC time of each table row
+  for row in table:
+    print(row.getCellObtTime())
+    print(row.getCellUtcTime())
+  @endcode
+  
+  Under the hood, the iterator calls the `readRow()` method on the table object
+  to read the values of the next row.
+  
+  Once the table has been iterated over, the "row pointer" points beyond 
+  the last row. To iterate over the table again, it is necessary to reset the 
+  "row pointer". This is done by calling `setReadRow(index)` on the table 
+  object, where `index` is the is the row index to start reading from. The first
+  row has index 1.
+  
+  @code{.py}
+  # Reset the "row counter" to start iterating from the first row
+  table.setReadRow(1)
+  for row in table:
+    print(row.getCellObtTime())
+    print(row.getCellUtcTime())
+  @endcode
+  
+  It is possible to access a specific table row by passing the row index as an 
+  argument to the `readRow()` method.
+  
+  @code{.py}
+  table.readRow(5)
+  @endcode
+
+  To write a new row to the table, first set the values of the cells using the
+  `setCell*` methods, and then call `writeRow()` on the table object. It is 
+  only possible to write to table objects that had "CREATE" passed as an 
+  argument to the constructor.
+  
+  @code{.py}
+  table = fits_data_model.SciRawImagemetadata(tmpTable, "CREATE")
+        
+  # Write the first row to the table
+  table.setCellCeCounter(1)
+  table.writeRow()
+
+  # Write the second row to the table
+  table.setCellCeCounter(2)
+  table.writeRow()
+  @endcode
+
+  <h4>Astropy tables</h4>
+  
+  It is possible to read FITS tables into astropy Table objects using methods 
+  provided by the class fits_data_model.IOHandler.IOHandler. This class contains
+  a static method for each FITS table defined in fits_data_model. These methods
+  are named `readClassName`, where ClassName is the name of the fits_data_model 
+  class corresponding to the data product, for instance `readSciRawHkifsw` or 
+  `readAuxPreOrbit`. 
+  
+  These methods all have the following definition:
+  
+  @code{.py}
+  readClassName(fname=None, S=None)
+  @endcode
+  
+  As argument they take either a fits_data_model object, through the named argument 
+  `S`, or the file name of an existing fits table, through the named argument 
+  `fname`, and return the fits table as an astropy.table.Table 
+  object. 
+
+  Example:
+  
+  @code{.py}
+  path = 'test_table.fits'
+  auxPreOrbit = fits_data_model.AuxPreOrbit(path, "CREATE")
+  
+  # Get the AUX_PRE_Orbit data product as an astropy Table
+  
+  DAT = fits_data_model.IOHandler.IOHandler.readAuxPreOrbit(fname=auxPreOrbit)
+  @endcode
+  
+  The header keywords of the fits table are available in the `meta` attribute of
+  the astropy Table object.
+  
+  Note that it is currently only possbile to read, not write, tables using 
+  astropy. Also note that data are copied from the fits_data_model object into
+  the astropy Table object.
+ 
+  <h4>Creating FITS files</h4>
+  
+  Fits files can be created by calling the constructor of a `fits_data_model` 
+  class directly, as shown in the code snippets above. In this case, the file 
+  name must be provided as an argument to the constructor.
+  
+  Another option is to use the function fits_data_model.createFitsFile(). This 
+  method takes certain utility classes as arguments, and from them creates a 
+  file name that is in accordance with the naming conventions defined for CHEOPS
+  data structures:
+  
+  @code{.py}
+  import fits_data_model
+  
+  path = '.'
+  visitId = fits_data_model.VisitId(1, 1, 1, 1)
+  passId = fits_data_model.PassId(10, 1, 1, 1)
+  obt = fits_data_model.OBT(1, 1)
+  utc = fits_data_model.UTC(2023, 1, 1, 1, 1, 1, 0.5)
+  imgSize = [200, 200, 1]
+
+  # Creates the file
+  # ./CH_PR010001_TG000101_PS10010101_TU2023-01-01T01-01-01_SCI_PRW_SubArray_V000.fits
+  hdu = fits_data_model.createFitsFile(fits_data_model.SciPrwSubarray, 
+                                       path, 
+                                       utc, 
+                                       visitId,
+                                       imgSize
+                                       passId)
+
+  @endcode
+  
+  <h4>Appending and opening extra extensions</h4>
+  
+  `fits_data_model` defines helper functions for appending FITS extensions to  
+  existing FITS files. These methods are named according to the following naming
+  convention:
+  
+  appendClassName(firstHDU, imgSize=None)
+  
+  where ClassName is replaced by the actual class name of the extension to be 
+  appended, and `firstHDU` is an instance of the `fits_data_model` class of the 
+  first extension. The `imgSize` parameter must be provided if the extension 
+  type to be appended is an image that requires that the image size be given in 
+  the constructor. This is defined in the data product's .fsd file
+  
+  This is demonstrated in the following code snippet. Here, the file image.fits 
+  will at the end contain two extensions, a SCI_RAW_SubArray extension and an 
+  SCI_RAW_ImageMetadata extension.
+ 
+  @code{.py}
+  import fits_data_model
+  
+  image = fits_data_model.SciRawSubarray("image.fits", "CREATE", [200, 200, 10])
+  metadata = fits_data_model.appendSciRawImagemetadata(image)
+
+  @endcode
+  
+  `fits_data_model` also contains corresponding functions for opening appended HDUs.
+  These follow a similar naming scheme as the append functions:
+  
+  appendedHdu = openClassName(firstHDU)
+  
+  where ClassName is replaced by the actual class name of the extension to be 
+  opened, and `firstHDU` is a `fits_data_model` class instance of the first HDU 
+  in the fits file. The returned value is an instance of the appended HDU's 
+  class:
+  
+  @code{.py}
+  import fits_data_model
+  
+  image = fits_data_model.SciRawSubarray("image.fits", "CREATE", [200, 200, 10])
+  metadata = fits_data_model.appendSciRawImagemetadata(image)
+  
+  # To re-open the image metadata after the image and metadata objects have been 
+  # destroyed, the 'open' function can be used:
+
+  image = fits_data_model.SciRawSubarray("image.fits") # Open in READONLY mode
+  metadata = fits_data_model.openSciRawImagemetadata(image)
+  
+  @endcode
+  
+*/ 

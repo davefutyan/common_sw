@@ -1,0 +1,295 @@
+
+
+# Get the Python3 version and the path to the Python include and lib directories.
+# These are needed to build the C++ to Python bindings and generate the Python
+# extension module for fits_data_model. 
+
+PYTHON_VERSION_FULL := $(wordlist 2,4,$(subst ., ,$(shell python3 --version 2>&1)))
+PYTHON_VERSION_MAJOR := $(word 1,${PYTHON_VERSION_FULL})
+PYTHON_VERSION_MINOR := $(word 2,${PYTHON_VERSION_FULL})
+PYTHON = python$(PYTHON_VERSION_MAJOR).$(PYTHON_VERSION_MINOR)
+
+PYTHON_LIB_DIR = $(shell "python3-config" --prefix 2>&1)/lib
+PYTHON_SITE_PACKAGES = $(PYTHON_LIB_DIR)/$(PYTHON)/site-packages
+PYTHON_INCLUDE = $(shell "python3-config" --includes 2>&1) -I$(PYTHON_SITE_PACKAGES)/numpy/core/include
+PYTHON_LIB = -L$(PYTHON_LIB_DIR) -l$(PYTHON)m
+
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -llogger -lprogram_params -lutilities -lfits_dal
+
+# get all fits schema files in ./conf
+
+SCHEMA_FILES = $(basename $(notdir $(wildcard ./resources/*.fsd)))
+
+EXEC_OBJECT1 =  fits_data_model_schema.o FitsDataModel.o \
+                OutputFile.o HeaderFile.o SourceFile.o 
+EXEC_TARGET1 = fits_data_model
+
+
+LIB_OBJECT1 = fits_data_model_schema.o CreateFitsFile.o HkProcessing.o \
+			  HkTm2PrwProcessing.o Hk2RawProcessing.o \
+              $(addsuffix .o,$(SCHEMA_FILES))   
+LIB_TARGET1 = fits_data_model
+COMPONENT_LIBS = -L${CHEOPS_SW}/lib -lfits_dal
+
+
+EXEC_OBJECT2 = fits_data_model_schema.o PyFitsDataModel.o PyFitsDataModelExtension.o \
+			   OutputFile.o HeaderFile.o CreateFitsFile.o PyFitsWrapper.o PyImageWrapper.o PyTableWrapper.o
+EXEC_TARGET2 = py_fits_data_model
+
+
+COMPONENT_LIBS    = ${EXT_LIB_DIRS}
+PY_COMPONENT_LIBS = ${EXT_LIB_DIRS} -lboost_python3 ${PYTHON_LIB}
+PYLIB_OBJECT1 = PyExt_Main.o CreateFitsFile.o \
+                $(addprefix PyExt_, $(addsuffix .o,$(SCHEMA_FILES))) \
+                $(addsuffix .o,$(SCHEMA_FILES))
+PYLIB_TARGET1 = py_fits_data_model
+
+
+INSTALL_RESOURCES = fits_data_model_schema.xsd $(notdir $(wildcard ./resources/*.fsd))
+INSTALL_RESOURCES += $(notdir $(wildcard ./resources/*.ifsd))
+INSTALL_RESOURCES += $(notdir $(wildcard ./resources/*.rsd))
+
+INSTALL_INCL =  $(addsuffix .hxx, $(SCHEMA_FILES)) fits_data_model_schema.hxx \
+                CreateFitsFile.hxx HkProcessing.hxx Hk2RawProcessing.hxx  HkTm2PrwProcessing.hxx
+
+INSTALL_PYTHON_PACKAGE = fits_data_model
+
+CLEAN += src/fits_data_model_schema.cxx include/fits_data_model_schema.hxx \
+         $(addprefix src/, $(addsuffix .cxx, $(SCHEMA_FILES))) \
+         $(addprefix include/, $(addsuffix .hxx, $(SCHEMA_FILES))) \
+         doxygen/python/fits_data_model_autogen.txt \
+         $(wildcard src/PyExt_*.cxx) \
+         $(wildcard include/PyExt_*.hxx) \
+         $(wildcard doxygen/python/PyExt_*.txt) \
+         python/fits_data_model/IOHandler.py
+        
+
+# without this line make would delete the src/*.cpp files which are created
+# by the fits_data_model program as it consider them as intermediate files
+.SECONDARY:
+
+src/fits_data_model_schema.cxx : resources/fits_data_model_schema.xsd
+	cd src; xsd cxx-tree ../$<
+	mv src/fits_data_model_schema.hxx include	
+	
+src/%.cxx : resources/%.fsd bin/${EXEC_TARGET1}
+	bin/${EXEC_TARGET1} -i$<
+
+PYEXTFILES = $(addprefix src/PyExt_, $(addsuffix .cxx,$(SCHEMA_FILES)))
+
+src/PyExt_Main.cxx python/fits_data_model/IOHandler.py: bin/${EXEC_TARGET2} $(wildcard ./resources/*.fsd)
+	bin/${EXEC_TARGET2} -i "$(wildcard ./resources/*.fsd)" -s . -d doxygen/python;
+	python3 python/MakeIOHandler.py;
+
+$(PYEXTFILES) : src/PyExt_Main.cxx
+	@if test -f $@; then \
+		touch $@; \
+	else \
+		rm -f src/PyExt_Main.cxx; \
+		$(MAKE) $(AM_MAKEFLAGS) src/PyExt_Main.cxx; \
+	fi;
+
+obj/PyExt_%.o : src/PyExt_%.cxx 
+	@mkdir -p obj;
+	g++ -c -g ${CXX_CFLAGS} ${EXT_INC_DIRS} $(PYTHON_INCLUDE) ${INCLUDES} $< -o $(@D)/$(@F);
+
+
+obj/HkProcessing.o: 		include/HkProcessing.hxx 	
+obj/HkTm2PrwProcessing.o: 	include/HkProcessing.hxx \
+                            include/HkTm2PrwProcessing.hxx \
+                            src/SCI_PRW_HkDefault.cxx \
+                            src/SCI_PRW_HkExtended.cxx \
+                            src/SCI_PRW_HkIaswDg.cxx \
+                            src/SCI_PRW_HkIaswPar.cxx \
+                            src/SCI_PRW_HkIbswDg.cxx \
+                            src/SCI_PRW_HkIbswPar.cxx \
+                            src/SCI_PRW_HkIfsw.cxx \
+                            src/SCI_PRW_HkAsy30759.cxx \
+                            src/SCI_PRW_HkAsy30767.cxx \
+                            src/SCI_PRW_HkCentroid.cxx \
+                            src/SCI_PRW_HkOperationParameter.cxx
+                             
+obj/Hk2RawProcessing.o: 	include/HkProcessing.hxx \
+                            include/Hk2RawProcessing.hxx \
+                            src/SCI_RAW_HkDefault.cxx \
+                            src/SCI_RAW_HkExtended.cxx \
+                            src/SCI_RAW_HkIaswDg.cxx \
+                            src/SCI_RAW_HkIaswPar.cxx \
+                            src/SCI_RAW_HkIbswDg.cxx \
+                            src/SCI_RAW_HkIbswPar.cxx \
+                            src/SCI_RAW_HkIfsw.cxx \
+                            src/SCI_RAW_HkAsy30759.cxx \
+                            src/SCI_RAW_HkAsy30767.cxx \
+                            src/SCI_RAW_HkCentroid.cxx \
+                            src/SCI_RAW_HkOperationParameter.cxx \
+                            src/REF_APP_HkEnumConversion.cxx
+
+
+src/PIP_CAL_FlatField.cxx:              src/PIP_CAL_FlatFieldError.cxx
+
+src/EXT_APP_DE1.cxx:                    src/EXT_APP_DE2.cxx \
+                                        src/EXT_APP_DE3.cxx
+src/MPS_PRE_Visits.cxx:                 src/MPS_PRE_VisitConstraints.cxx
+src/AUX_RES_Orbit.cxx:					src/AUX_RES_VisitConstraints.cxx
+src/REF_APP_ColouredPSF.cxx: 	 	    src/REF_APP_ColouredPSFMetadata.cxx
+src/REF_APP_FlatFieldFilter.cxx:       	src/REF_APP_FlatFieldFilterMetadata.cxx
+src/REF_APP_FlatFieldTeff.cxx:       	src/REF_APP_FlatFieldTeffMetadata.cxx
+
+src/REF_APP_DarkFrame.cxx:       	    src/REF_APP_DarkFrameLeft.cxx \
+                                        src/REF_APP_DarkFrameRight.cxx \
+                                        src/REF_APP_DarkFrameTop.cxx
+
+src/REF_APP_BadPixelMap.cxx:            src/REF_APP_BadPixelMapLeft.cxx \
+                                        src/REF_APP_BadPixelMapRight.cxx \
+                                        src/REF_APP_BadPixelMapTop.cxx \
+                                        src/REF_APP_PhotPixelMap.cxx \
+                                        src/REF_APP_PhotPixelMapLeft.cxx \
+                                        src/REF_APP_PhotPixelMapRight.cxx \
+                                        src/REF_APP_PhotPixelMapTop.cxx
+
+
+
+src/REF_APP_OversampledColouredPSF.cxx: src/REF_APP_ColouredPSFMetadata.cxx
+src/REF_APP_OversampledWhitePSF.cxx: 	src/REF_APP_WhitePSFMetadata.cxx
+src/REF_APP_WhitePSF.cxx:               src/REF_APP_WhitePSFMetadata.cxx
+src/REF_APP_WhiteCCDLocationPSF.cxx:    src/REF_APP_WhiteCCDLocationPSFMetadata.cxx
+src/SCI_CAL_SubArray.cxx:               src/SCI_CAL_ImageMetadata.cxx \
+										src/SCI_CAL_DarkLeft.cxx \
+										src/SCI_CAL_DarkRight.cxx \
+										src/SCI_CAL_DarkTop.cxx \
+										src/SCI_CAL_BlankLeft.cxx \
+										src/SCI_CAL_BlankRight.cxx \
+										src/SCI_CAL_OverscanLeft.cxx \
+										src/SCI_CAL_OverscanRight.cxx \
+										src/SCI_CAL_OverscanTop.cxx
+src/SCI_CAL_Imagette.cxx:               src/SCI_CAL_ImagetteMetadata.cxx
+src/SCI_CAL_FullArray.cxx:              src/SCI_CAL_ImageMetadata.cxx \
+										src/SCI_CAL_DarkLeft.cxx \
+										src/SCI_CAL_DarkRight.cxx \
+										src/SCI_CAL_DarkTop.cxx \
+										src/SCI_CAL_BlankLeft.cxx \
+										src/SCI_CAL_BlankRight.cxx \
+										src/SCI_CAL_OverscanLeft.cxx \
+										src/SCI_CAL_OverscanRight.cxx \
+										src/SCI_CAL_OverscanTop.cxx
+
+
+src/SCI_COR_SubArray.cxx:               src/SCI_COR_ImageMetadata.cxx \
+                                        src/PIP_COR_Centroid.cxx \
+										src/SCI_COR_SmearingRow.cxx \
+										src/SCI_COR_SmearingRowError.cxx
+src/SCI_COR_Imagette.cxx:               src/SCI_COR_ImagetteMetadata.cxx
+src/SCI_COR_FullArray.cxx:              src/SCI_COR_ImageMetadata.cxx \
+                                        src/PIP_COR_Centroid.cxx \
+										src/SCI_COR_SmearingRow.cxx \
+										src/SCI_COR_SmearingRowError.cxx
+
+
+src/PIP_COR_BkgSLSubArray.cxx:          src/PIP_COR_BkgSLImageMetadata.cxx 
+
+src/SCI_PRW_FullArray.cxx:              src/SCI_PRW_ImageMetadata.cxx \
+										src/SCI_PRW_UnstackedImageMetadata.cxx
+
+
+src/SCI_PRW_Imagette.cxx:               src/SCI_PRW_ImagetteMetadata.cxx
+src/SCI_PRW_SubArray.cxx:               src/SCI_PRW_ImageMetadata.cxx \
+										src/SCI_PRW_UnstackedImageMetadata.cxx \
+										src/SCI_PRW_DarkLarge.cxx \
+										src/SCI_PRW_DarkReduced.cxx \
+										src/SCI_PRW_DarkTop.cxx \
+										src/SCI_PRW_BlankLarge.cxx \
+										src/SCI_PRW_BlankReduced.cxx \
+										src/SCI_PRW_OverscanLarge.cxx \
+										src/SCI_PRW_OverscanTop.cxx
+
+src/SCI_RAW_FullArray.cxx:              src/SCI_RAW_ImageMetadata.cxx \
+                                        src/SCI_RAW_UnstackedImageMetadata.cxx \
+										src/SCI_RAW_DarkLeft.cxx \
+										src/SCI_RAW_DarkRight.cxx \
+										src/SCI_RAW_DarkTop.cxx \
+										src/SCI_RAW_BlankLeft.cxx \
+										src/SCI_RAW_BlankRight.cxx \
+										src/SCI_RAW_OverscanLeft.cxx \
+										src/SCI_RAW_OverscanRight.cxx \
+										src/SCI_RAW_OverscanTop.cxx
+
+src/SCI_RAW_Imagette.cxx:               src/SCI_RAW_ImagetteMetadata.cxx
+src/SCI_RAW_SubArray.cxx:               src/SCI_RAW_ImageMetadata.cxx \
+                                        src/SCI_RAW_UnstackedImageMetadata.cxx \
+										src/SCI_RAW_DarkLeft.cxx \
+										src/SCI_RAW_DarkRight.cxx \
+										src/SCI_RAW_DarkTop.cxx \
+										src/SCI_RAW_BlankLeft.cxx \
+										src/SCI_RAW_BlankRight.cxx \
+										src/SCI_RAW_OverscanLeft.cxx \
+										src/SCI_RAW_OverscanRight.cxx \
+										src/SCI_RAW_OverscanTop.cxx
+
+src/SIM_RAW_UnstackedSubArray.cxx:      src/SCI_RAW_ImageMetadata.cxx \
+										src/SIM_RAW_UnstackedBlankLeftImage.cxx \
+										src/SIM_RAW_UnstackedBlankRightImage.cxx \
+										src/SIM_RAW_UnstackedDarkLeftImage.cxx \
+										src/SIM_RAW_UnstackedDarkRightImage.cxx \
+										src/SIM_RAW_UnstackedDarkTopImage.cxx \
+										src/SIM_RAW_UnstackedOverscanLeftImage.cxx \
+										src/SIM_RAW_UnstackedOverscanRightImage.cxx \
+										src/SIM_RAW_UnstackedOverscanTopImage.cxx
+
+src/SIM_RAW_DoublePrecisionSubArray.cxx:      src/SCI_RAW_ImageMetadata.cxx \
+										src/SCI_RAW_DarkLeft.cxx \
+                                        src/SCI_RAW_DarkRight.cxx \
+										src/SCI_RAW_DarkTop.cxx \
+										src/SCI_RAW_BlankLeft.cxx \
+										src/SCI_RAW_BlankRight.cxx \
+										src/SCI_RAW_OverscanTop.cxx \
+										src/SCI_RAW_OverscanLeft.cxx \
+										src/SCI_RAW_OverscanRight.cxx
+
+src/REF_APP_BiasFrame.cxx :             src/REF_APP_BiasFrameMetadata.cxx \
+                                        src/REF_APP_BiasBlankLeftFrame.cxx \
+                                        src/REF_APP_BiasBlankRightFrame.cxx \
+                                        src/REF_APP_BiasDarkLeftFrame.cxx \
+                                        src/REF_APP_BiasDarkRightFrame.cxx \
+                                        src/REF_APP_BiasDarkTopFrame.cxx \
+                                        src/REF_APP_BiasOverscanLeftFrame.cxx \
+                                        src/REF_APP_BiasOverscanRightFrame.cxx \
+                                        src/REF_APP_BiasOverscanTopFrame.cxx \
+                                        src/REF_APP_BiasOffset.cxx
+
+src/REF_APP_CCDLinearisationLUT100.cxx : src/REF_APP_CCDLinearisationLUT230.cxx \
+                                         src/REF_APP_CCDLinearisation100.cxx \
+                                         src/REF_APP_CCDLinearisation230.cxx
+
+src/MCO_REP_DarkFrameFullArray.cxx :    src/MCO_REP_DarkFrameLeft.cxx \
+                                        src/MCO_REP_DarkFrameRight.cxx \
+                                        src/MCO_REP_DarkFrameTop.cxx
+
+src/MCO_REP_DarkFrameSubArray.cxx :     src/MCO_REP_DarkFrameLeft.cxx \
+                                        src/MCO_REP_DarkFrameRight.cxx \
+                                        src/MCO_REP_DarkFrameTop.cxx
+
+src/MCO_REP_BadPixelMapFullArray.cxx:   src/MCO_REP_BadPixelMapLeft.cxx \
+                                        src/MCO_REP_BadPixelMapRight.cxx \
+                                        src/MCO_REP_BadPixelMapTop.cxx 
+
+src/MCO_REP_BadPixelMapSubArray.cxx:    src/MCO_REP_BadPixelMapLeft.cxx \
+                                        src/MCO_REP_BadPixelMapRight.cxx \
+                                        src/MCO_REP_BadPixelMapTop.cxx 
+
+src/PIP_REP_BadPixelMapFullArray.cxx:   src/PIP_REP_BadPixelMapLeft.cxx \
+                                        src/PIP_REP_BadPixelMapRight.cxx \
+                                        src/PIP_REP_BadPixelMapTop.cxx 
+
+
+
+obj/FitsDataModel.o: 			include/FitsDataModel.hxx 	
+obj/OutputFile.o:     			include/FitsDataModel.hxx
+obj/HeaderFile.o:    			include/FitsDataModel.hxx
+obj/SourceFile.o:     			include/FitsDataModel.hxx
+obj/CreateFitsFile.o: 			include/CreateFitsFile.hxx
+
+obj/PyFitsDataModel.o: 			include/PyFitsDataModel.hxx
+obj/PyFitsDataModelExtension.o: include/PyFitsDataModel.hxx
+obj/PyFitsWrapper.o:			include/PyFitsDataModel.hxx
+obj/PyImageWrapper.o:			include/PyFitsDataModel.hxx
+obj/PyTableWrapper.o:			include/PyFitsDataModel.hxx

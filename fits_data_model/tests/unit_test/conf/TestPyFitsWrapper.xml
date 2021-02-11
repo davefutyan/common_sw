@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+
+<param>
+    <name>input_files</name>
+    <short_name>i</short_name>
+    <value>../resources/SCI_PRW_SubArray.fsd</value>
+    <help>a list of fsd files</help>
+</param>
+
+<param>
+    <name>output_src_dir</name>
+    <short_name>s</short_name>
+    <value>results</value>
+    <help></help>
+</param>
+
+<param>
+    <name>output_doc_dir</name>
+    <short_name>d</short_name>
+    <value>results</value>
+    <help></help>
+</param>
+
+</program_params>

@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.0  28. 08. 2020 MBE
+			- #22260: Clean-up epoch for attitude information
+
+		version 10.1 19. 09. 2018
+			- #17107 keyword SHAPE is now a string
+
+		version 9.3.1 04. 06. 2018 RRO
+		  - #16593 Associated data structures of the CCD margins have to be optional
+		  
+		version 9.3  29. 05. 2018 RRO
+		  - #14795 remove old Associated_HDU for CCD margins
+		version 9.3  04. 05. 2018 RRO
+		  - #16270 Name of associated data structures have changes from
+		  *Left* to *Large* and *Right* to *Reduced*  
+		version 9.3  11. 05. 2018 RRO
+		  - #16458 new header keywords: ROUNDING, NLIN_COR, RO_SCRPT, RO_HW, RO_FREQU   
+
+		version 8.1  21. 10. 2017 RRO
+		  - new header keyword : STACKING
+		  - #14788 new Associated_HDU for CCD margins
+
+		version 6.2: 10. 09. 2016 RRO
+			update according to IFSW-SOC ICD Issue 2:
+			- new associated data structure: SCI_PRW_UnstackedImageMetadata
+
+        version 5.0  09. 02. 2016 RRO
+           - Use KeywordValidityUTC instead of KeywordValidity
+           - remove never available margin areas.
+           - new keyword: SHAPE
+
+         version 5.2  03. 06. 2016 RRO
+           - new header keyword:  MRG_MODE (see KeywordCCDMarginMode.ifsd) 
+           
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCCDMarginMode   SYSTEM "KeywordCCDMarginMode.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordExposurePrw     SYSTEM "KeywordExposurePrw.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubArrayOrigin  SYSTEM "KeywordSubArrayOrigin.ifsd">     
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_SubArray">
+        <brief> L05 Product : raw sub-array image.</brief>
+        <description>There is no processing step applied.
+                     The pixel values are as they were received from the instrument.
+                     Data received during one pass are stored in this data structure.
+                     The images in the cube are sorted by time, 
+                     with no overlap between two consecutive products.
+                     Potential duplicated images are already removed.
+                     </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.0" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCCDMarginMode;
+            &KeywordCheops; 
+            &KeywordValidityUTC;   
+            &KeywordPassVisit;   
+            &KeywordExposurePrw;
+            &KeywordSkyPos;
+            &KeywordSubArrayOrigin;
+            <group description="Image Attributes">
+ 	            <keyword name="SHAPE"     data_type="string"     comment="rectangular or circular"/>
+ 	            <keyword name="STACKING"  data_type="string"     comment="on-board stacking of image data"/>
+ 	            <keyword name="ROUNDING"  data_type="integer"    comment="number of bits that are rounded off"/>
+ 	            <keyword name="NLIN_COR"  data_type="boolean"    comment="on-board nonlinearity correction"/>
+ 	            <keyword name="RO_SCRPT"  data_type="integer"    comment="id of the CCD readout timing script"/>
+ 	            <keyword name="RO_HW"     data_type="string"     comment="used on-board hw: main or redundant"/>
+ 	            <keyword name="RO_FREQU"  data_type="integer" unit="Hz" comment="CCD readout frequency"/>
+            </group>  
+            
+        </header>
+        <!--  -->
+        <image data_type="uint32" null="0">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the CCD">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of the CCD">0</axis2>
+            <axis3 unit="#images" comment="Scan successive subarray images (sorted by date) with no overlap between two consecutive L05 products"> 0 </axis3>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >SCI_PRW_ImageMetadata</Associated_HDU>
+    	<Associated_HDU HDU_Type="table" >SCI_PRW_UnstackedImageMetadata</Associated_HDU>
+    	
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_DarkLarge</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_DarkReduced</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_DarkTop</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_BlankLarge</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_BlankReduced</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_OverscanLarge</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_PRW_OverscanTop</Associated_HDU>
+
+    	
+    </List_of_Associated_HDUs>
+    
+</FITS_schema>

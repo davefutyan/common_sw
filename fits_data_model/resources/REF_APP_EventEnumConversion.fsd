@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 5.1  23. 03. 2016 RRO
+           - new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_EventEnumConversion">
+        <brief> Conversion between enum numbers in HK TM data to text </brief>
+        <description>Most Event parameters are defined as enum numbers. This table 
+                     shall be used to convert the enum number to a meaningful text.
+                     Each line defines a conversion from one enum number to its
+                     text for a specific calibration curve. There are always at least 
+                     2 rows, i. e. 2 conversions per calibration curve.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="CALIB_NAME"  data_type="string"    bin_size="24"     comment="Name of the Calibration Curve"/>
+            <column name="ENUM"        data_type="uint16"                      comment="enum number as stored in the TM packet"/>
+            <column name="TEXT"        data_type="string"    bin_size="30"     comment="Meaning of the enum number"/>
+       </table>
+    </HDU>
+</FITS_schema>

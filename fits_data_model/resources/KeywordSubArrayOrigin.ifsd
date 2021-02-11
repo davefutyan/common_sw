@@ -1,0 +1,13 @@
+<!--
+		version 6.3  21. 10. 2016 RRO
+		   - removed keywords: X_ORIGIN, Y_ORIGIN
+
+        version 6.0  04. 07. 2016 RRO
+           - new keyword: X_WINOFF, Y_WINOFF
+           - deprecated keyword: X_ORIGIN, Y_ORIGIN
+-->   
+
+<group description="Sub - Array Location on CCD">
+	<keyword name="X_WINOFF" data_type="integer" unit="pixel" comment="X offset of the Sub Array image relative to the Full Array image without margins"/>
+	<keyword name="Y_WINOFF" data_type="integer" unit="pixel" comment="Y offset of the Sub Array image relative to the Full Array image without margins"/>
+</group>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Earth_Explorer_File xmlns="cheops:gs" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="cheops:gs trigger_file_schema.xsd">
+  <Earth_Explorer_Header>
+    <Fixed_Header>
+      <File_Name>CH_PR990001_TG000101_PS18010118_TU2020-01-01T01-01-01_TRIGGER-testProcessor-test_V0000</File_Name>
+      <File_Description/>
+      <Notes/>
+      <Mission>CHEOPS</Mission>
+      <File_Class/>
+      <File_Type>TRIGGER</File_Type>
+      <Validity_Period>
+        <Validity_Start>UTC=2020-01-01T01:01:01</Validity_Start>
+        <Validity_Stop>UTC=2022-01-01T01:01:01</Validity_Stop>
+      </Validity_Period>
+      <File_Version>0000</File_Version>
+      <Source>
+        <System>SOC</System>
+        <Creator>testProcessor</Creator>
+        <Creator_Version>1.0</Creator_Version>
+        <Creation_Date>UTC=2017-05-12T08:12:04</Creation_Date>
+      </Source>
+    </Fixed_Header>
+    <Variable_Header>
+      <PASS_ID>18010118</PASS_ID>
+      <PREV_PASS_ID>18010112</PREV_PASS_ID>
+      <PROGTYPE>99</PROGTYPE>
+      <PROG_ID>1</PROG_ID>
+      <REQ_ID>1</REQ_ID>
+      <VISITCTR>1</VISITCTR>
+      <OBSID>1</OBSID>
+      <PROC_NUM>0</PROC_NUM>
+      <PROC_NUM_OUT>0</PROC_NUM_OUT>
+    </Variable_Header>
+  </Earth_Explorer_Header>
+</Earth_Explorer_File>

@@ -1,0 +1,32 @@
+CXX_UNIT_TESTS += TestCreateImage 
+CXX_UNIT_TESTS += TestCopyFitsFile 
+CXX_UNIT_TESTS += TestCreateFitsFile 
+CXX_UNIT_TESTS += TestOpenFitsFile 
+CXX_UNIT_TESTS += TestReadImage 
+CXX_UNIT_TESTS += TestReadTable 
+CXX_UNIT_TESTS += TestCreateTable	
+CXX_UNIT_TESTS += TestReadPrimaryArray
+CXX_UNIT_TESTS += TestTimeKeywords
+CXX_UNIT_TESTS += TestTimeColumns
+CXX_UNIT_TESTS += TestHkProcessing
+CXX_UNIT_TESTS += TestVectorColumn
+CXX_UNIT_TESTS += TestSoftwareConfiguration
+
+PYTHON_COVERAGE += fits_data_model
+
+PYTHON_UNIT_TESTS += TestFitsDal
+PYTHON_UNIT_TESTS += TestCreateFitsFile
+PYTHON_UNIT_TESTS += TestDataModel
+PYTHON_UNIT_TESTS += TestPassId
+PYTHON_UNIT_TESTS += TestTimeClasses
+PYTHON_UNIT_TESTS += TestValidRefFile
+PYTHON_UNIT_TESTS += TestVisitId
+PYTHON_UNIT_TESTS += TestRsdFile
+PYTHON_UNIT_TESTS += TestNdarray
+PYTHON_UNIT_TESTS += TestTriggerFile
+PYTHON_UNIT_TESTS += TestPickle
+PYTHON_UNIT_TESTS += TestIOHandler
+PYTHON_UNIT_TESTS += TestMultiUserAccess
+
+
+CLEAN += python/TestIOHandler.py

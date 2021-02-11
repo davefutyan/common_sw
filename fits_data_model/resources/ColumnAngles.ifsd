@@ -1,0 +1,13 @@
+<!--
+		version 13.0.  17. 09. 2020
+			- #22417 add columns LOS_TO_EARTH_ANGLE, LATITUDE and LONGITUDE
+
+		version 11.2   29. 03. 2019
+			- #18454 remove column LOS_TO_EARTH_ANGLE
+-->
+
+<column name="LOS_TO_SUN_ANGLE"   data_type="double"    unit="deg"     comment="Angle between line-of-sight and Sun"/>
+<column name="LOS_TO_MOON_ANGLE"  data_type="double"    unit="deg"     comment="Angle between line-of-sight and Moon"/>
+<column name="LOS_TO_EARTH_ANGLE" data_type="double" unit="deg"   comment="Angle between line-of-sight and Earth limb"/>
+<column name="LATITUDE"           data_type="float"  unit="deg"   comment="Geodetic latitude of the spacecraft" />
+<column name="LONGITUDE"          data_type="float"  unit="deg"   comment="Geodetic longitude of the spacecraft" />       

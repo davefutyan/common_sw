@@ -1,0 +1,33 @@
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0   28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			
+		version 12.1.2
+			- #21193 Change the comment of MAG_V and MAG_VERR to identify that it is actually
+			         Gaia mag. The EXT_VER of the data structures that use this KeywordTarget.ifsd
+			                   are not updated.
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords: MAG_VERR, MAG_CHPS, MAG_CERR
+
+        version 5.2  03. 06. 2016 RRO
+           - Remove CHEOPSID, TG_TYPE and OBS_MODE keywords
+           - New keyword: SPECTYPE
+           
+        version 5.3  15. 06. 2016 RRO
+           - new keyword: MAG_V
+           - db=true for SPECTYPE and MAG_V   
+-->   
+
+<group description="Target">
+	<keyword name="TARGNAME" data_type="string"  comment="Name of the target as provided by the proposal"  db="true"/>
+	<keyword name="SPECTYPE" data_type="string"  comment="Spectral type of the target as provided by the proposal" db="true"/>
+	<keyword name="T_EFF"    data_type="unsigned int" unit="Kelvin" comment="Effective temperature of the target as provided by the proposal" db="true"/>
+   	<keyword name="MAG_G"    data_type="real"    unit="mag" comment="Brightness of the target in Gaia band" db="true"/>
+   	<keyword name="MAG_GERR" data_type="real"    unit="mag" comment="Error of brightness of the target in Gaia band" />
+   	<keyword name="MAG_CHPS" data_type="real"    unit="mag" comment="Brightness of the target in CHEOPS band" db="true"/>
+   	<keyword name="MAG_CERR" data_type="real"    unit="mag" comment="Error of brightness of the target in CHEOPS band" />
+</group>

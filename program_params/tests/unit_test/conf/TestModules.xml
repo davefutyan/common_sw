@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+<param>
+	<name>CommandLine</name>
+</param>
+
+
+<module>
+	<name>TestModule</name>
+	<param>
+		<name>StringParam</name>
+		<value>test string</value>
+		<type>string</type>
+		<help>This is the help of the StringParam</help>
+		<min>t</min>
+		<max>u</max>
+	</param>
+	
+	<param>
+		<name>IntParam</name>
+		<value>456</value>
+		<type>int</type>
+		<help>This is the help of the IntParam</help>
+		<min>456</min>
+		<max>456</max>
+	</param>
+	
+	<param>
+		<name>DoubleParam</name>
+		<value>-1.65e-4</value>
+		<type>double</type>
+		<help>This is the help of the Double</help>
+		<min>-2</min>
+		<max>0</max>
+	</param>
+	
+	<module>
+		<name>Level2</name>
+		<param>
+			<name>BoolParam</name>
+			<value>true</value>
+			<type>bool</type>
+			<help>This is the help of the BoolParam</help>
+		</param>
+	</module>
+</module>
+</program_params>

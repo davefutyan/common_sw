@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 10.1 19. 09. 2018
+			- #17107 keyword SHAPE is now a string
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+		version 6.4  18. 12. 2016 RRO
+			- #12024 new data structure
+			
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnit            SYSTEM "KeywordUnit.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL1L2    SYSTEM "KeywordExposureL1L2.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubArrayOrigin  SYSTEM "KeywordSubArrayOrigin.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_COR_BkgSLSubArray">
+        <brief> Applied Background and Straylight in the SCI_COR_SubArray</brief>
+        <description></description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel1;
+            &KeywordProcChain;
+            &KeywordUnit;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            &KeywordExposureL1L2;
+            &KeywordSkyPos;
+            &KeywordSubArrayOrigin;
+            <group description="Image Attributes">
+ 	            <keyword name="SHAPE"     data_type="string"     comment="rectangular or circular"/>
+            </group>  
+            
+        </header>
+        <!--  -->
+        <image data_type="double">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of CCD">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of CCD">0</axis2>
+            <axis3 unit="#IMAGES" comment="Image number in the sequence (should be N_IMAGES size)">0</axis3>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >PIP_COR_BkgSLImageMetadata</Associated_HDU>
+    </List_of_Associated_HDUs>    
+    
+</FITS_schema>

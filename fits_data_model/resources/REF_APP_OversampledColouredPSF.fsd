@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+       version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+
+        version 6.2  23. 08. 2016 RRO #11410
+           - new Keyword: OVERSAMP
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_OversampledColouredPSF">
+        <brief> Calibration product : approved oversampled PSF image data cube in 15 wavelengths</brief>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordFileAttributes;
+            <group description="PSF attributes">
+            	<keyword name="BANDWID"     data_type="real" unit="nm"  comment="band width of each wavelength bin"/>
+            	<keyword name="OVERSAMP"	data_type="integer" default="10" comment="oversampling factor of the PSF"/>
+            </group>
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+        </header>
+        <image data_type="double">
+            <naxis>4</naxis>
+            <axis1 comment="Oversampled PSF X axis">2000</axis1>
+            <axis2 comment="Oversampled PSF Y axis">2000</axis2>
+            <axis3 comment="wavelength band">15</axis3>
+            <axis4 comment="telescope temperature">4</axis4>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >REF_APP_ColouredPSFMetadata</Associated_HDU>
+    </List_of_Associated_HDUs>
+        
+</FITS_schema>

@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+-->
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+    <!ENTITY KeywordPPReferenceFiles  SYSTEM "KeywordPPReferenceFiles.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_HkIaswDg">
+        <brief> L0.5 product : Diagnostic IASW Telemetry (SID = 3) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;
+             &KeywordSkyPos;
+             &KeywordPPReferenceFiles;
+       </header>
+
+        <table>
+            &ColumnTimeHKL05;
+            <column name="NofAllocatedInRep"       data_type="uint8"  comment="Return value of CORDET framework function InFactoryGetNOfAllocatedInRep"/>
+            <column name="NofAllocatedInCmd"       data_type="uint8"  comment="Return value of CORDET framework function InFactoryGetNofAllocatedInCmd"/>
+            <column name="Sem_NOfPendingInCmp"     data_type="uint8"  comment="Return value of CORDET framework function InManagerGetNOfPendingInCmp for the InManagerSem"/>
+            <column name="Sem_NOfLoadedInCmp"      data_type="uint8"  comment="Return value of CORDET framework function InManagerGetNOfLoadedInCmp for the InManagerSem"/>
+            <column name="GrdObc_NOfPendingInCmp"  data_type="uint8"  comment="Return value of CORDET framework function InManagerGetNOfPendingInCmp for the InManagerGrdObc"/>
+            <column name="NOfAllocatedOutCmp"      data_type="uint8"  comment="Return value of CORDET framework function OutFactoryGetNofAllocatedOutCmp"/>
+            <column name="NOfInstanceId"           data_type="uint16" comment="Return value of CORDET framework function OutFactoryGetNofInstanceId"/>
+            <column name="OutMg1_NOfPendingOutCmp" data_type="uint8"  comment="Return value of CORDET framework function OutManagerGetNofPendingOutCmp for the OutManager1"/>
+            <column name="OutMg1_NOfLoadedOutCmp"  data_type="uint16" comment="Return value of CORDET framework function OutManagerGetNofLoadedOutCmp for the OutManager1"/>
+            <column name="OutMg2_NOfPendingOutCmp" data_type="uint8"  comment="Return value of CORDET framework function OutManagerGetNofPendingOutCmp for the OutManager2"/>
+            <column name="OutMg2_NOfLoadedOutCmp"  data_type="uint16" comment="Return value of CORDET framework function OutManagerGetNofLoadedOutCmp for the OutManager2"/>
+            <column name="OutMg3_NOfPendingOutCmp" data_type="uint8"  comment="Return value of CORDET framework function OutManagerGetNofPendingOutCmp for the OutManager3"/>
+            <column name="OutMg3_NOfLoadedOutCmp"  data_type="uint16" comment="Return value of CORDET framework function OutManagerGetNofLoadedOutCmp for the OutManager3"/>
+            <column name="InSem_NOfPendingPckts"   data_type="uint16" comment="Return value of CORDET framework function InStreamGetNofPendingPckts for the InStreamSem"/>
+            <column name="InObc_NOfPendingPckts"   data_type="uint8"  comment="Return value of CORDET framework function InStreamGetNofPendingPckts for the InStreamObc"/>
+            <column name="InGrd_NOfPendingPckts"   data_type="uint8"  comment="Return value of CORDET framework function InStreamGetNofPendingPckts for the InStreamGrd"/>
+            <column name="OutSem_NOfPendingPckts"  data_type="uint8"  comment="Return value of CORDET framework function OutStreamSemGetNofPendingPckts for the OutStreamSem"/>
+            <column name="OutObc_NOfPendingPckts"  data_type="uint8"  comment="Return value of CORDET framework function OutStreamGetNofPendingPckts for OutStreamObc"/>
+            <column name="OutGrd_NOfPendingPckts"  data_type="uint8"  comment="Return value of CORDET framework function OutStreamGetNofPendingPckts for OutStreamGrd"/>
+            <column name="sdbStateCnt"             data_type="uint32" comment="Number of cycles since current state of SDB State Machine was entered"/>
+            <column name="lastPatchedAddr"         data_type="uint32" comment="Last start address to have been patched"/>
+            <column name="lastDumpAddr"            data_type="uint32" comment="Last start address to have been dumped"/>
+            <column name="sdu2BlockCnt"            data_type="uint16" comment="Block count for SDU2 State Machine"/>
+            <column name="sdu4BlockCnt"            data_type="uint16" comment="Block count for SDU4 State Machine"/>
+            <column name="FdCheckTTMIntEn"         data_type="uint8"  comment="Internal enable status of TTM FdCheck"/>
+            <column name="RpTTMIntEn"              data_type="uint8"  comment="Internal enable status of TTM recovery procedure"/>
+            <column name="FdCheckTTMCnt"           data_type="uint16" comment="Counter for TTM FdCheck"/>
+            <column name="FdCheckTTMSpCnt"         data_type="uint16" comment="Spurious counter for TTM FdCheck"/>
+            <column name="FdCheckSDSCIntEn"        data_type="uint8"  comment="Internal enable status of SDSC FdCheck"/>
+            <column name="RpSDSCIntEn"             data_type="uint8"  comment="Internal enable status of SDSC recovery procedure"/>
+            <column name="FdCheckSDSCCnt"          data_type="uint16" comment="Counter for SDSC FdCheck"/>
+            <column name="FdCheckSDSCSpCnt"        data_type="uint16" comment="Spurious counter for SDSC FdCheck"/>
+            <column name="FdCheckComErrIntEn"      data_type="uint8"  comment="Internal enable status of SEM Communication Error FdCheck"/>
+            <column name="RpComErrIntEn"           data_type="uint8"  comment="Internal enable status of SEM Communication Error recovery procedure"/>
+            <column name="FdCheckComErrCnt"        data_type="uint16" comment="Counter for SEM Communication Error FdCheck"/>
+            <column name="FdCheckComErrSpCnt"      data_type="uint16" comment="Spurious counter for SEM Communication Error FdCheck"/>
+            <column name="FdCheckTimeOutIntEn"     data_type="uint8"  comment="Internal enable status of SEM Mode Time-Out FdCheck"/>
+            <column name="RpTimeOutIntEn"          data_type="uint8"  comment="Internal enable status of SEM Mode Time-Out recovery procedure"/>
+            <column name="FdCheckTimeOutCnt"       data_type="uint16" comment="Counter for SEM Mode Time-Out FdCheck"/>
+            <column name="FdCheckTimeOutSpCnt"     data_type="uint16" comment="Spurious counter for SEM Mode Time-Out FdCheck"/>
+            <column name="FdCheckSafeModeIntEn"    data_type="uint8"  comment="Internal enable status of SEM Safe Mode FdCheck"/>
+            <column name="RpSafeModeIntEn"         data_type="uint8"  comment="Internal enable status of SEM Safe Mode recovery procedure"/>
+            <column name="FdCheckSafeModeCnt"      data_type="uint16" comment="Counter for SEM Safe Mode FdCheck"/>
+            <column name="FdCheckSafeModeSpCnt"    data_type="uint16" comment="Spurious counter for SEM Safe Mode FdCheck"/>
+            <column name="FdCheckAliveIntEn"       data_type="uint8"  comment="Internal enable status of SEM Alive FdCheck"/>
+            <column name="RpAliveIntEn"            data_type="uint8"  comment="Internal enable status of SEM Alive recovery procedure"/>
+            <column name="FdCheckAliveCnt"         data_type="uint16" comment="Counter for SEM Alive FdCheck"/>
+            <column name="FdCheckAliveSpCnt"       data_type="uint16" comment="Spurious counter for SEM Alive FdCheck"/>
+            <column name="FdCheckSemAnoEvtIntEn"   data_type="uint8"  comment="Internal enable status of SEM Error Event 1 FdCheck"/>
+            <column name="RpSemAnoEvtIntEn"        data_type="uint8"  comment="Internal enable status of SEM Error Event 1 recovery procedure"/>
+            <column name="FdCheckSemAnoEvtCnt"     data_type="uint16" comment="Counter for SEM Error Event 1 FdCheck"/>
+            <column name="FdCheckSemAnoEvtSpCnt"   data_type="uint16" comment="Spurious counter for SEM Error Event 1 FdCheck"/>
+            <column name="FdCheckSemLimitIntEn"    data_type="uint8"  comment="Internal enable status of SEM Limit FdCheck"/>
+            <column name="RpSemLimitIntEn"         data_type="uint8"  comment="Internal enable status of SEM Limit recovery procedure"/>
+            <column name="FdCheckSemLimitCnt"      data_type="uint16" comment="Counter for SEM Limit FdCheck"/>
+            <column name="FdCheckSemLimitSpCnt"    data_type="uint16" comment="Spurious counter for SEM Limit FdCheck"/>
+            <column name="FdCheckDpuHkIntEn"       data_type="uint8"  comment="Internal enable status of DPU Housekeeping FdCheck"/>
+            <column name="RpDpuHkIntEn"            data_type="uint8"  comment="Internal enable status of DPU Housekeeping recovery procedure"/>
+            <column name="FdCheckDpuHkCnt"         data_type="uint16" comment="Counter for DPU Housekeeping FdCheck"/>
+            <column name="FdCheckDpuHkSpCnt"       data_type="uint16" comment="Spurious counter for DPU Housekeeping FdCheck"/>
+            <column name="FdCheckCentConsIntEn"    data_type="uint8"  comment="Internal enable status of Centroid Consistency FdCheck"/>
+            <column name="RpCentConsIntEn"         data_type="uint8"  comment="Internal enable status of Centroid Consistency recovery procedure"/>
+            <column name="FdCheckCentConsCnt"      data_type="uint16" comment="Counter for Centroid Consistency FdCheck"/>
+            <column name="FdCheckCentConsSpCnt"    data_type="uint16" comment="Spurious counter for Centroid Consistency FdCheck"/>
+            <column name="FdCheckResIntEn"         data_type="uint8"  comment="Internal enable status of Resource FdCheck"/>
+            <column name="RpResIntEn"              data_type="uint8"  comment="Internal enable status of Resource recovery procedure"/>
+            <column name="FdCheckResCnt"           data_type="uint16" comment="Counter for Resource FdCheck"/>
+            <column name="FdCheckResSpCnt"         data_type="uint16" comment="Spurious counter for Resource FdCheck"/>
+            <column name="FdCheckSemConsIntEn"     data_type="uint8" />
+            <column name="RpSemConsIntEn"          data_type="uint8" />
+            <column name="FdCheckSemConsCnt"       data_type="uint16"/>
+            <column name="FdCheckSemConsSpCnt"     data_type="uint16"/>
+            <column name="semStateCnt"             data_type="uint32" comment="Cycles elapsed since entry into current state of SEM State Machine"/>
+            <column name="semOperStateCnt"         data_type="uint32" comment="Cycles elapsed since entry into current state of SEM Operational State Machine"/>
+            <column name="imageCycleCnt"           data_type="uint32" comment="Cycles elapsed since start of acquisition of current image"/>
+            <column name="acqImageCnt"             data_type="uint32" comment="Number of images acquired since entry into science mode"/>
+            <column name="LastSemPckt"             data_type="uint8" />
+            <column name="iaswStateCnt"            data_type="uint32" comment="Cycles elapsed since entry into current state of IASW State Machine"/>
+            <column name="prepScienceCnt"          data_type="uint32" comment="Cycles elapsed since entry into current node of Prepare Science Procedure"/>
+            <column name="controlledSwitchOffCnt"  data_type="uint32" comment="Cycles elapsed since entry into current node of Controlled Switch-Off Procedure"/>
+            <column name="algoCent0Cnt"            data_type="uint32" comment="Cycles elapsed since entry into current state of Centroding 0 Algorithm State Machine"/>
+            <column name="algoCent1Cnt"            data_type="uint32" comment="Cycles elapsed since entry into current state of Centroding 1 Algorithm State Machine"/>
+            <column name="algoAcq1Cnt"             data_type="uint32" comment="Cycles elapsed since entry into current state of Acquisition 1 Algorithm State Machine"/>
+            <column name="algoCcCnt"               data_type="uint32" comment="Cycles elapsed since entry into current state of Compression/Collection Algorithm State Machine"/>
+            <column name="algoTTC1Cnt"             data_type="uint32" comment="Cycles elapsed since entry into current state of Telescope Temperature Control 1 Algorithm State Machine"/>
+            <column name="ttc1AvTempAft"           data_type="float"  unit="degC" comment="Average temperature measurement made by TTC1 from aft thermistors"/>
+            <column name="ttc1AvTempFrt"           data_type="float"  unit="degC" comment="Average temperature measurement made by TTC1 from front thermistors"/>
+            <column name="algoTTC2Cnt"             data_type="uint32" comment="Cycles elapsed since entry into current state of Telescope Temperature Control 2 Algorithm State Machine"/>
+            <column name="intTimeAft"              data_type="float"  unit="s*dC" comment="Integral of temperature from aft thermistors"/>
+            <column name="onTimeAft"               data_type="float"  unit="sec" comment="On-time requested by TTC2 algorithm for aft heaters"/>
+            <column name="intTimeFront"            data_type="float"  unit="s*dC" comment="Integral of temperature from front thermistors"/>
+            <column name="onTimeFront"             data_type="float"  unit="sec" comment="On-time requested by TTC2 algorithm for front heaters"/>
+            <column name="HbSem"                   data_type="uint8" />
+            <column name="semEvtCounter"           data_type="uint32"/>
+            <column name="pExpTime"                data_type="uint32" unit="ms" comment="Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM"/>
+            <column name="pImageRep"               data_type="uint32" unit="ms" comment="Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM"/>
+            <column name="pAcqNum"                 data_type="uint32" comment="Parameter PAR_ACQUISITION_ NUM of command (220,3) to the SEM"/>
+            <column name="pDataOs"                 data_type="string" bin_size="3"   cal_curve="DPKT7814TM" comment="Parameter PAR_DATA_ OVERSAMPLING of command (220,3) to the SEM"/>
+            <column name="pCcdRdMode"              data_type="string" bin_size="14"  cal_curve="DPKT7027TM" comment="Parameter PAR_CCD_ READOUT_MODE command (220,3) to the SEM"/>
+            <column name="pWinPosX"                data_type="uint16" unit="pix" comment="Parameter PAR_CCD_ WINDOW_STAR_POS_X of command (220,11) to the SEM"/>
+            <column name="pWinPosY"                data_type="uint16" unit="pix" comment="Parameter PAR_CCD_ WINDOW_STAR_POS_Y of command (220,11) to the SEM"/>
+            <column name="pWinSizeX"               data_type="uint16" unit="pix" comment="Parameter PAR_CCD_ WINDOW_STAR_SIZE_X of command (220,11) to the SEM"/>
+            <column name="pWinSizeY"               data_type="uint16" unit="pix" comment="Parameter PAR_CCD_ WINDOW_STAR_SIZE_Y of command (220,11) to the SEM"/>
+            <column name="pDtAcqSrc"               data_type="string" bin_size="10"  cal_curve="DPKT7816TM" comment="Parameter PAR_DATA_ ACQ_SRC of command (220,11) to the SEM"/>
+            <column name="pTempCtrlTarget"         data_type="string" bin_size="7"   cal_curve="DPKT7817TM" comment="Parameter PAR_TEMP_CONTROL_ TARGET of command (220,4) to the SEM"/>
+            <column name="pVoltFeeVod"             data_type="float"  comment="Parameter PAR_VOLT_FEE_VOD of command (220,11) to the SEM"/>
+            <column name="pVoltFeeVrd"             data_type="float"  comment="Parameter PAR_VOLT_FEE_VRD of command (220,11) to the SEM"/>
+            <column name="pVoltFeeVss"             data_type="float"  comment="Parameter PAR_VOLT_FEE_VSS of command (220,11) to the SEM"/>
+            <column name="pHeatTempFpaCCd"         data_type="float"  comment="Parameter PAR_HEAT_TEMP_FPA_CCD of command (220,11) to the SEM"/>
+            <column name="pHeatTempFeeStrap"       data_type="float"  comment="Parameter PAR_HEAT_TEMP_FEE_STRAP of command (220,11) to the SEM"/>
+            <column name="pHeatTempFeeAnach"       data_type="float"  comment="Parameter PAR_HEAT_TEMP_FEE_ANACH of command (220,11) to the SEM"/>
+            <column name="pHeatTempSpare"          data_type="float"  comment="Parameter PAR_HEAT_TEMP_SPARE of command (220,11) to the SEM"/>
+            <column name="pStepEnDiagCcd"          data_type="string" bin_size="3"   cal_curve="DPKT7814TM"/>
+            <column name="pStepEnDiagFee"          data_type="string" bin_size="3"   cal_curve="DPKT7814TM"/>
+            <column name="pStepEnDiagTemp"         data_type="string" bin_size="3"   cal_curve="DPKT7814TM"/>
+            <column name="pStepEnDiagAna"          data_type="string" bin_size="3"   cal_curve="DPKT7814TM"/>
+            <column name="pStepEnDiagExpos"        data_type="string" bin_size="3"   cal_curve="DPKT7814TM"/>
+            <column name="pStepDebDiagCcd"         data_type="string" bin_size="6"   cal_curve="DPKT8752TM"/>
+            <column name="pStepDebDiagFee"         data_type="string" bin_size="6"   cal_curve="DPKT8752TM"/>
+            <column name="pStepDebDiagTemp"        data_type="string" bin_size="6"   cal_curve="DPKT8752TM"/>
+            <column name="pStepDebDiagAna"         data_type="string" bin_size="6"   cal_curve="DPKT8752TM"/>
+            <column name="pStepDebDiagExpos"       data_type="string" bin_size="6"   cal_curve="DPKT8752TM"/>
+            <column name="saveImagesCnt"           data_type="uint32" comment="Cycles elapsed since entry into current node of Save Images Procedure"/>
+            <column name="SaveImages_pSaveTarget"  data_type="string" bin_size="6"   cal_curve="DPKT7812TM" comment="Procedure Parameter: The target of the save operation (either the ground or the flash memory)"/>
+            <column name="SaveImages_pFbfInit"     data_type="uint8"  comment="Procedure Parameter: Identifier of first FBF to which images are saved"/>
+            <column name="SaveImages_pFbfEnd"      data_type="uint8"  comment="Procedure Parameter: Identifier of last FBF to which images may be saved"/>
+            <column name="acqFullDropCnt"          data_type="uint32" comment="Cycles elapsed since entry into current node of Acquire Full Drop Procedure"/>
+            <column name="AcqFullDrop_pExpTime"    data_type="uint32" unit="ms" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM"/>
+            <column name="AcqFullDrop_pImageRep"   data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM"/>
+            <column name="calFullSnapCnt"          data_type="uint32" comment="Cycles elapsed since entry into current node of Calibrate Full Snap Procedure"/>
+            <column name="CalFullSnap_pExpTime"    data_type="uint32" unit="ms" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM"/>
+            <column name="CalFullSnap_pImageRep"   data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM"/>
+            <column name="CalFullSnap_pNmbImages"  data_type="uint32" comment="Procedure Parameter: The number of images to be acquired "/>
+            <column name="CalFullSnap_pCentSel"    data_type="string" bin_size="8"   cal_curve="DPKT8106TM"/>
+            <column name="SciWinCnt"               data_type="uint32" comment="Cycles elapsed since entry into current node of science Window Stack/Snap Procedure"/>
+            <column name="SciWin_pNmbImages"       data_type="uint32" comment="Procedure Parameter: The number of images to be acquired "/>
+            <column name="SciWin_pCcdRdMode"       data_type="string" bin_size="14"  cal_curve="DPKT7027TM" comment="Procedure Parameter: Parameter PAR_CCD_ READOUT_MODE command (220,3) to the SEM"/>
+            <column name="SciWin_pExpTime"         data_type="uint32" unit="ms" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM"/>
+            <column name="SciWin_pImageRep"        data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM"/>
+            <column name="SciWin_pWinPosX"         data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_X of command (220,11) to the SEM"/>
+            <column name="SciWin_pWinPosY"         data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_Y of command (220,11) to the SEM"/>
+            <column name="SciWin_pWinSizeX"        data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_X of command (220,11) to the SEM"/>
+            <column name="SciWin_pWinSizeY"        data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_Y of command (220,11) to the SEM"/>
+            <column name="SciWin_pCentSel"         data_type="string" bin_size="8"   cal_curve="DPKT8106TM" comment="Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated"/>
+            <column name="fbfLoadCnt"              data_type="uint32" comment="Cycles elapsed since entry into current node of FBF Load Procedure"/>
+            <column name="fbfSaveCnt"              data_type="uint32" comment="Cycles elapsed since entry into current node of FBF Save Procedure"/>
+            <column name="FbfLoad_pFbfId"          data_type="uint8"  comment="Procedure Parameter: The FBF Identifier"/>
+            <column name="FbfLoad_pFbfNBlocks"     data_type="uint8"  comment="Procedure Parameter: Number of blocks to be loaded from the FBF"/>
+            <column name="FbfLoad_pFbfRamAreaId"   data_type="uint16" comment="Procedure Parameter: Identifier of RAM Data Area where FBF blocks are loaded or zero if RAM Data Area is specified as a raw RAM Address through parameter texttt{pFbfRamAddr}"/>
+            <column name="FbfLoad_pFbfRamAddr"     data_type="uint32" comment="Procedure Parameter: Address in RAM where the FBF blocks are loaded (or don't care if texttt{pFbfRamAreaId} is not zero)"/>
+            <column name="FbfSave_pFbfId"          data_type="uint8"  comment="Procedure Parameter: The FBF dentifier"/>
+            <column name="FbfSave_pFbfNBlocks"     data_type="uint8"  comment="Procedure Parameter: Number of blocks to be transferred to the FBF"/>
+            <column name="FbfSave_pFbfRamAreaId"   data_type="uint16" comment="Procedure Parameter: Identifier of RAM Data Area from where FBF blocks are saved or zero if RAM Data Area is specified as a raw RAM Address through parameter texttt{pFbfRamAddr}"/>
+            <column name="FbfSave_pFbfRamAddr"     data_type="uint32" comment="Procedure Parameter: Address in RAM from which the FBF blocks are transferred  (or don't care if texttt{pFbfRamAreaId} is not zero)"/>
+            <column name="fbfLoadBlockCounter"     data_type="uint8"  comment="Number of blocks transferred to Target RAM Data Area by FBF Load Procedure since the procedure was last started"/>
+            <column name="fbfSaveBlockCounter"     data_type="uint8"  comment="Number of blocks transferred to Targt FBF by FBF Save Procedure since the procedure was last started"/>
+            <column name="transFbfToGrndCnt"       data_type="uint32" comment="Cycles elapsed since entry into current node of Transfer FBF To Ground Procedure"/>
+            <column name="TransFbfToGrnd_pNmbFbf"  data_type="uint8"  comment="Procedure Parameter: The number of FBFs to be transferred to ground"/>
+            <column name="TransFbfToGrnd_pFbfInit" data_type="uint8"  comment="Procedure Parameter: Identifier of first FBF to be transferred to ground"/>
+            <column name="TransFbfToGrnd_pFbfSize" data_type="uint8"  comment="Procedure Parameter: Size in number of blocks of the FBFs to be transferred to ground (same size for all FBFs)"/>
+            <column name="nomSciCnt"               data_type="uint32" comment="Cycles elapsed since entry into current node of Nominal Science Procedure"/>
+            <column name="NomSci_pAcqFlag"         data_type="uint8"  comment="Procedure Parameter: If flag is true, the procedure performs the initial target acquisition observation"/>
+            <column name="NomSci_pCal1Flag"        data_type="uint8"  comment="Procedure Parameter: If flag is true, the procedure performs the calibration observation before the science observation"/>
+            <column name="NomSci_pSciFlag"         data_type="uint8"  comment="Procedure Parameter: If flag is true, the procedure performs the science observation "/>
+            <column name="NomSci_pCal2Flag"        data_type="uint8"  comment="Procedure Parameter: If flag is true, the procedure performs the calibration observation after the science observation"/>
+            <column name="NomSci_pCibNFull"        data_type="uint8"  comment="Procedure Parameter: The number of CIBs for Full CCD Images"/>
+            <column name="NomSci_pCibSizeFull"     data_type="uint16" comment="Procedure Parameter: The size in kBytes of the CIBs for Full CCD Images"/>
+            <column name="NomSci_pSibNFull"        data_type="uint8"  comment="Procedure Parameter: The number of SIBs for Full CCD Images"/>
+            <column name="NomSci_pSibSizeFull"     data_type="uint16" comment="Procedure Parameter: The size in kBytes of the SIBs for Full CCD Images"/>
+            <column name="NomSci_pGibNFull"        data_type="uint8"  comment="Procedure Parameter: The number of GIBs for Full CCD Images"/>
+            <column name="NomSci_pGibSizeFull"     data_type="uint16" comment="Procedure Parameter: The size in kBytes of the GIBs for Full CCD Images"/>
+            <column name="NomSci_pSibNWin"         data_type="uint8"  comment="Procedure Parameter: The number of SIBs for Window CCD Images"/>
+            <column name="NomSci_pSibSizeWin"      data_type="uint16" comment="Procedure Parameter: The size in kBytes of the SIBs for Window CCD Images"/>
+            <column name="NomSci_pCibNWin"         data_type="uint8"  comment="Procedure Parameter: The number of CIBs for Window CCD Images"/>
+            <column name="NomSci_pCibSizeWin"      data_type="uint16" comment="Procedure Parameter: The size in kBytes of the CIBs for Window CCD Images"/>
+            <column name="NomSci_pGibNWin"         data_type="uint8"  comment="Procedure Parameter: The number of GIBs for Window CCD Images"/>
+            <column name="NomSci_pGibSizeWin"      data_type="uint16" comment="Procedure Parameter: The size in kBytes of the GIBs for Window CCD Images"/>
+            <column name="NomSci_pExpTimeAcq"      data_type="uint32" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the acquisition observation"/>
+            <column name="NomSci_pImageRepAcq"     data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the acquisition observation"/>
+            <column name="NomSci_pExpTimeCal1"     data_type="uint32" unit="ms" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the first calibration observation"/>
+            <column name="NomSci_pImageRepCal1"    data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the first calibration observation"/>
+            <column name="NomSci_pNmbImagesCal1"   data_type="uint32" comment="Procedure Parameter: The number of images to be acquired  during the first calibration observation"/>
+            <column name="NomSci_pCentSelCal1"     data_type="string" bin_size="8"   cal_curve="DPKT8106TM" comment="Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated during the first calibration observation"/>
+            <column name="NomSci_pNmbImagesSci"    data_type="uint32" comment="Procedure Parameter: The number of images to be acquired  during the science observation"/>
+            <column name="NomSci_pCcdRdModeSci"    data_type="string" bin_size="14"  cal_curve="DPKT7027TM" comment="Procedure Parameter: Parameter PAR_CCD_ READOUT_MODE command (220,3) to the SEM during the science observation"/>
+            <column name="NomSci_pExpTimeSci"      data_type="uint32" unit="ms" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the science observation"/>
+            <column name="NomSci_pImageRepSci"     data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the science observation"/>
+            <column name="NomSci_pWinPosXSci"      data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_X of command (220,11) to the SEM during the science observation"/>
+            <column name="NomSci_pWinPosYSci"      data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_POS_Y of command (220,11) to the SEM during the science observation"/>
+            <column name="NomSci_pWinSizeXSci"     data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_X of command (220,11) to the SEM during the science observation"/>
+            <column name="NomSci_pWinSizeYSci"     data_type="uint16" unit="pix" comment="Procedure Parameter: Parameter PAR_CCD_ WINDOW_STAR_SIZE_Y of command (220,11) to the SEM during the science observation"/>
+            <column name="NomSci_pCentSelSci"      data_type="string" bin_size="8"   cal_curve="DPKT8106TM" comment="Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated during the science observation"/>
+            <column name="NomSci_pExpTimeCal2"     data_type="uint32" unit="ms" comment="Procedure Parameter: Parameter PAR_EXPOSURE_TIME of command (220,3) to the SEM during the second calibration observation"/>
+            <column name="NomSci_pImageRepCal2"    data_type="uint32" comment="Procedure Parameter: Parameter PAR_REPETITION_ PERIOD of command (220,3) to the SEM during the second calibration observation"/>
+            <column name="NomSci_pNmbImagesCal2"   data_type="uint32" comment="Procedure Parameter: The number of images to be acquired  during the second calibration observation"/>
+            <column name="NomSci_pCentSelCal2"     data_type="string" bin_size="8"   cal_curve="DPKT8106TM" comment="Procedure Parameter: The centroid selection flag which determines whether and how a centroid is generated during the second calibration observation"/>
+            <column name="NomSci_pSaveTarget"      data_type="string" bin_size="6"   cal_curve="DPKT7812TM" comment="Procedure Parameter: The target of the save operation (either the ground or the flash memory)"/>
+            <column name="NomSci_pFbfInit"         data_type="uint8"  comment="Procedure Parameter: Identifier of first FBF to which images are saved"/>
+            <column name="NomSci_pFbfEnd"          data_type="uint8"  comment="Procedure Parameter: Identifier of last FBF to which images may be saved"/>
+            <column name="NomSci_pStckOrderCal1"   data_type="uint16" comment="Procedure Parameter: Stacking order to be used in first calibration observation"/>
+            <column name="NomSci_pStckOrderSci"    data_type="uint16" comment="Procedure Parameter: Stacking order to be used in the science observation"/>
+            <column name="NomSci_pStckOrderCal2"   data_type="uint16" comment="Procedure Parameter: Stacking order to be used in second calibration observation"/>
+            <column name="ConfigSdb_pSdbCmd"       data_type="string" bin_size="11"  cal_curve="DPKT7819TM" comment="Procedure Parameter: The reconfiguration command to the SDB"/>
+            <column name="ConfigSdb_pCibNFull"     data_type="uint8"  comment="Procedure Parameter: The number of CIBs for Full CCD Images"/>
+            <column name="ConfigSdb_pCibSizeFull"  data_type="uint16" comment="Procedure Parameter: The size in kBytes of the CIBs for Full CCD Images"/>
+            <column name="ConfigSdb_pSibNFull"     data_type="uint8"  comment="Procedure Parameter: The number of SIBs for Full CCD Images"/>
+            <column name="ConfigSdb_pSibSizeFull"  data_type="uint16" comment="Procedure Parameter: The size in kBytes of the SIBs for Full CCD Images"/>
+            <column name="ConfigSdb_pGibNFull"     data_type="uint8"  comment="Procedure Parameter: The number of GIBs for Full CCD Images"/>
+            <column name="ConfigSdb_pGibSizeFull"  data_type="uint16" comment="Procedure Parameter: The size in kBytes of the GIBs for Full CCD Images"/>
+            <column name="ConfigSdb_pSibNWin"      data_type="uint8"  comment="Procedure Parameter: The number of SIBs for Window CCD Images"/>
+            <column name="ConfigSdb_pSibSizeWin"   data_type="uint16" comment="Procedure Parameter: The size in kBytes of the SIBs for Window CCD Images"/>
+            <column name="ConfigSdb_pCibNWin"      data_type="uint8"  comment="Procedure Parameter: The number of CIBs for Window CCD Images"/>
+            <column name="ConfigSdb_pCibSizeWin"   data_type="uint16" comment="Procedure Parameter: The size in kBytes of the CIBs for Window CCD Images"/>
+            <column name="ConfigSdb_pGibNWin"      data_type="uint8"  comment="Procedure Parameter: The number of GIBs for Window CCD Images"/>
+            <column name="ConfigSdb_pGibSizeWin"   data_type="uint16" comment="Procedure Parameter: The size in kBytes of the GIBs for Window CCD Images"/>
+            <column name="HbSemCounter"            data_type="uint32"/>
+        </table>
+    </HDU>
+</FITS_schema>

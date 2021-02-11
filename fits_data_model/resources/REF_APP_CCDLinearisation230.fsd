@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+       version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+		version 10.1    01. 09. 2018 RRO
+			- EXTNAME changed from REF_APP_CCDLinearisation to REF_APP_CCDLinearisation230
+			- new header keywords: PROVIDER, DESCRIP
+
+		version 7.2  24. 03. 2017 RRO
+			- the implementation of the CCD linearisation is changed from a 
+			  LUT table to a spline function. Now the table stores the 
+			  parameters of the cubic splines, i.e. of order 3.  
+
+        version 5.2  02. 06. 2016 RRO
+           - data_type of column CCD_CORRECTED changed from uint32 to uint16
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_CCDLinearisation230">
+        <brief> The boundaries and the coefficients of the cubic spline for read-out frequency of 230 kHz</brief>
+        <description>A spline function is used to correct for the non linearity of 
+                     the CCD. The linearisation has to be applied on the e- values. 
+                     The coefficients of a given row are valid from the e- value defined in the
+                     BOUNDARY column of that row up to the e- value 
+                     (column BOUNDARY) defined 
+                     in the next row. The e- of the last row is the highest number of
+                     electrons for which a correction can be applied. </description>
+        <header>
+            <keyword name="EXT_VER"            data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="BOUNDARY"  data_type="double"    comment="the coefficients are valid starting with number of e- "/>
+            <column name="COEF_0"    data_type="double"    comment="spline coefficient of order 0"/>
+            <column name="COEF_1"    data_type="double"    comment="spline coefficient of order 1"/>
+            <column name="COEF_2"    data_type="double"    comment="spline coefficient of order 2"/>
+            <column name="COEF_3"    data_type="double"    comment="spline coefficient of order 3"/>
+       </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL1L2
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+		version 6.4  18. 12. 2016 RRO
+			- #12024 new data structure
+			
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops      	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY ColumnTimeL1L2         SYSTEM "ColumnTimeL1L2.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_COR_BkgSLImageMetadata">
+        <brief> Meta data of the Background and Straylight images, 
+                stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube. It stores meta data of that image.
+        </description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel1;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+        </header>
+        <!-- Table description  -->
+        <table>
+        	&ColumnTimeL1L2;
+            <column name="BKG_ERROR" 	data_type="double" 	comment="error introduced by the correction per pixel"/>
+            <column name="CE_COUNTER"   data_type="uint16"  comment="image counter per visit"/>
+        </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 5.0  09. 02. 2016 RRO
+           - replace KeywordDataLevelUndef by KeywordDataLevelRef
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_Limits">
+        <brief> Hard and soft limits of HK parameters and derived parameters </brief>
+        <description>Stores the limits of HK parameters and derived parameters.
+                     Several of such tables can be valid at the same time. 
+                     They are distinguished by their data name, see keyword DTA_NAME. 
+                     They are used by the limit_check program.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+            <keyword name="DATANAME" db="true" data_type="string"     comment="data name of this limit"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="PARAM_NAME"  data_type="string" bin_size="32"  comment="Name of the parameter"/>
+            <column name="STRUCT_NAME" data_type="string" bin_size="32"  comment="Structure name, where the parameter is stored."/>
+            <column name="ACTIVE"      data_type="bool"                  comment="Limits are applied if set to true" />
+            <column name="UPPER_LIMIT" data_type="double" bin_size="2"   comment="Soft and hard upper limit" />
+            <column name="LOWER_LIMIT" data_type="double" bin_size="2"   comment="Soft and hard lower limit" />
+       </table>
+    </HDU>
+</FITS_schema>

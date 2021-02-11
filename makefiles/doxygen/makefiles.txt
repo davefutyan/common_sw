@@ -1,0 +1,461 @@
+/**
+ @defgroup makefiles  CHEOPS make utility
+ @author Reiner Rohlfs UGE
+
+ @brief    This module provides a make utility to build the CHEOPS SOC software
+
+- <b> Introduction </b>
+
+  The goal of the design of this make utility is to provide an easy to use make.
+  Therefore all build rules are defined in a common file called @b Makefile. 
+  This Makefile is identical for all modules and should not be modified by
+  the developer of a module.
+  The module dependent definitions, like the libraries and programs to be build and
+  their dependencies are defined in a module specific file called @b makecheops.  
+  A more detailed description of this makecheops file is provided below.
+  
+  Only a limited set of .PHONY targets are provided. These are
+  - make @b all or just make
+  - make @b clean
+  - make @b install
+  - make @b unit_test
+  - make @b functional_test
+  - make @b integration_test
+  - make @b performance_test
+  - make @b tests
+  - make @b coverage
+  - make @b coverage_jenkins
+  - make @b doc
+  - make @b make_update
+  - make @b release
+  
+  For a detailed description see <b> Implemented .PHONY targets </b> below. 
+  
+- <b> The directory structure of a module </b>
+
+  This make utility expects a directory structure of a module as defined in the 
+  [engineering standards](http://www.isdc.unige.ch/svn-cheops/02_system_engineering/documents/ecss/software_engineering_guideline/CHEOPS-UGE-SOC-ST-001_software_engineering_guideline.pdf).
+   The sub-directories of a module directory are:
+   - @b src  to host the source code files *.cxx
+   - @b include to host the header files *.hxx
+   - @b obj to host the object files *.o
+   - @b python to host Python source code files *.py
+   - @b bin to host the executables 
+   - @b lib to host the libraries *.so or *.dylib
+   - @b conf to host the configurations files *.xml
+   - @b resourses to host the resources of the module, for example the fits 
+        schema files of the fits_data_model module or the job-order files
+   - @b doxygen to host source code independent documentation files for doxygen
+   - @b doxygen/python to host Python specific documentation
+   - @b doxygen/cxx to host C++ specific documentation
+   - @b unit_test/src to host the source code of the unit tests *.cxx
+   - @b unit_test/obj to host the object files of the unit test *.o
+   - @b unit_test/bin to host the unit test programs
+   - @b unit_test/python to host the source code of Python unit tests *.py
+   - @b unit_test/resources to host the resources or the test input data 
+        of the unit tests
+   - @b unit_test/result to host the results or the test output data of the unit tests
+   - <b> tests/[functional | integration | performance]/bin</b> to host the test scripts
+   - <b> tests/[functional | integration | performance]/conf</b> to host configurations files *.xml of the tests
+   - <b> tests/[functional | integration | performance]/resources</b> to host job-order files of the tests
+   - <b> tests/[functional | integration | performance]/output</b> to host the output data and log files of the tests
+   
+    
+  <br>
+  
+- <b> Environment variables </b>  
+
+   This make utility uses 4 environment variables. These are
+   -# @b CHEOPS_SW
+   
+      It defines the base directory of an installation area. The software will 
+      be copied into sub-directories by invoking <b>make install</b>. The directory
+      and its sub-directories will be created if they do not exist. 
+
+   -# @b EXT_LIB_DIRS
+   
+      In case external libraries as boost, xsd or cfitsio are installed in a location where 
+      the compiler does not find them automatically, the path to the libraries can be defined 
+      by this environment variable. Each directory has to be preceded by "-L". For example:
+      <pre>
+      export EXT_LIB_DIRS="-L/usr/local/something -L/home/name/libs"
+      </pre>
+   
+   -# @b EXT_INC_DIRS
+   
+      In case external libraries as boost, xsd or cfitsio are installed in a location where 
+      the compiler does not find the corresponding header files them automatically, 
+      the path to the header files can be defined 
+      by this environment variable. Each directory has to be preceded by "-I". For example:
+      <pre>
+      export EXT_INC_DIRS="-I/usr/local/something -I/home/name/include"
+      </pre>
+   
+   -# @b LD_LIBRARY_PATH (LINUX) or @b DYLD_LIBRARY_PATH (MAX OS)
+   
+      One of the paths, defined by this environment variable has to be ${CHEOPS_SW}/lib
+      For example
+      <pre>
+      export LD_LIBRARY_PATH=${CHEOPS_SW}/lib:${LD_LIBRARY_PATH}
+      </pre>
+      
+   These environment variables have to be set also in Eclipse to be able to compile, to link,
+   to install and to run the software in the Eclipse IDE.  
+   
+   In addition to the aforementioned environment variables, the directory 
+   ${CHEOPS_SW}/python must be added to the @b PYTHONPATH variable in order to 
+   include Python packages installed there in scripts. PYTHONPATH is however not 
+   used by the make utility itself.
+  
+- <b>The Makefile and the makecheops files</b>
+ 
+	 The make utility is composed of two files. Their filenames are:
+	 -# @b Makefile 
+	 
+	    As already mentioned, this is a common file used by every module.
+	    It should not be modified by the developer of a module. The master is located at
+	    @b common_sw/makefiles/resources/Makefile. At the beginning of the development
+	    of a new module a copy of this master file has to be located in the base directory
+	    of the module. 
+	 -# @b makecheops
+	 
+	    Beside the Makefile this module dependent file must exist in the base directory of a
+	    module. The Makefile will actually include this makecheops file. It defines the
+	    libraries and programs of the module and the object files, used to build the libraries
+	    and programs. <br>
+		Assume a program called @a program1 should be built from two source files called
+		@a prog_src1.cxx and @a prog_src2.cxx. The makecheops file would look like
+		<pre>
+		EXEC_TARGET1 = program1
+		EXEC_OBJECT1 = prog_scr_2.o prog_src2.o
+		</pre>
+		A detailed description of the make variables, that can be defined in this 
+		makecheops file can be found in the following chapter. 
+	
+- <b> Variable definitions in makecheops </b>
+ 
+   The content of the makecheops file defines which programs and libraries should be built and
+   from which source code they are built. This is done by defining variables. Following variables
+   can be define:
+   
+   - <b> Building one or two executables </b>
+      
+	   - @b EXEC_TARGET1 = program_name 
+	   	   
+	     defines the file name of the program to be build. It has to be defined without path. But 
+	     it will be created in the bin directory of the module. 
+	     
+	   - @b EXEC_OBJECT1 = file1.o file2.o
+	   
+	     defines the object files used to build the EXEC_TARGET1 program. These objects files will be 
+	     automatically created from the corresponding source files (*.cxx). Therefore the source files
+	     must exist in the src sub-directory. 
+	       	     
+	   - @b EXEC_TARGET2 = program2_name
+	   
+	     similar as EXEC_TARGET1, but used to build a second program of the same module.
+	     It can be ignored, if the module builds just one program or just one library.
+	     
+	   - @b EXEC_OBJECT2 = file2_1.o file2_2.o
+	   
+	   	 similar as EXEC_OBJECT1, but defines the object file to build the second program, defined
+	   	 by EXEC_TARGET2.    
+	   	   
+   - <b>Building a shared library </b>
+	  
+	   - @b LIB_TARGET1 = example
+	   
+	     It defines the name of the library to be built. The actual filename of the library
+	     would be with the above example : libexample.dylib on MAC systems and libexample.so
+	     ion LINUX systems. The file will be created in the lib sub-directory of the module.	     
+	     
+	   - @b LIB_OBJECTS1 = file1.o  file2.o file3.o   
+	     
+		 defines the object files used to build the LIB_TARGET1 library. These objects files will be 
+	     automatically created from the corresponding source files (*.cxx). Therefore the source files
+	     must exist in the src sub-directory. 
+	   
+	   - @b LIB_TARGET2 = example2
+	   
+	     Similar to LIB_TARGET1, it defines the name of the second library to be built.
+	     It can be ignored if the module builds only one library.
+	     
+	   - @b LIB_OBJECTS2 = file2_1.o  file2_2.o file2_3.o   
+	     
+		 Similar to LIB_OBJECTS1, it defines the object files used to build the LIB_TARGET2 library.
+		 
+	   - @b PYLIB_TARGET1 = example
+	     
+	     It defines the name of a shared library containing a Python extension 
+	     module. The created file will have the extension .so, independent of 
+	     the OS on which the library is built, otherwise Python will not 
+	     recognize it as an extension module. The file will be created in the 
+	     lib sub-directory of the module.
+	   
+	   - @b PYLIB_OBJECT1 = file1.o file2.o
+	   
+	     It defines the object files used to build the PYLIB_OBJECT1 library. These objects files will be 
+	     automatically created from the corresponding source files (*.cxx). Therefore the source files
+	     must exist in the src sub-directory.
+	     
+   - <b> Defining tests </b>	     
+	
+	   - @b CXX_UNIT_TESTS = u_test1 u_test2 u_test3
+	   
+	     defines a list of C++ unit tests. For each name in this list a  
+	     corresponding source file *.cxx is expected in the unit_test/scr 
+	     sub-directory. The "make unit_test" - item in the chapter "Implemented 
+	     .PHONY targets" describes how the unit tests are build and how they are
+	     executed. <br> 
+	     This variable is used only if the mackecheops file is located in a 
+	     unit_test directory.
+	     
+	   - @b FUNCTIONAL_TESTS = f_test1 f_test2 f_test3
+	   
+	     defines a list of scripts to run functional tests. This variable
+	     should be used in the makecheops file, which is located in tests/functional. 
+	     The listed scipts themselves have
+	     to be located in the tests/functional/bin directory. Calling
+	     "make functional_test" will execute the listed functional test scripts.
+	     
+	   - @b PERFORMANCE_TESTS = p_test1 p_test2 p_test3
+	   
+	     defines a list of scripts to run performance tests. This variable
+	     should be used in the makecheops file, which is located in tests/performance. 
+	     The listed scipts themselves have
+	     to be located in the tests/performance/bin directory. Calling
+	     "make performance_test" will execute the listed performance test scripts.
+	     
+	   - @b INTEGRATION_TESTS = i_test1 i_test2 i_test3
+	   
+	     defines a list of scripts to run integration tests. This variable
+	     should be used in the makecheops file, which is located in tests/integration. 
+	     The listed scipts themselves have
+	     to be located in the tests/integration/bin directory. Calling
+	     "make integration_test" will execute the listed integration test scripts.
+	     
+	   - @b PYTHON_UNIT_TESTS = test1 test2 test3
+	   
+	     defines a list of unit test Python modules. Each name in the list 
+	     corresponds to the module name of a Python script located in the 
+	     sub-directories unit_test/python or unit_test/bin. The 
+	     "make unit_test" - item in the chapter "Implemented .PHONY targets" 
+	     describes how the unit tests are build and how they are executed. <br>
+	     This variable is used only if the mackecheops file is located in a 
+	     unit_test directory.
+	     
+	   - @b UNIT_TESTS_PROG_PARAMS = --parameter=value  
+	 
+	     with this variable command line parameters can be defined. They will
+	     be passed to every test program defined by the variable CXX_UNIT_TESTS 
+	     when the unit test is executed by invoking "make unit_test" or 
+	     "make coverage".
+	     
+	   - @b PYTHON_COVERAGE = package
+	   
+	     defines the Python packages to be included in the unit test coverage 
+	     reports for Python. If not defined, all packages are included.  
+		              
+   - <b> Installing the module in the $CHEOPS_SW area.</b>
+   
+     The programs defined by EXEC_TARGET1 and EXEC_TARGET2 will be installed in the ${CHEOPS_SW}/bin
+     directory by invoking the "make install" command. There is no extra definition in the makechops 
+     file required. In addition the programs configuration files will be installed in the ${CHEOPS_SW}/conf
+     directory. Therefore for each program a corresponding configuration file called EXEC_TARGET1.xml 
+     and EXEC_TARGET2.xml must exist in the conf directory of the module.<br>
+     Similar the libraries, which were build are automatically installed in ${CHEOPS_SW}/lib.     
+     
+     Libraries will have to install also some header files in ${CHEOPS_SW}/include. And some programs may 
+     have to install some resource files into ${CHEOPS_SW}/resources. These files have to be 
+     defined by two variables:
+     
+       - @b INSTALL_INCL = file1.hxx file2.hxx
+       
+         The files defined by this variable have to be located in the incluce sub-directory of the module
+         and will be copied to ${CHEOPS_SW}/include by invoking "make install"
+       
+       - @b INSTALL_RESOURCES = file1.res file2.res file3.res
+       
+         The files defined by this variable have to be located in the resource sub-directory of the module
+         and will be copied to ${CHEOPS_SW}/include by invoking "make install"
+         
+       - @b INSTALL_PYTHON_PACKAGE = examplepackage
+       
+         Copies the Python package with the name defined by this variable into ${CHEOPS_SW}/python. The
+         package must be located directly inside in the module's python directory.
+       
+   - <b> Other sometimes useful variables </b>  
+   
+        - @b CLEAN = src/filename.cxx conf/filename.xml
+        
+          All files defined by this variable will be delete when "make clean" is called. The filename 
+          including the path relative to the base directory of the module has to given.   
+          
+        - @b SUBDIRS = dir_1 dir_2
+        
+          defines that the target processing should also be executed in sub-directories, in the example
+          above in the sub-directoreis  dir_1 and 
+          dir_2. For a detailed description of this feature see "Recursive calls of make in sub-directories"   
+          at the end of this document.
+          
+        - @b RELEASE_VERSION = r_c.n
+        
+          defines the release version of a product. It should be defined in the
+          makecheops file of the product directory. It is used while the product
+          is released invoking the "make release" command. The value is copied
+          to several places. For example in the release note and in the doxygen 
+          documenations and it is used as directory name in the tagged version.
+          The @b c in the version number should be the development cycle, 
+          while @b n is the nth release in a development cyste.\n  
+          Since common_sw release 4.4 this variable is also used to set the
+          version number of the excutables and the test programs 
+          of the released product.
+     
+   Please contact the CHEOPS SOC helpdesk <cheops-soc-help@unige.ch> if you are not able to build your module by
+   defining these variables. 
+ 
+
+- <b>Implemented .PHONY targets </b>
+ 
+   - make @b all or just make
+   
+     will build the programs EXEC_TARGET1 and EXEC_TARGET2 and the libraries 
+     LIB_TARGET1, LIB_TARGET2 and PYLIB_TARGET1 if these variables are defined. 
+     The programs will be stored in the bin sub-directory of the module and the 
+     library in the lib sub-directory of the module.
+     
+   - make @b clean
+   
+     will remove all files, that were created by calling "make" or "make all". 
+     In detail the EXEC_TARGET1 and EXEC_TARGET2 programs, the LIB_TARGET1, 
+     LIB_TARGET2 and PYLIB_TARGET1 library and all object files (*.o) in the 
+     obj sub-directory of the module will be deleted. And the files 
+     src/*_versoin.cxx will be deleted as well. In addition it will delete all 
+     files defined by the CLEAN variable.
+   
+   - make @b install
+   
+     will install all necessary files of a module in the ${CHEOPS_SW} diretrory tree. A "make all" is
+     exectuted before the actual installation is executed, i.e. before the files are copied.<br>
+     In detail it will copy the executables in ${CHEOPS_SW}/bin, the library in ${CHEOPS_SW}/lib,
+     the configuration files in ${CHEOPS_SW}/conf and the Python packages to ${CHEOPS_SW}/python. 
+     Furthermore it will copy the files definied by INSTALL_INCL in ${CHEOPS_SW}/include and 
+     will copy the files defined by INSTALL_RESOURCES in ${CHEOPS_SW}/resources.
+   
+   - make @b unit_test
+   
+     will build and execute all C++ and Python unit tests. The C++ unit test 
+     programs have to be defined by the CXX_UNIT_TESTS variable in the 
+     makecheops file as a space seprated list of program names. For each program
+     defined in the CXX_UNIT_TESTS variable a source file has to be available in 
+     the unit_test/src directory. It will be compiled and executed. A limitation
+     is that the unit test program must be built from only one source file.
+     
+     Similarly, the Python unit test modules have to be defined by the 
+     PYTHON_UNIT_TESTS variable. For each module name defined in 
+     PYTHON_UNIT_TESTS a corresponding Python script must be present in either 
+     unit_test/python or unit_test/bin. Python unit tests are executed using the 
+     Nose unit test framework.
+     
+   - make @b functional_test
+   
+     will execute all functional test scripts. These scripts have to be defined
+     by the FUNCTIONAL_TESTS variable in the makecheops file as space separated list of
+     script files. 
+     
+   - make @b performance_test
+   
+     will execute all performance test scripts. These scripts have to be defined
+     by the PERFORMANCE_TESTS variable in the makecheops file as space separated list of
+     script files. 
+     
+   - make @b integration_test
+   
+     will execute all integration test scripts. These scripts have to be defined
+     by the INTEGRATION_TESTS variable in the makecheops file as space separated list of
+     script files. 
+     
+   - make @b tests
+   
+     will execute all tests. It is itentical to calling "make unit_test; make
+     functional_test; make performance_test; make integration_test" .  
+     
+   - make @b coverage
+   
+     it is very similar as @b make @b unit_test. For C++, the software of the module
+     is compiled with the -coverage option. Then the unit test programs are created
+     and the tests are executed. Finally the web pages are created to show the
+     code coverage of the module software. The top level web page is
+     module/unit_test/cxxcoverge/index.html.
+     
+     For Python, the unit tests are run with nosetest's --with-coverage option, 
+     and the resulting html report is located in module/unit_test/pycoverge/index.html.
+    
+   - make @b coverage_jenkins
+   
+     it is very similar to @b make @b coverage, but instead of generating web
+     pages it generates xml files containing coverage, unit test result and 
+     static code analysis results in a format that can be read by the Jenkins
+     integration  server.
+   
+   - make @b doc
+   
+     will create the doxygen documentation of a product. A Doxyfile has to be available in the
+     the sub-directory @a doxygen of the product. The "make doc" command has no affect if 
+     no doxygen sub-direcgtory exist or if no Doxyfile is available in 
+     such a sub-directory. The output directory into the created documentation files
+     are create are defined inside of the Doxyfile. It should be doc/manual
+    
+   - make @b make_update   
+   
+     this target can be used to update the Makefile in all directories. First the master Makefile
+     at common_sw/makefiles/resources/Makefile should be updated. Invoking
+     "make install" will copy it to $CHEOPS_SW/resources. Now "make make_update" will copy the
+     Makefile file from $CHEOPS_SW/resources to the current directory and all sub-directores 
+     defined by the variable SUBDIRS, see also chapter "Recursive calls of make in sub-directories". 
+     To update the Makefile in a full software directory tree 
+     the "make make_update" command should be executed at the top level directroy of the 
+     software directory tree. 
+     
+   - make @b release
+     
+     releases the software of one product. This target should be used carefully.
+     It executes the release script $CHEOPS_SW/bin/release_cheops_package, which
+     copies the trunk version of a product to a new tagged version in the svn repository and
+     updates release number and date in the release note. Furthermore it
+     creates the doxygen documentation and adds it to the tagged version. 
+     The release number is taken from the RELEASE_VERSION variable.    
+   
+- <b> Recursive calls of make in sub-directories </b>   
+
+  make can be executed recursively in a directory tree. With this feature it is possbile to build and
+  install all modules of one product with one command. Even the full CHEOPS SOC software can
+  be built at once. Nevertheless it is required that in each sub-directory at every level of the 
+  directory tree the files Makefile and makecheops are available. In the makcheops file the 
+  sub-directories, that should belong to the directory tree to be executed, are defined. The 
+  variable SUBDIRS has to list the sub-directories. For example
+  <pre>
+  SUBDIRS += module_1 module_2
+  SUBDIRS += module_3  
+  </pre>
+   
+  Besides the definition of the sub-directories any other variable can be defined in the same
+  makecheops file to built for example a program. During the execution for one target 
+  first the sub-directories are processed and then the target in the current d
+  directory is built.
+
+- <b> Python style documentation using Doxypypy </b>  
+  
+  Python code may be documented using Python style documentation with docstrings instead of the standard Doxygen format.
+  This requires the use of a filter that converts Python style documentation to Doxygen style documentation, where the filter is a binary that must be available on the PATH.
+  
+  This module contains a filter named py_filter which uses Doxypypy to perform this task. It is installed in the bin directory when 'make' is run.
+  To enable the filter, the FILTER_PATTERNS parameter in the Doxygen configuration file must be updated:
+  <pre>
+  FILTER_PATTERNS        = *.py=py_filter
+  </pre>
+  
+  For more information, see the <a href="https://github.com/Feneric/doxypypy">Doxypypy documentation</a>
+   
+  
+**/ 

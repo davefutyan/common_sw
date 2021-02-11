@@ -1,0 +1,44 @@
+<!--
+        version 7.3  06. 04. 2017 RRO #12677
+           - a possible value is warning
+
+        version 6.3  25. 10. 2016 RRO #11885
+           - changed default from skipped to N/A
+
+ 		version 6.2  24. 08. 2016 RRO #11372
+ 		   - new keyword: LC_QUAL
+ 		   
+        version 6.1  16. 08. 2016 RRO #11372
+           - changed default from outstanding to skipped
+           - new keyword: METH_CFG, LC_CFG, BIAS_RON, BDPIX_D1, BDPIX_D2, BDPIX_D3, BDPIX_D4
+                          BDPIX_C1, BDPIX_C2, BDPIX_C3, BDPIX_C4, JITTER, BKGSL_W. BKGSL_C
+           - removed keywords: TIMECONV, BAD_PIX1, BAD_PIX2, BACKSTRA
+-->   
+
+
+<group description="Data Reduction Steps: N/A, completed, skipped, warning">
+	<keyword name="BIAS_RON"  data_type="string"  default="N/A" comment="BIAS and RON estimation"  />
+	<keyword name="ADU_CONV"  data_type="string"  default="N/A" comment="ADU to photpn conversion"  />
+	<keyword name="DARK"  	  data_type="string"  default="N/A" comment="Dark current correction"  />
+	<keyword name="FFIELD"    data_type="string"  default="N/A" comment="Flat field correction"  />
+	<keyword name="FLAGGING"  data_type="string"  default="N/A" comment="Flagging"  />
+	<keyword name="JITTER"    data_type="string"  default="N/A" comment="Jitter estimate"  />
+	<keyword name="WCS"       data_type="string"  default="N/A" comment="Pixel to physical coordinates conversion"  />
+	<keyword name="SMEARING"  data_type="string"  default="N/A" comment="Smearing correction"  />
+	<keyword name="BDPIX_D1"  data_type="string"  default="N/A" comment="Detection of hot pixels"  />
+	<keyword name="BDPIX_D2"  data_type="string"  default="N/A" comment="Detection of dead pixels"  />
+	<keyword name="BDPIX_D3"  data_type="string"  default="N/A" comment="Detection of cosmic ray hits"  />
+	<keyword name="BDPIX_D4"  data_type="string"  default="N/A" comment="Detection of crazy pixels"  />
+	<keyword name="BDPIX_C1"  data_type="string"  default="N/A" comment="Correction of hot pixels"  />
+	<keyword name="BDPIX_C2"  data_type="string"  default="N/A" comment="Correction of dead pixels"  />
+	<keyword name="BDPIX_C3"  data_type="string"  default="N/A" comment="Correction of cosmic ray hits"  />
+	<keyword name="BDPIX_C4"  data_type="string"  default="N/A" comment="Correction of crazy pixels"  />
+	<keyword name="BKGSL_W"   data_type="string"  default="N/A" comment="Identification of Background and stray light windows"  />
+	<keyword name="BKGSL_C"   data_type="string"  default="N/A" comment="Background and stray light correction"  />
+	<keyword name="METH_CFG"  data_type="string"  default="N/A" comment="Method configuration module"  />
+	<keyword name="APERTURE"  data_type="string"  default="N/A" comment="Aperture photometry"  />
+	<keyword name="CONTAMIN"  data_type="string"  default="N/A" comment="Contaminations factor estimation"  />
+	<keyword name="PSF_FIT"   data_type="string"  default="N/A" comment="PSF fitting"  />
+	<keyword name="LC_QUAL"   data_type="string"  default="N/A" comment="Light curve quality analysis"  />
+	<keyword name="LC_CFG" 	  data_type="string"  default="N/A" comment="Light curve configuration modules"  />
+</group>

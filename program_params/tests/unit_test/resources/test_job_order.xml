@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ipf_Job_Order  xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+	<Ipf_Conf>
+		<Processor_Name>example_ipf</Processor_Name>
+		<Version>01.00</Version>
+		<Stdout_Log_Level>INFO</Stdout_Log_Level>
+		<Stderr_Log_Level>ERROR</Stderr_Log_Level>
+		<Test>true</Test>
+		<Breakpoint_Enable>false</Breakpoint_Enable>
+		<Processing_Station>TEST</Processing_Station>
+		<Config_Files />
+		<Sensing_Time>
+			<Start>20140801_000000000000</Start>
+			<Stop>20140802_000000000000</Stop>
+		</Sensing_Time>
+		<Dynamic_Processing_Parameters>
+			<Processing_Parameter>
+				<Name>Configuration_Baseline</Name>
+				<Value>000000</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>Configuration_Dir</Name>
+				<Value>resources/config</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>Alert_Email</Name>
+				<Value></Value>
+			</Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Log_File</Name>
+        <Value>log/test.log</Value>
+      </Processing_Parameter>
+      
+      <Processing_Parameter>
+        <Name>Int_Value</Name>
+        <Value>2</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Int_Value_Out_Of_Range</Name>
+        <Value>9999999999999999</Value>
+      </Processing_Parameter>
+      
+      <Processing_Parameter>
+        <Name>Double_Value</Name>
+        <Value>1.5</Value>
+      </Processing_Parameter>
+      
+      <Processing_Parameter>
+        <Name>Bool_Value_Yes</Name>
+        <Value>yes</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_No</Name>
+        <Value>no</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_On</Name>
+        <Value>on</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_Off</Name>
+        <Value>off</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_True</Name>
+        <Value>true</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_False</Name>
+        <Value>false</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_1</Name>
+        <Value>1</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Value_0</Name>
+        <Value>0</Value>
+      </Processing_Parameter>
+
+      <Processing_Parameter>
+        <Name>String_Vector_Value_Space_Sep</Name>
+        <Value>  "This is" a   'quoted string' test</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>String_Vector_Value_Comma_Sep</Name>
+        <Value>  "This is",a, 'quoted string',  test</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>String_Vector_Value_Invalid</Name>
+        <Value>"unclosed quotation</Value>
+      </Processing_Parameter>
+      
+      <Processing_Parameter>
+        <Name>Int_Vector_Value_Space_Sep</Name>
+        <Value>1 20000  30 </Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Int_Vector_Value_Comma_Sep</Name>
+        <Value>1, 20000, 30</Value>
+      </Processing_Parameter>
+      
+      <Processing_Parameter>
+        <Name>Double_Vector_Value_Space_Sep</Name>
+        <Value>1.5 20000.5  30.5</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Double_Vector_Value_Comma_Sep</Name>
+        <Value>1.5,20000.5, 30.5 </Value>
+      </Processing_Parameter>
+      
+      <Processing_Parameter>
+        <Name>Bool_Vector_Value_Space_Sep</Name>
+        <Value>yes no true false on off 1 0</Value>
+      </Processing_Parameter>
+      <Processing_Parameter>
+        <Name>Bool_Vector_Value_Comma_Sep</Name>
+        <Value>yes,no, true, false, on, off, 1, 0,</Value>
+      </Processing_Parameter>
+      
+		</Dynamic_Processing_Parameters>
+	</Ipf_Conf>
+	<List_of_Ipf_Procs count="4">
+		<Ipf_Proc>
+			<Task_Name>TestJobOrder</Task_Name>
+			<Task_Version>01.00</Task_Version>
+			<List_of_Inputs count="5">
+				<Input>
+					<File_Type>LOG</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>/opt/facilities/common-function/data/mcf/local/d2gsmc/tmp/mcf_triggering/20140924T114757628203047_10000/log</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>IN</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>/opt/facilities/common-function/data/mcf/local/d2gsmc/tmp/mcf_triggering/20140924T114757628203047_10000/input</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>XML</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>resources/CH_PR990001_TG000001_TU2018-01-01T12-00-30_Metadata_V000.xml</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>SCI_PRW_FullArray</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<List_of_File_Names count="10">
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000000_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000001_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000002_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000003_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000004_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000005_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000006_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000007_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000008_V000.fits</File_Name>
+						<File_Name>resources/input/cheops_P9900001_O00001_S001_C00001_SCI_PRW_FullArray_20180101T000009_V000.fits</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>SCI_PRW_SubArray</File_Type>
+					<File_Name_Type>Physical</File_Name_Type>
+					<List_of_File_Names count="0">
+					</List_of_File_Names>
+				</Input>
+			</List_of_Inputs>
+			<List_of_Outputs count="2">
+				<Output>
+					<File_Type>OUT</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>results</File_Name>
+				</Output>
+				<Output>
+					<File_Type>TMP</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>results</File_Name>
+				</Output>
+			</List_of_Outputs>
+		</Ipf_Proc>
+		<Ipf_Proc>
+			<Task_Name>TestParameters</Task_Name>
+			<Task_Version>01.00</Task_Version>
+			<List_of_Inputs count="2">
+				<Input>
+					<File_Type>LOG</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>resources/log</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>IN</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>resources/input</File_Name>
+					</List_of_File_Names>
+				</Input>
+			</List_of_Inputs>
+			<List_of_Outputs count="2">
+				<Output>
+					<File_Type>OUT</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>results</File_Name>
+				</Output>
+				<Output>
+					<File_Type>TMP</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>results</File_Name>
+				</Output>
+			</List_of_Outputs>
+		</Ipf_Proc>
+		<Ipf_Proc>
+			<Task_Name>TestModules</Task_Name>
+			<Task_Version>01.00</Task_Version>
+			<List_of_Inputs count="2">
+				<Input>
+					<File_Type>LOG</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>resources/log</File_Name>
+					</List_of_File_Names>
+				</Input>
+				<Input>
+					<File_Type>IN</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<List_of_File_Names count="1">
+						<File_Name>resources/input</File_Name>
+					</List_of_File_Names>
+				</Input>
+			</List_of_Inputs>
+			<List_of_Outputs count="2">
+				<Output>
+					<File_Type>OUT</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>results</File_Name>
+				</Output>
+				<Output>
+					<File_Type>TMP</File_Type>
+					<File_Name_Type>Directory</File_Name_Type>
+					<File_Name>results</File_Name>
+				</Output>
+			</List_of_Outputs>
+		</Ipf_Proc>
+		<Ipf_Proc>
+            <Task_Name>pdf_metadata_generator.py</Task_Name>
+            <Task_Version>01.00</Task_Version>
+            <List_of_Inputs count="0">
+
+            </List_of_Inputs>
+            <List_of_Outputs count="2">
+                <Output>
+                    <File_Type>OUT</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>results</File_Name>
+                </Output>
+                <Output>
+                    <File_Type>TMP</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>results</File_Name>
+                </Output>
+            </List_of_Outputs>
+        </Ipf_Proc>
+	</List_of_Ipf_Procs>
+</Ipf_Job_Order>

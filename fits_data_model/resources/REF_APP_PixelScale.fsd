@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+		version 6.3: 22. 10. 2016 RRO
+			#11326 new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_PixelScale">
+        <brief>Defines the pixel scale</brief>
+        <description>The only value in the table defines the scale of one
+                     CCD pixel in arcsec. 
+                     Currently the pixel scale is a identical value for all pixels. </description>
+        <header>
+            <keyword name="EXT_VER"            data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="PIXEL_SCALE"   data_type="double" unit="arcsec" comment="pixel scale of a single pixel"/>
+       </table>
+    </HDU>
+</FITS_schema>

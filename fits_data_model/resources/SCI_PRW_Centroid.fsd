@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 6.2: 10. 09. 2016 RRO
+			update according to IFSW-SOC ICD Issue 2:
+			- removed column : IMAGE_INDEX
+			- new column:      CE_COUNTER
+
+        version 5.0  03. 02. 2016 RRO
+           - Use KeywordValidityUTC instead of KeywordValidity
+           - new column: ACQUISITION_ID
+           - units changed from centi-arcsec to centi-pixel
+-->   
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_Centroid">
+        <brief>Stores the centroid data as they were calculated on-board </brief>
+         <description>There is one row per exposure. The data are not re-calculated 
+         on ground. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="6.2" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordPassVisit;   
+        </header>								     
+
+        <table>
+			<column name="OBT_START" 	  data_type="OBT"    unit="OBT"          comment="Start time of the integration"/>
+			<column name="OBT_STOP"  	  data_type="OBT"    unit="OBT"          comment="End time of the integration"/>
+			<column name="FULL_FRAME"  	  data_type="bool"                       comment="Data were taken from a full frame image" />
+            <column name="CE_COUNTER"     data_type="uint16"                     comment="image counter per visit, this centroid belongs to"/>
+            <column name="ACQUISITION_ID" data_type="uint32"                     comment="Data acquisition id, set by SEM"/>
+			<column name="OFFSET_X"  	  data_type="int32"  unit="centi-pixel"  comment="residual (measured - intended) in X" />
+			<column name="OFFSET_Y"  	  data_type="int32"  unit="centi-pixel"  comment="residual (measured - intended) in Y" />
+			<column name="LOCATION_X"  	  data_type="uint32" unit="centi-pixel"  comment="Intended X position of target star on CCD [IFSW coordinate system]" />
+			<column name="LOCATION_Y"  	  data_type="uint32" unit="centi-pixel"  comment="Intended Y position of target star on CCD [IFSW coordinate system]" />
+			<column name="DATA_CADENCE"   data_type="uint16" unit="centi-sec"    comment="Duration between consecutive centroids" />
+			<column name="VALIDITY"  	  data_type="uint8"                      comment="0: OK window mode, 1: OK full frame, other: not OK" />
+        </table>
+    </HDU>
+</FITS_schema>

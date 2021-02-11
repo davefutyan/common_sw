@@ -1,0 +1,12 @@
+
+LIB_OBJECT1 =Bookkeeping.o
+
+LIB_TARGET1 = bookkeeping
+
+INSTALL_INCL = Bookkeeping.hxx
+
+
+#define dependencies
+
+obj/Bookkeeping.o   :  include/Bookkeeping.hxx
+

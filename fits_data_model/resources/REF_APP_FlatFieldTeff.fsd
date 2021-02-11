@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+		version 10.1  10. 09. 2018 RRO
+		    - new header keyword: DATANMAE, FF_RF, SED_T_RF, SED_F_RF, THRGH_RF, QE_RF
+			- removed keyword : BANDWIDTH
+			- 3rd dimension is Teff
+
+		version 9.0  13. 12. 2017 RRO
+			- #14995 dropping the margin associated HDUs, because measurement is 
+			         only possible for the exposed part of the CCD.
+
+		version 6.4  28. 10. 2016 RRO
+			- #12008 The margin images have to be 3 dimensional images
+
+        version 6.3  17. 09. 2016 RRO
+           - new associated HDUs
+           - removed keyword: EXPTIME. Exposure is now defined in REF_APP_FlatFieldMetadata
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_FlatFieldTeff">
+        <brief> Calibration product : Calculated Flat Field frames for different Teff</brief>
+       <description> There are two images per calculated flat field. The first is the 
+                     flat field itself, the second is an error map.
+                     In the data cube first all the Flat Fields are stored than their 
+                     error maps. See also column DATA_TYPE in the attached 
+                     REF_APP_FlatFieldTeffMetadata table.  
+                     The flat fields are normalised to their average value.
+                     One pixel in the flat field correspond to one CCD pixel.</description> 
+       <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.5" comment="version of the data structure"/>
+            <keyword name="DATANAME"    data_type="string" db="true"   comment="data name of this Flat Field"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+            <group description="Flat Field attributes">
+            	<keyword name="TEMP"		data_type="real" unit="Kelvin" comment="temperature of the CCD at the time the flat field frames were taken"/>
+            </group>
+            <group description="Used reference files">
+              <keyword name="FF_RF"    data_type="string" default="N/A" comment="name of flat field reference file"/>
+              <keyword name="SED_T_RF" data_type="string" default="N/A" comment="name of Teff-SED reference file"/>           
+              <keyword name="SED_F_RF" data_type="string" default="N/A" comment="name of Filter-SED reference file"/>         
+              <keyword name="THRGH_RF" data_type="string" default="N/A" comment="name of Throughput reference file"/>
+              <keyword name="QE_RF"    data_type="string" default="N/A" comment="name of QE reference file"/> 
+            </group>
+        </header>
+
+        <image data_type="float">
+            <naxis>3</naxis>
+            <axis1 comment="X axis">1024</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+            <axis3 comment="Teff">0</axis3>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >REF_APP_FlatFieldTeffMetadata</Associated_HDU>
+    </List_of_Associated_HDUs>
+</FITS_schema>

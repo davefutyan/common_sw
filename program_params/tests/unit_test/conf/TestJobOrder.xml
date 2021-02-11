@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+<param>
+	<name>CommandLine</name>
+</param>
+
+</program_params>

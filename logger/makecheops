@@ -1,0 +1,16 @@
+LIB_OBJECT1 = Logger.o BoostLog.o EmailAlert.o
+LIB_TARGET1 = logger
+
+CHEOPS_LIBS = 
+
+INSTALL_PYTHON_PACKAGE = log
+
+INSTALL_INCL = Logger.hxx BoostLog.hxx EmailAlert.hxx
+INSTALL_RESOURCES = logger_py_conf.yaml \
+                    logger_alert_email_template
+
+#CXX_CFLAGS += -fprofile-arcs -ftest-coverage
+
+obj/Logger.o	:  include/Logger.hxx include/BoostLog.hxx
+obj/BoostLog.o	:  include/BoostLog.hxx
+obj/EmailAlert.o	:  include/EmailAlert.hxx

@@ -1,0 +1,24 @@
+/**
+ @defgroup utilities  Utility classes
+ 
+ @author  Reiner Rohlfs, UGE
+ @author  Anja Bekkelien UGE
+
+ @brief    A collection of utility classes like OBT, UTC, MJD, BJD, 
+           PassId, VisitId and ValidRefFile.
+ 
+ **/
+
+   /** *************************************************************************
+   *  @example TimeClasses.cxx
+   *  @ingroup utilities
+   *  @author  Reiner Rohlfs UGE
+   *
+   *  @brief Example of the usage of the Time Classes UTC, MJD and BJD
+   *
+   *  This code snippet shows how to use the Time Classes UTC, MJD and BJD to
+   *  copy the times form the header of one FITS extension (input file) to the 
+   *  header of an output FITS extension
+   *
+   */
+ 

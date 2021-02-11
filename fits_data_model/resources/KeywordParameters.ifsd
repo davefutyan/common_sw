@@ -1,0 +1,39 @@
+<!--
+
+        version 7.2  03. 04. 2017 RRO
+           - #12933 remove keyword REP_TIME
+
+-->   
+
+
+<group description="Parameter Names">
+	<keyword name="N_PARA01"  data_type="string"   comment="name of first parameter" />
+	<keyword name="U_PARA01"  data_type="string"   comment="unit of first parameter" />
+
+	<keyword name="N_PARA02"  data_type="string"   comment="name of second parameter" />
+	<keyword name="U_PARA02"  data_type="string"   comment="unit of second parameter" />
+
+	<keyword name="N_PARA03"  data_type="string"   comment="name of third parameter" />
+	<keyword name="U_PARA03"  data_type="string"   comment="unit of third parameter" />
+
+	<keyword name="N_PARA04"  data_type="string"   comment="name of fourth parameter" />
+	<keyword name="U_PARA04"  data_type="string"   comment="unit of fourth parameter" />
+
+	<keyword name="N_PARA05"  data_type="string"   comment="name of fifth parameter" />
+	<keyword name="U_PARA05"  data_type="string"   comment="unit of fifth parameter" />
+
+	<keyword name="N_PARA06"  data_type="string"   comment="name of sixth parameter" />
+	<keyword name="U_PARA06"  data_type="string"   comment="unit of sixth parameter" />
+
+	<keyword name="N_PARA07"  data_type="string"   comment="name of seventh parameter" />
+	<keyword name="U_PARA07"  data_type="string"   comment="unit of seventh parameter" />
+
+	<keyword name="N_PARA08"  data_type="string"   comment="name of eighth parameter" />
+	<keyword name="U_PARA08"  data_type="string"   comment="unit of eighth parameter" />
+
+	<keyword name="N_PARA09"  data_type="string"   comment="name of ninth parameter" />
+	<keyword name="U_PARA09"  data_type="string"   comment="unit of ninth parameter" />
+
+	<keyword name="N_PARA10"  data_type="string"   comment="name of tenth parameter" />
+	<keyword name="U_PARA10"  data_type="string"   comment="unit of tenth parameter" />
+</group>

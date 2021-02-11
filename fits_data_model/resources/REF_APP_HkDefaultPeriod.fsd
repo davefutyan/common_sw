@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 13.1.4
+           - 2021-02-08 ABE #23571 New reference file for default periodicities 
+                                   of S/C and CIS HK packets
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_HkDefaultPeriod">
+        <brief> Default periodicities of S/C and CIS HK packets. </brief>
+        <description></description>
+        <header>
+            <keyword name="EXT_VER" data_type="string" default="13.1.4" comment="version of the data structure"/>
+            <keyword name="DATANAME" data_type="string" db="true" comment="data name of this limit"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+            <group description="Default period attributes">
+                <keyword name="DEF_PER" data_type="integer" unit="seconds" comment="Periodicity for undefined structures"/>
+            </group>
+        </header>
+        
+        <table>
+            <column name="STRUCT_NAME"    data_type="string" bin_size="32"  comment="Structure name"/>
+            <column name="DEFAULT_PERIOD" data_type="int32" unit="seconds"  comment="Default periodicity of the structure" />
+       </table>
+    </HDU>
+</FITS_schema>

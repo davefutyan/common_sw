@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_ColouredPSFMetadata">
+        <brief> Calibration Product : Meta data for the PSF, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="5.0" comment="version of the data structure"/>
+            &KeywordDataLevelRef;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+        </header>
+        <table>
+            <column name="STATUS"   data_type="int32"            	comment="flags indicating the status of each PSF image (valid or invalid for various reasons"/>
+            <column name="WAVELENGTH"  data_type="float" unit="nm"  	comment="centre of wavelength band"/>
+            <column name="INDEX_WAVELENGTH"	data_type="int32"		comment="index of wavelength axis"/>
+            <column name="TEMP_TEL" data_type="float" unit="Kelvin"	comment="telescope temperature"/>
+            <column name="THERMAL_MAP" 		data_type="string" bin_size="5"		comment="thermal map (fixed, cold, hot1, or hot2)"/>
+            <column name="INDEX_TEMP" 		data_type="int32"		comment="index of temperature axis"/>
+        </table>
+    </HDU>
+</FITS_schema>

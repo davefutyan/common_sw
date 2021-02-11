@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 13.1.2
+            - 12. 01. 2021 ABE #23299 New column RO_HW, rename RO_FREQUENCY to 
+                                      RO_FREQ for consistency with other Bias 
+                                      extensions.
+        
+        version 10.1  
+            - 10. 09. 2018 RRO        New data structure.
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_BiasFrameMetadata">
+        <brief> Calibration Product : Meta data for the bias frames, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1.2" comment="version of the data structure"/>
+            &KeywordDataLevelRef;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+        </header>
+        <table>
+            <column name="DATA_TYPE"    data_type="string" bin_size ="10" comment="type of data, either BIAS, BIAS ERROR, or RON"/>
+            <column name="FEE_TEMP"     data_type="float" unit="degC"     comment="temperature of the FEE"/>
+            <column name="CCD_TEMP"     data_type="float" unit="degC"     comment="temperature of the CCD"/>
+            <column name="RO_FREQU"     data_type="uint32"   unit="Hz"     comment="CCD readout frequency"/>
+            <column name="RO_HW"        data_type="string"   bin_size="10" comment="HW - channel: main or redundant"/>
+        </table>
+    </HDU>
+</FITS_schema>

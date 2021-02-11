@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+
+        version 11.2  22. 03. 2019
+			- #18498 new data structure
+
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops      	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordCorErrors      	SYSTEM "KeywordCorErrors.ifsd"> 
+    <!ENTITY ColumnTimeL1L2         SYSTEM "ColumnTimeL1L2.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_COR_ImagetteMetadata">
+        <brief> L1 product :  Meta data of the corrected images, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional imagette in the
+                      associated image cube. It stores meta data of that imagette.
+        </description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel1;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            &KeywordCorErrors;
+        </header>
+        <!-- Table description  -->
+        <table>
+        	&ColumnTimeL1L2;
+            <column name="CE_COUNTER"          data_type="uint16"              comment="image counter per visit"/>
+            <column name="ACQUISITION_ID"      data_type="uint32"              comment="Data acquisition id, set by SEM"/>
+            <column name="NEXP"                data_type="uint16"              comment="Number of co-added measurements"/>
+            <column name="X_OFF_FULL_ARRAY"    data_type="uint16" unit="pixel" comment="X offset of the Imagette image relative to the Full Array image without margins"/>
+	        <column name="Y_OFF_FULL_ARRAY"    data_type="uint16" unit="pixel" comment="Y offset of the Imagette image relative to the Full Array image without margins"/>
+            <column name="X_OFF_SUB_ARRAY"     data_type="uint16" unit="pixel" comment="X offset of the Imagette image relative to the Sub Array image"/>
+	        <column name="Y_OFF_SUB_ARRAY"     data_type="uint16" unit="pixel" comment="Y offset of the Imagette image relative to the Sub Array image"/>
+        </table>
+    </HDU>
+</FITS_schema>

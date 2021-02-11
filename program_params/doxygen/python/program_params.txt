@@ -1,0 +1,400 @@
+/** 
+ @defgroup ProgParam  Program Parameter Interface
+ @author Reiner Rohlfs UGE
+ @author Anja Bekkelien UGE
+
+ @brief    This module provides a class to read job order files and gives access
+ 		   to the program parameters and file names.
+
+
+<h4>Program structure</h4>
+
+   Each program shall use the cheopsInit() function to initialize 
+   the program_params module, as the first function call of the program. Equally,
+   the method cheopsExit() shall be called at the very end of the
+   program:
+   
+   @code
+   # File mymodule.py
+    
+   def main(programParams):
+      print("main")
+    
+   if __name__ == "__main__":
+      from mymodule_init import cheopsInit, cheopsExit
+      programParams = cheopsInit()
+
+      main(programParams)
+      
+      cheopsExit()
+      
+   @endcode
+   
+   The Python script mymodule_init.py is auto generated in the same directory
+   as the EXEC_TARGET, in this example mymodule.py, when running `make install`.
+  
+<h4>Program input</h4>
+
+  The program params object returned by cheopsInit() shall be used by the program to access command line arguments.
+  
+  This object will check if a job order file was given as input argument to the program, and provide access to its contents, see the following section.
+  
+  The program params object will also contain the values of other command line arguments. These can be accessed by calling the object's getParam(paramName) method:
+  
+  @code
+  > testProgram.py --param1=val1 --param2=val2 --jobOrder.xml
+  @endcode
+  
+  @code
+  
+  # File testProgram.py
+  
+  programParams = cheopsInit()
+  
+  # Get a list containing all input data structures defined in the job order
+  dataTypes = programParams.getInputStructNames()
+
+  # Get a list of all input files for the data type SCI_RAW_FullArray
+  files = programParams.getInputFiles('SCI_RAW_FullArray')
+  
+  # The output directory defined in the job order
+  outputDir = programParams.getOutDir()
+  
+  # Get the values of the other command line arguments
+  val1 = programParams.getParam('param1')
+  val2 = programParams.getParam('param2')
+  
+  @endcode 
+
+  The command line parameters must be defined in a configuration file as described later in this document. If un-defined parameters are given on the command line an error is thrown.
+  
+<h4>The job order file </h4>
+
+  The job order lists the input files and output directories that are available
+  to the program. The file names and the output directories may contain 
+  environment variables, which will be replaces by their values. 
+  They have to be specified like this: ${NAME}.  
+  
+  The program_params module provides an interface to the job 
+  order file via the class ProgramParams, which is instantiated by the 
+  cheopsInit() function. This class has methods for 
+  
+  - getting the data types (structure names) that are available in the job order and for getting 
+    all files of a specific data type
+  - getting the output directories to which the program can write its output 
+    files
+  
+  The module will also provide the following parameters from the job order 
+  file's \<Ipf_Conf\> element. To retrieve these values from program params, use
+  the getParam(name) method with the value of the Key column as argument:
+  
+  <table>
+    <tr>
+        <th>Element name</th>
+        <th>Key</th>
+        <th>Value</th>
+    </tr>
+    <tr>
+        <td>\<Processor_Name\></td>
+        <td>"Processor_Name"</td>
+        <td>The name of the processor.</td>
+    </tr>   
+    <tr>
+        <td>\<Version\></td>
+        <td>"Version"</td>
+        <td>The version of the processor.</td>
+    </tr>   
+    <tr>
+        <td>\<Stdout_Log_Level\></td>
+        <td>"Stdout_Log_Level"</td>
+        <td>The lowest log level sent to stdout.</td>
+    </tr>   
+    <tr>
+        <td>\<Stderr_Log_Level\></td>
+        <td>"Stderr_Log_Level"</td>
+        <td>The lowest log level sent to stderr.</td>
+    </tr>   
+    <tr>
+        <td>\<Test\></td>
+        <td>"Test"</td>
+        <td>A 'boolean' value of "1" or "0". Defines weather this is a test run or not.</td>
+    </tr>   
+    <tr>
+        <td>\<Breakpoint_Enable\></td>
+        <td>"Breakpoint_Enable"</td>
+        <td>A 'boolean value of "1" or "0".</td>
+    </tr>   
+    <tr>
+        <td>\<Sensing_Time\>\<Start\></td>
+        <td>"Start"</td>
+        <td>If the execution of the program was triggered by the ingestion of a
+            specific data product type into the CHEOPS Archive, this is the 
+            validity start time of that data product.
+     
+            If instead the program was executed by the processing framework with
+            a time window as input argument, as is the case with reports 
+            generated at regular time intervals, this is the start time of that
+            time window.
+            
+            In the job order, this value is formatted as yyyymmdd_hhmmssffffff.
+            When the ProgramParams class reads this parameter, it re-formats the
+            value to a valid UTC time of the format yyyy-mm-ddThh:mm:ss.ffffff, 
+            which may be used to construct UTC objects. 
+        </td>
+    </tr>   
+    <tr>
+        <td>\<Sensing_Time\>\<Stop\></td>
+        <td>"Stop"</td>
+        <td>If the execution of the program was triggered by the ingestion of a
+            specific data product type into the CHEOPS Archive, this is the 
+            validity stop time of that data product.
+     
+            If instead the program was executed by the processing framework with
+            a time window as input argument, as is the case with reports 
+            generated at regular time intervals, this is the stop time of that 
+            time window.
+            
+            In the job order, this value is formatted as yyyymmdd_hhmmssffffff.
+            When the ProgramParams class reads this parameter, it re-formats the
+            value to a valid UTC time of the format yyyy-mm-ddThh:mm:ss.ffffff, 
+            which may be used to construct UTC objects. 
+        </td
+    </tr>
+    <tr>
+        <td>\<Dynamic_Processing_Parameters\>\<Processing_Parameter\></td>
+        <td>The value of the \<Name\> element.</td>
+        <td>The value of the \<Value\> element.</td>
+    </tr>
+  </table>
+ 
+  Example usage:
+ 
+  @code 
+  
+  # Read the values of parameters defined in the job order
+  processorName = programParams.getParam('Processor_Name')
+  processingChain = programParams.getParam('PROC_CHN')
+  
+  @endcode 
+   
+  A job order file may contain multiple programs. ProgramParams will provide 
+  data only for the current program, and it is therefore important that the tag 
+  \<Task_Name\> is set correctly in the job order file to the name of the 
+  program binary.
+   
+  During operation, the job order file will be the only input argument to the 
+  program and will be passed to the program on the command line. For example:
+  <pre>
+     program_name job_order.xml
+  </pre>   
+  
+<h4>Access to input files</h4>
+
+   To get a list of all data types available to the program as input in the job 
+   order file, call
+   @code
+   dataStructures = programParams.getInputStructNames()
+   @endcode
+  
+   For every data type, you can retrieve a list of files of that type:
+   @code
+   dataStructure = "SCI_PRW_FullArray" # Example data structure name
+   inputFiles = programParams.getInputFiles(dataStructure)
+   @endcode
+   
+   For fits files, the method `getInputFiles` returns individual fits 
+   extensions, with the extension name in square brackets: 
+   
+   CH_PR001111_TG002004_PS15012009_TO0000232347.358_SCI_PRW_SubArray_V000.fits[SCI_PRW_SubArray]
+   
+   This means that a fits file with multiple extensions might be listed several 
+   times in the job order, under different data structures.
+   
+   Note: for fits data structures, the data structure name shall be the name
+   defined in the `extname` attribute of the HDU element in the FITS schema 
+   files. In the job order file they are defined in the \<File_Type\> - tag.
+   
+   
+<h4>Access to output directories</h4>
+
+   Two output directories are defined in the job order file:
+   
+   - Out: All files placed in this directory will be automatically ingested into
+          the archive if the program runs successfully.
+   - Tmp: This directory is for temporary files, which will be deleted when the
+          program terminates.
+          
+   These directories are retrieved like this:
+   @code
+   outDir = programParams.getOutDir();
+   tmpDir = programParams.getTmpDir();
+   @endcode
+
+<h4>Command line arguments</h4>
+
+  Additional program parameters can be defined in a configuration file located
+  in the conf directory of the module. This file must be an xml file and have
+  the exact same name as the main script, with the extension .xml. For instance,
+  for a program named TestProgram.py the parameter configuration file must be
+  named TestProgram.py.xml.
+  
+  
+  Each parameter is identified by its \<name\>, which has to be
+  unique. Further optional elements are listed in the follwoing table.
+  
+  <table>
+    <tr>
+        <th>Element</th>
+        <th>Description</th>
+    </tr>    
+    <tr>
+      <td>\<name\></td>
+      <td>
+        This element is required. Note that dashes inside the name will be 
+        converted to underscores.
+      </td>
+    </tr>
+    <tr>
+      <td>\<short_name\></td>
+      <td>
+        One character, which can be used as name of the parameter on the command
+        line. For example -@b f filename
+      </td>
+    </tr>
+    <tr>
+      <td>\<value\></td>
+      <td>
+        The default value of the parameter. If the value element is not defined 
+        in the XML parameter file, then the parameter is required and must be 
+        specified in the command line when the program is run. If the value 
+        element @a is defined, then the parameter is optional and this value 
+        will be used in case the parameter is not defined in the command line. 
+        If the value element is defined but is empty, then the default value is 
+        `None` (or `[]` for repeatable parameters).
+      </td>
+    </tr>
+    <tr>
+      <td>\<type\></td>
+      <td>
+        Defines the data type of the parameter. It can be either <b> string, 
+        int, double </b> or @b bool. @b string is the default, if \<type\> is 
+        not defined. If the type is @b bool, then the parameter is considered a 
+        flag, which can be either present or not present on the command line. 
+        For flags, the value element defines the value returned when the flag 
+        is present on the command line. For example, if \<value\>true\</value\> 
+        and \<type\>bool\</type\>
+        then the returned value of the flag will be True if it is present on the 
+        command line and False if it is not present. If \<value\> is empty or not 
+        defined, the default value is True.
+                   
+        If type is @b bool only the following case insensitive values are allowed: 
+        <b> true, false, on, off, yes, no, 1, 0 </b>
+      </td>
+    </tr>
+    <tr>
+      <td>\<help\></td>
+      <td>
+        A short description of the parameter. It will be printed if the program 
+        is called with the @b -h option.
+      </td>
+    </tr>
+    <tr>
+      <td>\<repeatable\></td>
+      <td>
+        Defines whether or not the parameter can occur multiple times on the 
+        command line and takes the values true or false. If not defined in the 
+        XML configuration file then the default value is false. The returned 
+        value of a repeatable argument is a list containing all values of this 
+        parameter.
+        
+        For example, the command `--param=val1 --param=val2 --param=val3` would 
+        return the list `[val1, val2, val3]`.
+      </td>
+    </tr>
+
+  </table>                
+
+  The Python package argparse is used to parse the input arguments.
+  
+  The value of each parameter can be overwritten by a command line parameter
+  like this: @c \--parameter_name @c new_value or @c \--parameter_name=new_value
+  
+  The shortest possible definition of a parameter in an xml parameter file looks 
+  like this:
+  
+  <pre>
+      <?xml version="1.0" encoding="UTF-8"?>
+      <program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+  
+      \<param\>
+          \<name\>X-Center\</name\>
+      \</param\>
+  
+      \</program_params\> 
+  </pre>
+  
+  In this example the value of the parameter X-Center has to be given in the 
+  command line:
+  
+  <pre>
+      program --X-Center=49
+      program --X-Center 49
+  </pre>    
+   
+  A complete definition of a parameter would look like this:
+  
+  <pre>
+      <?xml version="1.0" encoding="UTF-8"?>
+      <program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+      
+      \<param\>
+          \<name\>X-Center\</name\>
+          \<short_name\>x\</short_name\>
+          \<value\>100\</value\>
+          \<type\>int\</type\>
+          \<help\>X - position of source in image [pixel]</help\>
+          \<repeatable\>false\</repeatable\>
+      \</param\>
+      
+      \</program_params\> 
+  </pre>
+  
+<b> The cheopsExit() method</b>
+   
+   Each program shall call the method cheopsExit() at the very 
+   end of the program. This method writes a so-called trigger file to disk which
+   is used by the processing framework to detect that the program has 
+   terminated. If the program read in a job order file that contained an input
+   trigger file, the values of this trigger file are stored internally and will
+   be written into the output trigger file.
+   
+   Trigger file creation can be turned off by passing False to cheopsExit().
+
+<b> Trigger files</b>
+   
+   In addition to the trigger file created by cheopsExit() it is
+   possible to create extra trigger files using the static method 
+   TriggerFile.writeTriggerFile(). This method takes as arguments all the values
+   that will be inserted into the trigger file.
+   
+   If an input trigger file was provided in the job order of the program, the 
+   values of this trigger file will be accessible through static methods on the 
+   TriggerFile class:
+   
+   @code
+   TriggerFile.writeTriggerFile(programParams.getOutDir(),
+                                programParams.getParam('Processor_Name'),
+                                TriggerFile.getPassId(), 
+                                TriggerFile.getVisitId, 
+                                TriggerFile.getValidityStart(),
+                                TriggerFile.getValidityStop(),
+                                TriggerFile.getProcessingVersion(),
+                                TriggerFile.getOutputProcessingNumber(),
+                                TriggerFile.getOutputProcessingNumber(),
+                                TriggerFile.getObsid(),
+                                dataName)
+   @endcode
+   
+*/

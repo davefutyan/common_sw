@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelSim    SYSTEM "KeywordDataLevelSim.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SIM_TRU_FlatField">
+        <brief> Calibration product : Flat field frame combined over wavelengths according to target star spectrum</brief>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="5.1" comment="version of the data structure"/>
+             &KeywordDataLevelSim;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordVisit;
+             
+            <group description="Flat field attributes">
+            	<keyword name="Teff"		data_type="real" unit="Kelvin" comment="Effective temperature of the target star"/>
+            	<keyword name="FFref"		data_type="string" comment="name of flat field reference file"/>
+            	<keyword name="FFscale"		data_type="real" comment="scale factor aplied to empirical FF, or sigma of Gauss FF"/>
+            	<keyword name="thrptref"	data_type="string" comment="name of throughput reference file (OFF if throughput not applied)"/>
+            	<keyword name="qeref"		data_type="string" comment="name of the QE reference file (OFF if QE not applied)"/>
+            </group>
+        </header>
+        <image data_type="double">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">1024</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+        </image>
+    </HDU>
+</FITS_schema>

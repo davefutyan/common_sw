@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL05
+
+		version 11.0    11. 01. 2019 RRO
+		   - #17815  new header keywords defined in following import files:
+		               KeywordDataLevelUndef.ifsd
+                       KeywordProcChain.ifsd
+                       KeywordUnitADU.ifsd
+                       KeywordCheops.ifsd
+                       KeywordValidity.ifsd
+                       KeywordPassVisit.ifsd
+                       KeywordTarget.ifsd
+                       KeywordExposureL05.ifsd
+                       KeywordSkyPos.ifsd
+                       KeywordSubArrayOrigin.ifsd
+		             new header keywords: BIAS_RF, DARK_RF, FF_RF
+
+		version 6.4.1	06. 01. 2016 RRO
+		   - #12307  new header keyword: DATANAME
+		   
+        version 5.0  09. 02. 2016 RRO
+          - new data structure
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef         SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordProcChain              SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU                SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCheops                 SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity               SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit              SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget                 SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL05            SYSTEM "KeywordExposureL05.ifsd"> 
+    <!ENTITY KeywordSkyPos                 SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubArrayOrigin         SYSTEM "KeywordSubArrayOrigin.ifsd"> 
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_Image">
+        <brief> A general 3D - image.</brief>
+        <description>A general 3D image. Can be used by any pieline program
+                     to provide an output image.
+                     </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            <keyword name="DATANAME" data_type="string"  db="true"      comment="data name of this intermediate image"/>
+            &KeywordDataLevelUndef;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordPassVisit;   
+            &KeywordTarget;
+            &KeywordExposureL05;
+            &KeywordSkyPos;
+            &KeywordSubArrayOrigin;
+            
+            <group description="Used reference files">
+               <keyword name="BIAS_RF"  data_type="string" default="N/A" comment="name of bias reference file"/>
+               <keyword name="DARK_RF"  data_type="string" default="N/A" comment="name of dark frame reference file"/>
+               <keyword name="FF_RF"    data_type="string" default="N/A" comment="name of flat field reference file"/>
+           </group>
+            
+        </header>
+        <!--  -->
+        <image data_type="uint32" null="0">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the CCD">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of the CCD">0</axis2>
+            <axis3 unit="#images" comment="Z axis"> 0 </axis3>
+        </image>
+    </HDU>
+    
+    
+</FITS_schema>

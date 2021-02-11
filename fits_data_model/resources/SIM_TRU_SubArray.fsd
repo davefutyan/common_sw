@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--  Data model : Simulation truth information
+    version 0.2
+    author JCM
+    date 2014/05/15
+-->
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelSim    SYSTEM "KeywordDataLevelSim.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY ColumnTimeL05          SYSTEM "ColumnTimeL05.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SIM_TRU_SubArray">
+        <brief> Truth information for simulated sub-frame images</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube. It stores truth information for that image.
+                      The time is converted in UT and JD </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevelSim;
+            &KeywordUnitADU;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+        </header>
+        <!--  -->
+        <table>
+            &ColumnTimeL05;
+            <column name="VALID_AOCS"		data_type="bool" comment="flag to indicate whether or not the payload is in the loop (Earth occultation, SAA)"/>
+            <column name="VALID_SCIENCE"	data_type="bool" comment="flag to indicate whether or not the payload is valid for science (>35 degrees from Earth limb)"/>
+            <column name="FULL_WELL_SATURATED"		data_type="bool" comment="flag to indicate whether or not the image contains one or more full well saturated pixels"/>
+            <column name="ADC_SATURATED"		data_type="bool" comment="flag to indicate whether or not the image contains one or more ADC saturated pixels"/>
+            <column name="GLOBAL_THROUGHPUT"	data_type="float" comment="Wavelength integral of Blackbody(target star) * Optical throughput * QE"/>
+            <column name="GAIN"					data_type="float" comment="ADC gain value at the CCD temperature corresponding to the image"/>
+            <column name="ZODIACAL_LIGHT"		data_type="float" comment="Zodiacal light flux in photons per pixel"/>
+            <column name="STRAY_LIGHT"			data_type="float" comment="Stray light flux in photons per pixel"/>
+            <column name="ROLL_ANGLE"        data_type="float" unit="degrees"  comment="mean roll angle of the CCD w.r.t. celestial coordinate system"/>
+            <column name="TARGET_PSF_X"        data_type="float" bin_size="600" unit="pixels"  comment="x positions of target star PSF (1s intervals)"/>
+            <column name="TARGET_PSF_Y"        data_type="float" bin_size="600" unit="pixels"  comment="y positions of target star PSF (1s intervals)"/>
+            <column name="PSF_MEAN_X"        data_type="float" bin_size="500" unit="pixels"  comment="mean x position of PSF for each star"/>
+            <column name="PSF_MEAN_Y"        data_type="float" bin_size="500" unit="pixels"  comment="mean y position of PSF for each star"/>
+            <column name="PSF_FLUX"        data_type="float" bin_size="500" unit="photons"  comment="integrated flux from star incident on CCD"/>
+            <column name="COSMIC_XPIXEL"        data_type="int32" null="-2147483648" bin_size="300" unit="pixels"  comment="x position of pixel affected by cosmic"/>
+            <column name="COSMIC_YPIXEL"        data_type="int32" null="-2147483648" bin_size="300" unit="pixels"  comment="y position of pixel affected by cosmic"/>
+            <column name="COSMIC_NELECTRONS"         data_type="int32" null="-2147483648" bin_size="300" unit="electrons"  comment="number of electrons generated in pixel by cosmic"/>
+            <column name="HOT_XPIXEL"        data_type="int32" null="-2147483648" bin_size="500" unit="pixels"  comment="x position of hot pixel"/>
+            <column name="HOT_YPIXEL"        data_type="int32" null="-2147483648" bin_size="500" unit="pixels"  comment="y position of hot pixel"/>
+            <column name="HOT_NELECTRONS"         data_type="int32" null="-2147483648" bin_size="500" unit="electrons"  comment="number of electrons generated in hot pixel"/>
+            <column name="HOT_TYPE"         data_type="int32" null="-2147483648" bin_size="500" comment="0=hot, 1=warm, 2=telegraphic active, 3=telegraphic inactive"/>
+            <column name="DEAD_XPIXEL"        data_type="int32" null="-2147483648" bin_size="200" unit="pixels"  comment="x position of dead pixel"/>
+            <column name="DEAD_YPIXEL"        data_type="int32" null="-2147483648" bin_size="200" unit="pixels"  comment="y position of dead pixel"/>
+            <column name="DEAD_QE"         data_type="float" bin_size="200"	comment="quantum efficiency of dead pixel"/>
+            <column name="SMEAR_ROW"         data_type="float" bin_size="200"	comment="horizontal cross section through frame transfer smear trails"/>
+        </table>
+    </HDU>
+</FITS_schema>

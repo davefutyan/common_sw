@@ -1,0 +1,1340 @@
+
+
+/** ****************************************************************************
+ *  @class BarycentricOffset
+ *  @brief   A class to calculate the time difference of BJD - MJD
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  An instance of this class can calculate the time offset between
+ *  Barycentic Julian Day BJD and Modified Julian Day MJD for a specific
+ *  source in the sky, i.e. for a specific RA / DEC.
+ *
+ *  @todo Currently only the interface is defined, the implementation is
+ *        missing.
+ * 
+ */
+ 
+   /** *************************************************************************
+   *  @fn def __init__(ra, dec) 
+   *  @memberof BarycentricOffset 
+   *  @brief The class is initialized for a specific source, i.e. with its
+   *         sky position RA / DE
+   *
+   *
+   *  @param [in] ra  Right Ascension of the source for which the offset shall
+   *                  be calculated. It has to be in the range [-180 .. 360[
+   *                  The unit is deg.
+   *  @param [in] dec Declination of the source for which the offset shall
+   *                  be calculated. It has to be in the range [-90 .. 90]
+   *                  The unit is deg.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __init__(barycentricOffset) 
+   *  @memberof BarycentricOffset 
+   *  @brief Copy constructor.
+   *
+   *  @param barycentricOffset [BarycentricOffset] another BarycentricOffset object
+   */ 
+
+  /** *************************************************************************
+   *  @fn def setEphemerisFileName(fileName) 
+   *  @memberof BarycentricOffset 
+   *  @brief Defines the file containing the ephemeris data in a EXT_APP_DE1
+   *         data structure. It is called by the CheopsInit() function.
+   *
+   *  @param fileName [string] the path to the file containing the ephemeris 
+   *                           data
+   */ 
+
+/** ****************************************************************************
+ *  @class BJD
+ *  @brief   A class to store a Barycentric Julian Day (BJD)
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  As time scale it is TT assumed, i.e. there are no leap seconds.
+ *
+ */
+ 
+  /** *************************************************************************
+   *  @fn def __init__() 
+   *  @memberof BJD 
+   *  @brief Default constructor of the BJD class.
+   *
+   *  The time is set to NaN, which will be a NULL value in a FITS table.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __init__(bjd) 
+   *  @memberof BJD 
+   *  @brief Copy constructor of the BJD class.
+   *
+   *  @param bjd [BJD] another BJD object.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __init__(bjd) 
+   *  @memberof BJD 
+   *  @brief Initializes the variables of the class.
+   *
+   *  @param bjd [float] the BJD time.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def getBjd() 
+   *  @memberof BJD 
+   *  @brief Returns the BJD time as a float value.
+   *
+   *  @return [float] the BJD time as a float value.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __float__() 
+   *  @memberof BJD 
+   *  @brief Cast operator, for example required by the fits_data_model
+   *
+   *  @return [float] the BJD value as float
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __lt__(bjd) 
+   *  @memberof BJD 
+   *  @brief Less - operator.
+   *
+   *  @param bjd [BJD] another BJD instance.
+   *  @return [boolean] True if this BJD is less than the BJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __le__(bjd) 
+   *  @memberof BJD 
+   *  @brief Less or equal - operator.
+   *
+   *  @param bjd [BJD] another BJD instance.
+   *  @return [boolean] True if this BJD is less or equal to the BJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __gt__(bjd) 
+   *  @memberof BJD 
+   *  @brief Greater than - operator.
+   *
+   *  @param bjd [BJD] another BJD instance.
+   *  @return [boolean] True if this BJD is greater than the BJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __ge__(bjd) 
+   *  @memberof BJD 
+   *  @brief Greater or equal - operator.
+   *
+   *  @param bjd [BJD] another BJD instance.
+   *  @return [boolean] True if this BJD is greater or equal to the BJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __eq__(bjd) 
+   *  @memberof BJD 
+   *  @brief Comparison - operator.
+   *
+   *  @param bjd [BJD] another BJD instance.
+   *  @return [boolean] True if this BJD is equal to the BJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __ne__(bjd) 
+   *  @memberof BJD 
+   *  @brief Comparison - operator.
+   *
+   *  @param bjd [BJD] another BJD instance.
+   *  @return [boolean] True if this BJD is not equal to the BJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __sub__(barycentricOffset) 
+   *  @memberof BJD 
+   *  @brief Subtracts from this BJD time the barycentric offset time and returns
+   *         the MJD time.
+   *
+   *  @param barycentricOffset [BarycentricOffset] a BarycentricOffset instance.
+   *  @return [MJD] an MJD instance.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __hash__() 
+   *  @memberof BJD 
+   *  @brief Returns a hash of this object's bjd time.
+   *
+   *  @return [int] a hash of this object's bjd time.
+   */
+  
+/** ****************************************************************************
+ *  @class LeapSeconds
+ *  @brief   To read the leap seconds from a REF file and provide number of
+ *           leap seconds for a specific time.
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  This class can read the number of leap seconds from the SOC_APP_LeapSeconds
+ *  data structure and can return the number of leap seconds that have been
+ *  introduced until a specific time.
+ *
+ *  Currently only the UTC class is using this class to retrieve the number
+ *  of leap seconds.
+ */
+
+  /** *************************************************************************
+   *  @fn def setLeapSecondsFileNames(fileNames) 
+   *  @memberof LeapSeconds 
+   *  @brief Static method that reads the leap seconds from a SOC_APP_LeapSeconds data structure.
+   *
+   *  If in the list of @b fileNames are more than 1 leap second file the most
+   *  up to data file at the time when this function is called is used.
+   *
+   *  This function has to be called for the first call of getNumLeapSeconds().
+   *  It is called by the CheopsInit() function.
+   *
+   *  The FITS extension, define by fileNames has to have two rows: UTC_TIME
+   *  and TAI_UTC.
+   *
+   *  @param fileNames [list] a list of file names of SOC_APP_LeapSeconds data structures
+   */
+
+/** ****************************************************************************
+ *  @class MJD
+ *  @brief   A class to store a Modified Julian Day (MJD).
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  As time scale it is TT used, i.e. there are no leap seconds.
+ */
+ 
+  /** *************************************************************************
+   *  @fn def __init__() 
+   *  @memberof MJD 
+   *  @brief Default constructor of the MJD class.
+   *
+   *  The time is set to 0.0.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __init__(mjd) 
+   *  @memberof MJD 
+   *  @brief Copy constructor of the MJD class.
+   *
+   *  @param mjd [MJD] another MJD object.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __init__(mjd) 
+   *  @memberof MJD 
+   *  @brief Initializes the variables of the class.
+   *
+   *  @param mjd [float] the mjd time.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def getMjd() 
+   *  @memberof MJD
+   *  @brief Returns the MJD time as a float value.
+   *
+   *  @return [float] the MJD time as a float value.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def getUtc() 
+   *  @memberof MJD
+   *  @brief Returns the MJD time as UTC time.
+   *
+   *  @return [UTC] the MJD time as UTC time.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __float__() 
+   *  @memberof MJD 
+   *  @brief Cast operator, for example required by the fits_data_model.
+   *
+   *  @return [float] the MJD value as float
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __eq__(mjd) 
+   *  @memberof MJD 
+   *  @brief Comparison - operator.
+   *
+   *  @param mjd [float] an MJD time.
+   *  @return [boolean] True if this MJD is equal to the MJD time given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __ne__(mjd) 
+   *  @memberof MJD 
+   *  @brief Comparison - operator.
+   *
+   *  @param mjd [float] an MJD time.
+   *  @return [boolean] True if this MJD is not equal to the MJD time given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __lt__(mjd) 
+   *  @memberof MJD 
+   *  @brief Less - operator.
+   *
+   *  @param mjd [MJD] another MJD instance.
+   *  @return [boolean] True if this MJD is less than the MJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __le__(mjd) 
+   *  @memberof MJD 
+   *  @brief Less or equal - operator.
+   *
+   *  @param mjd [MJD] another MJD instance.
+   *  @return [boolean] True if this MJD is less or equal to the MJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __gt__(mjd) 
+   *  @memberof MJD 
+   *  @brief Greater than - operator.
+   *
+   *  @param mjd [MJD] another MJD instance.
+   *  @return [boolean] True if this MJD is greater than the MJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __ge__(mjd) 
+   *  @memberof MJD 
+   *  @brief Greater than or equal - operator.
+   *
+   *  @param mjd [MJD] another MJD instance.
+   *  @return [boolean] True if this MJD is greater than or equal to the MJD instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __add__(barycentricOffset) 
+   *  @memberof MJD 
+   *  @brief Add to this MJD time the barycentric offset time and returns
+   *         the BJD time.
+   *
+   *  @param barycentricOffset [BarycentricOffset] a BarycentricOffset instance.
+   *  @return [BJD] a BJD instance.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __hash__() 
+   *  @memberof MJD 
+   *  @brief Returns a hash of this object's mjd time.
+   *
+   *  @return [int] a hash of this object's mjd time.
+   */
+ 
+/** ****************************************************************************
+ *  @class OBT
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  @brief   A class to store an On-Board-Time (OBT)
+ *
+ *  A OBT is defined as seconds + fraction of seconds since an arbitrary start.
+ *  The length of a OBT second may be slightly different than a UTC second.
+ *  The least significant bit is used to define whether the OBT of the instrument
+ *  was synchronized (1) with the spacecraft OBT or not (0). \n
+ *  As soon as the OBT is used in the CHEOPS system an OBT reset counter is
+ *  assigned to the time. This reset counter is stored in the two most significant
+ *  bytes.
+ */
+  
+  /** *************************************************************************
+   *  @fn def __init__() 
+   *  @memberof OBT 
+   *  @brief Default constructor of the OBT class.
+   *
+   *  The OBT is set to 0, but synchronized is not set, i.e. time is not
+   *  synchronized. OBT reset counter is set to 0.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __init__(obt) 
+   *  @memberof OBT 
+   *  @brief Copy constructor of the OBT class.
+   *
+   *  @param obt           [OBT] an OBT class instance
+   */ 
+
+  /** *************************************************************************
+   *  @fn def __init__(obtTime, utc=UTC()) 
+   *  @memberof OBT 
+   *  @brief Initializes the on-board time of the class.
+   *
+   *  The @b obtTime is defined as the SC Time in the TM packets:
+   *  1 time tick is 2 ** -32 seconds.
+   *
+   *  @param obtTime            [int_64_t] the OBT time, including synchronization bit,
+   *                            but without reset counter
+   *  @param utc                [UTC] The approximately time of the @b obt as UTC.
+   *                            The UTC time does not need to be very precise.
+   *                            But should be in the range of +/- 2 days.
+   *                            It is used to identify the correct OBT reset
+   *                            counter. If it is not define (used the default
+   *                            UTC time) or if no ObtReset file was provided
+   *                            then the OBT reset counter is not updated.
+   */
+    
+  /** *************************************************************************
+   *  @fn def __init__(obt, synchronized, utc) 
+   *  @memberof OBT 
+   *  @brief Initializes the on-board time of the class.
+   *
+   *  The @b obt is defined as the SC Time in the TM packets:
+   *  1 time tick is 2 ** -32 seconds.
+   *  The synchronized bit can also be set as bit 0 of the @b obt.
+   *
+    *  @param obt           [int64_t] the OBT time, without synchronization bit and
+    *                       without reset counter.
+    *  @param synchronized  [boolean] true: the @b obt is synchronized with the clock
+    *                       of the spacecraft. false: the @b obt is not synchronized.
+    *  @param utc           [UTC] The approximately time of the @b obt as UTC.
+    *                            The UTC time does not need to be very precise.
+    *                            But should be in the range of +/- 2 days.
+    *                            It is used to identify the correct OBT reset
+    *                            counter. If it is not define (used the default
+    *                            UTC time) or if no ObtReset file was provided
+    *                            then the OBT reset counter is not updated.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __int__() 
+   *  @memberof OBT 
+   *  @brief Cast operator, for example required by the fits_data_model
+   *
+   *  @return [int64_t] the OBT value of data type int64_t, including the
+   *          synchronization bit and the reset counter.
+   */
+   
+  /** *************************************************************************
+   *  @fn def isSynchronized() 
+   *  @memberof OBT 
+   *  @brief Return true if this OBT is synchronized with the space craft
+   *         clock.
+   *
+   *  @return [boolean] True if this OBT is synchronized with the space craft
+   *          clock.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __lt__(obt) 
+   *  @memberof OBT 
+   *  @brief Less - operator. The synchronized bit is ignored, but the reset
+   *         counter is applied.
+   *
+   *  @param obt [OBT] another OBT instance
+   *  @return [boolean] True if this obt time is less than that of the method argument
+   */
+   
+  /** *************************************************************************
+   *  @fn def __le__(obt) 
+   *  @memberof OBT 
+   *  @brief Less or equal - operator. The synchronized bit is ignored but the reset
+    *         counter is applied.
+   *
+   *  @param obt [OBT] another OBT instance
+   *  @return [boolean] True if this obt time is less than or equal to that of the method argument
+   */
+   
+  /** *************************************************************************
+   *  @fn def __gt__(obt) 
+   *  @memberof OBT 
+   *  @brief Greater - operator. The synchronized bit is ignored but the reset
+   *         counter is applied.
+   *
+   *  @param obt [OBT] another OBT instance
+   *  @return [boolean] True if this obt time is greater than that of the method argument
+   */
+   
+  /** *************************************************************************
+   *  @fn def __ge__(obt) 
+   *  @memberof OBT 
+   *  @brief Greater or equal - operator. The synchronized bit is ignored but the reset
+   *         counter is applied.
+   *
+   *  @param obt [OBT] another OBT instance
+   *  @return [boolean] True if this obt time is greater than or equal to that of the method argument
+   */
+   
+  /** *************************************************************************
+   *  @fn def __eq__(obt) 
+   *  @memberof OBT 
+   *  @brief Comparison - operator
+   *  
+   *  The comparison depends also on the synchronized bit (bit 0).
+   *
+   *  @param obt [int64_t] another obt time
+   *  @return [boolean] True if this obt time is equal to the obt time passed to the method
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __hash__() 
+   *  @memberof OBT 
+   *  @brief Returns a hash of this object's obt time.
+   *
+   *  @return [int] a hash of this object's obt time.
+   */
+   
+  /** *************************************************************************
+   *  @fn def getObt() 
+   *  @memberof OBT 
+   *  @brief Returns the OBT time as found in a TM packet, i.e. including the
+   *         synchronized bit and the reset counter
+   *
+   *  @return [int64_t] OBT time.
+   */ 
+   
+  /** *************************************************************************
+   *  @fn def getUtc() 
+   *  @memberof OBT 
+   *  @brief Returns the time of this OBT converted into UTC
+   *
+   *  @return [UTC] this OBT time converted to UTC.
+   */
+   
+  /** *************************************************************************
+   *  @fn def getResetCounter() 
+   *  @memberof OBT 
+   *  @brief Return the reset counter of this OBT.
+   *
+   *  @return [int64_t] the reset counter of this OBT
+   */
+   
+  /** *************************************************************************
+   *  @fn def setResetCounterFileNames(fileNames) 
+   *  @memberof OBT 
+   *  @brief Sets the file name of the REF_APP_ObtReset file.
+   *  
+   *  The static struct m_resetRecords is filled.
+   *  
+   *  @param fileNames a list of file names
+   */
+
+/** ****************************************************************************
+ *  @class OBTUTCCorrelation
+ *  @brief   A helper class to perform the OBT -> UTC and UTC -> OBT conversion
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  The class should be used only by the OBT and UTC classes.
+ */
+ 
+    /** *************************************************************************
+    *  @fn def setCorrelationFileName(fileNames)
+    *  @memberof OBTUTCCorrelation
+    *  @brief Static method that sets the file name of the correlation records.
+    *
+    *  @param fileNames a list of names of files containing correlation records.
+    */
+
+/** ****************************************************************************
+ *  @class PassId
+ *  @brief   A class to store a full passId
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGe
+ *
+ *  A pass-id is defined by the time (year, month, day and hour) when the
+ *  manifest file for the TM data of this pass arrived at SOC.
+ */
+  
+  /** *************************************************************************
+   *  @fn def __init__() 
+   *  @memberof PassId 
+   *  @brief Default constructor of the PassId class.
+   *
+   *  The pass stored in this instance is not valid. Without assigning a
+   *  valid PassId to this class the function PassId::isValid() will return false.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __init__(passId) 
+   *  @memberof PassId 
+   *  @brief Initializes the variables of the class from a sub-string of a
+   *         file name
+   *
+   *  param passId [string] The format has to be either yymmddhh or PSyymmddhh.
+   *               The second option is a sub-string of a filename.
+   */
+
+  /** *************************************************************************
+   *  @fn def __init__(year, month, day, hour) 
+   *  @memberof PassId 
+   *  @brief Initializes the variables of the class
+   *
+   *  @param year    [uint16_t] the year of the passId, allowed range: [10 - 30] 
+   *                 and [2010 - 2030]
+   *  @param  month  [uint8_t] the month of the passId, allowed range: [1 - 12]
+   *  @param  day    [uint8_t] the day of the passId, allowed range: [1-31]
+   *  @param  hour   [uint8_t] the hour of the passId, allowed range: [0-23]
+   */
+   
+  /** *************************************************************************
+   *  @fn def isValid() 
+   *  @memberof PassId 
+   *  @brief Returns true if this instance holds a valid Pass Id.
+   *  
+   *  @return [boolean] true if this instance holds a valid Pass Id.
+   */
+   
+  /** *************************************************************************
+   *  @fn def getYear() 
+   *  @memberof PassId 
+   *  @brief Returns the year of the PassId in the range from 10 - 30.
+   *
+   *  @return [uint8_t] the year of the PassId in the range from 10 - 30.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getMonth() 
+   *  @memberof PassId 
+   *  @brief eturns the month of the PassId in the range from 1 - 12.
+   *
+   *  @return [uint8_t] the month of the PassId in the range from 1 - 12.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getDay() 
+   *  @memberof PassId 
+   *  @brief Returns the day of the PassId in the range from 1 - 31.
+   *
+   *  @return [uint8_t] the day of the PassId in the range from 1 - 31.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getHour() 
+   *  @memberof PassId 
+   *  @brief Returns the hour of the PassId in the range from 0 - 23.
+   *
+   *  @return [uint8_t] the hour of the PassId in the range from 0 - 23.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getFileNamePattern() 
+   *  @memberof PassId 
+   *  @brief Returns a string in the format as the PassId should be written
+   *         in a CHEOPS file-name.
+   *
+   *  The format of the returned string is PSyymmddhh.
+   *
+   *  @return [string] a string in the format as the PassId should be written
+   *          in a CHEOPS file-name.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __eq__(passId) 
+   *  @memberof PassId 
+   *  @brief Comparison - operator
+   *  
+   *  @param passId another PassId
+   *  @return [boolean] True if this PassId is equal to the PassId passed to the method.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __ne__(passId) 
+   *  @memberof PassId 
+   *  @brief Comparison - operator
+   *  
+   *  @param passId another PassId
+   *  @return [boolean] True if this PassId is not equal to the PassId passed to the method.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __lt__(passId) 
+   *  @memberof PassId 
+   *  @brief Less than - operator
+   *  
+   *  @param passId  another PassId
+   *  @return [boolean] True if this PassId is less than the PassId passed to the method.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __hash__() 
+   *  @memberof PassId 
+   *  @brief Returns a hash of this object's pass id.
+   *
+   *  @return [int] a hash of this object's pass id.
+   */
+     
+
+/** ****************************************************************************
+ *  @class   TriggerFile
+ *  @ingroup FitsDataModel
+ *  @brief   Class that implements functionality for reading and writing trigger
+ *           files.
+ *  @author  Anja Bekkelien, UGE
+ */
+
+  /** ************************************************************************
+   *  @fn def initialize(outDir, processorName, triggerFiles)
+   *  @memberof TriggerFile 
+   *  @brief This static method serves as the interface to the program_params
+   *         module, and is used to initialize this class with the values
+   *         defined in the job order when an input TRIGGER file is present.
+   *  
+   *  The values of the input arguments should all be taken from the job order
+   *  file via the ProgramParams class.
+   *
+   *  The triggerFiles list shall contain exactly one trigger file. Otherwise,
+   *  a runtime_error is thrown.
+   *
+   *  @param [in] outDir            The job order's output directory
+   *  @param [in] processorName     The processor name
+   *  @param [in] triggerFiles      The job order's list of input TRIGGER files.
+   */
+
+  /** ************************************************************************
+   *  @fn def initialize(outDir, processorName, jobOrderStartTime, jobOrderStartTime)
+   *  @memberof TriggerFile 
+   *  @brief This static method serves as an an interface to the program_params
+   *         module, and is used to initialize this class with the values
+   *         defined in the job order when no TRIGGER files are present.
+   *  
+   *  The values of the input arguments should all be taken from the job order
+   *  file via the ProgramParams class.
+   *
+   *  @param [in] outDir            The job order's output directory
+   *  @param [in] processorName     The processor name
+   *  @param [in] jobOrderStartTime The value of the Start parameter of the job
+   *                                order converted to a UTC object.
+   *  @param [in] jobOrderStartTime The value of the Stop parameter of the job
+   *                                order converted to a UTC object.
+   */
+
+  /** ************************************************************************
+   *  @fn def readTriggerFile(path)
+   *  @memberof TriggerFile 
+   *  @brief Reads a trigger path and stores its values in member variables.
+   *  
+   *  @param [in] path the path to the trigger file to read
+   */
+   
+  /** ************************************************************************
+   *  @fn def writeTriggerFile(directory, processorName, passId, visitId, validityStart, validityStop, inputProcessingNumber, outputProcessingNumber, obsid=0, dataName='', creationDate=UTC())
+   *  @memberof TriggerFile
+   *  @brief Static method that writes a trigger file.
+   *
+   *  Note that in future releases, obsid will not be optional.
+   *  
+   *  @param directory         [string] the directory in which the file will be written
+   *  @param processorName     [string] the processor name as defined in the job order
+   *                           element Processor_Name
+   *  @param passId            a PassId object
+   *  @param visitId           a VisitId object
+   *  @param validityStart     the validity start as a UTC object
+   *  @param validityStop      the validity stop as a UTC object
+   *  @param inputProcessingNumber [int] the processing number of the program's input files
+   *  @param outputProcessingNumber [int] the processing number the program's output files
+   *  @param obsid             [int] the observation id
+   *  @param dataName          [string] (optional) an extra identifier that will
+   *                           be appended to the file name after the processorName
+   *  @param creationDate      (optional) the creation date as a UTC object. 
+   *                           Defaults to the current time.
+   */
+
+  /** ************************************************************************
+   *  @fn def writeTriggerFile(directory, processorName, passId, programmeType, programmeId, requestId, visitCounter, validityStart, validityStop, inputProcessingNumber, outputProcessingNumber, obsid=0, dataName='', creationDate=UTC())
+   *  @memberof TriggerFile 
+   *  @brief Static method that writes a trigger file.
+   *  
+   *  Note that in future releases, obsid will not be optional.
+   *
+   *  @param directory         [string] the directory in which the file will be written
+   *  @param processorName     [string] the processor name as defined in the job order
+   *                           element Processor_Name
+   *  @param passId            [string] a pass id formatted as 'yymmddhh'
+   *  @param programmeType     valid values are: 1 (guaranteed program),
+   *                           2 (guest observer program), 3 (monitoring and
+   *                           characterization program), 4 (discretionary
+   *                           program), 5 (data not belonging to any
+   *                           visit) and 98,99 (simulated data)
+   *  @param programmeId       The program request Id of a program type
+   *                           [0 .. 9999]
+   *  @param requestId         A unique observation request Id per
+   *                           program Id [0 .. 9999]
+   *  @param visitCounter      A counter, counting the visits of the target
+   *                           [1 .. 99]
+   *  @param validityStart     [string] the validity start as a UTC time formatted as
+   *                           yyyy-mm-ddThh:mm:ss
+   *  @param validityStop      [string] the validity stop as a UTC time formatted as
+   *                           yyyy-mm-ddThh:mm:ss
+   *  @param inputProcessingNumber [int] the processing number of the program's input files
+   *  @param outputProcessingNumber [int] the processing number the program's output files
+   *  @param obsid             [int] the observation id
+   *  @param dataName          [string] (optional) an extra identifier that will
+   *                           be appended to the file name after the processorName
+   *  @param creationDate      (optional) the creation date as a UTC object. Defaults
+   *                           to the current time
+   */
+   
+  /** ************************************************************************
+   *  @fn def getOutputDirectory()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the output directory for trigger files.
+   *
+   *  @return the output directory for trigger files (string).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getProcessorName()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the processor name.
+   *
+   *  @return the processor name (string).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getPassId()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the pass id as a PassId object.
+   *
+   *  @return a PassId object.
+   */
+   
+  /** ************************************************************************
+   *  @fn def getPrevPassId()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the id of the previous pass as a 
+   *            PassId object.
+   *
+   *  @return a PassId object.
+   */
+   
+  /** ************************************************************************
+   *  @fn def getVisitId()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the visit id as a VisitId object.
+   *
+   *  @return a VisitId object
+   */
+   
+  /** ************************************************************************
+   *  @fn def getProgramType()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the program type.
+   *  @deprecated This method is replaced by getProgrammeType()
+   *
+   *  @return the program type (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getProgrammeType()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the programme type.
+   *
+   *  @return the programme type (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getProgramId()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the program id.
+   *  @deprecated This method is replaced by getProgrammeId()
+   *
+   *  @return the program id (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getProgrammeId()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the programme id.
+   *
+   *  @return the programme id (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getRequestId()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the observation request id.
+   *
+   *  @return the observation request id (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getObservationId()
+   *  @memberof TriggerFile 
+   *  @deprecated This method is replaced by getRequestId().
+   *  @brief    Static method that returns the observation request id.
+   *
+   *  @return the observation request id (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getVisitCounter()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the visit counter.
+   *
+   *  @return the visit counter (integer).
+   */
+   
+  /** ************************************************************************
+   *  @fn def getCreationDate()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the creation date formatted as yyyy-mm-ddThh:mm:ss.
+   *
+   *  @return a string containing the creation date formatted as yyyy-mm-ddThh:mm:ss.
+   */
+   
+  /** ************************************************************************
+   *  @fn def getValidityStart()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the validity start time formatted as yyyy-mm-ddThh:mm:ss.
+   *
+   *  @return a string containing the validity start time formatted as yyyy-mm-ddThh:mm:ss.
+   */
+   
+  /** ************************************************************************
+   *  @fn def getValidityStop()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the validity stop time formatted as yyyy-mm-ddThh:mm:ss.
+   *
+   *  @return a string containing the validity stop time formatted as yyyy-mm-ddThh:mm:ss.
+   */
+   
+  /** ************************************************************************
+   *  @fn def getInputProcessingNumber()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the processing number of the 
+   *            program's input files.
+   *
+   *  @return the input processing number as a string.
+   */
+
+  /** ************************************************************************
+   *  @fn def getOutputProcessingNumber()
+   *  @memberof TriggerFile 
+   *  @brief    Static method that returns the processing number of the 
+   *            program's output files.
+   *
+   *  @return the output processing number as a string.
+   */
+
+  /** ************************************************************************
+   *  @fn def getProcessingVersion()
+   *  @memberof TriggerFile
+   *  @deprecated This method is replaced by getOutputProcessingNumber().
+   *  @brief    Static method that returns the processing number of the 
+   *            program's output files.
+   *
+   *  @return the output processing number as a string.
+   */
+
+  /** ************************************************************************
+   *  @fn def getObsid()
+   *  @memberof TriggerFile
+   *  @brief    Static method that returns the observation id.
+   *
+   *  @return the observation id
+   */
+
+  /** ************************************************************************
+   *  @fn def empty()
+   *  @memberof TriggerFile
+   *  @brief    Static method that returns True if no input trigger file has 
+   *            been read. This will be the case if no trigger file is present
+   *            in the job order file.
+   *
+   *  @return True if no input trigger file has been read.
+   */
+   
+/** ****************************************************************************
+ *  @class UTC
+ *  @ingroup FitsDataModel
+ *  @author Reiner Rohlfs UGE
+ *
+ *  @brief To store a UTC time 
+ *
+ *  This class can store a UTC time, including fractions of seconds. 
+ */
+  
+  /** *************************************************************************
+   *  @fn def __init__() 
+   *  @memberof UTC 
+   *  @brief Default constructor of the UTC class.
+   *
+   *  The time is set to 1970-01-01T00:00:00.000000.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __init__(utc) 
+   *  @memberof UTC 
+   *  @brief Initializes the class.
+   *
+   *  param utc [string] The UTC time of this instance. The format has to be
+   *            either yyyy-mm-ddThh:mm:ss.ffffff or TUyyyy-mm-ddThh-mm-ss. 
+   *            The second option is a sub-string of a filename. The fraction 
+   *            of the seconds, i.e. ffffff is optional. The dot (.) between 
+   *            ss and ffffff must not appear if ffffff is not defined.
+   *
+   *  @throw runtime_error if the @b utc string does not follow the required
+   *                       format.
+   */
+
+  /** *************************************************************************
+   * @fn def __init__(year, month, day, hour, min, sec, secFraction=0.0) 
+   * @memberof UTC 
+   * @brief Initializes the internal utc as a string 
+   * 
+   *  @param year        [unint16_t] year of the UTC time, range: 1970 - 2023
+   *  @param month       [uint8_t] month of the UTC time, range: 1 - 12
+   *  @param day         [uint8_t] day of the UTC time, range: 1 - 31
+   *  @param hour        [uint8_t] hour of the UTC time, range: 0 - 23
+   *  @param min         [uint8_t] minutes of the UTC time, range: 0 - 59
+   *  @param sec         [uint8_t] seconds of the UTC time, range: 0 - 60 (up to 
+   *                     60 to be able to specify leap seconds)
+   *  @param secFraction [float] (optional) fraction of seconds of the UTC time, 
+   *                           range: < 1.0
+   */
+  
+  /** *************************************************************************
+   *  @fn def empty() 
+   *  @memberof UTC 
+   *  @brief Returns true if the UTC time is a NULL value, i.e. is
+   *         "1970-01-01T00:00:00.000000".
+   *  @return True if the UTC time equals "1970-01-01T00:00:00.000000".
+   */
+  
+  /** *************************************************************************
+   *  @fn def getUtc(withoutSecFraction=False) 
+   *  @memberof UTC 
+   *  @brief Returns the UTC as formatted string.
+   *
+   *  @param withoutSecFraction [boolean] the fraction of seconds (.ffffff) will
+   *                            not be part of the returns string if
+   *                            @b withoutSecFraction is set to true.
+   *
+   *  @return [string] the format of the returned string is yyyy-mm-ddThh:mm:ss.fffff
+   *          ".ffffff" is only available if @b withoutSecFraction is fals
+   */
+  
+  /** *************************************************************************
+   *  @fn def getFileNamePattern() 
+   *  @memberof UTC 
+   *  @brief Returns a string in the format as the UTC should be written
+   *         in a CHEOPS file-name
+   *
+   *  The format of the returned string is TUyyyy-mm-ddThh-mm-s.
+   *
+   *  @return [string] a string in the format as the UTC should be written
+   *          in a CHEOPS file-name.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getYear() 
+   *  @memberof UTC 
+   *  @brief Returns the year of the UTC time in the range 1970 - 2023.
+   *
+   *  @return [uint16_t] the year of the UTC time in the range 1970 - 2023.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getMonth() 
+   *  @memberof UTC 
+   *  @brief Returns the month of the UTC time in the range 1 - 12.
+   *
+   *  @return [uint8_t] the month of the UTC time in the range 1 - 12.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getDay() 
+   *  @memberof UTC 
+   *  @brief Returns the day of the UTC time in the range 1 - 31.
+   *
+   *  @return [uint8_t] the day of the UTC time in the range 1 - 31.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getHour() 
+   *  @memberof UTC 
+   *  @brief Returns the hour of the UTC time in the range 0 - 23.
+   *
+   *  @return [uint8_t] the hour of the UTC time in the range 0 - 23.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getMinute() 
+   *  @memberof UTC 
+   *  @brief Returns the minute of the UTC time in the range 0 - 59.
+   *
+   *  @return [uint8_t] the minute of the UTC time in the range 0 - 59.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getSecond() 
+   *  @memberof UTC 
+   *  @brief Returns the second of the UTC time in the range 0 - 60.
+   *
+   *  @return [uint8_t] the second of the UTC time in the range 0 - 60.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getSecFraction() 
+   *  @memberof UTC 
+   *  @brief Returns the fraction of seconds of the UTC, always < 1.0.
+   *
+   *  @return [double] the fraction of seconds of the UTC, always < 1.0.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getMjd() 
+   *  @memberof UTC 
+   *  @brief Returns the time of this UTC converted into MJD.
+   *
+   *  @return [MJD] the time of this UTC converted into MJD.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getObt() 
+   *  @memberof UTC 
+   *  @brief Returns the time of this UTC converted into OBT.
+   *
+   *  @return [OBT] the time of this UTC converted into OBT.
+   */
+  
+  /** *************************************************************************
+   *  @fn def __str__() 
+   *  @memberof UTC 
+   *  @brief Cast operator, for example required by the fits_data_model
+   *
+   *  @return [string] the MJD value as a string
+   */
+  
+  /** *************************************************************************
+   *  @fn def __lt__(utc) 
+   *  @memberof UTC 
+   *  @brief Less - operator. 
+   *
+   *  @param utc [UTC] another UTC instance.
+   *  @return [boolean] True if this UTC instance is less than the instance given as method argument. 
+   */
+  
+  /** *************************************************************************
+   *  @fn def __le__(utc) 
+   *  @memberof UTC 
+   *  @brief Less than or equal - operator. 
+   *
+   *  @param utc [UTC] another UTC instance.
+   *  @return [boolean] True if this UTC instance is less than or equal to the instance given as method argument. 
+   */
+  
+  /** *************************************************************************
+   *  @fn def __gt__(utc) 
+   *  @memberof UTC 
+   *  @brief Greater than - operator. 
+   *
+   *  @param utc [UTC] another UTC instance.
+   *  @return [boolean] True if this UTC instance is greater than the instance given as method argument. 
+   */
+  
+  /** *************************************************************************
+   *  @fn def __ge__(utc) 
+   *  @memberof UTC 
+   *  @brief Greater than or equal - operator. 
+   *
+   *  @param utc [UTC] another UTC instance.
+   *  @return [boolean] True if this UTC instance is greater than or equal to the instance given as method argument. 
+   */
+  
+  /** *************************************************************************
+   *  @fn def __ne__(utc) 
+   *  @memberof UTC 
+   *  @brief Not equal - operator
+   *
+   *  @param utc [UTC] another UTC instance.
+   *  @return [boolean] True if this UTC instance is not equal to the instance given as method argument.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __eq__() 
+   *  @memberof UTC 
+   *  @brief Equal - operator.
+   *
+   *  @param utc [UTC] another UTC instance.
+   *  @return [boolean] True if this UTC instance is equal to the instance given as method argument.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __hash__() 
+   *  @memberof UTC
+   *  @brief Returns a hash of this object's utc time.
+   *
+   *  @return [int] a hash of this object's utc time.
+   */
+
+/** ****************************************************************************
+ *  @class VisitId
+ *  @brief   A class to store the fields of a VisitId
+ *  @ingroup FitsDataModel
+ *  @author  Reiner Rohlfs, UGE
+ *
+ *  A visit-Id is defined by four items:
+ *  - a program type, only a few program types are defined: guaranteed time
+ *      program (10-19), guest observer program (20-29), monitoring, characterization
+ *      program (30-39), discretionary program (40-49) and data not belonging to any
+ *      visit (50). Simulated data use as program type the number 90, 98 or 99.
+ *  - a program request id, it is a unique number per program type.
+ *  - a observation request id, a unique number per program request id.
+ *  - visit counter, counts the visits of one observation request.
+ */
+ 
+  /** *************************************************************************
+   *  @fn def __init__() 
+   *  @memberof VisitId 
+   *  @brief Default constructor of the VisitId class.
+   *
+   *  The visit id stored in this instance is not valid. Without assigning a
+   *  valid VisitId to this class the function VisitId.isValid() will
+   *  return false.
+   */
+
+  /** *************************************************************************
+   *  @fn def __init__(programType, programId, requestId, visitCounter) 
+   *  @memberof VisitId 
+   *  @brief Initializes the variables of the class
+   
+   *  @param programType  [uint8_t] Valid values are: 10-19 (guaranteed program),
+   *                             20-29 (guest observer program), 30-39 (monitoring and
+   *                             characterization program), 40-49 (discretionary
+   *                             program), 50 (data not belonging to any
+   *                             visit) and 90, 98, 99 (simulated data)
+   *  @param programId    [uint16_t] The program request Id of a program type
+   *                             [0 .. 9999]
+   *  @param requestId    [uint16_t] A unique observation request Id per
+   *                             program Id [0 .. 9999]
+   *  @param visitCounter [uint8_t] A counter, counting the visits of the target
+   *                             [1 .. 99]
+   */
+   
+  /** *************************************************************************
+   *  @fn def __init__(fileNamePattern) 
+   *  @memberof VisitId 
+   *  @brief Initializes the variables of the class from a sub-string of a
+   *         file name
+   *
+   *  @param fileNamePattern [string] the format has to be like a visit id is 
+   *                         coded in a CHEOPS file-name: PRppnnnn-TGoooonn.
+   *                         pp is the program type, nnnn is the program
+   *                         request Id, oooo is the observatin request
+   *                         id and nn is the visit counter.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __init__(hdu) 
+   *  @memberof VisitId 
+   *  @brief Initializes the variables of the class from the header keyword
+   *         of a HDU.
+   *
+   *  @param hdu   an instance of a FITS Data Model class. The following methods
+   *               must be defined:
+   *               - hdu->getKeyProgtype(),
+   *               - hdu->getKeyProgId(),
+   *               - hdu->getKeyReqId() and
+   *               - hdu->getKeyVisitctr().\n
+   *               These are defined if the corresponding FITS HDU has
+   *               following keywords:
+   *               - PROGTYPE,
+   *               - PROG_ID,
+   *               - REQ_ID  and
+   *               - VISITCTR.
+   */
+   
+  /** *************************************************************************
+   *  @fn def isValid() 
+   *  @memberof VisitId 
+   *  @brief Returns True if this instance holds a valid Visit Id.
+   *
+   *  @return [boolean] True if this instance holds a valid Visit Id.
+   */
+   
+  /** *************************************************************************
+   *  @fn def getProgramType() 
+   *  @memberof VisitId 
+   *  @brief Returns the program type, 10 - 50, or 90, 98 or 99.
+   *
+   *  @return [uint8_t] the program type, 10 - 50, or 90, 98 or 99
+   */
+  
+  /** *************************************************************************
+   *  @fn def getProgramId() 
+   *  @memberof VisitId 
+   *  @brief Returns the program request Id.
+   *
+   *  @return [uint16_t] the program request Id.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getObservationId() 
+   *  @memberof VisitId 
+   *  @brief Returns the observation request Id, deprecated, do not use it any more.
+   *
+   *  @return [uint16_t] the observation request Id.
+   */
+   
+  /** *************************************************************************
+   *  @fn def getRequestId() 
+   *  @memberof VisitId 
+   *  @brief Returns the observation request Id.
+   *
+   *  @return [uint16_t] the observation request Id.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getVisitCounter() 
+   *  @memberof VisitId 
+   *  @brief Returns the visit counter.
+   *
+   *  @return [uint8_t] the visit counter.
+   */
+  
+  /** *************************************************************************
+   *  @fn def getFileNamePattern() 
+   *  @memberof VisitId 
+   *  @brief Returns a string in the format as the Visit Id should be written
+   *         in a CHEOPS file-name
+   *
+   *  The format of the returned string is PRppnnnn_TGttttnn
+   *
+   *  @return the file name pattern.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __eq__(visitId) 
+   *  @memberof VisitId 
+   *  @brief Comparison - operator
+   *  
+   *  @param visitId another VisitId
+   *  @return [boolean] True if this VisitId is equal to the VisitId passed to the method.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __ne__(visitId) 
+   *  @memberof VisitId 
+   *  @brief Comparison - operator
+   *  
+   *  @param visitId another VisitId
+   *  @return [boolean] True if this VisitId is not equal to the PassId passed to the method.
+   */
+   
+  /** *************************************************************************
+   *  @fn def __lt__(visitId) 
+   *  @memberof VisitId 
+   *  @brief Less than - operator
+   *  
+   *  @param visitId another VisitId
+   *  @return [boolean] True if this VisitId is less than the VisitId passed to the method.
+   */
+ 
+  /** *************************************************************************
+   *  @fn def __hash__() 
+   *  @memberof VisitId 
+   *  @brief Returns a hash of this object's visit id.
+   *
+   *  @return [int] a hash of this object's visit id.
+   */

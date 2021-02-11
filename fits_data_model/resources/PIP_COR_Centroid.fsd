@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 10.1  28. 08. 2018 RRO
+			- #16371 new columns: CENTROID_X, CENTROID_Y
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+		version 6.4  28. 11. 2016 RRO
+			- #12064 Update the time columns to use the same columns as in SCI_CAL_ImageMetadata
+			
+        version 6.3  27. 10. 2016 RRO
+           - use KeywordVisit instead of KeywordPassVisit. ==> remove Keyword PASS_ID
+
+        version 5.2  03. 06. 2016 RRO
+           - renamed data structure from PIP_DR_Centroid to PIP_COR_Centroid
+
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit           SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY ColumnTimeL1L2         SYSTEM "ColumnTimeL1L2.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_COR_Centroid">
+        <brief>Stores the centroid data as they were calculated by Data Reduction </brief>
+         <description>There is one row per sub-frame image.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel1;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordVisit;   
+             &KeywordSkyPos;
+        </header>								     
+
+        <table>
+        	&ColumnTimeL1L2;
+			<column name="IMAGE_INDEX" 	data_type="uint16"              comment="Index of the full or subframe this centroid belongs to" />
+            <column name="LOCATION_X"  	data_type="float"  unit="pixel" comment="intended X position of target on CCD [SOC coordinate system]" />
+			<column name="LOCATION_Y"  	data_type="float"  unit="pixel" comment="intended Y position of target on CCD [SOC coordinate system]" />
+            <column name="CENTROID_X"  	data_type="float"  unit="pixel" comment="calculated X position of target on CCD [SOC coordinate system]" />
+			<column name="CENTROID_Y"  	data_type="float"  unit="pixel" comment="calculated Y position of target on CCD [SOC coordinate system]" />
+			<column name="VALIDITY"  	data_type="uint8"               comment="0: OK, other: not OK" />
+        </table>
+    </HDU>
+</FITS_schema>

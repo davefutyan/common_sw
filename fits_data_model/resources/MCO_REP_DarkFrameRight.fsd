@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.0  28. 08. 2020 MBE
+			- #22260: Clean-up epoch for attitude information
+
+		version 11.1    31. 01. 2019 RRO
+		    - #18127 new header keywords:
+		    	PROC_CHN, PI_NAME, PI_UID, OBS_CAT, PROGTYPE, PROG_ID, REQ_ID
+		    	VISITCTR, OBSID, PRP_VST1, PRP_VSTN, RA_TARG, DEC_TARG, EQUINOX,
+		    	RADESYS, V_STRT_M, V_STOP_M
+
+        version 10.1  11. 09 2018
+        	- image cube to store also the error 
+
+		version 9.1  05. 02. 2018 RRO
+			- new data structure
+
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelQL      SYSTEM "KeywordDataLevelQL.ifsd"> 
+    <!ENTITY KeywordProcChain        SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops           SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity         SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit            SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordSkyPos           SYSTEM "KeywordSkyPos.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    
+    <HDU extname="MCO_REP_DarkFrameRight">
+    
+        <brief> Dark Frame of the right CCD margin area</brief>
+        <description>The Frame is a result of dark M and C observations.
+                     It can be used to update the REF_APP_DarkFrameRight
+                     The bias value is already subtracted and it is corrected
+                     for non-linearity.
+                     </description>
+    
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.0"  comment="version of the data structure"/>
+            <keyword name="BUNIT"	    data_type="string" default="e-/s" comment="Unit of the data in the image"/>
+            <keyword name="IMAGE1"	    data_type="string" default="dark current" comment="description of image 1"/>
+            <keyword name="IMAGE2"	    data_type="string" default="dark error" comment="description of image 2"/>
+             &KeywordDataLevelQL;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordVisit; 
+             &KeywordSkyPos;
+            
+        </header>
+        <image data_type="float">
+            <naxis>3</naxis>
+            <axis1 comment="X axis">16</axis1>
+            <axis2 comment="Y axis">0</axis2>
+            <axis3 comment="data type">2</axis3>
+        </image>
+    </HDU>
+    
+   
+</FITS_schema>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL05
+
+		version 9.3  04. 06. 2018 RRO
+		  - #16270 new data structure, copied from SIM_RAW_UnstackedOverscanLeftImage
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelSim    SYSTEM "KeywordDataLevelSim.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordExposureL05     SYSTEM "KeywordExposureL05.ifsd"> 
+    <!ENTITY KeywordSubColumnOrigin SYSTEM "KeywordSubColumnOrigin.ifsd">     
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SIM_RAW_UnstackedOverscanRightImage">
+        <brief>Overscan columns on left side of the CCD.</brief>
+        <description>There is no processing on ground yet applied. The values
+                     are as they were calculated on board. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.1" comment="version of the data structure"/>
+            &KeywordDataLevelSim;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordPassVisit;   
+            &KeywordExposureL05;
+            &KeywordSubColumnOrigin;
+        </header>
+        <!--  -->
+        <image data_type="uint16">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the overscan column">4</axis1>
+            <axis2 unit="pixel" comment="Y axis of the overscan column">0</axis2>
+            <axis3 unit="#images" comment="Successive overscan columns (sorted by date) "> 0 </axis3>
+        </image>
+    </HDU>
+    
+    
+</FITS_schema>

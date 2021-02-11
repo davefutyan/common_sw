@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+        version 10.1     10. 09. 2018
+           - new header keyword: DESCRIP
+	
+        version 5.2  15. 04. 2016 RRO
+           - new data structure
+	
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_SEDTeff">
+        <brief>SEDs for different Teff</brief>
+        <description> Grid of SEDs (Spectra Energy Distribution). The interpolated SED 
+                      is used to compute weights for the flat field computation.</description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+             <group description="SED attributes">
+                <keyword name="MODEL"	  data_type="string" default="log g = 4.5" comment="PHOENIX models using LTE (ACES-AGSS-COND-2011-HiRes2). log g was fixed to 4.5 (dwarf stars)."/>
+             </group>
+             
+        </header>
+        <table>
+            <column name="WAVELENGTH"	data_type="float" bin_size="951" unit="nm" comment="wavelength"/>
+            <column name="FLUX"			data_type="float" bin_size="951" unit="erg/s/cm^2/A" comment="flux"/>
+            <column name="TEMPERATUR"	data_type="float"                unit="K"  comment="Teff"/>
+        </table>
+    </HDU>
+</FITS_schema>

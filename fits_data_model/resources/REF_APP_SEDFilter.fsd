@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+       version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+
+		version 10.1     10. 09. 2018
+           - new data structure, similar as REF_APP_SEDTeff
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_SEDFilter">
+        <brief>SEDs for filters of the Flat Fields</brief>
+        <description> Grid of SEDs (Spectra Energy Distribution). The interpolated SED 
+                      is used to compute weights for the flat field computation.</description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+             
+        </header>
+        <table>
+            <column name="WAVELENGTH"	data_type="float" bin_size="771" unit="nm" comment="wavelength"/>
+            <column name="FLUX"			data_type="float" bin_size="771" unit="erg/s/cm^2/A" comment="flux"/>
+            <column name="FILTER"    	data_type="string" bin_size ="5" unit="nm"   comment="filer (U,B,V,R or I) or center wavelength "/>
+        </table>
+    </HDU>
+</FITS_schema>

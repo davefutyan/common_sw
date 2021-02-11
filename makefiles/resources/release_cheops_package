@@ -1,0 +1,224 @@
+#!/bin/bash
+# Script to release a CHEOPS package
+# It is designed to be called by the CHEOPS make utility by invoking
+# "make release".
+#
+# $1 : Not used, set by the Makefile to URL:
+# $2 : The URL of the base directory, that should be released. For example:
+#      http://www.isdc.unige.ch/svn-cheops/05_infrastructure/software/common_sw/trunk
+#      The last directory should be "trunk" and the second last directory
+#      should be the package name
+# $3 : The release version 
+
+
+################################################################################
+#     set some variables
+
+VERSION=$3
+
+WORKING_URL=$2
+
+if [[ $WORKING_URL =~ "trunk" ]]; then
+    # the tag url is very similar as the trunk url: "trunk" is replaces by "tags"
+    # and the version number is appended
+    TAG_URL=`echo $WORKING_URL | sed s/trunk/tags/`/$VERSION
+    
+    # the current url is very similar as the tag url: instead of $VERSION it is
+    # current
+    CURRENT_URL=`echo $WORKING_URL | sed s/trunk/tags/`/current
+    
+    # the module name is the second last directory name in the trunk url
+    PRODUCT=`echo $WORKING_URL | rev | cut -f2 -d/ | rev`
+    
+    # the work package name is the fourth last directory name in the trunk url
+    WORK_PACKAGE=`echo $WORKING_URL | rev | cut -f4 -d/ | rev`
+elif [[ $WORKING_URL =~ "branches" ]]; then
+    # the tag url is very similar as the branch url: "branches/*" is replaces by "tags"
+    # and the version number is appended
+    TAG_URL=`echo $WORKING_URL | sed s/branches.*/tags/`/$VERSION
+    
+    # the current url is very similar as the branch url: instead of $VERSION it is
+    # current
+    CURRENT_URL=`echo $WORKING_URL | sed s/branches.*/tags/`/current
+    
+    # the module name is the third last directory name in the trunk url
+    PRODUCT=`echo $WORKING_URL | rev | cut -f3 -d/ | rev`
+    
+    # the work package name is the fifth last directory name in the trunk url
+    WORK_PACKAGE=`echo $WORKING_URL | rev | cut -f5 -d/ | rev`
+else
+    echo "Error: tagging from directory $WORKING_URL is not supported."
+    exit 1
+fi
+
+LOGFILE=/tmp/$PRODUCT-$VERSION
+    
+# The release version in the release note. Will be __trunk__ if WORKING_DIR
+# is the trunk or a branch created from trunk. Will be a release number if
+# WORKING_DIR is a branch created from a tag.
+WORKING_VERSION=`grep '<b>.*Version.*:.*</b>.*<' doc/release_note.html | grep -oP '[r_]_.+(?=[[:space:]]*<)'`
+
+echo "VERSION        = $VERSION"
+echo "WORKING_URL    = $WORKING_URL"
+echo "WORKING_VERSION = $WORKING_VERSION"
+echo "TAG_URL        = $TAG_URL"
+echo "CURRENT_URL    = $CURRENT_URL"
+echo "PRODUCT        = $PRODUCT"
+echo "WORK_PACKAGE   = $WORK_PACKAGE"
+echo "LOGFILE        = $LOGFILE"
+echo " "
+
+################################################################################
+#       The release number of the working directory could not be parsed from
+#       the release note.
+if [ -z "$WORKING_VERSION" ]; then
+    echo "Error: the working release version was not found"
+    exit 1
+fi
+
+################################################################################
+#       create the log file
+echo " " > $LOGFILE
+
+################################################################################
+#       copy in the svn repository the software form 
+#       trunk to tags/version
+
+echo tag the software by copying if from trunc to tags/$VERSION
+svn copy $WORKING_URL $TAG_URL -m "tagging module $PRODUCT with version $VERSION" 
+echo " "
+
+################################################################################
+#       now we are working at /tmp/module/version
+
+echo "create working directory and cd: /tmp/$PRODUCT/$VERSION"
+mkdir -p /tmp/$PRODUCT/$VERSION
+cd /tmp/$PRODUCT/$VERSION
+echo " "
+
+################################################################################
+#       checkout the just released software to update the release note
+#       and to build the doxygen documentation
+
+echo "checkout the just released software"
+svn checkout $TAG_URL . >> $LOGFILE
+#svn checkout $WORKING_URL . >> $LOGFILE
+echo " "
+
+################################################################################
+#       build the software if it is the common_sw
+#       we want the data structures to be available for the doxygen documentation
+
+if [ "$PRODUCT" = "common_sw" ]; then
+ echo "build the software"
+ export CHEOPS_SW=/tmp/$PRODUCT/install
+ export DYLD_LIBRARY_PATH=${CHEOPS_SW}/lib:${DYLD_LIBRARY_PATH}
+ export LD_LIBRARY_PATH=${CHEOPS_SW}/lib:${LD_LIBRARY_PATH}
+ make install  >> $LOGFILE
+ echo " ";
+fi
+
+################################################################################
+#       build the DPDD from the FSD files, if it is the common_sw
+#       we want the DPDD in the tag version
+
+if [ "$PRODUCT" = "common_sw" ]; then
+ echo "build the DPDD"
+ cd fits_data_model/etc/fsd_to_pdf
+ sh ./fsdtopdf.sh >> $LOGFILE
+ cd -
+ echo " ";
+fi
+
+
+echo "update the release note"
+DATE=`date "+%A %B %d %Y"`
+
+if [ "$WORKING_VERSION" == "__trunk__" ]; then
+    ################################################################################
+    # update the release note with version, date and link to the tagged version
+    sed --in-place "s/__trunk__/$VERSION/;s/release date/$DATE/;s/WORK_PACKAGE/$WORK_PACKAGE/;s/PRODUCT/$PRODUCT/" doc/release_note.html
+    echo " "
+    
+    ################################################################################
+    #       set the version number in the main page of the doxygen web pages
+    echo "set version number in doxygen main page"
+    sed --in-place "s/__trunk__/$VERSION/" doxygen/main_page.txt
+else
+    ################################################################################
+    # update the release note with version, date and link to the tagged version
+    WORKING_TAG_URL=`echo $TAG_URL | sed s/$VERSION/$WORKING_VERSION/`
+    echo "WORKING_TAG_URL=$WORKING_TAG_URL"
+    sed --in-place -r "s#(<b>[[:space:]]*Version:[[:space:]]*</b>[[:space:]]*).+([[:space:]]*<)#\1$VERSION\2#" doc/release_note.html
+    sed --in-place -r "s#(<b>[[:space:]]*Date:[[:space:]]*</b>[[:space:]]*).+#\1$DATE#" doc/release_note.html
+    sed --in-place    "s#$WORKING_TAG_URL#$TAG_URL#" doc/release_note.html
+    echo " "
+    
+    ################################################################################
+    #       set the version number in the main page of the doxygen web pages
+    echo "set version number in doxygen main page"
+    sed --in-place -r "s#(<b>[[:space:]]*Release Version:[[:space:]]*).+([[:space:]]*<)#\1$VERSION\2#" doxygen/main_page.txt
+fi
+echo " "
+
+################################################################################
+#       create the documentation
+
+echo "create the documentation"
+make doc  >> $LOGFILE
+echo " "
+
+################################################################################
+#       add new files to svn 
+
+echo "add the documentation files to svn"
+svn add doc/manual_cxx >>  $LOGFILE
+svn add doc/manual_python >>  $LOGFILE
+if [ "$PRODUCT" = "common_sw" ]; then
+ svn add doc/fits_data_model >>  $LOGFILE
+fi
+echo " "
+
+################################################################################
+#       set the mime type 
+
+echo "set the mime type to all *.html and *.css files"
+svn propset svn:mime-type text/html doc/*.html                >>  $LOGFILE
+
+svn propset svn:mime-type text/html doc/manual_cxx/*.html         >>  $LOGFILE
+svn propset svn:mime-type text/html doc/manual_cxx/search/*.html  >>  $LOGFILE
+svn propset svn:mime-type text/css  doc/manual_cxx/*.css          >>  $LOGFILE
+svn propset svn:mime-type text/css  doc/manual_cxx/search/*.css   >>  $LOGFILE
+
+svn propset svn:mime-type text/html doc/manual_python/*.html         >>  $LOGFILE
+svn propset svn:mime-type text/html doc/manual_python/search/*.html  >>  $LOGFILE
+svn propset svn:mime-type text/css  doc/manual_python/*.css          >>  $LOGFILE
+svn propset svn:mime-type text/css  doc/manual_python/search/*.css   >>  $LOGFILE
+
+if [ "$PRODUCT" = "common_sw" ]; then
+ svn propset svn:mime-type text/html doc/fits_data_model/*.html  >>  $LOGFILE
+ svn propset svn:mime-type text/css  doc/fits_data_model/*.css  >>  $LOGFILE
+fi
+echo " "
+
+################################################################################
+#       commit the changes
+
+echo "commit the documentation and the updated release note"
+svn commit -m "add doxygen documentation, update the release note" >> $LOGFILE
+echo " "
+
+################################################################################
+#       copy the new release to current
+
+echo "deleting old current version and copy new release to current"
+svn del -m "current is now old, it will be deleted" $CURRENT_URL              >> $LOGFILE
+svn copy -m "current is now a copy of release $VERSION" $TAG_URL $CURRENT_URL >> $LOGFILE
+
+
+################################################################################
+#      everything is done, we clean 
+
+echo "everything is done, delete working directory /tmp/$PRODUCT"
+echo "keep the logfile $LOGFILE"
+rm -rf /tmp/$PRODUCT

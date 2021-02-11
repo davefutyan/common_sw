@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 6.4  06. 12. 2016 RRO
+           - change all columns to bin_size="2" to store hard and soft limits
+
+        version 5.0  09. 02. 2016 RRO
+           - New data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_VisitConstraints">
+        <brief> Minimum angels between sun, moon and earth limb to the target</brief>
+        <description>There will be one row, defining the three minimum angles.
+                     Soft (index 0) and Hard (index 1) limits can be stored.
+                     Not used limits are set to NULL (NaN) </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+			<column name="MIN_LOS_TO_SUN_ANGLE"   data_type="double" bin_size="2"  unit="deg"  comment="Minimum angle between target and Sun"/>
+			<column name="MIN_LOS_TO_MOON_ANGLE"  data_type="double" bin_size="2"  unit="deg"  comment="Minimum angle between target and Moon"/>
+			<column name="MIN_LOS_TO_EARTH_ANGLE" data_type="double" bin_size="2"  unit="deg"  comment="Minimum angle between target and Earth limb"/>
+       </table>
+    </HDU>
+</FITS_schema>

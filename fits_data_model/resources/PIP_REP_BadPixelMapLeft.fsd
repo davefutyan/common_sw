@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 10.3    01. 11. 2018 RRO
+		    - #17482 new header keywords:
+		    	PROC_CHN, PASS_ID, PI_NAME, PI_UID, OBS_CAT, PROGTYPE, PROG_ID, REQ_ID
+		    	VISITCTR, OBSID, PRP_VST1, PRP_VSTN, RA_TARG, DEC_TARG, EQUINOX,
+		    	RADESYS, V_STRT_M, V_STOP_M
+
+ 		version 10.1     10. 09. 2018 RRO
+           - #16640 new data structure
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelQL      SYSTEM "KeywordDataLevelQL.ifsd"> 
+    <!ENTITY KeywordProcChain        SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops           SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity         SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordTarget           SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordPassVisit        SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordSkyPos           SYSTEM "KeywordSkyPos.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_BadPixelMapLeft">
+        <brief>Bad Pixel Map of the CCD margin area left dark</brief>
+        <description>Pixels can have following values: -2: totally dead pixel, 
+                     -1 = partially dead pixel, 0 = good pixel, 1 = hot pixel, 
+                     2 = saturated pixel, 3 = telegraphic pixel</description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevelQL;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit; 
+             &KeywordSkyPos;
+        </header>
+        <image data_type="int16">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">16</axis1>
+            <axis2 comment="Y axis">0</axis2>
+        </image>
+    </HDU>
+
+
+</FITS_schema>

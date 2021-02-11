@@ -1,0 +1,15 @@
+
+EXEC_TARGET1 = release_cheops_package
+EXEC_TARGET2 = py_filter
+
+CLEAN += bin/py_filter
+
+bin/release_cheops_package : resources/release_cheops_package
+	@mkdir -p bin
+	cp resources/release_cheops_package bin/release_cheops_package
+
+bin/py_filter : resources/py_filter
+	@mkdir -p bin
+	cp resources/py_filter bin/py_filter
+
+INSTALL_RESOURCES = Makefile template_init.cxx template_init.py

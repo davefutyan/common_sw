@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	    version 6.2  26. 08. 2016
+	       - remove AUX_RES_VisitConstraints as associated data structure.
+	         It has a different generation frequency and will have its own file.
+
+        version 5.3  20. 06. 2016 RRO
+           - new columns: LATITUDE, LONGITUDE
+           - new associated data structure: AUX_RES_VisitConstraints
+-->   
+
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelAux   SYSTEM "KeywordDataLevelAux.ifsd"> 
+    <!ENTITY KeywordProcChain      SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="AUX_RES_Orbit">
+        <brief>Restituted Orbit Data </brief>
+        <description>Orbit data copied from the restituted orbit XML file,  
+                     which is provided by MOC. Each row defines for 
+                     one time (EPOCH) a state vector with the position and
+                     velocity of the spacecraft. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="5.3" comment="version of the data structure"/>
+             &KeywordDataLevelAux;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             <group description="OEM Metadata">
+             	<keyword name="CNT_NAME"  data_type="string"   default="EARTH"     comment="Origin of reference frame"/>
+             	<keyword name="REF_FRAM"  data_type="string"   default="EME2000"   comment="Name of the reference frame"/>
+             	<keyword name="TIME_SYS"  data_type="string"   default="UTC"       comment="Time system"/>
+             	<keyword name="USE_STTM"  data_type="UTC"    unit="TIMESYS=UTC"            comment="Start of useable time"/>
+             	<keyword name="USE_ENTM"  data_type="UTC"    unit="TIMESYS=UTC"            comment="End of useable time"/>
+             	<keyword name="INTERPOL"  data_type="string"   default="Lagrange"  comment="Recommended interpolation method"/>
+             	<keyword name="DEG_INRT"  data_type="integer"                      comment="Recommended interpolation degree"/>
+             </group>
+             
+        </header>
+        
+        <table>
+            <column name="EPOCH"     data_type="UTC"    unit="TIMESYS=UTC"  comment="UTC time of the state vector"/>
+            <column name="X"         data_type="double" unit="km"   comment="x component of position"/>
+            <column name="Y"         data_type="double" unit="km"   comment="y component of position"/>
+            <column name="Z"         data_type="double" unit="km"   comment="z component of position"/>
+            <column name="X_DOT"     data_type="double" unit="km/s" comment="x component of velocity"/>
+            <column name="Y_DOT"     data_type="double" unit="km/s" comment="x component of velocity"/>
+            <column name="Z_DOT"     data_type="double" unit="km/s" comment="x component of velocity"/>
+            <column name="LATITUDE"  data_type="double" unit="deg"  comment="latitude of spacecraft"/>
+            <column name="LONGITUDE" data_type="double" unit="deg"  comment="longitude of spacecraft"/>
+       </table>
+    </HDU>
+    
+</FITS_schema>

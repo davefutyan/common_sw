@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 11.1: 16. 01. 2019 RRO
+           - #18431 new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_ReadOut">
+        <brief>Defines the instrument parameters, depending on the read-out script and read-out mode</brief>
+        <description>The main key is the script ID but also the Read-Out Mode
+                     can be used to query for data of a specific read out mode. </description>
+        <header>
+            <keyword name="EXT_VER"            data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="RO_SCRPT"            data_type="uint16"                 comment="Id of the CCD readout timing script"/>
+            <column name="RD_MODE"             data_type="string"   bin_size="12" comment="Readout mode: faint, bright, ultrabright, full frame, faint fast or not assigned"/>
+            <column name="RO_HW"               data_type="string"   bin_size="10" comment="HW - channel: main or redundant"/>
+            <column name="RO_FREQU"            data_type="uint32"   unit="Hz"     comment="CCD readout frequency"/>
+            <column name="CCD_INIT"            data_type="double"   unit="msec"   comment="Time to initialise the complete CCD in rolling mode"/>
+            <column name="CCD_CLEAR"           data_type="double"   unit="msec"   comment="Time to clear the complete CCD"/>
+            <column name="CCD_FAST_SHIFT"      data_type="double"   unit="msec"   comment="Time to shift the exposed area of the CCD to the memory zone"/>
+            <column name="CCD_READ_OUT"        data_type="double"   unit="msec"   comment="Time to read the complete CCD"/>
+            <column name="ROW_DUMP"            data_type="double"   unit="msec"   comment="Time to dump 1 row of the CCD"/>
+            <column name="ROW_DUMP_OFFSET"     data_type="double"   unit="msec"   comment="Time offset to dump one group of contiguous rows"/>
+            <column name="ROW_READ_OUT"        data_type="double"   unit="msec"   comment="Time to read one row of the CCD"/>
+            <column name="ROW_READ_OUT_OFFSET" data_type="double"   unit="msec"   comment="Time offset to read on group of contiguous rows"/>
+            <column name="TOP_READ_OUT"        data_type="double"   unit="msec"   comment="Time to read all 9 top margin rows"/>
+       </table>
+    </HDU>
+</FITS_schema>

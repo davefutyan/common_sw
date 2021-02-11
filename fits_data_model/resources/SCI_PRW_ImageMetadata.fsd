@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 12.0.2 05. 02. 2020
+		    - #20820 update the comment of Header Keyword REPETIT,
+		             EXT_VER is not updated
+
+		version 9.3  29. 05. 2018 RRO
+		    - #14795 remove the columns of the CCD margin data (ColumnCcdMargins)
+		    
+		version 6.2  07. 09. 2016 RRO
+			- new column: MARGINS_DARK_COL_MASK
+			- columns MARGINS_CE_KEY, MARGINS_ORG_SIZE, MARGINS_COMP_SIZE and
+			  MARGINS_CHECKSUM are now vector columns of 7 bins.
+			- remove HK data, they are now stored in SCI_PRW_UnstackedImageMetadata. 
+			- remove header keywords: ACQUISITION_ID, PHOTOMETRY
+			  
+
+        version 5.2  26. 04. 2016 RRO
+           - columns ColumnFeeTempVolt aren't vector columns any more
+           - Removed ACQUISITION_SOURCE, ACQUISITION_TIME and HEATERS columns
+           - PHOTOMETRY column is now uint32
+
+        version 5.0  01. 02. 2016 RRO
+           - Use KeywordValidityUTC instead of KeywordValidity
+           - many new columns
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit      	SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY ColumnTimePrw          SYSTEM "ColumnTimePrw.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_ImageMetadata">
+        <brief> L05 Product : Meta data of the images, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube. It stores meta data of that image.
+                      This data structure is used for SubArrays as well as
+                      for images of the FullArray. In the later case there will be
+                      just one row in the table. 
+                      The MARGINS_* columns stores the data for the CCD margins in following order:
+                      0 = dark left, 1 = dark right, 2 = dark top, 3 = blank left,  4 = blank right,
+                      5 = overscan left, 6 = overscan top</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="9.3" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+            &KeywordPassVisit;   
+            <group description="Compression Entity Header">
+ 	            <keyword name="IFSW_VER"    data_type="integer"    comment="Version of the IFSW"/>
+ 	            <keyword name="ACQ_MODE"    data_type="integer"    comment="Acquisition mode 1: DUMP 2: DIGIT 3: FULL"/>
+ 	            <keyword name="RD_MODE"     data_type="integer"    comment="Readout mode 0=faint, 1=bright 2=ultrabright, 3=full frame, 5=faint fast"/>
+ 	            <keyword name="OVERSAMP"    data_type="boolean"    comment="Oversampling mode if true than averaging of several exposures is done"/>
+ 	            <keyword name="F_SOURCE"    data_type="integer"    comment="Frame source 0: CCD 1: PATTERN 2:SIMULATION"/>
+ 	            <keyword name="REPETIT"     data_type="integer"  unit="ms"   comment="Commanded Repetition Period, actual Repetition Period can be longer"/>
+            </group>  
+        </header>
+        
+        <table>
+            &ColumnTimePrw;
+			<column name="OBT_CE_TIME"         data_type="OBT"    unit="OBT"  comment="OBT when the compression entity was build"/>
+            <column name="CE_COUNTER"          data_type="uint16"             comment="image counter per visit"/>
+            <column name="CE_SIZE"             data_type="uint32"             comment="Size in byte of the compressed CE"/>
+            <column name="CE_INTEGRITY"        data_type="uint8"              comment="1: a problem occurred during data processing"/>
+            
+            <column name="HEADER_CE_KEY"       data_type="uint32"             comment="Product ID of compressed header"/>
+            <column name="HEADER_ORG_SIZE"     data_type="uint32" unit="Byte" comment="Uncompressed size of compressed header"/>
+            <column name="HEADER_COMP_SIZE"    data_type="uint32" unit="Byte" comment="Compressed size of compressed header"/>
+            <column name="HEADER_CHECKSUM"     data_type="uint16"             comment="Checksum of compressed header"/>
+ 
+            <column name="STACKED_CE_KEY"      data_type="uint32"             comment="Product ID of stacked frames"/>
+            <column name="STACKED_ORG_SIZE"    data_type="uint32" unit="Byte" comment="Uncompressed size of stacked frames"/>
+            <column name="STACKED_COMP_SIZE"   data_type="uint32" unit="Byte" comment="Compressed size of stacked frames"/>
+            <column name="STACKED_CHECKSUM"    data_type="uint16"             comment="Checksum of stacked frames"/>
+            <column name="STACKED_DATATYPE"    data_type="uint8"  unit="Byte" comment="Data type of pixel in TM 1: int8, 2: uint8, 3: int16, 4: uint16, 7: int32, 8: uint32"/>
+
+            <column name="MARGINS_CE_KEY"      data_type="uint32"             bin_size="7" comment="Product ID of image margins"/>
+            <column name="MARGINS_ORG_SIZE"    data_type="uint32" unit="Byte" bin_size="7" comment="Uncompressed size of image margins"/>
+            <column name="MARGINS_COMP_SIZE"   data_type="uint32" unit="Byte" bin_size="7" comment="Compressed size of image margins"/>
+            <column name="MARGINS_CHECKSUM"    data_type="uint16"             bin_size="7" comment="Checksum of image margins"/>
+            <column name="MARGINS_DARK_COL_MASK" data_type="uint16"           bin_size="7" comment="defines the selected/deselected dark columns"/>
+
+        </table>
+    </HDU>
+</FITS_schema>

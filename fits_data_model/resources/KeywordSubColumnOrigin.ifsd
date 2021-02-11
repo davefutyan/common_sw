@@ -1,0 +1,12 @@
+<!--
+		version 6.3  21. 10. 2016 RRO
+		   - removed keywords: Y_ORIGIN
+
+        version 6.0  04. 07. 2016 RRO
+           - new keyword: Y_WINOFF
+           - deprecated keyword: Y_ORIGIN
+-->   
+
+<group description="Sub - Array">
+	<keyword name="Y_WINOFF" data_type="integer" unit="pixel" comment="Y offset of the margin image relative to the Full Array image"/>
+</group>

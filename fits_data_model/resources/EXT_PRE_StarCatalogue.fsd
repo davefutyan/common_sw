@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    version 13.1.3   05. 02. 2021 ABE
+        - #23540: Add Pheader keyword PITL to HduStarCatalogue.ifsd
+
+    version 13.0   28. 08. 2020 MBE
+        - #22243: CHEOPS and Gaia magnitudes in the output data
+        - #22260: Clean-up epoch for attitude information
+
+    version 10.1   28. 08. 2018 RRO
+        - #16276 new header keywords, see KeywordTarget and KeywordSkyPos
+
+    version 9.3  29. 05. 2018 RRO
+        - #16272 use HduStarCatalogue as import
+
+    version 7.3  07. 04. 2017 RRO
+        - #12863 remove columns  CCD_ADU and CCD_ADU_ERR
+
+    version 7.0  09. 02. 2017 RRO
+        - #12671 new column: DISTANCE
+      
+    version 6.2  29. 08. 2016 RRO
+        - new columns: ID, RA_ERR, DEC_ERR, MAG_CHEOPS_ERR, CCD_ADU, 
+                       CCD_ADU_ERR, T_EFF, T_EFF_ERR
+        - removed keyword: T_EFF    
+        - new header keywords: GAIN, FOV, CENT_RA, CENT_DEC           
+
+    version 6.1  18. 07. 2016 RRO
+        - first version
+-->
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelExt    SYSTEM "KeywordDataLevelExt.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordVisit           SYSTEM "KeywordVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY HduStarCatalogue       SYSTEM "HduStarCatalogue.ifsd">
+]>
+
+<!-- this is a marker for FitsCreate that this is a table 
+  </table> -->
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="EXT_PRE_StarCatalogue">
+      &HduStarCatalogue;
+    </HDU>
+</FITS_schema>

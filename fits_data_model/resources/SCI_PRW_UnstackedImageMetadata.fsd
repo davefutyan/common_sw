@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 11.3   15. 04. 2019 RRO
+			- following the IFSW-SOC Interface document the data type of the 
+			  columns PHOTOMETRY1, PHOTOMETRY2, and PHOTOMETRY3 change from
+			  uint32 to float.
+
+		version 10.4   29. 11. 2018 RRO
+		    - #17497 rename the column names of ColumnCeHk.ifsd to precede them with CE_
+		             1. step : create new columns with new column name
+
+        version 9.3  04. 06. 2018 RRO
+           - #16355 The temperatures of the CE are provided as engineering 
+                    values: Including ColumnCeHk instead of ColumnCeHkEncoded
+           - #16351 new columns: ADC_N5V, ADC_TEMP1, provided by ColumnCeHk
+                   
+		version 7.3  12. 05. 2017 RRO
+		   - #13216 new columns: CCD_TIMING_SCRIPT and PIX_DATA_OFFSET
+
+		version 6.2  07. 09. 2016 RRO
+		   - new data structure
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit      	SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY ColumnTimePrw          SYSTEM "ColumnTimePrw.ifsd"> 
+    <!ENTITY ColumnCeHk             SYSTEM "ColumnCeHk.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_UnstackedImageMetadata">
+        <brief> L05 Product : Meta data of the images, stored in the same FITS file</brief>
+        <description> There is one row in this table per two dimensional unstacked image.
+                      It stores meta data of that image.
+                      This data structure is used for SubArrays as well as
+                      for images of the FullArray. In the later case there will be
+                      just one row in the table.
+                      Note: the main readout electronic was used if CCD_TIMING_SCRIPT = 1 to 8.
+                      The redundant readout electronic was used if CCD_TIMING_SCRIPT = 9 to 16 </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="11.3" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+            &KeywordPassVisit;   
+        </header>
+        
+        <table>
+            &ColumnTimePrw;
+            <column name="CE_COUNTER"          data_type="uint16"             comment="image counter per visit"/>
+            <column name="ACQUISITION_ID"      data_type="uint32"             comment="Data acquisition id, set by SEM"/>
+            &ColumnCeHk; 
+            <column name="CCD_TIMING_SCRIPT"   data_type="uint16"                         comment="Identifier of the currently used CCD timing script"/>
+            <column name="PIX_DATA_OFFSET"     data_type="uint16"             unit="ADU"  comment="Digital bias added by the SEM"/>
+            
+            <column name="PHOTOMETRY1"         data_type="float"              unit="ADU"  comment="quick aperture photometry of centre."/>
+            <column name="PHOTOMETRY2"         data_type="float"              unit="ADU"  comment="quick aperture photometry of inner annulus."/>
+            <column name="PHOTOMETRY3"         data_type="float"              unit="ADU"  comment="quick aperture photometry of outer annulus."/>
+
+        </table>
+    </HDU>
+</FITS_schema>

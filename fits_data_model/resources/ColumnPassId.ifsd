@@ -1,0 +1,4 @@
+<column name="PASS_ID_YEAR"   data_type="uint8"  comment="Year of the Pass ID [10-30]" />
+<column name="PASS_ID_MONTH"  data_type="uint8"  comment="Month of the Pass ID [1-12]" />
+<column name="PASS_ID_DAY"    data_type="uint8"  comment="Day of the Pass ID [1-31]" />
+<column name="PASS_ID_HOUR"   data_type="uint8"  comment="Hour of the Pass ID [0-23]"/>

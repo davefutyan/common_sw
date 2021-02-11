@@ -1,0 +1,2 @@
+<column name="UTC_TIME" data_type="UTC" unit="TIMESYS=UTC" comment="UTC time" />
+<column name="MJD_TIME" data_type="MJD" unit="day"         comment="Modified Julian Day" />

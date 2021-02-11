@@ -1,0 +1,26 @@
+<!--
+		version 6.3  21. 10. 2016 RRO
+			removed keywords: OBS_ID, MPS_VSIT
+		   - new keyword:    PI_UID, PRP_VST1, PRP_VSTN
+
+	    version 6.2  29. 08. 2016 RRO 
+	       - new Keyword: OBS_CAT
+
+        version 6.1  18. 07. 2016 RRO #11327
+           - new keyword: REQ_ID, OBSID
+           - deprecated keyword: PROG_ID, MPS_VSIT
+-->   
+
+
+<group description="Visit">
+	<keyword name="PI_NAME"  data_type="string"   comment="Name of the PI of the observing program"      db="common"/>
+	<keyword name="PI_UID"   data_type="unsigned int"  comment="ID of the PI"                            db="common"/>
+	<keyword name="OBS_CAT"  data_type="string"  default="undefined" comment="Observation Category"      db="common" />
+	<keyword name="PROGTYPE" data_type="integer"  comment="Type of the program"                          db="common"/>
+	<keyword name="PROG_ID"  data_type="integer"  comment="Program Id of this type of program"           db="common"/>
+	<keyword name="REQ_ID"   data_type="integer"  comment="Observation request Id of this program"       db="common" />
+	<keyword name="VISITCTR" data_type="integer"  comment="Visit counter for this target"                db="common" />
+	<keyword name="OBSID"    data_type="unsigned int"             comment="Unique identifier of a visit, defined by MPS" db="common" />
+	<keyword name="PRP_VST1" data_type="unsigned int" unit="days" comment="Proprietary period, depending on first visit" db="common" />
+	<keyword name="PRP_VSTN" data_type="unsigned int" unit="days" comment="Proprietary period, depending on last visit"  db="common" />
+</group>

@@ -1,0 +1,11 @@
+<!--
+        version 7.2  03. 04. 2017 RRO
+           - #12933 remove keyword REP_TIME
+
+-->   
+
+
+<group description="Report Classification">
+    <keyword name="REP_TYPE" data_type="string" comment="type of report"/>
+    <keyword name="REP_WP"   data_type="string" comment="work package creating the report"/>
+</group>    

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+
+		version 8.0  02. 08. 2017 RRO
+			- #14185 one value per columns instead of per row
+
+ 		version 7.3  19. 05. 2017 RRO 
+		   - #11638 new data structure
+		   
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnit            SYSTEM "KeywordUnit.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_COR_SmearingRow">
+        <brief> Smearing per column </brief>
+        <description> </description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel1;
+            &KeywordProcChain;
+            &KeywordUnit;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            
+        </header>
+        <!--  -->
+        <image data_type="double">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of CCD">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of CCD">1</axis2>
+            <axis3 unit="#IMAGES" comment="Image number in the sequence (should be N_IMAGES size)">0</axis3>
+        </image>
+    </HDU>
+    
+    
+</FITS_schema>

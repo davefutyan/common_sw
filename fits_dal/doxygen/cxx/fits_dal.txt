@@ -1,0 +1,161 @@
+/** ****************************************************************************
+   @defgroup FitsDal  FITS Data Access Layer (FITS dal)
+   @author Reiner Rohlfs UGE
+  
+   @brief This module provides classes to create and to read FITS images and 
+          FITS tables 
+    
+  
+  <h3> Introduction </h3>
+  
+  Most of the time applications will not use directly the FITS data access 
+  classes of this module. Instead they will use the FITS data model classes 
+  which are provided by the FITS data model module. But all data model classes
+  are derived either from the FitsDalImage class or from the FitsDalTable
+  class of this Fits dal module. Therefore a look to this description of 
+  these parent classes can be useful anyhow, specially as the following 
+  chapters are also applicable to the FITS data model classes. 
+  
+  <h3> Open / Create a FITS data structure  </h3>
+  
+  A FITS data structure is opened / created by calling the constructor. 
+  There are currently three modes implemented, which are defined by
+  the second parameter of the constructor:
+  - READONLY: The extension, defined by the first parameter must already
+              exist. An exception will be thrown if it does not exist.
+              It is not possible to update any data in the FITS extension.
+  - CREATE:   The FITS file must not exist. An exception will be thrown
+              if the file exist already. A new FITS extension after the
+              primary array will be created. Note: the data structure
+              cannot be updated.            
+  - APPEND:   If the file exist, a new extension will be appended at the end
+              of the file. If the file does not yet exist, it will be 
+              created with a new extension after the primary array will
+              be created. Note: the data structure cannot be updated. 
+
+  In READONLY mode the extension to be opened in a FITS file can be
+  defined by an appendix to the filename. For example:
+  - filename.fits+3 will open the third extension
+  - filename.fits[ExtName] will open the first extension in the file with the
+                        extension name = "ExtName", i.e. the first extension
+                        which has the EXTNAME keyword set to "ExtName" 
+  Please have a look to the cfitsio user manual to find the full capability
+  of this feature. The FITS dal classes, as well as the classes of the 
+  fits data model module forward the fileName parameter of
+  the constructors (1st. parameter) without any modification to the 
+  cfitsio open functions.                         	              
+               
+  <h3>Save data to disk</h3>
+  
+  It is not required to save the data on disk explicitly. The data are
+  written to disk and the FITS file is closed when the corresponding
+  data structure is deleted. The data of a FITS table are buffered by
+  the lower level cfitsio library and written to disk whenever the 
+  buffer is filled.  
+  
+  A save() method to explicit save a data structure is not implemented.
+  The disadvantage of such a save() method would be to have an
+  undefined state if the data are updated after calling the save()
+  method. To avoid such an undefined state the destructor would have
+  to save again the data, which would decrease the performance. 
+  
+  <h3> Access to the pixel data of an image</h3>
+  
+  - <b>Using the index of an pixel </b>
+  
+	  A FitsDalImage and its derived data model classes can be treated as
+	  a n-dimensional array. Therefore to set and to get the value of
+	  a pixel can be done like this. Here it is assumed that image is
+	  an instance of the FitsDalImage and not a pointer:
+	  <pre>
+	  auto val = image[y][x];
+	  image[y][x] = val;
+	  </pre>
+	  For a pointer to an image it would look like this:
+	  <pre>
+	  auto val = (*imagePointer)[y][x];
+	  (*imagePointer)[y][x] = val;
+	  </pre>
+	  
+	  Please note that the most right index ([x]) is the axis with the
+	  most frequent change of the index in the FITS image. This is the
+	  X-Axis or sometimes called columns of an image.  
+	  
+  - <b>Using iterators</b>
+  	  
+	  There is a second method implemented to access the pixel data of
+	  an image. Iterators can iterate over the pixels in one dimension.
+	  This iterator - method has a better performance than the 
+	  index - method, described above. Therefore for time critical 
+	  processes it is advised to use the iterator method. It is 
+	  implemented by providing an iterator pointing to the first
+	  pixel of an axis and providing an iterator pointing
+	  to the virtual pixel after the last pixel of an axis. As usual
+	  the begin() and end() methods return theses iterators. 
+	  Here is a code snippet of the common_sw_example program that
+	  demonstrates the usage of the iteratores. It divides every
+	  pixel of an image by a constant value, here numImages:
+	  <pre>
+	   / / get the begin() and end() iterator of the first axis of the image
+	   ExImaAvr::iterator i_avrImg =     m_averageImage->begin();
+	   ExImaAvr::iterator i_avrImgEnd =  m_averageImage->end();
+	
+	   int32_t numImages = m_inputImageFileNames.size();
+	
+	   / / loop over the first axis of the image, the y - axis
+	   while (i_avrImg != i_avrImgEnd)
+	      {
+	      / / loop over the second axis of the image, the x - axis
+	      for (auto & val : i_avrImg)
+	          val /= numImages;
+	       ++i_avrImg;
+	      }
+	  </pre>
+  
+  
+  <h3>Reading and writing a FITS table </h3>
+  
+  FITS table data are stored row by row on disk. Most of the time, 
+  if not always the data of one row should be processed together as 
+  they belong to the same event. Therefore this FITS dal implementation
+  provided the table data also row by row instead of one 
+  columns after the other.  
+  
+  There are two functions to read and to write data of a complete 
+  row from and to a FITS table. These are FitsDalTable::ReadRow() and
+  FitsDalTable::WriteRow(). They do not have any parameter. The ReadRow() 
+  function copies the data of the next row to the provided 
+  variables and the WriteRow() function appends the data from the 
+  provided variables to the next row at the end of the FITS table.
+  The "provided" variables are actually provided by the data model
+  classes. The application program can access these variables using
+  the getVarName() and setVarName() methods.\n
+  The ReadRow() function returns @b true as long as there are more data, 
+  i.e. more rows, in the table to be read. The function returns
+  @b false if there are no more data and the last row was already read
+  with the previous call of ReadRow(). Therefore a typical code snippet
+  could look like this:
+  <pre>
+  while (table->ReadRow())
+  	{
+  	/ /   do something with the data  
+  	auto minEnergy = table->getEmin();
+  	
+  	};
+ </pre> 	
+  
+  
+   @todo
+    - planned improvements
+    	- read data from a specific row in a FITS table 
+    - improvements that will be implemented only on request
+    	- access to table columns of data type COMPLEX
+    	- update of header keywords
+    	- update of FITS tables
+    	- update of FITS images
+    	- write images to the primary array of a FITS file.
+    - limitations (will not be implemented)
+ 		- data access of variable bin sized table columns
+ 		- reading / writing column by column of a table
+ 
+ */

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+-->
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+    <!ENTITY KeywordPPReferenceFiles  SYSTEM "KeywordPPReferenceFiles.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_HkIfsw">
+        <brief> L0.5 product : General HK for IFSW (SID = 1) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;
+             &KeywordSkyPos;
+             &KeywordPPReferenceFiles;
+       </header>
+
+        <table>
+            &ColumnTimeHKL05;
+            <column name="buildNumber"             data_type="uint32" comment="Build number of IBSW/IASW image"/>
+            <column name="AppErrCode"              data_type="uint8"  comment="Return value of CORDET framework function CrFwGetAppErrCode"/>
+            <column name="sibNFull"                data_type="uint16" comment="Number of Single Image Buffers for Full images"/>
+            <column name="cibNFull"                data_type="uint16" comment="Number of Combined Image Buffers for Full images"/>
+            <column name="gibNFull"                data_type="uint16" comment="Number of Ground Image Buffers for Full images"/>
+            <column name="sibNWin"                 data_type="uint16" comment="Number of Single Image Buffers for Window images"/>
+            <column name="cibNWin"                 data_type="uint16" comment="Number of Combined Image Buffers for Window images"/>
+            <column name="gibNWin"                 data_type="uint16" comment="Number of Ground Image Buffers for Window images"/>
+            <column name="sibSizeFull"             data_type="uint16" unit="kByt" comment="Size in kBytes of one Single Image Buffer for Full Images"/>
+            <column name="cibSizeFull"             data_type="uint16" unit="kByt" comment="Size in kBytes of one Combined Image Buffer for Full Images"/>
+            <column name="gibSizeFull"             data_type="uint16" unit="kByt" comment="Size in kBytes of one Ground Image Buffer for Full Images"/>
+            <column name="sibSizeWin"              data_type="uint16" unit="kByt" comment="Size in kBytes of one Single Image Buffer for Window Images"/>
+            <column name="cibSizeWin"              data_type="uint16" unit="kByt" comment="Size in kBytes of one Combined Image Buffer for Window Images"/>
+            <column name="gibSizeWin"              data_type="uint16" unit="kByt" comment="Size in kBytes of one Ground Image Buffer for Window Images"/>
+            <column name="sibIn"                   data_type="uint16" comment="Pointer to SIB which is being filled with raw data from SEM"/>
+            <column name="sibOut"                  data_type="uint16" comment="Pointer to SIB which is being processed by science algorithms"/>
+            <column name="cibIn"                   data_type="uint16" comment="Pointer to CIB which is being filled with stacked image data"/>
+            <column name="gibIn"                   data_type="uint16" comment="Pointer to GIB which is being filled compresed science data"/>
+            <column name="gibOut"                  data_type="uint16" comment="Pointer to GIB which is being transferred to ground"/>
+            <column name="sdbState"                data_type="string" bin_size="12"  cal_curve="DPKT7802TM" comment="State of SDB State Machine"/>
+            <column name="NOfTcAcc"                data_type="uint16" comment="Number of TC accepted for execution (return value of function CrFwInManagerGetNOfLoadedInCmp for InManagerGrdObc)"/>
+            <column name="NOfAccFailedTc"          data_type="uint16" comment="Number of TC which failed their acceptance check"/>
+            <column name="SeqCntLastAccTcFromObc"  data_type="uint16" comment="Sequence counter of last accepted TC from the OBC (return value of function CrFwInStreamGetSeqCnt for InStreamObc)"/>
+            <column name="SeqCntLastAccTcFromGrd"  data_type="uint16" comment="Sequence counter of last accepted TC from the ground (return value of function CrFwInStreamGetSeqCnt for InStreamGrd)"/>
+            <column name="SeqCntLastAccFailTc"     data_type="uint16" comment="Sequence counter of last TC to have failed its acceptance check"/>
+            <column name="NOfStartFailedTc"        data_type="uint16" comment="Number of TC which failed their start check"/>
+            <column name="SeqCntLastStartFailTc"   data_type="uint16" comment="Sequence counter of last  TC which failed start check"/>
+            <column name="NOfTcTerm"               data_type="uint16" comment="Number of TC which terminated execution"/>
+            <column name="NOfTermFailedTc"         data_type="uint16" comment="Number of TC which failed their termination check"/>
+            <column name="SeqCntLastTermFailTc"    data_type="uint16" comment="Sequence counter of last  TC which failed termination check"/>
+            <column name="sdu2State"               data_type="string" bin_size="13"  cal_curve="DPKT7012TM" comment="State of SDU2 State Machine"/>
+            <column name="sdu4State"               data_type="string" bin_size="13"  cal_curve="DPKT7012TM" comment="State of SDU4 State Machine"/>
+            <column name="sdsCounter"              data_type="uint32" comment="Number of images which have been discarded because their Science Data Suspend (SDS) Flag was true"/>
+            <column name="FdCheckTTMState"         data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of Telescope Temperature Monitor FdCheck"/>
+            <column name="FdCheckSDSCState"        data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of Incorrect Science Data Sequence Counter FdCheck"/>
+            <column name="FdCheckComErrState"      data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of SEM Communication Error FdCheck"/>
+            <column name="FdCheckTimeOutState"     data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of SEM Mode Time-Out FdCheck"/>
+            <column name="FdCheckSafeModeState"    data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of SEM Safe Mode FdCheck"/>
+            <column name="FdCheckAliveState"       data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of SEM Alive FdCheck"/>
+            <column name="FdCheckSemAnoEvtState"   data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of SEM Anomaly Event FdCheck"/>
+            <column name="FdCheckSemLimitState"    data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of SEM Limit FdCheck"/>
+            <column name="FdCheckDpuHkState"       data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of DPU Housekeeping FdCheck"/>
+            <column name="FdCheckCentConsState"    data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of Centroid Consistency FdCheck"/>
+            <column name="FdCheckResState"         data_type="string" bin_size="9"   cal_curve="DPKT7014TM" comment="State of Resource FdCheck"/>
+            <column name="FdCheckSemCons"          data_type="string" bin_size="9"   cal_curve="DPKT7014TM"/>
+            <column name="semState"                data_type="string" bin_size="8"   cal_curve="DPKT7015TM" comment="State of SEM State Machine"/>
+            <column name="semOperState"            data_type="string" bin_size="13"  cal_curve="DPKT7016TM" comment="State of SEM Operational State Machine"/>
+            <column name="sciSubMode"              data_type="string" bin_size="14"  cal_curve="DPKT7027TM" comment="Science sub-mode"/>
+            <column name="iaswState"               data_type="string" bin_size="11"  cal_curve="DPKT7017TM" comment="State of the IASW State Machine"/>
+            <column name="iaswCycleCnt"            data_type="uint32" comment="Cycle elapsed since the IASW State Machine was started (i.e. since the start of the IASW)"/>
+            <column name="prepScienceNode"         data_type="string" bin_size="7"   cal_curve="DPKT7803TM" comment="Current node of Prepare Science Procedure"/>
+            <column name="controlledSwitchOffNode" data_type="string" bin_size="7"   cal_curve="DPKT7818TM" comment="Current node of Controlled Switch Off Procedure"/>
+            <column name="algoCent0State"          data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Centroiding 0 Algorithm (creates an invalid dummy centroid)"/>
+            <column name="algoCent1State"          data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Centroiding 1 Algorithm"/>
+            <column name="algoAcq1State"           data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Acquisition Algorithm 1"/>
+            <column name="algoCcState"             data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Compression/Collection Algorithm"/>
+            <column name="algoTTC1State"           data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Telescope Temperature Control 1 Algorithm"/>
+            <column name="algoTTC2State"           data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Telescope Temperature Control 2 Algorithm"/>
+            <column name="algoSaaEvalState"        data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of SAA Evaluation Algorithm"/>
+            <column name="isSaaActive"             data_type="uint8"  comment="Flag set to false when the spacecraft is outside the SAA"/>
+            <column name="saaCounter"              data_type="uint32" comment="Counter holding the distance in time from the next entry into the SAA"/>
+            <column name="algoSdsEvalState"        data_type="string" bin_size="9"   cal_curve="DPKT7019TM" comment="State of Science Data Suspend (SDS) Evaluation Algorithm"/>
+            <column name="isSdsActive"             data_type="uint8"  comment="Flag set to true when transfer of science data to ground is suspended"/>
+            <column name="observationId"           data_type="uint32" comment="Observation identifier as it was uploaded by the Star Map Command"/>
+            <column name="centValProcOutput"       data_type="int8"   comment="Output of Centroid Validity Procedure"/>
+            <column name="saveImagesNode"          data_type="string" bin_size="7"   cal_curve="DPKT7804TM" comment="Current node of Save Images Procedure"/>
+            <column name="acqFullDropNode"         data_type="string" bin_size="7"   cal_curve="DPKT7805TM" comment="Current node of Acquire Full Drop Procedure"/>
+            <column name="calFullSnapNode"         data_type="string" bin_size="7"   cal_curve="DPKT7806TM" comment="Current node of Calibrate Full Snap Procedure"/>
+            <column name="SciWinNode"              data_type="string" bin_size="7"   cal_curve="DPKT7807TM" comment="Current node of Science Window Stack/Snap Procedure"/>
+            <column name="fbfLoadNode"             data_type="string" bin_size="7"   cal_curve="DPKT7810TM" comment="Current node of FBF Load Procedure"/>
+            <column name="fbfSaveNode"             data_type="string" bin_size="7"   cal_curve="DPKT7811TM" comment="Current node of FBF Save Procedure"/>
+            <column name="transFbfToGrndNode"      data_type="string" bin_size="7"   cal_curve="DPKT7809TM" comment="Current node of Transfer FBF To Ground Procedure"/>
+            <column name="nomSciNode"              data_type="string" bin_size="7"   cal_curve="DPKT7808TM" comment="Current node of Nominal Science Procedure"/>
+            <column name="ADC_P3V3"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_P5V"                 data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_P1V8"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_P2V5"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_N5V"                 data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_PGND"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH1A"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMP1"               data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH2A"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH1B"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH3A"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH2B"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH4A"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH3B"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="ADC_TEMPOH4B"            data_type="float"  unit="degC" comment="Engineering value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="SEM_P15V"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="SEM_P30V"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="SEM_P5V0"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="SEM_P7V0"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="SEM_N5V0"                data_type="float"  unit="V" comment="Raw value of DPU Housekeeping parameter (see section 3.6/4.6 of issue 1.0 of CHEOPS-IWF-INST-TN-057)"/>
+            <column name="isWatchdogEnabled"       data_type="uint8"  comment="Enabled status of DPU watchdog"/>
+            <column name="isSynchronized"          data_type="uint8"  comment="Synchronization state of IBSW"/>
+            <column name="nOfErrLogEntries"        data_type="uint16" comment="Total number of error log entries since the IBSW/IASW was last reset"/>
+            <column name="Core0Load"               data_type="uint8"  unit="pc" comment="CPU load of core 0"/>
+            <column name="Core1Load"               data_type="uint8"  unit="pc" comment="CPU load of core 1"/>
+            <column name="InterruptRate"           data_type="uint32" unit="1/s" comment="Interrupts / s"/>
+            <column name="Uptime"                  data_type="uint32" unit="sec" comment="IBSW uptime"/>
+            <column name="IRL1"                    data_type="uint16" unit="1/s" comment="total number of interrupts per second on line 1"/>
+            <column name="IRL2"                    data_type="uint16" unit="1/s" comment="total number of interrupts per second on line 2"/>
+            <column name="SemRoute"                data_type="string" bin_size="8"   cal_curve="DPKT7823TM" comment="fast routing enable flag (SpW0 to SpW1)"/>
+            <column name="SpW1BytesIn"             data_type="uint32" unit="byte" comment="link stats"/>
+            <column name="SpW1BytesOut"            data_type="uint32" unit="byte" comment="link stats"/>
+            <column name="EdacSingleFaults"        data_type="uint16" comment="cumulative number of single faults"/>
+            <column name="EdacLastSingleFail"      data_type="uint32" comment="last single fault address"/>
+            <column name="Cpu2ProcStatus"          data_type="string" bin_size="11"  cal_curve="DPKT7821TM" comment="processing status of CPU core 2"/>
+            <column name="CE_Counter"              data_type="uint16" comment="CE counter"/>
+            <column name="CE_Version"              data_type="uint16" comment="IFSW build number / SW version"/>
+            <column name="CE_Integrity"            data_type="uint8"  comment="CE integrity"/>
+        </table>
+    </HDU>
+</FITS_schema>

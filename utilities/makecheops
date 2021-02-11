@@ -1,0 +1,30 @@
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -lprogram_params -llogger -lfits_dal
+
+LIB_OBJECT1 = Utc.o VisitId.o PassId.o Obt.o Mjd.o Bjd.o LeapSeconds.o \
+              ObtUtcCorrelation.o ValidRefFile.o trigger_file_schema.o TriggerFile.o \
+              BarycentricOffset.o OrbitInterpolation.o
+LIB_TARGET1 = utilities
+
+INSTALL_INCL = Utc.hxx VisitId.hxx PassId.hxx Obt.hxx Mjd.hxx Bjd.hxx \
+               BarycentricOffset.hxx LeapSeconds.hxx ObtUtcCorrelation.hxx \
+               ValidRefFile.hxx DeltaTime.hxx TriggerFile.hxx OrbitInterpolation.hxx
+
+INSTALL_RESOURCES = trigger_file_schema.xsd
+
+CLEAN += src/trigger_file_schema.cxx include/trigger_file_schema.hxx
+
+src/trigger_file_schema.cxx : resources/trigger_file_schema.xsd
+	xsd cxx-tree --generate-serialization --root-element Earth_Explorer_File --namespace-map "cheops:gs"=trigger_file_schema --output-dir src $< 
+	mv src/trigger_file_schema.hxx include
+
+#define dependencies
+
+obj/VisitId.o 		:  include/VisitId.hxx
+obj/PassId.o  		:  include/PassId.hxx 
+obj/Obt.o    		:  include/Obt.hxx include/Utc.hxx include/DeltaTime.hxx include/ObtUtcCorrelation.hxx
+obj/Utc.o     		:  include/Utc.hxx include/Mjd.hxx include/DeltaTime.hxx include/ObtUtcCorrelation.hxx include/LeapSeconds.hxx 
+obj/Mjd.o	  		:  include/Mjd.hxx include/Bjd.hxx include/LeapSeconds.hxx include/BarycentricOffset.hxx
+obj/Bjd.o	  		:  include/Mjd.hxx include/Bjd.hxx include/BarycentricOffset.hxx
+obj/ObtUtcCorrelation.o : include/Obt.hxx include/Utc.hxx include/ObtUtcCorrelation.hxx include/DeltaTime.hxx
+obj/ValidRefFile.o	:  include/ValidRefFile.hxx
+obj/TriggerFile.o   :  include/TriggerFile.hxx

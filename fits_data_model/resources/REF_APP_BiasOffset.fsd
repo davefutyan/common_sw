@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 13.1.2
+            - 04.01.2021 ABE #23222 new data structure
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_BiasOffset">
+        <brief> Calibration Product : Data for the bias offset and readout noise, stored in the same FITS file</brief>
+        <description>Bias offset and readout noise for different instrument configurations and temperature settings.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1.2" comment="version of the data structure"/>
+            &KeywordDataLevelRef;
+            &KeywordCheops;
+            &KeywordValidityUTC;
+        </header>
+        <table>
+            <column name="CCD_TEMP"        data_type="float"    unit="degC"     comment="Temperature of the CCD"/>
+            <column name="RO_FREQU"        data_type="uint32"   unit="Hz"       comment="CCD readout frequency"/>
+            <column name="RO_HW"           data_type="string"     bin_size="10" comment="HW - channel: main or redundant"/>
+            <column name="BIAS_OFFSET"     data_type="float"    unit="ADU/px"   comment="Value of the bias offset in ADU"/>
+            <column name="BIAS_OFFSET_ERR" data_type="float"    unit="ADU/px"   comment="Value of the error estimate of the bias offset in ADU"/>
+            <column name="RON"             data_type="float"    unit="ADU/px"   comment="Value of the readout noise in ADU"/>
+            <column name="RON_ERR"         data_type="float"    unit="ADU/px"   comment="Value of the error estimate of the readout noise in ADU"/>
+        </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,40 @@
+/**
+ *  @class TriggerFile
+ *
+ *  <b>General information</b>
+ *
+ *  In general, all programs running inside the processing pipelines will
+ *  produce an output trigger file. This file is created automatically by the
+ *  CheopsExit() function. The trigger file contains the
+ *
+ *  - pass id (if applicable),
+ *  - program type,
+ *  - program id,
+ *  - request id,
+ *  - visit counter,
+ *  - validity period
+ *  - OBSID
+ *
+ *  The purpose of the trigger file is to notify the pipeline framework that the
+ *  program has terminated, and the framework uses this information do decide on
+ *  which program to execute next. The next program will receive the trigger
+ *  file created by the previous program as input. The framework uses the
+ *  information in the output trigger file when it queries the Archive for the
+ *  input files of the next program.
+
+ *  The output trigger file will contain the same values that were present in
+ *  the program's input trigger file.
+
+ *  If there is a trigger file in a program's input, the file will appear in the
+ *  job order under the data product type "TRIGGER". The ProgramParams will
+ *  automatically read this file and make the contents available through static
+ *  getter methods on the TriggerFile class.
+ *
+ *  Trigger files must adhere to the schema defined in
+ *  $CHEOPS_SW/resources/trigger_file_schema.xsd. This schema follows the
+ *  Earth Explorer format.
+ *  Example:
+ *
+ *  @verbinclude trigger_file_example.xml
+ *
+ */

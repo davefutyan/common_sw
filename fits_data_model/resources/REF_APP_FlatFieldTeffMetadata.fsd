@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 10.1    10. 09. 2018
+			- new column: DATA_TYPE
+			- rename column WAVELNGHT to T_EFF
+			- removed columns: EXPTIME, BANDWIDTH, 
+			
+
+        version 6.3  24. 10. 2016 RRO
+           - new column: EXPTIME
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_FlatFieldTeffMetadata">
+        <brief> Calibration Product : Meta data for the Flat Field, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="10.1" comment="version of the data structure"/>
+            <keyword name="DATANAME"    data_type="string" db="true"   comment="data name of this Flat Field"/>
+            &KeywordDataLevelRef;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+        </header>
+        <table>
+            <column name="DATA_TYPE"    data_type="string" bin_size ="16" comment="type of data, either FLAT FIELD or FLAT FIELD ERROR"/>
+            <column name="T_EFF"        data_type="float"  unit="K"       comment="Effective Temperature for which the corresponding Flat Field can be used."/>
+            <column name="STATUS"		data_type="int32"                 comment="flags indicating the status of each flat field image (valid or invalid for various reasons"/>
+        </table>
+    </HDU>
+</FITS_schema>

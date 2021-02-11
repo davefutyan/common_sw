@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 9.0  13. 12. 2017 RRO #15058
+		   - new keywords :U_PARAxx defined in KeywordParameters
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+        version 7.2  03. 04. 2017 RRO
+           - #12933 remove keyword REP_TIME
+
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef         SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordProcChain              SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops                 SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity               SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit              SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget                 SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos                 SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordReportClassification   SYSTEM "KeywordReportClassification.ifsd"> 
+    <!ENTITY KeywordParameters             SYSTEM "KeywordParameters.ifsd"> 
+    <!ENTITY ColumnTime                    SYSTEM "ColumnTime.ifsd">
+    <!ENTITY ColumnParameters              SYSTEM "ColumnParameters.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_Parameters">
+        <brief> A generic table to store parameters in a table useful for reports </brief>
+        <description>It can be used to store parameters per star detected in the images.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            <keyword name="DATANAME" data_type="string"  db="true"   comment="data name of this report"/>
+             &KeywordDataLevelUndef;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordPassVisit;   
+             &KeywordTarget;
+             &KeywordSkyPos;
+             &KeywordReportClassification; 
+             &KeywordParameters;
+        </header>
+        
+        <table>
+            &ColumnTime;
+            <column name="IMAGE_NUM"  data_type="uint16"  comment="date belong to this image number in the cube, first image = 0"/>
+            <column name="STAR_ID"    data_type="uint16"  comment="ID of the star on the image"/>
+            &ColumnParameters;
+       </table>
+    </HDU>
+</FITS_schema>

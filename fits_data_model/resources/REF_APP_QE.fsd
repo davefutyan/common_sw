@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+       version 12.1.6
+           - 2020-06-10 DFU #21771 Update REF_APP_QE with fix to QE_VS_TEMP_SLOPE units and header keyword to indicate temperature
+
+       version 12.1.5  
+           - 2020-05-22 ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+
+		version 10.1    10. 09. 2018 RRO
+			- new column: QE_ERROR
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_QE">
+        <brief>Quantum efficiency as a function of wavelength</brief>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.6" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+            <group description="QE attributes">
+                <keyword name="TEMP_CCD"            data_type="real" unit="Kelvin" comment="temperature of the CCD at which QE measurements were performed"/>
+            </group>
+        </header>
+        <table>
+            <column name="WAVELENGTH"	     data_type="float" unit="nm" comment="wavelength"/>
+            <column name="QE"			     data_type="float" unit="fraction 0-1" comment="quantum efficiency"/>
+            <column name="QE_ERROR"          data_type="float"                     comment="error of quantum efficiency"/>
+            <column name="QE_VS_TEMP_SLOPE"	 data_type="float" unit="ppm/mK" comment="rate of change of quantum efficiency vs temperature"/>
+        </table>
+    </HDU>
+</FITS_schema>

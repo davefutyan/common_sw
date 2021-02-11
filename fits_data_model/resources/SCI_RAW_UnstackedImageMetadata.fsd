@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+		
+        version 12.1.7. 13. 07. 2020 MBE
+		   - #22036: Added columns PHOTOMETRY_1, PHOTOMETRY_2 and PHOTOMETRY_3
+
+        version 11.3    09. 04. 2019 RRO
+           - #18555 new data structure  
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops       	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit     	SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY ColumnTimeL05          SYSTEM "ColumnTimeL05.ifsd"> 
+    <!ENTITY ColumnAngles           SYSTEM "ColumnAngles.ifsd"> 
+    <!ENTITY ColumnHk               SYSTEM "ColumnHk.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_UnstackedImageMetadata">
+        <brief> L05 Product : Meta data of the unstacked images, stored in the same FITS file</brief>
+        <description> There is one row per unstacked two dimensional image in the
+                      associated image cube. It stores meta data of that image..
+                      This data structure is used for SubArrays as well as
+                      for images of the FullArray. In the later case there will be
+                      just one row in the table. 
+                      The time is converted in UTC and MJD. 
+                      The CE_COUNTER can be used to associate the unstacked image to a 
+                      stacked image. All unstacked images that are stacked on board to one
+                      stacked image have the same CE_COUNTER.
+                      </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordPassVisit;   
+            &KeywordTarget;
+        </header>
+        <!--  -->
+        <table>
+            &ColumnTimeL05;
+            <column name="CE_COUNTER" data_type="uint16"        comment="image counter per visit"/>
+
+			<column name="GAIN_0" data_type="float"             comment="gain used to convert electrons to ADU after on-board NLC"/>
+			<column name="BIAS_0" data_type="float" unit="ADU"  comment="bias used to convert electrons to ADU after on-board NLC"/>
+			<column name="BIAS"   data_type="float" unit="ADU"  comment="bias used to convert ADU to electrons before on-board NLC"/>
+
+			<column name="CE_VOLT_FEE_VOD"   data_type="float" unit="V"    comment="FEE voltage to CCD (DAC output)" />
+			<column name="CE_VOLT_FEE_VRD"   data_type="float" unit="V"    comment="FEE voltage to CCD (DAC output)" />
+			<column name="CE_VOLT_FEE_VOG"   data_type="float" unit="V"    comment="FEE voltage to CCD" />
+			<column name="CE_VOLT_FEE_VSS"   data_type="float" unit="V"    comment="FEE voltage to CCD (DAC output)" />
+			<column name="CE_TEMP_FEE_CCD"   data_type="float" unit="degC" comment="FPA/CCD (two sensors for main and redundant channel)" />          
+
+			<column name="PHOTOMETRY_1" data_type="float" unit="ADU"  comment="photometry of centre"/>
+			<column name="PHOTOMETRY_2" data_type="float" unit="ADU"  comment="photometry of inner annulus"/>
+			<column name="PHOTOMETRY_3" data_type="float" unit="ADU"  comment="photometry of outer annulus"/>
+
+        </table>
+    </HDU>
+</FITS_schema>

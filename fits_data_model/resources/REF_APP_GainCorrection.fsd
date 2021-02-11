@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+		version 10.1    10. 09. 2018 RRO
+			- new header keywords: PROVIDER, DESCRIP, RO_HW GAIN_NOM
+			- the formula to calculate the gain has changed
+
+		version 9.3  05. 06. 2018 RRO
+		  - #15759 new columns: FACTOR_ERR, EXP_TEMP
+		           new header keyword: TEMP_OFF
+		           
+		version 7.3  16. 05. 2017 RRO #13263
+		   - the approach to store the formula is changed from a string to
+		     parameters. 
+
+        version 7.2  24. 03. 2017 RRO
+           - change bin_size of GAIN column from 1014 to 256
+
+        version 5.2  04. 05. 2016 RRO
+           - Better description
+           - change bin_size of GAIN column from 512 to 1014
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_GainCorrection">
+        <brief> A formula to correct the gain.</brief>
+        <description>The result of the formula specified in this table is the "System gain in ADU/e-".
+                     The formula has to be applied for every pixel of an image. 
+                     The formula is a polynomial expression that depends on up to 
+                     5 parameters. These are HK_VOLT_FEE_VOD, HK_VOLT_FEE_VRD, HK_VOLT_FEE_VOS,
+                     HK_VOLT_FEE_VSS and HK_TEMP_FEE_CCD.
+                     The values of these parameters have to be read from the SCI_RAW_ImageMetadata table
+                     that is locate in the same FITS file as the images that shall be corrected.
+                     That table has one column for each of these 5 parameters and one row for
+                     each of a 2-D image in the image-cube.
+                     
+                     The syntax of the formula is
+                     GAIN_NOM * (1 + 
+                     sum over n ( factor(n)  * (HK_VOLT_FEE_VSS                   - VSS_offset)  ** exp_VSS(n) *  
+                                               (HK_VOLT_FEE_VOD - HK_VOLT_FEE_VSS - VOD_offset)  ** exp_VOD(n) *
+                                               (HK_VOLT_FEE_VRD - HK_VOLT_FEE_VSS - VRG_offset)  ** exp_VRD(n) *
+                                               (HK_VOLD_FEE_VOG - HK_VOLT_FEE_VSS - VOG_offset)  ** exp_VOG(n) *
+                                               (HK_TEMP_FEE_CCD                   + TEMP_offset) ** exp_TEMP(n)    ) )
+                     The values of the 5 constant parameters VSS_offset, VOD_offset, VRG_offset, VOG_offset and TEMP_offset
+                     are stored in 5 header keywords.
+                     The values of the 6 parameters factor(n), exp_VSS(n), exp_VOD(n) exp_VRG(n), exp_VOG(n) and exp_TEMP(n)
+					 are stored in the 6 columns of this FITS table. The typical values of the exp_* parameters are 0, 1, 2, or 3
+                     For each (n) one row of the table is used.
+                     </description>
+        <header>
+        	<keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+            &KeywordDataLevelRef;
+        	<group description="Voltage offsets">
+            	<keyword name="VSS_OFF"  data_type="real" unit="V"    comment="Nominal VSS voltage"/>
+            	<keyword name="VOD_OFF"  data_type="real" unit="V"    comment="Nominal VOD voltage relative to VSS"/>
+            	<keyword name="VRD_OFF"  data_type="real" unit="V"    comment="Nominal VRD voltage relative to VSS"/>
+            	<keyword name="VOG_OFF"  data_type="real" unit="V"    comment="Nominal VOG voltage relative to VSS"/>
+            	<keyword name="TEMP_OFF" data_type="real" unit="degC"    comment="Nominal CCD temperature"/>
+			</group>
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+            &KeywordFileAttributes;
+            <group description="Gain attributes">
+                <keyword name="RO_HW"     data_type="string" comment="used for on-board HW: main or redundant"/>
+                <keyword name="GAIN_NOM"  data_type="real"   comment="nominal gain"/>
+            </group>
+        </header>
+        <table>
+            <column name="FACTOR"     data_type="double" comment="constant factor of the nth polynomial"/>
+            <column name="FACTOR_ERR" data_type="double" comment="error of factor"/>
+            <column name="EXP_VSS"    data_type="uint16" comment="exponent of HK_VOLT_FEE_VSS of the nth polynomial"/>
+            <column name="EXP_VOD"    data_type="uint16" comment="exponent of HK_VOLT_FEE_VOD of the nth polynomial"/>
+            <column name="EXP_VRD"    data_type="uint16" comment="exponent of HK_VOLT_FEE_VRD of the nth polynomial"/>
+            <column name="EXP_VOG"    data_type="uint16" comment="exponent of HK_VOLT_FEE_VOG of the nth polynomial"/>
+            <column name="EXP_TEMP"   data_type="uint16" comment="exponent of HK_TEMP_FEE_CCD of the nth polynomial"/>
+        </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY ColumnTimeHKPrw        SYSTEM "ColumnTimeHKPrw.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_HkAsy30767">
+        <brief> L0.5 product : Q 1 Hz (SID = 66) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.0" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidityUTC;
+             &KeywordPassVisit;
+        </header>
+        <table appId="180" SID="66">
+            &ColumnTimeHKPrw;
+            <column name="PSE_quaternion_x"    data_type="double"/>
+            <column name="PSE_quaternion_y"    data_type="double"/>
+            <column name="PSE_quaternion_z"    data_type="double"/>
+            <column name="PSE_quaternion_scal" data_type="double"/>
+        </table>
+    </HDU>
+</FITS_schema>

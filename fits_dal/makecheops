@@ -1,0 +1,14 @@
+
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -lprogram_params -llogger
+
+LIB_OBJECT1 = FitsDalHeader.o FitsDalTable.o FitsDalImage.o ReadWriteCopy.o
+LIB_TARGET1 = fits_dal
+
+INSTALL_INCL = FitsDalHeader.hxx FitsDalTable.hxx FitsDalImage.hxx
+
+
+#define dependencies
+
+obj/FitsDalHeader.o :  include/FitsDalHeader.hxx
+obj/FitsDalTable.o  :  include/FitsDalTable.hxx include/FitsDalHeader.hxx
+obj/FitsDalImage.o  :  include/FitsDalImage.hxx include/FitsDalHeader.hxx

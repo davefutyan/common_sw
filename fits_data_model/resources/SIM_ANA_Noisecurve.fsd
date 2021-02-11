@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.4  04. 05. 2020 ABE
+			- #21413 use generic header keyword names for reference files
+      
+    	version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL1L2
+
+		version 9.3  08. 06. 2018 RRO
+          - #15181 update of the Reference File header keywords
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+        version 5.2.1  14. 06. 2016 RRO  
+           - use KeywordSkyPos instead of KeywodSkyPosAngle
+           
+        version 6.1    15. 08. 2016 RRO #11327
+           - change  KeywordCalibrationSteps to KeywordDataReductionSteps
+                     note there are also several updates in this include file.  
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelSim      SYSTEM "KeywordDataLevelSim.ifsd"> 
+    <!ENTITY KeywordCheops       	  SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity          SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	  SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	  SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL1L2      SYSTEM "KeywordExposureL1L2.ifsd"> 
+    <!ENTITY KeywordSkyPos            SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubArrayOrigin    SYSTEM "KeywordSubArrayOrigin.ifsd"> 
+    <!ENTITY KeywordDataReductionSteps  SYSTEM "KeywordDataReductionSteps.ifsd"> 
+    <!ENTITY KeywordDRReferenceFiles    SYSTEM "KeywordDRReferenceFiles.ifsd"> 
+    
+    <!ENTITY ColumnJD                 SYSTEM "ColumnJD.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SIM_ANA_Noisecurve">
+        <brief> Standard deviation of normalised light curve flux measurements as a function of the number of images that have been grouped together</brief>
+        <description>The standard deviation of all normalized fluxes (normalized to the mean value of all the images) provides a first
+					 estimation of the noise. It is expected that a combination (average) of the images will reduce the noise. A second estimation 
+					 is made by generating a new set of images whose flux is characterized by the
+					 mean of the fluxes of a pair of images (f1 = (f1+f2)/2, f2 = (f3+f4)/2, etc.), and calculating the
+  					 standard deviation of this new set. The process is repeated grouping by 3, 4, . . . n images. If the noise were white, we would
+                     expect a reduction in the noise proportional to 1/sqrt(n), with n the number of combined images. </description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevelSim;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            &KeywordExposureL1L2;
+            &KeywordSkyPos;
+            &KeywordDataReductionSteps;
+            &KeywordDRReferenceFiles;
+            
+        </header>
+        <!--  -->
+        <table>
+            <column name="TIME_BIN"	data_type="double" unit="sec" comment="Width of time bins used to define light curve"/>
+            <column name="NOISE"	data_type="double" unit="ppm" comment="Standard deviation of light curve flux measurements"/>
+        </table>    
+    </HDU>
+</FITS_schema>

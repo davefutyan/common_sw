@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.1 05. 03. 2020
+			- #21070 fix a type: REPETIOTION_PERIOD -> REPETITION_PERIOD
+			  change RD_MODE to string 
+
+		version 12.1 26. 02. 2020
+			- #20991 new data structure
+-->
+
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+    <!ENTITY KeywordPPReferenceFiles  SYSTEM "KeywordPPReferenceFiles.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_HkOperationParameter">
+        <brief> L0.5 product : filled with data of SES DAT_Operation_Parameter TM </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;
+             &KeywordSkyPos;
+             &KeywordPPReferenceFiles;
+        </header>
+        <table>
+            &ColumnTimeHKL05;
+            <column name="EXPOSURE_TIME"           data_type="float"   unit="sec" comment="reported exposure time"/>
+            <column name="REPETITION_PERIOD"       data_type="float"   unit="sec" comment="reported repetition period"/>
+            <column name="ACQUISITION_NUM"         data_type="uint32"             comment="reported number of raw images"/>
+            <column name="OVERSAMPLING"            data_type="uint8"              comment="oversampling mode"/>
+            <column name="RD_MODE"                 data_type="string"  bin_size="12"  comment="Readout mode: faint, bright, ultrabright, full frame, auto or faint fast"/>
+        </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,22 @@
+<group description="Used reference files">
+	<keyword name="RF_FIL1"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL2"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL3"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL4"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL5"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL6"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL7"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL8"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL9"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL10"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL11"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL12"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL13"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL14"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL15"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL16"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL17"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL18"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL19"  data_type="string" default="N/A" comment="name of the reference file"/>
+	<keyword name="RF_FIL20"  data_type="string" default="N/A" comment="name of the reference file"/>
+</group>

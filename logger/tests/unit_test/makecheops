@@ -1,0 +1,13 @@
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib
+
+CXX_UNIT_TESTS += TestLogger
+CXX_UNIT_TESTS += TestLogFile
+CXX_UNIT_TESTS += TestEmailAlert
+CXX_UNIT_TESTS += TestAlert
+
+PYTHON_COVERAGE += log
+PYTHON_UNIT_TESTS += TestLogger
+
+CLEAN += results/CH_*.log
+
+CXX_CFLAGS += -DNO_FITS_DAL -DNO_PROG_PARAMS -DNO_UTILITIES

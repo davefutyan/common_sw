@@ -1,0 +1,17 @@
+LIB_TARGET1 =  ccsds_telemetry
+LIB_VERSION1 = 12.0.2
+LIB_OBJECT1 =  CcsdsPacketCrc.o CcsdsFieldReader.o CcsdsPacketReader.o CcsdsFrameReader.o PacketExtractor.o NctrsFileReader.o
+
+# To build without common_sw (logging to cerr instead of logging module)
+#CXX_CFLAGS += -DNO_COMMON_SW
+
+#define dependencies
+obj/CcsdsPacketCrc.o :     include/CcsdsPacketCrc.hxx 
+obj/CcsdsFieldReader.o :   include/CcsdsFieldReader.hxx
+obj/CcsdsPacketReader.o :  include/CcsdsPacketReader.hxx include/CcsdsFieldReader.hxx include/CcsdsPacketCrc.hxx
+obj/CcsdsFrameReader.o :   include/CcsdsFrameReader.hxx include/CcsdsFieldReader.hxx
+obj/PacketExtractor.o :    include/PacketExtractor.hxx include/CcsdsFrameReader.hxx include/CcsdsPacketReader.hxx
+obj/NctrsFileReader.o :    include/CcsdsFieldReader.hxx
+
+INSTALL_INCL = CcsdsFieldReader.hxx	CcsdsPacketCrc.hxx	NctrsFileReader.hxx \
+			   CcsdsFrameReader.hxx	CcsdsPacketReader.hxx	PacketExtractor.hxx

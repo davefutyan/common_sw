@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    version 13.1.3   05. 02. 2021 ABE
+        - #23540: Add Pheader keyword PITL to HduStarCatalogue.ifsd
+
+    version 13.0  28. 08. 2020 MBE
+        - #22243: CHEOPS and Gaia magnitudes in the output data
+        - #22260: Clean-up epoch for attitude information
+
+     version 10.1   28. 08. 2018 RRO
+        - #16276 new header keywords, see KeywordTarget and KeywordSkyPos
+
+    version 9.3  29. 05. 2018 RRO
+        - #16272 first version
+-->
+
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevelExt    SYSTEM "KeywordDataLevelExt.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordVisit           SYSTEM "KeywordVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY HduStarCatalogue       SYSTEM "HduStarCatalogue.ifsd">
+]>
+
+<!-- this is a marker for FitsCreate that this is a table 
+  </table> -->
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="EXT_DRFT_StarCatalogue">
+      &HduStarCatalogue;
+    </HDU>
+</FITS_schema>

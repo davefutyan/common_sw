@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+-->
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_Jitter">
+        <brief>Jitter time series</brief>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        <table>
+            <column name="TIME"				data_type="int32" unit="seconds" comment="elapsed time since start of jitter time series"/>
+            <column name="VALID_AOCS"		data_type="bool" comment="flag to indicate whether or not the payload is in the loop (Earth occultation, SAA)"/>
+            <column name="VALID_SCIENCE"	data_type="bool" comment="flag to indicate whether or not the payload is valid for science (>35 degrees from Earth limb)"/>
+            <column name="ROLL"				data_type="float" unit="arcseconds" comment="offset in roll angle (X APE) with respect to nominal roll angle"/> 
+            <column name="PITCH"			data_type="float" unit="arcseconds" comment="offset in pitch (Y APE) with respect to nominal pointing direction"/>
+            <column name="YAW"				data_type="float" unit="arcseconds" comment="offset in yaw (Z APE) with respect to nominal pointing direction"/> 
+        </table>
+    </HDU>
+</FITS_schema>

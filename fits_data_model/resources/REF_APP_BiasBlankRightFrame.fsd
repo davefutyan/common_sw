@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 13.1.2
+            - 12. 01. 2021 ABE #23299 Increase axis3 from 6 to 12 in order to
+                                      store both the main and redundant channel.
+        version 10.1 
+            - 10. 09. 2018 RRO        New data structure
+
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_BiasBlankRightFrame">
+		<brief> Calibration Product: bias frame of the CCD margin area blank right</brief>
+        <description>The image cube consist of 6 images.
+                     The standard data are as describe here. The REF_APP_BiasFrameMetadata
+                     defined the actual data in the FITS file.
+                     1 = bias frame in ADU, to be used for read-out frequency 230 kHz
+                     2 = bias error frame in ADU, to be used for read-out frequency 230 kHz
+                     3 = RON (read-out noise) in ADU, to be used for read-out frequency 230 kHz
+                     1 = bias frame in ADU, to be used for read-out frequency 100 kHz
+                     2 = bias error frame in ADU, to be used for read-out frequency 100 kHz
+                     3 = RON (read-out noise) in ADU, to be used for read-out frequency 100 kHz
+                     </description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.1.2" comment="version of the data structure"/>
+            <keyword name="BUNIT"		data_type="string" default="ADU"  comment="unit of the data in the image"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+            
+        </header>
+        <image data_type="float">
+            <naxis>3</naxis>
+            <axis1 comment="X axis">8</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+            <axis3 comment="data type">12</axis3>
+        </image>
+    </HDU>
+    
+</FITS_schema>

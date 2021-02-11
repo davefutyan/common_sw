@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+
+<param>
+	<name>Welcome</name>
+	<short_name>w</short_name>
+	<value>It is still a long way to go</value>
+	<type>string</type>
+	<help>Welcome message</help>
+</param>
+
+
+</program_params>

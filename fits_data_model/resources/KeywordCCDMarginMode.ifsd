@@ -1,0 +1,1 @@
+<keyword name="MRG_MODE"  data_type="string"  default="undefined"  comment="On-board processing mode of the CCD margins" />

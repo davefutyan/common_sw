@@ -1,0 +1,329 @@
+/** 
+ @defgroup ProgParam  Program Parameter Interface
+ @author Reiner Rohlfs UGE
+
+ @brief    This module provides a class to read the parameter file and the
+           job order file and gives access to the program parameters and
+           file names.
+
+- <b> The parameter file </b>
+
+	All parameters have to be described in one XML file per executable.
+	The filename has to be identical as the filename of its executable with the
+	extension @b .xml \n
+	This parameter xml file is searched for in the following directories with 
+	in order:
+	-# in the current directory
+	-# in the @b conf/ sub-directory of the current directory. 
+	-# in the directory ${CHEOPS_SW/conf
+	
+	Each parameter is identified by its \<name\>, which has to be
+	unique. Further optional elements of a parameter are
+	- \<short_name\> one character, which can be used as name of the
+	                 parameter on the command line. For example -@b f filename
+	- \<value\>      the default value of the parameter. The parameter has to be
+	                 specified in the command line at start of the program
+	                 if the value is not defined in the XML parameter file.
+	- \<type\>       defines the data type of the parameter. It can be either
+	                 <b> string, int, double </b> or @b bool. @b string is the default,
+	                 if it is not defined. If type is @b bool only following case insensitive
+	                 values are
+	                 allowed: <b> true, false, on, off, yes, no, 1, 0 </b>
+	- \<help\>       a short description of the parameter. It will be printed
+	                 if the program is called with the @b -h option.
+	- \<min\>        a lower limit of the accepted range of the value of the parameter.
+	                 The program will stop with an error if the defined value is less
+	                 than this lower limit.
+	- \<max\>        an upper limit of the accepted range of the value of the parameter.
+	                 The program will stop with an error if the defined value is greater
+	                 than this lower limit.
+	- \<repeatable\> optional element that defines whether or not the 
+	                 parameter can occur multiple times on the command line. It 
+	                 takes the values true or false. The default value is false.
+	              
+	The value of each parameter can be overwritten by a command line parameter
+	like this: @c \--parameter_name @c new_value or @c \--parameter_name=new_value
+	
+	The shortest possible definition of a parameter in an xml parameter file looks 
+	like this:
+	
+	<pre>
+	    <?xml version="1.0" encoding="UTF-8"?>
+	    <program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		     xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+	
+		\<param\>
+			\<name\>X-Center\</name\>
+		\</param\>
+	
+		\</program_params\> 
+	</pre>
+	
+	In this example the value of the parameter X-Center has to be given in the 
+	command line:
+	
+	<pre>
+	    program --X-Center=49
+	    program --X-Center 49
+	</pre>    
+	 
+	A complete definition of a parameter would look like this:
+	
+	<pre>
+	    <?xml version="1.0" encoding="UTF-8"?>
+	    <program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		     xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+	    
+		\<param\>
+			\<name\>X-Center\</name\>
+			\<short_name\>x\</short_name\>
+			\<value\>100\</value\>
+			\<type\>int\</type\>
+			\<help\>X - position of source in image [pixel]</help\>
+			\<min\>20\</min\>
+			\<max\>180\</max\>
+		\</param\>
+		
+		\</program_params\> 
+	</pre>
+	
+	 @b module \n
+	 Parameters can be grouped in modules. Modules can consist of
+	 parameters and sub-modules. With this approach a hierarchical structure
+	 of modules and sub-modules
+	 of any level can be build. Each module has to have a \<name\>. An exception is
+	 the top level module, the root, which has no name. The full name of parameters
+	 nested in groups is a concatenation of the group-names and the parameter name
+	 with the "." as separator. For example:
+	 @c module.sub-module.sub-sub-moduel.parameter. A parameter has to be
+	 specified with its full name in a command line to overwrite the default value of
+	 the XML parameter file. For example: @c \--module.parameter=34
+	 
+	 Here an example with one parameter (StartTime) at the top level and one parameter
+	 (X-Center) as part of the module @b module_name. 
+	 
+	 <pre>
+	    <?xml version="1.0" encoding="UTF-8"?>
+	    <program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		     xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+	 
+	 	\<param\>
+			\<name\>StartTime\</name\>
+			\<value\>4.5\</value\>
+			\<type\>double\</type\>
+		\</param\>
+	
+	    \<module\>
+	       \<name\>ReductionStep1\</name\>
+	    
+			\<param\>
+				\<name\>X-Center\</name\>
+				\<short_name\>x\</short_name\>
+				\<value\>100\</value\>
+				\<type\>int\</type\>
+				\<help\>X - position of source in image [pixel]</help\>
+				\<min\>20\</min\>
+				\<max\>180\</max\>
+			\</param\>
+		\</module\>
+			
+		\</program_params\> 
+	</pre>
+	 On the command line the default values can be overwritten like this:
+	 <pre>
+	 	program --StartTime=10.4 --ReductionStep1.X-Center=35
+	 </pre>
+	 	
+	  The class ModuleParams can be used to access easier all parameters of one module.
+	
+- <b> The job order file </b>
+
+  The job order file will be created by the processing facility during operation.
+  For test purposes the job order file of the common_sw_example - program can
+  be modified (examples/common_sw_example/resources/ex_job_order.xml). 
+   
+  The name of the job order file has to be defined on the command line as an 
+  parameter. For example:
+  <pre>
+     program_name job_order_file_name
+  </pre>   
+  
+  The ProgramParams class of this module will provide the input files and output
+  directories, which are defined in the job order file for the current program. 
+  Therefore it is important to set the tag \<Task_Name\> correctly in the job 
+  order file. The file names and the output directories may contain environment 
+  variables, which will be replaces by their values. They have to be specified 
+  like this: ${NAME}. 
+ 
+  ProgramParams will also provide the parameters contained within the job order 
+  file's \<Ipf_Conf\> element, which are listed in the table below. To retrieve 
+  these values, use ProgramParams::GetAsString(), with the value of the Key 
+  column as argument.
+  
+  For example:
+   <pre>
+   std::string processorName = params->GetAsString("Processor_Name");
+   </pre>
+   
+  <table>
+	<tr>
+		<th>Element name</th>
+		<th>Key</th>
+		<th>Value</th>
+	</tr>
+	<tr>
+		<td>\<Processor_Name\></td>
+		<td>"Processor_Name"</td>
+		<td>The name of the processor.</td>
+	</tr>	
+	<tr>
+		<td>\<Version\></td>
+		<td>"Version"</td>
+		<td>The version of the processor.</td>
+	</tr>	
+	<tr>
+		<td>\<Stdout_Log_Level\></td>
+		<td>"Stdout_Log_Level"</td>
+		<td>The lowest log level sent to stdout.</td>
+	</tr>	
+	<tr>
+		<td>\<Stderr_Log_Level\></td>
+		<td>"Stderr_Log_Level"</td>
+		<td>The lowest log level sent to stderr.</td>
+	</tr>	
+	<tr>
+		<td>\<Test\></td>
+		<td>"Test"</td>
+		<td>A 'boolean' value of "1" or "0". Defines weather this is a test run or not.</td>
+	</tr>	
+	<tr>
+		<td>\<Breakpoint_Enable\></td>
+		<td>"Breakpoint_Enable"</td>
+		<td>A 'boolean value of "1" or "0".</td>
+	</tr>	
+	<tr>
+		<td>\<Sensing_Time\>\<Start\></td>
+		<td>"Start"</td>
+		<td>If the execution of the program was triggered by the ingestion of a
+            specific data product type into the CHEOPS Archive, this is the 
+            validity start time of that data product.
+     
+            If instead the program was executed by the processing framework with
+            a time window as input argument, as is the case with reports 
+            generated at regular time intervals, this is the start time of that
+            time window.
+            
+            In the job order, this value is formatted as yyyymmdd_hhmmssffffff.
+            When the ProgramParams class reads this parameter, it re-formats the
+            value to a valid UTC time of the format yyyy-mm-ddThh:mm:ss.ffffff, 
+            which may be used to construct UTC objects. 
+        </td>
+	</tr>	
+	<tr>
+		<td>\<Sensing_Time\>\<Stop\></td>
+		<td>"Stop"</td>
+		<td>If the execution of the program was triggered by the ingestion of a
+            specific data product type into the CHEOPS Archive, this is the 
+            validity stop time of that data product.
+     
+            If instead the program was executed by the processing framework with
+            a time window as input argument, as is the case with reports 
+            generated at regular time intervals, this is the stop time of that 
+            time window.
+            
+            In the job order, this value is formatted as yyyymmdd_hhmmssffffff.
+            When the ProgramParams class reads this parameter, it re-formats the
+            value to a valid UTC time of the format yyyy-mm-ddThh:mm:ss.ffffff, 
+            which may be used to construct UTC objects. 
+        </td>
+	</tr>
+	<tr>
+		<td>\<Dynamic_Processing_Parameters\>\<Processing_Parameter\></td>
+		<td>The value of the \<Name\> element.</td>
+		<td>The value of the \<Value\> element.</td>
+	</tr>
+  </table>
+  
+- <b> Access to the program parameters and the input and output file
+      names</b>
+
+   Each program shall use the CheopsInit() function to initialize 
+   the program_params module:
+   <pre>
+   ParamsPtr params = CheopsInit(argc, argv);
+   </pre>
+   
+   To get the values of a specific parameter the functions GetAsX() can be
+   used. For example:
+   <pre>
+   auto var = params->GetAsString("paramName1");
+   auto var = params->GetAsInt("paramName2");
+   </pre>
+  
+   To get a list of all available data types, use the function GetInputStructNames():
+   <pre>
+   const std::set<std::string> inputStructNames = params->GetInputStructNames();
+   </pre>
+   
+   To get a list of all filenames of a specific data type, call GetInputFiles()
+   with the name of the data type as argument:
+   <pre>
+   const std::list<std::string> & inputFiles = params->GetInputFiles("DataTypeName");
+   </pre>
+   
+   The two methods GetOutDir() an GetTmpDir() are used to get the output 
+   directories to which the program shall write output files:
+   <pre>
+   std::string outDir = params->GetOutDir();
+   std::string tmpDir = params->GetTmpDir()
+   </pre>
+   
+   The out directory shall be used for files that are to be ingested into the 
+   archive. The tmp directory is for temporary files, which will be deleted 
+   after the program has exited.
+   
+   Note: for fits files, the "data type" names shall be the names as they are 
+   defined in the FITS schema files. In the job order file they are defined in 
+   the \<File_Type\> - tag.
+  
+- <b> The CheopsExit() method</b>
+   
+   Each program shall call the method CheopsExit() at the very 
+   end of the program. This method writes a so-called trigger file to disk which
+   is used by the processing framework to detect that the program has 
+   terminated. If the program read in a job order file that contained an input
+   trigger file, the values of this trigger file are stored internally and will
+   be written into the output trigger file.
+   
+   Trigger file creation can be disabled by passing false to CheopsExit()
+
+- <b> Trigger files</b>
+   
+   In addition to the trigger file created by CheopsExit() it is
+   possible to create extra trigger files using the static method 
+   TriggerFile.WriteTriggerFile(). This method takes as arguments all the values
+   that will be inserted into the trigger file.
+   
+   If an input trigger file was provided in the job order of the program, the 
+   values of this trigger file will be accessible through static methods on the 
+   TriggerFile class:
+   
+   @code
+   TriggerFile::WriteTriggerFile(params->GetOutDir(),
+                                 params->GetAsString("Processor_Name"),
+                                 TriggerFile::GetPassId(), 
+                                 TriggerFile::GetVisitId(), 
+                                 TriggerFile::GetValidityStart(),
+                                 TriggerFile::GetValidityStop(),
+                                 TriggerFile::GetInputProcessingNumber(),
+                                 TriggerFile::GetOutputProcessingNumber(),
+                                 TriggerFile::GetObsid(),
+                                 dataName)
+   @endcode
+
+ @todo
+ - test also values given in the command line
+ - write new XML parameter file with actual values
+ - array parameters
+
+*/

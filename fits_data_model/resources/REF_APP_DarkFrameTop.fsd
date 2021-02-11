@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 10.1  01. 09 2018
+        	- image cube to store also the error 
+
+		version 9.1  05. 02. 2018 RRO
+			- new data structure
+
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+
+    <HDU extname="REF_APP_DarkFrameTop">
+    
+    <brief> Dark Frame of the top CCD margin area</brief>
+        <description>The Frame is a result of ground based calibrations or
+                     IOC observations.
+                     It will be updated using the result of M and C observations
+                     The bias value is already subtracted and it is corrected
+                     for non-linearity.
+                     </description>
+    
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="10.1"  comment="version of the data structure"/>
+            <keyword name="BUNIT"	    data_type="string" default="e-/s" comment="Unit of the data in the image"/>
+            <keyword name="IMAGE1"	    data_type="string" default="dark current" comment="description of image 1"/>
+            <keyword name="IMAGE2"	    data_type="string" default="dark error" comment="description of image 2"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+            
+        </header>
+        <image data_type="float">
+            <naxis>3</naxis>
+            <axis1 comment="X axis">0</axis1>
+            <axis2 comment="Y axis">3</axis2>
+            <axis3 comment="data type">2</axis3>
+        </image>
+    </HDU>
+    
+   
+</FITS_schema>

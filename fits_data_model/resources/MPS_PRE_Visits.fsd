@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.0   07. 09. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data: Renamed V_TARG to MAG_TARG
+
+		Version 12.1.7  26. 06. 2020 MBE
+			- #21944 Increase the size of column E_MAIL from 36 to 128
+			
+		version 12.1.3  06. 04. 2020
+		   - #21289 Comment of RA_TARG and DEC_TARG is updated to clarify
+		            the epoch as epoch of the observation.
+		            The EXT_VER is not updated.
+
+		version 12.1.2
+			- #21193 Change the comment of V_TARG to identify that it is actually
+			         Gaia mag. The EXT_VER is not updated.
+
+		version 11.4.3
+			- #19352 change data type of column PI_UID from uint16 to uint32
+
+		version 10.2, 
+		    - #17246 new column: STRAY_LIGHT_THRESHOLD
+		    - #17258 removed column: V_TART_ERR
+
+		version 10.1 27.09. 2018 RRO
+			- #16313  new column: NEXP_IMAGETTES
+			
+        version 8.1  29. 09. 2017 RRO
+        	- #14125 unit of TRANSIT_TIME is BJD(TT) instead of BJD(UTC)
+        	
+		version 8.0  20. 07. 2017 RRO
+		    - improved comment of columns NEXP, N_FULLFRAME_EXP and N_WINDOWFRAME_EXP
+
+		version 7.3  15. 05. 2017 RRO #12801
+			- remove column VISIT_COUNTER, see ColumnVisitId
+			- #12578 new column: V_TARG_ERR
+
+		version 7.0  20. 01. 2017 RRO
+		    - #12518 increase length of SPECTRAL_TYPE column to 15 chars.
+		    
+		version 6.3  26. 10. 2016 RRO
+			- #11889 new columns: N_FULLFRAME_EXP, N_WINDOWFRAME_EXP
+			
+        version 6.3  19. 10. 2016 RRO
+           - new columns: PI_UID, PROP_FIRST_VISIT, PROP_LAST_VISIT
+		   - removed column: MPS_VISIT_ID
+
+        version 6.2  09. 09. 2016 RRO
+           - new columns: TRANSIT_TIME, TRANSIT_PERIOD, 
+                          TARGET_LOCATION_X, TARGET_LOCATION_Y
+
+        version 6.1  29. 07. 2016 RRO #11327
+           - new columns:        OBSID
+           - deprecated columns: MPS_VISIT_ID
+
+        version 5.2 03. 06. 2016 RRO
+           - remove CHEOPSID, TARGET_TYPE and  OBS_MODE keywords
+           - new keyword: OBS_CATEGORY, MARGIN_MODE  
+           - removed the columns defining the background stars
+
+        version 5.1  16. 02. 2016 RRO
+           - correct some comments of the columns
+                     03. 03. 2016 RRO
+           - new columns: READOUT_MODE, NEXP      
+           - data type of column EXPTIME changed from uint16 to float.    
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelMps      SYSTEM "KeywordDataLevelMps.ifsd"> 
+    <!ENTITY KeywordCheops            SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity          SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY ColumnVisitId            SYSTEM "ColumnVisitId.ifsd"> 
+    <!ENTITY ColumnTime               SYSTEM "ColumnTime.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="MPS_PRE_Visits">
+        <brief> Table of planned visits, created by the mission planning system</brief>
+        <description>There shall be one FITS file with such a table as first externsion 
+                     per short term planning cycle, i.e. one per week. There is
+                     always a second extension of data type MPS_PRE_VisitConstraints.
+                     The parameters of one visit are defined in one row of the 
+                     table. Time periods between visits are not described here. 
+                     The rows shall be ordered by increasing time. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.0" comment="version of the data structure"/>
+             &KeywordDataLevelMps;
+             &KeywordCheops; 
+             &KeywordValidity;
+        </header>
+        
+        <table>
+            &ColumnVisitId;
+            <column name="OBSID"           data_type="uint32"                            comment="OBSID per visit as defined by MPS"/>
+            <column name="UTC_TIME_START"  data_type="UTC"                   unit="TIMESYS=UTC"  comment="start time of the visit"/>
+			<column name="UTC_TIME_STOP"   data_type="UTC"                   unit="TIMESYS=UTC"  comment="end time of the visit"/>
+            <column name="PI_NAME"         data_type="string"  bin_size="36"             comment="Name of the PI of the observing program"/>
+            <column name="PI_UID"          data_type="uint32"                            comment="Account ID of the PI at UGE"/>
+			<column name="E_MAIL"          data_type="string"  bin_size="128"             comment="E-mail of the PI" />
+			<column name="PROP_FIRST_VISIT"  data_type="uint32"              unit="days" comment="Proprietary period, depending on first visit"/>
+			<column name="PROP_LAST_VISIT"   data_type="uint32"              unit="days" comment="Proprietary period, depending on last visit"/>
+			<column name="TARGET_NAME"     data_type="string"  bin_size="24"             comment="Name of the target as provided by the proposal"/>
+			<column name="SPECTRAL_TYPE"   data_type="string"  bin_size="15"             comment="Spectral type of target star"/>
+			<column name="OBS_CATEGORY"    data_type="string"  bin_size="24"             comment="Observation Category"/>
+			<column name="READOUT_MODE"    data_type="string"  bin_size="12"             comment="Requested readout mode: faint, bright or ultrabright" />
+			<column name="MARGIN_MODE"     data_type="string"  bin_size="16"             comment="On-board processing mode of the CCD margins" />
+			<column name="EXPTIME"         data_type="float"                 unit="sec"  comment="Exposure time of the individual exposures"/>
+			<column name="NEXP"            data_type="uint16"                            comment="Number of measurements that shall be stacked."/>
+			<column name="NEXP_IMAGETTES"  data_type="uint16"                            comment="Number of imagettes that shall be stacked on-board."/>
+			<column name="N_FULLFRAME_EXP"    data_type="uint16"                         comment="Number of un-stacked FullFrame exposures"/>
+			<column name="N_WINDOWFRAME_EXP"  data_type="uint32"                         comment="Number of un-stacked WindowFrame exposures."/>
+			<column name="MAG_TARG"          data_type="double"                unit="mag"  comment="Brightness of the target in Gaia band" />
+			<column name="RA_TARG"         data_type="double"                unit="deg"  comment="RA of the target at epoch of observation" />
+			<column name="DEC_TARG"        data_type="double"                unit="deg"  comment="DEC of the target at epoch of observation" />
+			<column name="TRANSIT_TIME"    data_type="BJD"                   unit="BJD(TT)"  comment="Central time of a transit" />
+			<column name="TRANSIT_PERIOD"  data_type="double"                unit="day"       comment="Time between two consecutive transits." />
+			<column name="TARGET_LOCATION_X"  data_type="float"              unit="pixel"     comment="Intended X location of the target on the Full Array CCD without margins. Center of first pixel = 0.50" />
+			<column name="TARGET_LOCATION_Y"  data_type="float"              unit="pixel"     comment="Intended Y location of the target on the Full Array CCD without margins. Center of first pixel = 0.50" />
+			<column name="STRAY_LIGHT_THRESHOLD" data_type="double"    unit="Photons/px/sec" comment="stray light threshold, used to discard images on-board"/>
+        </table>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >MPS_PRE_VisitConstraints</Associated_HDU>
+    </List_of_Associated_HDUs>
+    
+</FITS_schema>

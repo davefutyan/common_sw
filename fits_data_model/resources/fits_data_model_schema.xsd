@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+
+
+<xs:element name="FITS_schema" type="Fits_schema_type" />
+
+<xs:complexType name="Fits_schema_type">
+    <xs:sequence>
+		<xs:element name="HDU" type="HDU_type" />
+		<xs:element name="List_of_Associated_HDUs" type="List_of_Associated_HDUs_type" minOccurs="0"/>
+    </xs:sequence>
+</xs:complexType>	
+	
+<xs:complexType name="HDU_type">
+   	<xs:sequence>	
+   	    <xs:element name="brief"       type="xs:string" minOccurs="0"/>
+   	    <xs:element name="description" type="xs:string" minOccurs="0"/>
+    	<xs:element name="header"      type="header_type"/>
+    	<xs:choice minOccurs="0" maxOccurs="1">
+      		<xs:element name="table"  type="table_type"/>
+      		<xs:element name="image"  type="image_type"/>
+      	</xs:choice>
+    </xs:sequence>
+	<xs:attribute name="extname" type="xs:string" use="required" />
+</xs:complexType>
+
+<xs:complexType name="header_type">
+   	<xs:sequence>	
+   		<xs:element name="keyword" type="keyword_type" minOccurs="0" maxOccurs="unbounded"/>
+   		<xs:element name="group"   type="group_type"   minOccurs="0" maxOccurs="unbounded"/>
+   	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="group_type">
+   	<xs:sequence>	
+   		<xs:element name="keyword" type="keyword_type" minOccurs="0" maxOccurs="unbounded"/>
+   	</xs:sequence>
+	<xs:attribute name="description" type="xs:string" use="required" />
+</xs:complexType>
+
+
+<xs:complexType name="keyword_type">
+	<xs:attribute name="name"      type="keyword_name" use="required" />
+	<xs:attribute name="default"   type="xs:string" />
+	<xs:attribute name="data_type" type="keyword_data_type" default="string" />
+	<xs:attribute name="comment"   type="xs:string" />
+	<xs:attribute name="unit"      type="xs:string" />
+	<xs:attribute name="db"        type="keyword_db_type" default="false" />
+</xs:complexType> 
+
+<xs:simpleType  name="keyword_name">
+	<xs:restriction base="xs:string">
+		<xs:maxLength value="8"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="keyword_db_type">
+<xs:restriction base="xs:string">
+		<xs:enumeration value="false" />
+		<xs:enumeration value="true" />
+		<xs:enumeration value="common" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="keyword_data_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="string" />
+		<xs:enumeration value="integer" />
+		<xs:enumeration value="unsigned int" />
+		<xs:enumeration value="real" />
+		<xs:enumeration value="boolean" />
+		<xs:enumeration value="OBT" />
+		<xs:enumeration value="UTC" />
+		<xs:enumeration value="MJD" />
+		<xs:enumeration value="BJD" />
+		<xs:enumeration value="PassId" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="table_type">
+   	<xs:sequence>	
+   		<xs:element name="column" type="column_type" minOccurs="0" maxOccurs="999"/>
+   	</xs:sequence>
+	<xs:attribute name="appId"        type="xs:integer" />
+	<xs:attribute name="SID"   	      type="xs:integer" />
+	<xs:attribute name="obtOffset"    type="xs:integer" />
+</xs:complexType>
+
+<xs:complexType name="column_type">
+	<xs:attribute name="name"      type="xs:string"        use="required"/>
+	<xs:attribute name="data_type" type="column_data_type" use="required"/>
+    <xs:attribute name="bin_size"  type="xs:positiveInteger" default="1" />
+    <xs:attribute name="null"      type="xs:string" />
+	<xs:attribute name="unit"      type="xs:string" />
+	<xs:attribute name="comment"   type="xs:string" />
+	<xs:attribute name="tm_offset" type="xs:integer" />
+	<xs:attribute name="cal_curve" type="xs:string" />
+	<xs:attribute name="min_value" type="xs:float" />
+	<xs:attribute name="max_value" type="xs:float" />
+</xs:complexType>
+
+<xs:simpleType name="column_data_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="A" />
+		<xs:enumeration value="string" />
+		<xs:enumeration value="L" />
+		<xs:enumeration value="bool" />
+		<xs:enumeration value="S" />
+		<xs:enumeration value="int8" />
+		<xs:enumeration value="B" />
+		<xs:enumeration value="uint8" />
+		<xs:enumeration value="I" />
+		<xs:enumeration value="int16" />
+		<xs:enumeration value="U" />
+		<xs:enumeration value="uint16" />
+		<xs:enumeration value="J" />
+		<xs:enumeration value="int24" />
+		<xs:enumeration value="int32" />
+		<xs:enumeration value="V" />
+		<xs:enumeration value="uint24" />
+		<xs:enumeration value="uint32" />
+		<xs:enumeration value="K" />
+		<xs:enumeration value="int64" />
+		<xs:enumeration value="W" />
+		<xs:enumeration value="uint64" />
+		<xs:enumeration value="E" />
+		<xs:enumeration value="float" />
+		<xs:enumeration value="D" />
+		<xs:enumeration value="double" />
+		<xs:enumeration value="CUC" />
+		<xs:enumeration value="OBT" />
+		<xs:enumeration value="UTC" />
+		<xs:enumeration value="MJD" />
+		<xs:enumeration value="BJD" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="image_type">
+   	<xs:sequence>	
+   		<xs:element name="naxis" type="naxis_type" />
+   		<xs:element name="axis1" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis2" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis3" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis4" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis5" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis6" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis7" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis8" type="axis_type" minOccurs="0" />
+   		<xs:element name="axis9" type="axis_type" minOccurs="0" />
+   	</xs:sequence>
+   	<xs:attribute name="data_type" type="image_data_type"  use="required"/>
+   	<xs:attribute name="null"      type="xs:integer" />
+</xs:complexType>
+
+<xs:simpleType  name="naxis_type">
+	<xs:restriction base="xs:integer">
+		<xs:minInclusive value="0" />
+		<xs:maxInclusive value="9" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType  name="axis_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:nonNegativeInteger">    
+   			<xs:attribute name="comment" type="xs:string" />
+   			<xs:attribute name="unit"    type="xs:string" />    
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+
+<xs:simpleType name="image_data_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="B" />
+		<xs:enumeration value="uint8" />
+		<xs:enumeration value="I" />
+		<xs:enumeration value="int16" />
+		<xs:enumeration value="U" />
+		<xs:enumeration value="uint16" />
+		<xs:enumeration value="J" />
+		<xs:enumeration value="int32" />
+		<xs:enumeration value="V" />
+		<xs:enumeration value="uint32" />
+		<xs:enumeration value="K" />
+		<xs:enumeration value="int64" />
+		<xs:enumeration value="E" />
+		<xs:enumeration value="float" />
+		<xs:enumeration value="D" />
+		<xs:enumeration value="double" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="List_of_Associated_HDUs_type">
+   	<xs:sequence>	
+   		<xs:element   name="Associated_HDU" type="Associated_HDU_type" maxOccurs="unbounded"/>
+   	</xs:sequence>
+</xs:complexType>
+
+<xs:complexType  name="Associated_HDU_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:string">    
+   			<xs:attribute name="HDU_Type" type="HDU_Type_type" use="required" />
+   			<xs:attribute name="optional" type="xs:boolean" default="false" />
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:simpleType name="HDU_Type_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="image" />
+		<xs:enumeration value="table" />
+	</xs:restriction>
+</xs:simpleType>
+
+
+</xs:schema>

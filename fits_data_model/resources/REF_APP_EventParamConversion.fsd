@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 5.1  23. 03. 2016 RRO
+           - new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_EventParamConversion">
+        <brief> Defines the conversion curve that has to be applied for event parameters.</brief>
+        <description>Most Event parameters are defined as enum numbers. The conversion 
+                     from the enum number to a meaningful text is defined 
+                     the REF_APP_EventEnumConversion. This table defines the 
+                     enum conversion by its CALIB_NAME that should be used for
+                     a specific Event parameter. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="APID"        data_type="uint16"                      comment="APID of the event TM"/>
+            <column name="SEVERITY"    data_type="uint8"                       comment="severity level of event, 1-4"/>
+ 			<column name="EVT_ID"      data_type="uint16"                      comment="ID of the event"/>
+			<column name="EVT_NAME"    data_type="string"    bin_size="24"     comment="Name of the event"/>
+			<column name="PARAM_NAME"  data_type="string"    bin_size="24"     comment="name of the event parameter" />
+			<column name="PARAM_TYPE"  data_type="string"    bin_size="8"      comment="data type of event parameter: uint16, uint32, ..." />
+            <column name="CALIB_NAME"  data_type="string"    bin_size="24"     comment="Name of the Calibration Curve"/>
+       </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,15 @@
+CXX_UNIT_TESTS = TestParameters TestModules TestJobOrder
+UNIT_TESTS_PROG_PARAMS = --CommandLine=CommandLineValue
+
+PYTHON_COVERAGE += program_params
+PYTHON_UNIT_TESTS += TestJobOrder
+PYTHON_UNIT_TESTS += TestProgramParams
+PYTHON_UNIT_TESTS += TestDefaultValueParams
+PYTHON_UNIT_TESTS += TestDefaultEmptyValueParams
+PYTHON_UNIT_TESTS += TestNoDefaultValueParams
+
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -llogger 
+
+CXX_CFLAGS += -DNO_FITS_DAL -DNO_UTILITIES
+
+CLEAN += results/CH_*.log

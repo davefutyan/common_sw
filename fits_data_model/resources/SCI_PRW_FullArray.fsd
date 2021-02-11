@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.0 28. 08. 2020 MBE
+			- #22260: Clean-up epoch for attitude information
+		
+		version 9.3  11. 05. 2018 RRO
+		  - #16458 new header keywords: ROUNDING, NLIN_COR, RO_SCRPT, RO_HW, RO_FREQU   
+
+		version 6.2: 10. 09. 2016 RRO
+			update according to IFSW-SOC ICD Issue 2:
+			- new associated data structure: SCI_PRW_UnstackedImageMetadata
+
+        version 5.0  01. 02. 2016 RRO
+           - change image size from 1024 X 1024 to 1076 X 1033
+           - remove associated boundary data structures. There is only on image including the margin areas.
+           - Use KeywordValidityUTC instead of KeywordValidity
+ 
+         version 5.2  03. 06. 2016 RRO
+           - new header keyword:  MRG_MODE (see KeywordCCDMarginMode.ifsd) 
+        
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCCDMarginMode   SYSTEM "KeywordCCDMarginMode.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordExposurePrw     SYSTEM "KeywordExposurePrw.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_FullArray">
+        <brief> L05 Product : raw full array image.</brief>
+        <description> There is no processing step applied.
+                      The pixel values are as they were received from the instrument.
+                      Data received during one pass are stored in this data structure.
+        			  The image size may change if overscan pixels and dark regions are part of the image
+                      that was sent to ground.
+                      </description>
+        <header>
+        
+           <keyword name="EXT_VER"  data_type="string" default="13.0" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCCDMarginMode;
+            &KeywordCheops; 
+            &KeywordValidityUTC;
+            &KeywordPassVisit;   
+            &KeywordExposurePrw;
+            &KeywordSkyPos;
+            <group description="Image Attributes">
+ 	            <keyword name="ROUNDING"  data_type="integer"    comment="number of bits that are rounded off"/>
+ 	            <keyword name="NLIN_COR"  data_type="boolean"    comment="on-board nonlinearity correction"/>
+ 	            <keyword name="RO_SCRPT"  data_type="integer"    comment="id of the CCD readout timing script"/>
+ 	            <keyword name="RO_HW"     data_type="string"     comment="used on-board hw: main or redundant"/>
+ 	            <keyword name="RO_FREQU"  data_type="integer" unit="Hz" comment="CCD readout frequency"/>
+            </group>  
+        </header>
+        <!--  -->
+        <image data_type="uint16">
+            <naxis>2</naxis>
+            <axis1 unit="pixel" comment="X axis of the CCD">1076</axis1>
+            <axis2 unit="pixel" comment="Y axis of the CCD">1033</axis2>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >SCI_PRW_ImageMetadata</Associated_HDU>
+    	<Associated_HDU HDU_Type="table" >SCI_PRW_UnstackedImageMetadata</Associated_HDU>
+    	
+    </List_of_Associated_HDUs>
+    
+</FITS_schema>

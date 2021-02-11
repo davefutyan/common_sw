@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL05
+
+		version 11.3: 15. 04. 2019 RRO
+		  - #18555 new Associated_HDU : SCI_RAW_UnstackedImageMetadata
+
+		version 10.1 19. 09. 2018
+			- #17107 keyword SHAPE is now a string
+
+		version 9.3.1 04. 06. 2018 RRO
+		  - #16593 Associated data structures of the CCD margins have to be optional
+		  
+		version 9.3  29. 05. 2018 RRO
+		  - #14795 remove old Associated_HDU for CCD margins
+		  - #16270 new optional Associated_HDU : SCI_RAW_OverscanRight
+		version 9.3  11. 05. 2018 RRO
+		  - #16458 new header keywords: ROUNDING, NLIN_COR, RO_SCRPT, RO_HW, RO_FREQU   
+
+		version 8.1  21. 10. 2017 RRO
+		  - new header keyword : STACKING
+		  - #14788 new Associated_HDU for CCD margins
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+        version 5.0  09. 02. 2016 RRO
+           - remove never available margin areas.
+           - new keyword: SHAPE
+
+        version 5.2  03. 06. 2016 RRO
+           - new header keyword:  OBS_CAT (see KeywordObsCategory.ifsd) 
+           - new header keyword:  MRG_MODE (see KeywordCCDMarginMode.ifsd) 
+
+        version 5.2.1  14. 06. 2016 RRO  
+           - use KeywordSkyPos instead of KeywordSkyPosAngle
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCCDMarginMode   SYSTEM "KeywordCCDMarginMode.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL05     SYSTEM "KeywordExposureL05.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubArrayOrigin  SYSTEM "KeywordSubArrayOrigin.ifsd"> 
+    
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_SubArray">
+        <brief> L05 Product : raw sub-array image.</brief>
+        <description>There is no processing step applied.
+                     The pixel values are as they were received from the instrument.
+                     The images in the cube are sorted by time, 
+                     with no overlap between two consecutive products.
+                     There is no processing step of the raw pixel data applied.
+                     Only time conversion from on-board-time to JD is applied.
+        </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCCDMarginMode;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordPassVisit;   
+            &KeywordTarget;
+            &KeywordExposureL05;
+            &KeywordSkyPos;
+            &KeywordSubArrayOrigin;
+            <group description="Image Attributes">
+ 	            <keyword name="SHAPE"     data_type="string"     comment="rectangular or circular"/>
+ 	            <keyword name="STACKING"  data_type="string"     comment="on-board stacking of image data"/>
+ 	            <keyword name="ROUNDING"  data_type="integer"    comment="number of bits that are rounded off"/>
+ 	            <keyword name="NLIN_COR"  data_type="boolean"    comment="on-board nonlinearity correction"/>
+  	            <keyword name="RO_SCRPT"  data_type="integer"    comment="id of the CCD readout timing script"/>
+ 	            <keyword name="RO_HW"     data_type="string"     comment="used on-board hw: main or redundant"/>
+ 	            <keyword name="RO_FREQU"  data_type="integer" unit="Hz" comment="CCD readout frequency"/>
+            </group>  
+            
+        </header>
+        <!--  -->
+        <image data_type="uint32"  null="0">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the CCD">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of the CCD">0</axis2>
+            <axis3 unit="#images" comment="Scan successive subarray images (sorted by date) with no overlap between two consecutive L05 products"> 0 </axis3>
+        </image>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >SCI_RAW_ImageMetadata</Associated_HDU>
+    	<Associated_HDU HDU_Type="table" >SCI_RAW_UnstackedImageMetadata</Associated_HDU>
+
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_DarkLeft</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_DarkRight</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_DarkTop</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_BlankLeft</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_BlankRight</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_OverscanLeft</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_OverscanRight</Associated_HDU>
+    	<Associated_HDU HDU_Type="image" optional="true">SCI_RAW_OverscanTop</Associated_HDU>
+
+        	
+    </List_of_Associated_HDUs>
+    	
+</FITS_schema>

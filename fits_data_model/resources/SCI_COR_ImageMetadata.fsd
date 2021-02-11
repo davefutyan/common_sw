@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  
+			17. 09. 2020 MBE
+			- #22417 add columns LOS_TO_EARTH_ANGLE, LATITUDE and LONGITUDE
+			28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+
+		version 11.2   29. 03. 2019
+			- #18454 remove column LOS_TO_EARTH_ANGLE, see ColumnAngles
+			- #18548 remove columns REF_PIXX and REF_PIXY
+
+        version 11. 1  01. 02. 2019
+            - #17497 use ColumnHk instead of ColumnCeHk
+                     data structure itself does not change, keep EXT_VER as 10.1
+ 
+ 		version 10.1 20. 09. 2018
+			- #16789 removed columns: ROLL_ANGLE, BACKGROUND and BACKGROUND_STD
+
+		version 9.3  04. 06. 2018 RRO
+	        - #16351 new columns: ADC_N5V, ADC_TEMP1, provided by ColumnCeHk
+
+		version 8.1  21. 10. 2017 RRO
+		  - #14824 new column: ROLL_ANGLE
+
+		version 7.3  16. 05. 2017 RRO 
+		   - #12578 #13013: new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+		   - #11638: new columns: BIAS, RON, BACKGROUND, BACKGROUND_STD 
+		   - #11638: new header keywords: STD_SP_B, STD_SP_D, BAD_PX_E, see KeywordCorErrors 
+
+		version 6.4  28. 11. 2016 RRO
+		   - #12050 change data type of column CE_COUNTER from uint32 to uint16
+
+		version 6.2: 10. 09. 2016 RRO
+			update according to IFSW-SOC ICD Issue 2:
+			- removed columns: ACQUISITION_ID, ACQUISITION_SOURCE, ACQUISITION_TIME
+			                   PHOTOMETRY, HEATER1, HEATER2, HEATER3, HEATER4
+			- renamed column:  INTEGRITY to CE_INTEGRITY                 
+
+        version 6.1    12. 08. 2016 RRO
+           - columns of ColumnAftFrontTemp are now float values instead of ushort values.   
+
+        version 5.0  10. 02. 2016 RRO
+           - several new columns
+
+        version 5.2.1  14. 06. 2016 RRO
+           - new columns: ColumnAngles    
+
+-->   
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel1      SYSTEM "KeywordDataLevel1.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops      	SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordCorErrors      	SYSTEM "KeywordCorErrors.ifsd"> 
+    <!ENTITY ColumnTimeL1L2         SYSTEM "ColumnTimeL1L2.ifsd"> 
+    <!ENTITY ColumnWcs              SYSTEM "ColumnWcs.ifsd"> 
+    <!ENTITY ColumnAngles           SYSTEM "ColumnAngles.ifsd"> 
+    <!ENTITY ColumnHk               SYSTEM "ColumnHk.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_COR_ImageMetadata">
+        <brief> L1 product :  Meta data of the corrected images, stored in the same FITS file</brief>
+        <description> There is one row per two dimensional image in the
+                      associated image cube. It stores meta data of that image.
+                      This data structure is used for subArrays as well as
+                      for images of the FullArray. In the later case there will be
+                      just one row in the table. 
+        </description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            &KeywordDataLevel1;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            &KeywordCorErrors;
+        </header>
+        <!-- Table description  -->
+        <table>
+        	&ColumnTimeL1L2;
+         	&ColumnWcs;
+			&ColumnAngles;
+
+            <column name="CE_COUNTER"          data_type="uint16"             comment="image counter per visit"/>
+            <column name="CE_INTEGRITY"        data_type="uint8"              comment="1: a problem occurred during data processing"/>
+            &ColumnHk; 
+            <column name="BIAS"                data_type="double"             comment="measured bias"/>
+            <column name="RON"                 data_type="double"             comment="measured RON"/>
+        </table>
+    </HDU>
+</FITS_schema>

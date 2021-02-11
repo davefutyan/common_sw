@@ -1,0 +1,41 @@
+This directory contains the script fsdtopdf.sh which generates a human-readable
+description of .fsd files in the form of PDF files. As an intermediate step in
+the process of creating the PDF, HTML files are also generated. 
+
+To generate the PDF and HTML files, simply run
+
+sh ./fsdtopdf.sh
+
+The script must be run from this directory in order to correctly locate the .fsd
+files.
+
+The output files are placed in the directory doc/fits_data_model.
+
+
+Dependencies:
+--------------------------------------------------------------------------------
+  - xsltproc, which is available on standard Apple OS/X installations
+  - wkhtmltopdf v0.12 or higher. 
+    Note:
+      - Versions earlier than 0.12 do not support repeating table headers when
+        tables span over a page break.
+      - The 64-bit release of v0-12 for OSX has a bug that causes the text in 
+        pdf documents to be non-selectable. To avoid this, install the 32-bit 
+        release of v0.12. 
+      - Version 0.12.5 has a bug that causes it to not output table of contents.
+    Available from http://wkhtmltopdf.org. 
+
+
+Trouble shooting
+--------------------------------------------------------------------------------
+
+* wkhtmltopdf segfaults when loading header and footers.
+
+This is a known bug, see https://github.com/wkhtmltopdf/wkhtmltopdf/issues/1681
+It is caused by wkhtmltopdf opening more files at once than what is allowed by 
+the system. The work-around is to increase the maximum number of files that a 
+program is allowd to open, and re-run the script.
+
+On OSX Yosemite this is done using the ulimit program. Run ulimit -a to see the
+current maximum number of allowed open files. Run ulimit -n X, where X is the
+new maximum limit. This changes the limit for the current shell only.

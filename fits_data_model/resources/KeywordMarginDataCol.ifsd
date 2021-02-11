@@ -1,0 +1,17 @@
+<!--
+		version 8.1  21. 10. 2017 RRO
+		   - new header keywords
+
+    The value of STACKING can be "coadd", "mean", "gcoadd", "gmean" or "none"
+	The value of MRG_PROC can be "image", "row collapsed" or "total collapsed"
+	The value of MRG_DTYx can be "mean", "stdev", "median" or "mad"
+-->   
+
+<group description="Description of CCD Margin Data">
+    <keyword name="STACKING" data_type="string"               comment="on-board stacking of image data"/>
+	<keyword name="MRG_PROC" data_type="string"               comment="on-board processing of CCD margin: image, row collapsed or total collapsed"/>
+	<keyword name="MRG_DTY1" data_type="string" default="N/A" comment="Type of data in 1. column in image"/>
+	<keyword name="MRG_DTY2" data_type="string" default="N/A" comment="Type of data in 2. column in image"/>
+	<keyword name="MRG_DTY3" data_type="string" default="N/A" comment="Type of data in 3. column in image"/>
+	<keyword name="MRG_DTY4" data_type="string" default="N/A" comment="Type of data in 4. column in image"/>
+</group>

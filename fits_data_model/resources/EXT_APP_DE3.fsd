@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 6.2  30. 08. 2016 RRO
+           - new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelExt   SYSTEM "KeywordDataLevelExt.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="EXT_APP_DE3">
+        <brief> First extension of the JPL Planetary Ephemeris DE200/LE200 file</brief>
+        <description></description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="6.2" comment="version of the data structure"/>
+            <keyword name="TSTART"   data_type="real"                 comment="Start time of ephemeris"/>
+            <keyword name="TSTOP"    data_type="real"                 comment="Stop time of ephemeris"/>
+            <keyword name="TIMEDEL"  data_type="real"                 comment="Ephemeris interval"/>
+            <keyword name="TIMEUNIT" data_type="string" default="d"   comment="Time is in days"/>
+            <keyword name="JDREF"    data_type="real"   default="0.0" comment="Time is in JD"/>
+             &KeywordDataLevelExt;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+        </header>
+        
+        <table>
+            <column name="ChebCoeffs"  data_type="double" bin_size="826"  comment="Record of Chebyshev coefficients"/>
+       </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 12.1.1 05. 03. 2020
+			- # #21070 fix a type REPETIOTION_PERIOD -> REPETITION_PERIOD
+
+		version 12.1 26. 02. 2020
+			- #20991 new data structure
+-->
+
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY ColumnTimeHKPrw        SYSTEM "ColumnTimeHKPrw.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_HkOperationParameter">
+        <brief> L0.5 product : filled with data of SES DAT_Operation_Parameter TM </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidityUTC;
+             &KeywordPassVisit;
+        </header>
+        <table appId="961" SID="0">
+            &ColumnTimeHKPrw;
+            <column name="EXPOSURE_TIME"           data_type="uint32" unit="msec" comment="reported exposure time"/>
+            <column name="REPETITION_PERIOD"       data_type="uint32" unit="msec" comment="reported repetition period"/>
+            <column name="ACQUISITION_NUM"         data_type="uint32"             comment="reported number of raw images"/>
+            <column name="OVERSAMPLING"            data_type="uint8"              comment="oversampling mode"/>
+            <column name="RD_MODE"                 data_type="uint8"              comment="Readout mode: faint=0, bright=1, ultrabright=2, full frame=3, auto=4, faint fast=5"/>
+        </table>
+    </HDU>
+</FITS_schema>

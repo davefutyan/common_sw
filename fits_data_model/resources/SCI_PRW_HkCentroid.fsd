@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 12.0 23. 10. 2019
+			- #19772 new data structure
+-->
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY ColumnTimeHKPrw        SYSTEM "ColumnTimeHKPrw.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_HkCentroid">
+        <brief> L0.5 product : Centroid Packet, provided by Instrument for AOCS System</brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.0" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidityUTC;
+             &KeywordPassVisit;
+        </header>
+        <table appId="323" SID="0">
+            &ColumnTimeHKPrw;
+			<column name="OFFSET_X"  	  data_type="int24"  unit="centi-pixel"  comment="residual (measured - intended) in X" />
+			<column name="OFFSET_Y"  	  data_type="int24"  unit="centi-pixel"  comment="residual (measured - intended) in Y" />
+			<column name="LOCATION_X"  	  data_type="uint24" unit="centi-pixel"  comment="Intended X position of target star on CCD [IFSW coordinate system]" />
+			<column name="LOCATION_Y"  	  data_type="uint24" unit="centi-pixel"  comment="Intended Y position of target star on CCD [IFSW coordinate system]" />
+			<column name="OBT_START" 	  data_type="CUC"    unit="OBT"          comment="Start time of the integration"/>
+			<column name="OBT_STOP"  	  data_type="CUC"    unit="OBT"          comment="End time of the integration"/>
+			<column name="DATA_CADENCE"   data_type="uint16" unit="centi-sec"    comment="Duration between consecutive centroids" />
+			<column name="VALIDITY"  	  data_type="uint8"                      comment="0: OK window mode, 1: OK full frame, other: not OK" />
+        </table>
+    </HDU>
+</FITS_schema>

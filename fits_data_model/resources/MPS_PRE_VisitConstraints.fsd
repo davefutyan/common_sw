@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 7.4  09. 06. 2017 RRO
+		   - clarification about the SAA flag: comment updated from 
+		        true=inside the SAA zone
+		     to
+		        true=inside the SAA zone, relevant for data suspend
+		        
+		version 7.3  15. 05. 2017 RRO #12801
+			- remove column VISIT_COUNTER, see ColumnVisitId
+
+		version 7.2  03. 04. 2017 RRO #12352
+		  - remove columns LOS_TO_EARTH_ANGLE, LATITUDE, LONGITUDE
+
+		version 6.4.1 05. 01. 2017 RRO #12352
+		  - new columns LOS_TO_EARTH_ANGLE, LATITUDE, LONGITUDE
+
+        version 6.4  28. 11. 2016 RRO #12051
+		   - The unit of the column STRAY_LICHT is photons/px/sec instead of photons
+
+        version 6.3.1  07. 11. 2016 RRO #11967
+		   - removed column: LOS_TO_EARTH_ANGLE
+
+        version 6.3  19. 10. 2016 RRO
+		   - removed column: MPS_VISIT_ID
+
+        version 5.1  16. 02. 2016 RRO
+           - new column: STRAY_LIGHT
+           
+        version 5.2.1  14. 06. 2016 RRO
+           - new column LOS_TO_EARTH_ANGLE    
+
+        version 6.1  29. 07. 2016 RRO #11327
+           - new columns:        OBSID
+           - deprecated columns: MPS_VISIT_ID
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelMps      SYSTEM "KeywordDataLevelMps.ifsd"> 
+    <!ENTITY KeywordCheops            SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity          SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY ColumnVisitId            SYSTEM "ColumnVisitId.ifsd"> 
+    <!ENTITY ColumnTime               SYSTEM "ColumnTime.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="MPS_PRE_VisitConstraints">
+        <brief> Table of visit constraints, created by the mission planning system</brief>
+        <description>There shall be one FITS file with such a table as second 
+                     extension per short term planning cycle, i.e. one per week . 
+                     The first extension is always a MPS_PRE_Visit data structure
+                     of the same planning cycle.
+                     The parameters of one visit constraint at a given time are 
+                     defined in one row of the table. 
+                     There shall be one set of values per minute. 
+                     The rows shall be ordered by increasing time. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="7.3" comment="version of the data structure"/>
+             &KeywordDataLevelMps;
+             &KeywordCheops; 
+             &KeywordValidity;
+        </header>
+        
+        <table>
+            &ColumnVisitId;
+            <column name="OBSID"              data_type="uint32"                   comment="OBSID per visit as defined by MPS"/>
+			&ColumnTime;
+			<column name="LOS_TO_SUN_ANGLE"   data_type="double"    unit="deg"     comment="Angle between target and Sun"/>
+			<column name="LOS_TO_MOON_ANGLE"  data_type="double"    unit="deg"     comment="Angle between target and Moon"/>
+			<column name="STRAY_LIGHT"        data_type="double"    unit="Photons/px/sec" comment="Expected stray light"/>
+			<column name="EARTH_OCCULTATION"  data_type="bool"                     comment="true=Target occulted by the earth"/>
+			<column name="SAA_FLAG"           data_type="bool"                     comment="true=inside the SAA zone, relevant for data suspend"/>
+        </table>
+    </HDU>
+</FITS_schema>

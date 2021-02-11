@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="RPT_RAW_Pass">
+        <brief>Defining the meta data of a Preprocessing pass report.</brief> 
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="4.4" comment="version of this rsd file."/>
+           <keyword name="RPT_TYPE" data_type="string"               comment="value taken from job-order file"/>
+           <keyword name="PRG_NAME" data_type="string"               comment="program creating this report"/>
+           <keyword name="PRG_VER"  data_type="string"               comment="version of program creating this report"/>
+           <keyword name="DATE"     data_type="string"               comment="time when the report is created"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;   
+             &KeywordSkyPos;
+        </header>
+    </HDU>
+    
+</FITS_schema>

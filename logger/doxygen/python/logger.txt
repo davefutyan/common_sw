@@ -1,0 +1,199 @@
+/**
+@defgroup Logger  Logger interface
+@author Anja Bekkelien UGE
+
+@brief This module provides a logger formatted specifically for CHEOPS.
+
+<h2>Usage</h2>
+
+The common_sw logger module consists of a python script that configures the standard python <tt>logging</tt> module. It modifies the log levels to debug, info, alert, progress, warn and error. It also formats the log entries to include the processor name and version, and PID.
+
+To apply this configuration, the only action needed from the programmer's side is to call the auto generated <tt>cheopsInit</tt> method at the start of the program as shown in the code snippet below.
+If the code does not have a "main" but is a library intended to be imported into other programs, no action is needed. This is because the library will inherit the log configuration made in the "main" script. 
+
+\code
+# File main.py
+
+import logging  # the standard python logging module
+
+logger = logging.getLogger()  # get a logger object
+
+def main():
+    logger.debug('A debug message')
+    logger.info('An info message')
+    logger.alert('1000 An alert occurred!')
+    logger.progress(50)
+    logger.warn('A warn message')
+    logger.error('An error message')
+
+if __name__ == '__main__':
+	
+	from main_init import cheopsInit # this module is auto generated in the bin 
+							         # directory when make install is run
+							   
+	progParams = cheopsInit()        # configures the standard python logger
+	
+    main()
+    
+    cheopsExit()			         # exit routines
+    
+\endcode
+
+This code produces the following output to stdout:
+@code
+2015-05-07T16:07:17.568615 bekkelie.local main.py 1.0 [0000005384]: [D] A debug message
+2015-05-07T16:07:17.569285 bekkelie.local main.py 1.0 [0000005384]: [I] An info message
+2015-05-07T16:07:17.569585 bekkelie.local main.py 1.0 [0000005384]: [I] 1000 An alert occurred!
+@endcode
+
+to stderr:
+@code
+2015-05-07T16:07:17.569463 bekkelie.local main.py 1.0 [0000005384]: [P] 50
+2015-05-07T16:07:17.569517 bekkelie.local main.py 1.0 [0000005384]: [W] A warn message
+2015-05-07T16:07:17.569649 bekkelie.local main.py 1.0 [0000005384]: [E] An error message
+@endcode
+
+to file:
+@code
+2015-05-07T16:07:17.568615 bekkelie.local main.py 1.0 [0000005384]: [D] A debug message
+2015-05-07T16:07:17.569285 bekkelie.local main.py 1.0 [0000005384]: [I] An info message
+2015-05-07T16:07:17.569585 bekkelie.local main.py 1.0 [0000005384]: [I] 1000 An alert occurred!
+2015-05-07T16:07:17.569463 bekkelie.local main.py 1.0 [0000005384]: [P] 50
+2015-05-07T16:07:17.569517 bekkelie.local main.py 1.0 [0000005384]: [W] A warn message
+2015-05-07T16:07:17.569649 bekkelie.local main.py 1.0 [0000005384]: [E] An error message
+@endcode
+
+Log messages are sent to different output channels depending on their log level.
+Debug, info and alert messages are sent to stdout, and progress, warning and
+error messages are sent to stderr. All log levels are written to file.
+
+The lowest log levels used for stdout and stderr are defined in the job
+order file elements \<Stdout_Log_Level\> and \<Stderr_Log_Level\>. Log levels lower
+than those defined there will not be output, but will still appear in the log 
+file. For example, if \<Stdout_Log_Level\> is set to alert and \<Stderr_Log_Level\> 
+is set to warning, then only log messages of levels alert, info, warning and 
+error would be output. 
+
+If no job order
+file is given as input argument to the program, the default log levels are info 
+for stdout and progress for stderr.
+
+Note that the alert log level has two special properties:
+- creating an alert log entry will cause an email containing the entry to be sent to a TBD address. 
+- because the alert level essentially provides information about the data used by the program, it is displayed as an info message (using [I]).
+
+<h3>Log files</h3>
+
+Log files are only created if a job order was given as input argument to the 
+program. The path to the log file can be defined in two different ways:
+
+- By defining a dynamic processing parameter in the job order with the name 
+  'Log_File', and setting its value to the desired path. If the file exists, logs 
+  are appended to it.
+- If the parameter 'Log_File' is not defined in the job order, the log file is 
+  created in the job order's 'OUT' output directory. Each run of the program 
+  creates a new log file.
+
+<h2>Log level description</h2>
+
+<table>
+	<tr>
+		<th>Log level</th>
+		<th>Short name</th>
+		<th>cout</th>
+		<th>cerr</th>
+		<th>Description</th>
+		<th>Input</th>
+	</tr>
+	<tr>
+		<td><b>debug</b></td>
+		<td>D</td>
+		<td><center>X</center></td>
+		<td><center></center></td>
+		<td>Basic software tracing messages.</td>
+		<td>A text message.</td>
+	</tr>	
+	<tr>
+		<td><b>info</b></td>
+		<td>I</td>
+		<td><center>X</center></td>		
+		<td><center></center></td>		
+		<td>Information about the operations or the status of the program.</td>
+		<td>A text message.</td>
+	</tr>
+	<tr>
+		<td><b>alert</b></td>
+		<td>I</td>
+		<td><center>X</center></td>		
+		<td><center></center></td>		
+		<td>An error was found in the data, which requires user action. The program may or may not be able to continue. An email containing the log record is sent to the appropriate address.</td>
+		<td>First, an integer that specifies the alert ID, then a text message.</td>
+	</tr>	
+	<tr>
+		<td><b>progress</b></td>
+		<td>P</td>
+		<td><center></center></td>		
+		<td><center>X</center></td>		
+		<td>The progress of the program in percentage.</td>
+		<td>A single integer between 0 and 100.</td>
+	</tr>
+	<tr>
+		<td><b>warn</b></td>
+		<td>W</td>
+		<td><center></center></td>		
+		<td><center>X</center></td>		
+		<td>An error occurred but the program was able to continue.</td>
+		<td>A text message.</td>
+	</tr>	
+	<tr>
+		<td><b>error</b></td>
+		<td>E</td>
+		<td><center></center></td>		
+		<td><center>X</center></td>		
+		<td>An error occurred and the program was not able to continue.</td>
+		<td>A text message.</td>
+	</tr>
+</table>
+
+<h2>Log fields</h2>
+
+Log records have the following fields, separated by a single blank character:
+
+[Date] [Node name] [Process name] [Process version] [PID]: [Level] [Message text]
+
+<table>
+	<tr>
+		<th>Field</th>
+		<th>Description</th>
+	</tr>
+	<tr>
+		<td>Date</td>
+		<td>Formatted as yyyy-MM-ddThh:mm:ss.nnnnnn (26 characters).</td>
+	</tr>
+	<tr>
+		<td>Node name</td>
+		<td>The name retrieved through the <i>hostname</i> system call.</td>
+	</tr>
+	<tr>
+		<td>Process name</td>
+		<td>A string identifying the process.</td>
+	</tr>
+	<tr>
+		<td>Process version</td>
+		<td>The process' version.</td>
+	</tr>
+	<tr>
+		<td>PID</td>
+		<td>The process ID, formatted as [nnnnnnnnnn] (12 characters, including the square brackets).</td>
+	</tr>
+	<tr>
+		<td>Level</td>
+		<td>The log level, formatted as [L] where L indicates the first letter of the log level.</td>
+	</tr>
+	<tr>
+		<td>Message text</td>
+		<td>Variable length string.</td>
+	</tr>
+</table>
+
+*/

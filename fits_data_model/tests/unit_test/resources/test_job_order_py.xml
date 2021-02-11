@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Ipf_Job_Order xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:csw="http://www.deimos-space.com/csw4eo/csw"
+	xsi:schemaLocation="http://www.deimos-space.com/csw4eo/csw">
+	<Ipf_Conf>
+		<Processor_Name>example_processor</Processor_Name>
+		<Version>01.00</Version>
+		<Stdout_Log_Level>INFO</Stdout_Log_Level>
+		<Stderr_Log_Level>ERROR</Stderr_Log_Level>
+		<Test>true</Test>
+		<Breakpoint_Enable>false</Breakpoint_Enable>
+		<Processing_Station>TEST</Processing_Station>
+		<Config_Files />
+		<Sensing_Time>
+			<Start>20140801_000000000000</Start>
+			<Stop>20140802_000000000000</Stop>
+		</Sensing_Time>
+		<Dynamic_Processing_Parameters>
+			<Processing_Parameter>
+				<Name>Configuration_Baseline</Name>
+				<Value>000000</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>Version</Name>
+				<Value>01.01</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>Configuration_Dir</Name>
+				<Value>resources/config</Value>
+			</Processing_Parameter>
+			<Processing_Parameter>
+				<Name>Alert_Email</Name>
+				<Value></Value>
+			</Processing_Parameter>
+		</Dynamic_Processing_Parameters>
+	</Ipf_Conf>
+	<List_of_Ipf_Procs count="2">
+	
+		<Ipf_Proc>
+            <Task_Name>TestTriggerFile.py</Task_Name>
+            <Task_Version>01.00</Task_Version>
+            <Breakpoint>
+                <Enable>OFF</Enable>
+                <List_of_Brk_Files count="0">
+                    <Brk_File>
+                        <File_Type>x</File_Type>
+                        <File_Name_Type>x</File_Name_Type>
+                        <File_Name>x</File_Name>
+                    </Brk_File>
+                </List_of_Brk_Files>
+            </Breakpoint>
+            <List_of_Inputs count="1">
+                <Input>
+                    <File_Type>TRIGGER</File_Type>
+                    <File_Name_Type>Physical</File_Name_Type>
+                    <List_of_File_Names count="1">
+                        <File_Name>resources/CH_PR990001_TG000101_PS18010112_TU2020-01-01T01-01-01_TRIGGER-example_processor_V0000.xml</File_Name>
+                    </List_of_File_Names>
+                </Input>
+            </List_of_Inputs>
+            <List_of_Outputs count="2">
+                <Output>
+                    <File_Type>OUT</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>result</File_Name>
+                </Output>
+                <Output>
+                    <File_Type>TMP</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>result</File_Name>
+                </Output>
+            </List_of_Outputs>
+        </Ipf_Proc>
+  
+    <Ipf_Proc>
+            <Task_Name>TestTriggerFileNoInputFile.py</Task_Name>
+            <Task_Version>01.00</Task_Version>
+            <List_of_Inputs count="0">
+            </List_of_Inputs>
+            <List_of_Outputs count="2">
+                <Output>
+                    <File_Type>OUT</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>result</File_Name>
+                </Output>
+                <Output>
+                    <File_Type>TMP</File_Type>
+                    <File_Name_Type>Directory</File_Name_Type>
+                    <File_Name>result</File_Name>
+                </Output>
+            </List_of_Outputs>
+        </Ipf_Proc>
+        
+	</List_of_Ipf_Procs>
+</Ipf_Job_Order>

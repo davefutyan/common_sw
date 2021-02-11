@@ -1,0 +1,19 @@
+<!--
+        version 13.0    28. 08. 2020 MBE
+			- #22260: Clean-up epoch for attitude information
+			
+		version 12.1.3  06. 04. 2020
+		   - #21289 Commnet of RA_TARG and DEC_TARG is updated to clarify
+		            the epoch as epoch of the observation 
+
+		version 8.0.1  07. 08. 2017 RRO
+		  - #14372  new keyword: RADESYS
+-->
+
+<group description="Target Coordinates">
+	<keyword name="RA_TARG"  data_type="real"                    comment="RA of the target at epoch J2000"   db="true"/>
+	<keyword name="DEC_TARG" data_type="real"                    comment="DEC of the target at epoch J2000"  db="true"/>
+	<keyword name="EQUINOX"  data_type="real"   default="2000.0" comment="Equinox of celestial coord. system"/>
+	<keyword name="RADESYS"  data_type="string" default="ICRS"   comment="Coordinate reference frame for the RA and DEC"/>
+</group>
+ 

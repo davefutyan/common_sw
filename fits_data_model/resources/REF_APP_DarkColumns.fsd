@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+           
+		version 6.3: 22. 10. 2016 RRO
+			#11326 new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_DarkColumns">
+        <brief>Defines the not corrupted dark columns of the CCD</brief>
+        <description>There is one row in this table. The value of column 
+        LEFT_DARK defines as a bit pattern the columns of the left dark 
+        margin which are not corrupted (corresponding bit = 1). 
+        Similar the value in RIGHT_DARK defines the not currupted 
+        columns of the right dark margin. </description>
+        <header>
+            <keyword name="EXT_VER"            data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="LEFT_DARK"   data_type="uint16"  comment="defines the good columns of the left dark margin"/>
+            <column name="RIGHT_DARK"  data_type="uint16"  comment="defines the good columns of the right dark margin"/>
+       </table>
+    </HDU>
+</FITS_schema>

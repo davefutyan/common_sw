@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY ColumnTimeHKPrw        SYSTEM "ColumnTimeHKPrw.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_HkExtended">
+        <brief> L0.5 product : Extended (SID = 6) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.0" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidityUTC;
+             &KeywordPassVisit;
+        </header>
+        <table appId="322" SID="6" obtOffset="6">
+            &ColumnTimeHKPrw;
+            <column name="TEMP_FEE_CCD"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9" tm_offset="52"/>
+            <column name="TEMP_FEE_STRAP"         data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="TEMP_FEE_ADC"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="TEMP_FEE_BIAS"          data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="TEMP_FEE_DEB"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_VOD"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_VRD"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_VOG"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_VSS"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_CCD"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_CLK"           data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_ANA_P5"        data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_ANA_N5"        data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="VOLT_FEE_ANA_P3_3"      data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="CURR_FEE_CLK_BUF"       data_type="float" />
+            <column name="VOLT_SCU_FPGA_P1_5"     data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="CURR_SCU_P3_4"          data_type="float"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_CRE"   data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_ESC"   data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_DISC"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_PAR"   data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_WRSY"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_INVA"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_EOP"   data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_RXAH"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_TXAH"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_TXBL"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SPW_ERR_TXLE"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SP_ERR_RX"     data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_NUM_SP_ERR_TX"     data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_HEAT_PWM_FPA_CCD"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_HEAT_PWM_FEE_STR"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_HEAT_PWM_FEE_ANA"  data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_HEAT_PWM_SPARE"    data_type="uint8"  comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+            <column name="STAT_HEAT_PWM_FLAGS"    data_type="uint8"  comment="The last six bits correspond to parameters STAT_HEAT_POW_FPA_CCD, STAT_HEAT_POW_FPA_STRAP, STAT_HEAT_POW_FPA_ANACH, STAT_HEAT_POW_FPA_SPARE, STAT_CCD_TEMP_STABLE, STAT_FEE_TEMP_STABLE in the SEM extended housekeeping packet in RD-9"/>
+            <column name="STAT_OBTIME_SYNC_DELTA" data_type="uint16" comment="Copy of similarly named parameter from SEM extended housekeeping packet; see RD-9"/>
+        </table>
+    </HDU>
+</FITS_schema>

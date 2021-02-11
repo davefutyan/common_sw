@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<program_params xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="program_params_schema.xsd">
+
+<param>
+	<name>input_files</name>
+	<short_name>i</short_name>
+	<help>a list of fsd files</help>
+</param>
+
+<param>
+    <name>output_code_dir</name>
+    <short_name>s</short_name>
+    <value>results</value>
+    <help>the name of the directory to which code files are written. Source files are written to the sub-directory src, whild header files are written to the sub-directory include.</help>
+</param>
+
+<param>
+    <name>output_doc_dir</name>
+    <short_name>d</short_name>
+    <value>results</value>
+    <help>the name of the directory to which Doxygen documentation files are written.</help>
+</param>
+
+</program_params>

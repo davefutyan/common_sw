@@ -1,0 +1,8 @@
+/**
+ @defgroup template_program  Template Program
+ 
+ @author 
+
+ @brief    A template of a CHEOPS Python module.
+ 
+ **/

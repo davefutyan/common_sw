@@ -1,0 +1,12 @@
+<group description="Exposure">
+	<keyword name="T_STRT_O" data_type="OBT"     unit="OBT" comment="OBT of the first measurement"/>
+	<keyword name="T_STOP_O" data_type="OBT"     unit="OBT" comment="OBT of the last measurement"/>
+	<keyword name="T_STRT_U" data_type="UTC"     unit="TIMESYS=UTC" comment="UTC of the first measurement"/>
+	<keyword name="T_STOP_U" data_type="UTC"     unit="TIMESYS=UTC" comment="UTC of the last measurement"/>
+	<keyword name="T_STRT_M" data_type="MJD"     unit="day" comment="MJD of the first measurement"/>
+	<keyword name="T_STOP_M" data_type="MJD"     unit="day" comment="MJD of the last measurement"/>
+	<keyword name="NEXP"     data_type="integer"            comment="Number of co-added measurements"/>
+	<keyword name="EXPTIME"  data_type="real"    unit="sec" comment="Exposure time of the individual exposures"/>
+	<keyword name="TEXPTIME" data_type="real"    unit="sec" comment="Total exposure time of stacked images"/>
+    <keyword name="EXPT_TYP" default="commanded" data_type="string"    comment="Defines the type of EXPTIME and TEXPTIME, either commanded or executed"/>
+</group>

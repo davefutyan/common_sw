@@ -1,0 +1,33 @@
+From: {{ fromEmail }}
+To: {{ toEmail }}
+MIME-Version: 1.0
+Content-type: text/html
+Subject: CHEOPS alert {{ alertId }} from {{ programName }} @ {{ hostName }}
+
+<html>
+<head></head>
+<body>
+<p>
+CHEOPS alert {{ alertId }} from {{ programName }}:
+</p>
+<p>
+{{ alertMessage }}
+</p>
+<table border="0" style="border-collapse: collapse;">
+<tr><td>Pass: </td><td>{{ passId }}</td></tr>
+<tr><td>Visit: </td><td>{{ visitId }}</td></tr>
+<tr><td>OBSID: </td><td>{{ obsid }}</td></tr>
+<tr><td>Target: </td><td>{{ targetName }}</td></tr>
+<tr><td>Time: </td><td>{{ alertTime }}</td></tr>
+<tr><td>Program: </td><td>{{ programName }} {{ programVersion }}</td></tr>
+<tr><td>Processing chain: </td><td>{{ processingChain }}</td></tr>
+<tr><td>Host: </td><td>{{ hostName }}</td></tr>
+<tr><td>Revision number: </td><td>{{ revisionNumber }}</td></tr>
+<tr><td>Processing number: </td><td>{{ processingNumber }}</td></tr>
+</table>
+<p>
+Log file: {{ logFile}}
+</p>
+
+</body>
+</html>

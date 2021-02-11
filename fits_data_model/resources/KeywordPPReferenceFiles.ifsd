@@ -1,0 +1,4 @@
+<group description="Used reference files">
+	<keyword name="HK_EN_RF"   data_type="string" default="N/A" comment="name of HK enum  reference file"/>
+    <keyword name="HK_PR_RF"  data_type="string" default="N/A" comment="name of HK Parameter  reference file"/>
+</group>

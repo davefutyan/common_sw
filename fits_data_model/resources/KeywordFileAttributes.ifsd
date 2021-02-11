@@ -1,0 +1,4 @@
+<group description="Data provenance">
+    <keyword name="PROVIDER"  data_type="string" comment="where/by whom was this file generated?"/>
+    <keyword name="DESCRIP"   data_type="string" comment="what distinguishes this file from others?"/>
+</group>

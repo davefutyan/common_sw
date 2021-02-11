@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+        version 11.4.2  12. 07. 2019 RRO
+            - #19211 new columns: STRAY_LIGHT, STRAY_LIGHT_ERROR
+                     new keyword: STL_LIM
+                     
+		version 11.0  07. 01. 2019 RRO
+		    - #17944 new header keyword: DRKC_RF
+		    - #17944 new column: CCD_MARGIN_ERROR
+
+		version 9.3  12. 06. 2018 RRO #15181
+		    new header keyword: LMTS_RF
+
+		version 9.1  15. 01. 2018 RRO
+		    - RD_MODE is the reported readout mode instead of requested readout
+		      mode. The comment is updated.
+
+		version 8.1  11. 09. 2017 RRO
+			- set J2000 in comment of SC_RA and SC_DEC
+
+		version 7.4  08. 06. 2017 RRO consolidation of MPS interfaces
+			- new columns: SC_RA, SC_DEC, SC_ROLL_ANGLE
+			- new keyword: REQ_EXPT, REP_EXPT, REQ_NEXP, REP_NEXP, REQ_RDMD
+			
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+		   - change data level from L2 to QL
+
+		version 6.4.2  11. 01. 2017 RRO
+			- #12366 new header keyword: PASS_ID
+
+		version 6.4  28. 11. 2016 RRO
+			- #12007 remove column BJD (use ColumnTime.ifsd instead of ColumnTimeL1L2.ifsd)
+
+        version 5.1  29. 02. 2016 RRO
+           - new header keywords: ATT_LIM, EXP_LIM, IMA_LIM, RD_MODE
+           - new columns: ATTITUDE_ERROR, EXP_TIME_ERROR, NUM_IMAGES_ERROR, READ_OUT_MODE
+                          READ_OUT_MODE_ERROR, HK_ERROR, MISSING_DR_DATA
+           - data type of column GOOD_TIME changed to bool.               
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelQL    SYSTEM "KeywordDataLevelQL.ifsd"> 
+    <!ENTITY KeywordProcChain      SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity       SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit      SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget         SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos         SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY ColumnTime            SYSTEM "ColumnTime.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_VisitStatus">
+        <brief> Defines the status of data that belong to the same visit and the same pass.</brief>
+        <description>This table consist of exactly one row per stacked image, defining the status
+        of the visit during the exposure time of the image.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevelQL;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordPassVisit;   
+             &KeywordTarget;
+             &KeywordSkyPos;
+             <group description="Applied Limits">
+			 	<keyword name="ATT_LIM"  data_type="real"    unit="arcsec"  comment="Limit to define the attitude as good"  />
+			 	<keyword name="EXP_LIM"  data_type="real"    unit="msec"    comment="Limit to define the exposure time as good"  />
+			 	<keyword name="IMA_LIM"  data_type="integer"                comment="Limit to define the number of stacked images as good"  />
+			    <keyword name="STL_LIM"  data_type="real"    unit="Photons/px/sec" comment="stray light limit"/>
+             </group>
+             <group description="Requested and Reported data">
+			 	<keyword name="RD_MODE"  data_type="string"                 comment="Reported read out mode"  />
+ 	            <keyword name="REQ_EXPT" data_type="real"    unit="sec"     comment="Requested total exposure time of stacked images" />
+ 	            <keyword name="REP_EXPT" data_type="real"    unit="sec"     comment="Reported total exposure time of stacked images by the instrument"/>
+ 				<keyword name="REQ_NEXP" data_type="integer"                comment="Requested number of co-added measurements"/>
+ 				<keyword name="REP_NEXP" data_type="integer"                comment="Reported number of co-added measurements by the instrument"/>
+ 				<keyword name="REQ_RDMD" data_type="string"                 comment="Requested read out mode"/>
+             </group>
+             <group description="Used reference files">
+              <keyword name="LMTS_RF"  data_type="string" default="N/A" comment="name of Limits reference file"/>
+              <keyword name="DRKC_RF"  data_type="string" default="N/A" comment="name of the dark columns reference file"/>
+            </group>
+             
+        </header>
+        
+        <table>
+         	&ColumnTime;
+			<column name="SC_RA"               data_type="float" comment="RA of the spacecraft" />
+			<column name="SC_DEC"              data_type="float" comment="DEC of the spacecraft" />
+			<column name="SC_ROLL_ANGLE"       data_type="float" comment="Roll angle of the spacecraft" />
+            <column name="ATTITUDE_ERROR"  	   data_type="float"  unit="arcsec" comment="Attitude error"/>
+            <column name="EXP_TIME_ERROR"  	   data_type="float"  unit="msec"   comment="Exposure time error"/>
+            <column name="NUM_IMAGES_ERROR"    data_type="int16"                comment="Error in the number of stacked images."/>
+            <column name="READ_OUT_MODE"       data_type="string" bin_size="12" comment="Reported read out mode"/>
+            <column name="READ_OUT_MODE_ERROR" data_type="bool"                 comment="Read out mode - error"/>
+            <column name="CCD_MARGIN_ERROR"    data_type="bool"                 comment="CCD Margin - error"/>
+            <column name="HK_ERROR"            data_type="bool"                 comment="A critical HK parameter exceeds its hard limit"/>
+            <column name="MISSING_DR_DATA"     data_type="bool"                 comment="Critical Data for Data Reduction is missing"/>
+  			<column name="STRAY_LIGHT"         data_type="double" unit="Photons/px/sec" comment="stray light level of the image"/>
+  			<column name="STRAY_LIGHT_ERROR"   data_type="bool"                 comment="stray light is too high"/>
+            
+            <column name="GOOD_TIME"           data_type="bool"                 comment="true if all visit success criteria are fulfilled."/>
+        </table>
+    </HDU>
+</FITS_schema>

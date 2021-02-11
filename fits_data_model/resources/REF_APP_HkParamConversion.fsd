@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+-->
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef   SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_HkParamConversion">
+        <brief> Defines the conversion curve that has to be applied for Hk parameters.</brief>
+        <description>Some HK parameters are defined as enum numbers. The conversion 
+                     from the enum number to a meaningful text is defined 
+                     the REF_APP_HkEnumConversion. This table defines the 
+                     enum conversion by its CALIB_NAME that should be used for
+                     a specific Hk parameter. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="STRUCT_NAME" data_type="string"    bin_size="24"     comment="RAW data structure name where the HK parameter is stored"/>
+            <column name="HK_NAME"     data_type="string"    bin_size="36"     comment="Name of the Hk Parameter"/>
+            <column name="CALIB_NAME"  data_type="string"    bin_size="24"     comment="Name of the Calibration Curve"/>
+       </table>
+    </HDU>
+</FITS_schema>

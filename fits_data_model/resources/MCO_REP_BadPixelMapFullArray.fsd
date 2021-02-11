@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.0  28. 08. 2020 MBE
+			- #22260: Clean-up epoch for attitude information
+		
+       version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+		version 10.3    01. 11. 2018 RRO
+		    - #17482 new header keywords:
+		    	PROC_CHN, PI_NAME, PI_UID, OBS_CAT, PROGTYPE, PROG_ID, REQ_ID
+		    	VISITCTR, OBSID, PRP_VST1, PRP_VSTN, RA_TARG, DEC_TARG, EQUINOX,
+		    	RADESYS, V_STRT_M, V_STOP_M
+
+		version 10.1     10. 09. 2018 RRO
+			- new header keyword: DESCRIP, DARK_RF
+			- update of the description with now 6 possible values in the image
+			- #15724 new header keywords: METHOD, METH_LIM
+
+		version 10.0.1   16. 08. 2018
+			- new header keyword: GAIN_RF
+			- removed header keywords: BIAS_RF, DARK_RF, BP_RF, BPM_RF
+
+		version 9.3  12. 06. 2018 RRO #15181
+		    new header keywords: BIAS_RF, DARK_RF, BP_RF, FF_RF, BPM_RF
+
+        version 9.1  05. 02. 2018 RRO
+           - new data structure-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelQL      SYSTEM "KeywordDataLevelQL.ifsd"> 
+    <!ENTITY KeywordProcChain        SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops           SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity         SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit            SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordSkyPos           SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordFileAttributes   SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="MCO_REP_BadPixelMapFullArray">
+        <brief>Bad Pixel Map of a Full-Array</brief>
+        <description>The Bad Pixel Map is derived from the dark MandC observations.
+                     First the MCO_REP_BadPixelMapFullArray is created. After
+                     an inspection by PSO / Instrument Team it will be approved 
+                     and copied to REF_APP_BadPixelMap. This approved
+                     data structure will be provided to the programs of the CHEOPS
+                     data processing. 
+                     The ground calibration also provides an approved Pad Pixel Map
+                     Pixels can have following values: -2: totally dead pixel, 
+                     -1 = partially dead pixel, 0 = good pixel, 1 = hot pixel, 
+                     2 = saturated pixel 3 = telegraphic pixel.  </description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.0" comment="version of the data structure"/>
+             &KeywordDataLevelQL;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordVisit; 
+             &KeywordSkyPos;
+             &KeywordFileAttributes;
+            <group description="Bad Pixel Map attributes">
+                <keyword name="METHOD"    data_type="string" comment="applied method to detect bad pixels"/>
+                <keyword name="METH_LIM"  data_type="real"   comment="limit to detect bad pixels by the METHOD"/>
+            </group>
+            <group description="Used reference files">
+              <keyword name="GAIN_RF"  data_type="string" default="N/A" comment="name of Gain Correction reference file"/>
+              <keyword name="FF_RF"    data_type="string" default="N/A" comment="name of flat field reference file"/>
+              <keyword name="DARK_RF"  data_type="string" default="N/A" comment="name of dark frame reference file"/>
+            </group>
+            
+        </header>
+        <image data_type="int16">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">1024</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+        </image>
+    </HDU>
+
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="image">MCO_REP_BadPixelMapLeft</Associated_HDU>
+    	<Associated_HDU HDU_Type="image">MCO_REP_BadPixelMapRight</Associated_HDU>
+    	<Associated_HDU HDU_Type="image">MCO_REP_BadPixelMapTop</Associated_HDU>
+    </List_of_Associated_HDUs>
+
+</FITS_schema>

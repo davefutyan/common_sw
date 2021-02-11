@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL05
+
+		version 10.4 29. 11. 2018
+		  - #17447 new header keyword: NLIN_COR
+		  
+		version 10.1 19. 09. 2018
+		  - #17101 new keyword: ROUNDING
+
+		version 9.3  04. 06. 2018 RRO
+		  - #16270 new data structure, copied from SCI_RAW_OverscanLeft
+-->
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordUnitADU         SYSTEM "KeywordUnitADU.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordExposureL05     SYSTEM "KeywordExposureL05.ifsd"> 
+    <!ENTITY KeywordSubColumnOrigin SYSTEM "KeywordSubColumnOrigin.ifsd">     
+    <!ENTITY KeywordMarginDataCol   SYSTEM "KeywordMarginDataCol.ifsd">     
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_OverscanRight">
+        <brief>Data of the overscan CCD margin area on right side of the CCD.</brief>
+        <description>Depending on the value of MRG_PROC the data can be either
+                     the complete margin image (MRG_PROC = image), 
+                     3 values per row (MRG_PROC = row collapsed)
+                     or just 4 values in total (MRG_PROC = total collapsed)
+                     In reduced and total collapsed mode the header keywords
+                     MRG_DTYx define for each column in the image the type 
+                     of data. It can be "mean", "stdev", "median" or "mad".  </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.1" comment="version of the data structure"/>
+            &KeywordDataLevel05;
+            &KeywordProcChain;
+            &KeywordUnitADU;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordPassVisit;   
+            &KeywordExposureL05;
+            &KeywordSubColumnOrigin;
+            &KeywordMarginDataCol;
+            <group description="Image Attributes">
+ 	            <keyword name="ROUNDING"  data_type="integer"    comment="number of bits that are rounded off"/>
+ 	            <keyword name="NLIN_COR"  data_type="boolean"    comment="on-board nonlinearity correction"/>
+            </group>  
+        </header>
+        <!--  -->
+        <image data_type="float">
+            <naxis>3</naxis>
+            <axis1 unit="pixel" comment="X axis of the overscan area">0</axis1>
+            <axis2 unit="pixel" comment="Y axis of the overscan area">0</axis2>
+            <axis3 unit="#images" comment="Successive overscan area (sorted by date) "> 0 </axis3>
+        </image>
+    </HDU>
+    
+    
+</FITS_schema>

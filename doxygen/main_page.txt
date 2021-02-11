@@ -1,0 +1,34 @@
+/**
+ @mainpage 
+
+ <b>Release Version: __trunk__</b>
+
+ The common software (common_sw) is one of the products of the
+ CHEOPS Infrastructure software.
+ 
+ It provides tools and software libraries for the SOC CHEOPS software system.
+ These are:
+ - a @b makefiles utility to build the CHEOSP system and to release CHEOPS products
+ - a @b logger library to log message in the requested format
+ - a @b program_param library to access the program parameters from the 
+   xml - parameter files and the input file names and output directory from the job 
+   order file
+ - a @b utilities module with several classes, for example to store a OBT or a 
+        UTC time, classes to store general data IDs like VisitId and PassId
+        and a class to provide the valid reference table for a specific time.  
+ - a @b fits_dal library to create and read FITS files.  
+ - a @b fits_data_model library to first define the CHEOPS FITS data structures.
+        Secondly it provides a C++ class and a python class per FITS data 
+        structure to create these FITS data structures, to fill them or
+        to read data from these FITS data structures. 
+ 
+ Please find here the [source code documentation] 
+ (https://redmine.isdc.unige.ch/projects/cheops/wiki#Documentation) 
+ of other SOC CHEOPS software packages. 
+ 
+ 
+ Please contact the CHEOPS SOC helpdesk <cheops-soc-help@unige.ch>
+ if you find any bug or problem in the software or if you
+ would like to have a new feature to be implemented. 
+ **/
+ 

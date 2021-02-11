@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+-->
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+    <!ENTITY KeywordPPReferenceFiles  SYSTEM "KeywordPPReferenceFiles.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_HkAsy30759">
+        <brief> L0.5 product : DSE 1/64 Hz (SID = 58) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;
+             &KeywordSkyPos;
+             &KeywordPPReferenceFiles;
+       </header>
+
+        <table>
+            &ColumnTimeHKL05;
+            <column name="AOCS_current_OBT"         data_type="OBT"   />
+            <column name="IAE_state"                data_type="string" bin_size="9"   cal_curve="CSKT1026TM"/>
+            <column name="IAE_DSE_initialized"      data_type="string" bin_size="5"   cal_curve="XXKT0033TM"/>
+            <column name="DSE_computed_innov_valid" data_type="string" bin_size="5"   cal_curve="XXKT0033TM"/>
+            <column name="DSE_nb_rejected_innov"    data_type="uint32"/>
+            <column name="IAE_DSE_Estim_quat_x"     data_type="float" />
+            <column name="IAE_DSE_Estim_quat_y"     data_type="float" />
+            <column name="IAE_DSE_Estim_quat_z"     data_type="float" />
+            <column name="IAE_DSE_Estim_quat_s"     data_type="float" />
+            <column name="IAE_DSE_Estim_X_ang_rate" data_type="float"  unit="rd/s"/>
+            <column name="IAE_DSE_Estim_Y_ang_rate" data_type="float"  unit="rd/s"/>
+            <column name="IAE_DSE_Estim_Z_ang_rate" data_type="float"  unit="rd/s"/>
+            <column name="IAE_DSE_cmptd_innov_x"    data_type="float"  unit="rad"/>
+            <column name="IAE_DSE_cmptd_innov_y"    data_type="float"  unit="rad"/>
+            <column name="IAE_DSE_cmptd_innov_z"    data_type="float"  unit="rad"/>
+            <column name="DSE_time_wo_correction"   data_type="uint32" unit="cy"/>
+            <column name="AOCS_nmState"             data_type="string" bin_size="7"   cal_curve="CSKT1035TM"/>
+            <column name="AOCS_isNmAutomatic"       data_type="string" bin_size="5"   cal_curve="XXKT0033TM"/>
+            <column name="NM_isConverged"           data_type="string" bin_size="5"   cal_curve="XXKT0033TM"/>
+            <column name="AOCS_isGapBias"           data_type="string" bin_size="5"   cal_curve="XXKT0033TM"/>
+            <column name="AOCS_convTimer"           data_type="float"  unit="s"/>
+            <column name="PSE_quaternion_x"         data_type="double"/>
+            <column name="PSE_quaternion_y"         data_type="double"/>
+            <column name="PSE_quaternion_z"         data_type="double"/>
+            <column name="PSE_quaternion_scal"      data_type="double"/>
+            <column name="STRPL_bias_filtered_x"    data_type="double"/>
+            <column name="STRPL_bias_filtered_y"    data_type="double"/>
+        </table>
+    </HDU>
+</FITS_schema>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 6.2  30. 08. 2016 RRO
+           - new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelExt   SYSTEM "KeywordDataLevelExt.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="EXT_APP_DE2">
+        <brief> First extension of the JPL Planetary Ephemeris DE200/LE200 file</brief>
+        <description></description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="6.2" comment="version of the data structure"/>
+             &KeywordDataLevelExt;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+        </header>
+        
+        <table>
+            <column name="Object"       data_type="string" bin_size="22" comment="Solar system object"/>
+            <column name="Pointer"      data_type="int16"                comment="Pointer for object's coefficients in record"/>
+            <column name="NumCoeff"     data_type="int16"                comment="Number of Chebyshev coefficients for object"/>
+            <column name="NumSubIntv"   data_type="int16"                comment="Number of time sub-intervals for object"/>
+       </table>
+    </HDU>
+</FITS_schema>

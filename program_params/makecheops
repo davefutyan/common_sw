@@ -1,0 +1,30 @@
+
+
+CHEOPS_LIBS = -L${CHEOPS_SW}/lib -llogger
+
+LIB_OBJECT1 = ProgramParams.o program_params_schema.o ReadParamFile.o \
+              job_order_schema.o ReadJobOrderFile.o
+           
+LIB_TARGET1 = program_params
+
+INSTALL_INCL = ProgramParams.hxx ModuleParams.hxx ProgramParamsInl.hxx
+
+#INSTALL_CONF =      ../resources/program_params_schema.xsd
+INSTALL_RESOURCES = job_order_schema.xsd program_params_schema.xsd
+
+INSTALL_PYTHON_PACKAGE = program_params
+
+CLEAN += src/program_params_schema.cxx include/program_params_schema.hxx \
+         src/job_order_schema.cxx include/job_order_schema.hxx
+
+src/program_params_schema.cxx : resources/program_params_schema.xsd
+	xsd cxx-tree --output-dir src $< 
+	mv src/program_params_schema.hxx include
+	
+src/job_order_schema.cxx : resources/job_order_schema.xsd
+	xsd cxx-tree --root-element Ipf_Job_Order --output-dir src $< 
+	mv src/job_order_schema.hxx include
+	
+obj/ProgramParams.o :    include/ProgramParams.hxx include/ModuleParams.hxx include/ProgramParamsInl.hxx	
+obj/ReadParamFile.o :    include/ProgramParams.hxx include/ModuleParams.hxx include/ProgramParamsInl.hxx
+obj/ReadJobOrderFile.o : include/ProgramParams.hxx include/ModuleParams.hxx include/ProgramParamsInl.hxx

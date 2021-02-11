@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 12.1.7  25. 06. 2020 MBE
+			- #21925: Correct units for SMEARING_LC and CONTA_LC
+			
+		version 12.1.4  04. 05. 2020 ABE
+			- #21537 New columns SMEARING_LC and SMEARING_LC_ERR
+			- #21413 use generic header keyword names for reference files
+      
+		version 12.1.1  05. 03. 2020 RRO
+			- #21048 New header keyword EXPT_TYP defined in import KeywordExposureL1L2
+
+		version 11.1  11. 03. 2018 RRO
+			- #18370 the unit of columns FLUX, FLUXERR, DARK and BACKGROUND
+			         changed from ADU to electrons
+
+		version 10.1  28. 08. 2018 RRO
+			- #16371 new columns: CENTROID_X, CENTROID_Y
+
+        version 9.3.1 25. 06. 2018 RRO
+           - #16502 remove header keyword CONTA_ER
+            
+		version 9.3  07. 02. 2018 RRO
+		   - #15414 new header keywords: DATANAME, AP_RADI, AP_TYPE
+		   - #16371 new columns: ROLL_ANGLE, LOCATION_X, LOCATION_Y
+		   - #15181 update of the Reference File header keywords
+
+		version 8.1  13. 10. 2017 RRO 
+		   - #14555 remove SCI_COR_Diagnostic as optional Associated_HDU
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+		version 7.2    23. 03. 2017 RRO
+		   - #12918  new column: CONTA_LC_ERR
+		   
+		version 7.0    10. 02. 2016 RRO
+		   - #11809  new columns: DARK, BACKGROUND
+		     #11209  new associated table: SCI_COR_Diagnostic, 
+		             Note: for the moment is is set to optional, to be backward 
+		                   compatible. This should be set to mandatory in 
+		                   one of the next releases. 
+
+		version 6.4    18. 12. 2016 RRO
+			- #12030 new header keyword: CONTA_ER
+
+        version 5.2.1  14. 06. 2016 RRO  
+           - use KeywordSkyPos instead of KeywordSkyPosAngle
+           - new Keywords to define angles at begin and end of a visit:
+             B_SUN_A, B_MOON_A, B_EART_A, E_SUN_A, E_MOON_A, E_EART_A
+
+        version 5.3  15. 06. 2016 RRO
+           - new header keyword:  OBS_CAT (see KeywordObsCategory.ifsd) 
+
+        version 6.1    15. 08. 2016 RRO #11327
+           - change  KeywordCalibrationSteps to KeywordDataReductionSteps
+                     note there are also several updates in this include file.  
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel2        SYSTEM "KeywordDataLevel2.ifsd"> 
+    <!ENTITY KeywordProcChain         SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops       	  SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity          SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit        	  SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget       	  SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordExposureL1L2      SYSTEM "KeywordExposureL1L2.ifsd"> 
+    <!ENTITY KeywordSkyPos            SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordSubArrayOrigin    SYSTEM "KeywordSubArrayOrigin.ifsd"> 
+    <!ENTITY KeywordDataReductionSteps  SYSTEM "KeywordDataReductionSteps.ifsd"> 
+    <!ENTITY KeywordDRReferenceFiles    SYSTEM "KeywordDRReferenceFiles.ifsd"> 
+    
+    <!ENTITY ColumnTimeL1L2           SYSTEM "ColumnTimeL1L2.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_COR_Lightcurve">
+        <brief> L2 product : Light curve</brief>
+        <description> Light curve derived from calibrated and corrected images.</description>
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+           <keyword name="DATANAME" db="true" data_type="string"     comment="data name of this light curve"/>
+            &KeywordDataLevel2;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordVisit;   
+            &KeywordTarget;
+            &KeywordExposureL1L2;
+            &KeywordSkyPos;
+            &KeywordDataReductionSteps;
+            &KeywordDRReferenceFiles;
+
+            <group description="Target angles">
+               <keyword name="B_SUN_A"  data_type="real"     unit="deg"     comment="Angle between sun and target at beginning of visit"/>
+	           <keyword name="B_MOON_A" data_type="real"     unit="deg"     comment="Angle between moon and target at beginning of visit"/>
+	           <keyword name="B_EART_A" data_type="real"     unit="deg"     comment="Angle between earth limb and target at beginning of visit"/>
+               <keyword name="E_SUN_A"  data_type="real"     unit="deg"     comment="Angle between sun and target at end of visit"/>
+	           <keyword name="E_MOON_A" data_type="real"     unit="deg"     comment="Angle between moon and target at end of visit"/>
+	           <keyword name="E_EART_A" data_type="real"     unit="deg"     comment="Angle between earth limb and target at end of visit"/>
+            </group>
+
+            <group description="Quality criteria">
+            	<keyword name="ROBMEAN"  data_type="integer" unit="photons/s"    comment="robust mean of the light-curve"/>
+           		<keyword name="MEDIAN"   data_type="integer" unit="photons/s"    comment="median of the light-curve divided by robust mean in point per thousands"/>
+            	<keyword name="ROBSTD"   data_type="real"    unit="ppt"          comment="median of the light-curve divided by robust mean in point per thousands"/>
+            	<keyword name="MAD"      data_type="real"    unit="ppt"          comment="median absolute deviation of light-curve"/>
+            	<keyword name="P2PSTD"   data_type="real"    unit="ppt"          comment="point to point robust standard deviation of light-curve"/>
+            	<keyword name="CDPP2_5"  data_type="real"    unit="ppm"          comment="Quasi-Combined Differential Photometric Precision of the light-curve calculated over 2.5 hour windows"/>
+            	<keyword name="CDPP6_5"  data_type="real"    unit="ppm"          comment="Quasi-Combined Differential Photometric Precision of the light-curve calculated over 6.5 hour windows"/>
+            	<keyword name="VALIDPTS" data_type="real"    unit="percentage"   comment="percentage of valid photometric points in the light-curve"/>
+            </group>
+
+            <group description="Light curve attributes">
+            	<keyword name="AP_RADI"  data_type="real" unit="pixel" comment="Aperture radius used on the photometry"/>
+            	<keyword name="AP_TYPE"  data_type="string"            comment="Description of the used aperture, for example optimal, weighted, r33"/>
+            </group>
+        </header>
+        <!--  -->
+        <table>
+        	&ColumnTimeL1L2;
+            <column name="FLUX"         data_type="double" unit="electrons"  comment="star flux measurement, corresponding to time measurements"/>
+            <column name="FLUXERR"      data_type="double" unit="electrons"  comment="error on the star flux measurement, corresponding to time measurements"/>
+            <column name="STATUS"       data_type="int32"                    comment="flags indicating the status of the measurements"/>
+            <column name="EVENT"        data_type="int32"                    comment="flags  indicating the possible events that might affect the measurement but might not invalidate"/>
+            <column name="DARK"         data_type="double" unit="electrons"  comment="Dark light curve"/>
+            <column name="BACKGROUND"   data_type="double" unit="electrons"  comment="Background light curve"/>
+            <column name="CONTA_LC"     data_type="double" unit="Flux_cont/Flux_target"    comment="Contamination of the target, corresponding to time measurements"/>
+            <column name="CONTA_LC_ERR" data_type="double" unit="ratio" 	 comment="Contamination error for the target, corresponding to time measurements"/>
+            <column name="SMEARING_LC"     data_type="double" unit="electrons" comment="Smearing of the target, corresponding to time measurements"/>
+            <column name="SMEARING_LC_ERR" data_type="double" unit="ratio"   comment="Smearing error for the target, corresponding to time measurements"/>
+            <column name="ROLL_ANGLE"   data_type="double" unit="deg"   comment="computed mean roll angle of the CCD (i.e. of the spacecraft)"/>
+            <column name="LOCATION_X"  	data_type="float"  unit="pixel" comment="intended X position of target on CCD [SOC coordinate system]" />
+			<column name="LOCATION_Y"  	data_type="float"  unit="pixel" comment="intended Y position of target on CCD [SOC coordinate system]" />
+            <column name="CENTROID_X"  	data_type="float"  unit="pixel" comment="calculated X position of target on CCD [SOC coordinate system]" />
+			<column name="CENTROID_Y"  	data_type="float"  unit="pixel" comment="calculated Y position of target on CCD [SOC coordinate system]" />
+        </table>    
+    </HDU>
+    
+   
+</FITS_schema>

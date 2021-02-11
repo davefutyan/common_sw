@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 9.0  13. 12. 2017 RRO #15058
+			- new column: UNIT
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+        version 7.2  03. 04. 2017 RRO
+           - #12933 remove keyword REP_TIME
+
+-->   
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelUndef         SYSTEM "KeywordDataLevelUndef.ifsd"> 
+    <!ENTITY KeywordProcChain              SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops                 SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity               SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordPassVisit              SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordTarget                 SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos                 SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordReportClassification   SYSTEM "KeywordReportClassification.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_Text">
+        <brief> Input table for the report generation, defining the values of variables in the report template </brief>
+        <description>There has to be one row for each variable of the report template.
+                     The name of the variable as defined in the report template and its value
+                     are stored here. During the report generation the variable placeholder in the
+                     template will be replaced by its value.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+            <keyword name="DATANAME" data_type="string"  db="true"   comment="data name of this report"/>
+             &KeywordDataLevelUndef;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordPassVisit;   
+             &KeywordTarget;
+             &KeywordSkyPos;
+             &KeywordReportClassification; 
+        </header>
+        
+        <table>
+            <column name="NAME"  data_type="string" bin_size="32"  comment="the name of a variable in the report template"/>
+            <column name="VALUE" data_type="string" bin_size="128" comment="value of the variable"/>
+	        <column name="UNIT"  data_type="string" bin_size="16"  comment="unit of the variable"/>
+        </table>
+    </HDU>
+</FITS_schema>

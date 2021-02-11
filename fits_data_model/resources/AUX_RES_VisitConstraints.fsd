@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+		version 7.3  16. 05. 2017 RRO #12578 #13013
+		   - new keywords provided by KeywordTarget: MAG_VERR, MAG_CHPS, MAG_CERR
+
+		version 6.4.1   05. 01. 2017 RRO #12352
+		  - new columns LATITUDE, LONGITUDE
+
+	    version 6.1    21. 07. 2016 RRO
+	    	replace ColumnTimeHKL05 by ColumnTime, i.e. remove OBT_TIME column
+        
+        version 5.0    09. 02. 2016 RRO
+           - New data structure   
+-->   
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordVisit           SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY ColumnTime             SYSTEM "ColumnTime.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="AUX_RES_VisitConstraints">
+        <brief> Table of visit constraints, calculated from restituted orbit information.</brief>
+        <description>There will be one table per visit.  The table will have one 
+                     row per available orbit record in the AUX_RES_Orbit 
+                     data structure, which is foreseen to have a sampling
+                     rate of 5 minutes.</description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordVisit;   
+             &KeywordSkyPos;
+        </header>
+        
+        <table>
+            &ColumnTime;
+			<column name="LOS_TO_SUN_ANGLE"   data_type="double" unit="deg"   comment="Angle between target and Sun"/>
+			<column name="LOS_TO_MOON_ANGLE"  data_type="double" unit="deg"   comment="Angle between target and Moon"/>
+			<column name="LOS_TO_EARTH_ANGLE" data_type="double" unit="deg"   comment="Angle between target and Earth limb"/>
+            <column name="LATITUDE"           data_type="float"  unit="deg"   comment="Geodetic latitude " />
+            <column name="LONGITUDE"          data_type="float"  unit="deg"   comment="Geodetic longitude" />       
+			<column name="EARTH_OCCULTATION"  data_type="bool"                comment="true=Target occulted by the earth"/>
+			<column name="SAA_FLAG"           data_type="bool"                comment="true=inside the SAA zone"/>
+        </table>
+    </HDU>
+</FITS_schema>

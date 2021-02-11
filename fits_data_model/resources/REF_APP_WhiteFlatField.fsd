@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+        version 5.1  26. 07. 2016 RRO
+           - new data structure
+-->
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelRef    SYSTEM "KeywordDataLevelRef.ifsd"> 
+    <!ENTITY KeywordFileAttributes  SYSTEM "KeywordFileAttributes.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd">  
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="REF_APP_WhiteFlatField">
+        <brief> Monitoring and Characterisation product : Flat field taken in-flight </brief>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelRef;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+            <group description="Flat field attributes">
+            	<keyword name="TEMP"		data_type="real" unit="Kelvin" comment="temperature of the CCD at the time the flat field frames were taken"/>
+            	<keyword name="EXPTIME"		data_type="integer" unit="seconds" comment="Exposure duration for each frame"/>
+            </group>
+        </header>
+        <image data_type="double">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">1024</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+        </image>
+    </HDU>
+    
+</FITS_schema>

@@ -1,0 +1,6 @@
+CXX_UNIT_TESTS = test_ccsds_processing
+
+INCLUDES += -I../../include
+
+# Link with boost_iostreams for memory mapped files
+EXT_LIBS += -lboost_iostreams

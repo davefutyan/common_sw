@@ -1,0 +1,2313 @@
+<html>
+<head>
+<title>CHEOPS release</title>
+</head>
+<body>
+
+<h1><center>
+<p style="margin-top:50px;">
+CHEOPS<br />
+Science Operations Centre<br />
+</p>
+<p>
+Software Release Note: Common Software (common_sw)
+</p>
+</center></h1>
+
+<b>Version:</b>  __trunk__</br>
+
+<b>Date: </b>    release date
+
+<BR>&nbsp;<BR>
+In case of questions please contact the 
+<a href="mailto:cheops-soc-help@unige.ch"> CHEOPS SOC help desk</a> 
+<BR>&nbsp;<BR>
+
+
+<a href="https://svn.isdc.unige.ch/svn-cheops/WORK_PACKAGE/software/PRODUCT/tags/__trunk__" target="_blank"> 
+Software download</a>
+<BR>&nbsp;<BR>
+
+<a href="https://svn.isdc.unige.ch/svn-cheops/WORK_PACKAGE/software/PRODUCT/tags/__trunk__/doc/manual_cxx/index.html" target="_blank"> 
+Developer C++ manual</a>
+<BR>&nbsp;<BR>
+
+<a href="https://svn.isdc.unige.ch/svn-cheops/WORK_PACKAGE/software/PRODUCT/tags/__trunk__/doc/manual_python/index.html" target="_blank"> 
+Developer python manual</a>
+<BR>&nbsp;<BR>
+
+<a href="https://redmine.isdc.unige.ch/projects/cheops/wiki/Quick_start#Development-environment" target="_blank"> 
+Installation instructions</a>
+<BR>&nbsp;<BR>
+
+
+<h3> Changes </h3>
+
+<h4>Release 13.1.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/23571" target="_blank">23571</a>:
+           New reference file REF_APP_HkDefaultPeriod for default periodicities of S/C and CIS HK packets.</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 13.1.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/23540" target="_blank">23540</a>:
+           Add PITL keyword in the starCatalogues</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 13.1.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/23222" target="_blank">23222</a>:
+           Add new extension to REF_APP_BiasFrame for bias offset and readout noise</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/23299" target="_blank">23299</a>:
+           Put the main and redundant readout channels in the same REF_APP_BiasFrame file</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 13.1.1</h4>
+<ul>
+    <li>makefiles
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22971" target="_blank">22971</a>:
+           Bugfix: error in cheops release script when parsing release version</li>
+           <li>Correct a failing fits_data_model unit test</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 13.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22841" target="_blank">22841</a>:
+           New keyword T_EFF in keyword group 'Target'</li>
+       </ul>
+    </li>
+    <li>makefiles
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22236" target="_blank">22236</a>:
+           Support tagging of software from branches in addition to trunk</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 13.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22417" target="_blank">22417</a>:
+           New columns LOS_TO_EARTH_ANGLE, LATITUDE and LONGITUDE in SCI_{RAW,CAL,COR}_ImageMetadata</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22243" target="_blank">22243</a>:
+           CHEOPS and Gaia magnitudes in the output data</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22260" target="_blank">22260</a>:
+           Clean-up epoch for attitude information</li>
+       </ul>
+    </li>
+    <li>logger
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21949" target="_blank">21949</a>:
+           Indicate target name in table for QL alerts</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 12.1.7</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/22036" target="_blank">22036</a>:
+           New columns PHOTOMETRY_1, PHOTOMETRY_2 and PHOTOMETRY_3 in SCI_RAW_UnstackedImageMetadata</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21925" target="_blank">21925</a>:
+           Correct units for SMEARING_LC and CONTA_LC in SCI_COR_Lightcurve</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21944" target="_blank">21944</a>:
+            Increase the size of column E_MAIL from 36 to 128 in MPS_PRE_Visits</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 12.1.6</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21771" target="_blank">21771</a>:
+           Update REF_APP_QE with fix to QE_VS_TEMP_SLOPE units and header keyword to indicate temperature</li>
+       	   <li><a href="https://redmine.isdc.unige.ch/issues/21804" target="_blank">21804</a>:
+           Remove column ACQUISITION_ID from SCI_{PRW,RAW}_ImagetteMetadata</li>
+       </ul>
+    </li>
+</ul> 
+
+<h4>Release 12.1.5</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/21546" target="_blank">21546</a>:
+           New data structure SOC_APP_DerivedParameters.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21680" target="_blank">21680</a>:
+           Correction of all column comments i ColumnHk.ifsd. The comments are now identical to those in ColumnCeHk.ifsd.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21321" target="_blank">21321</a>:
+           Move the header keywords PROVIDER and DESCRIP into a separate ifsd file, KeywordFileAttributes.ifsd. 
+           The keywords are contained in a header keyword group. 
+           The new ifsd file is imported into all REF_APP and SOC_APP files.</li>
+       </ul>   
+    </li>
+</ul> 
+
+<h4>Release 12.1.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li>The SCI_PRW_Hk* and SCI_RAW_Hk* fits schemas in this release were created from MIB 609.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21296" target="_blank">21296</a>:
+           Avoid reading from not existing bytes of the TM data stream.</li>
+           <li>The SCI_PRW_Hk* and SCI_RAW_Hk* fits schemas in this release were created from MIB 609.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21413" target="_blank">21413</a>:
+           Update Data Reduction to use generic FITS header keywords for Reference Files instead of specific header keywords.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21537" target="_blank">21537</a>:
+           Add the new columns SMEARING_LC and SMEARING_LC_ERR to SCI_COR_Lightcurve.</li>
+       </ul>   
+    </li>
+</ul> 
+
+<h4>Release 12.1.3</h4>
+<ul>
+    <li>makefiles
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/20715" target="_blank">20715</a>:
+           Pass id missing in alert emails from Preprocessing conversion programs</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/21289" target="_blank">21289</a>:
+           Update Fits headers for target position to specify that the RA / DEC is for the epoch of observation.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 12.1.2</h4>
+<ul>
+    <li>logger
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/20653" target="_blank">20653</a>:
+           Take the log level in the job order into account when writing to file</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/21193" target="_blank">21193</a>:
+           Update data structures to identify GAIA mag instead of V - mag</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 12.1.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/21070" target="_blank">21070</a>:
+           Fix a typo in name of REPETIOTION_PERIOD column of SCI_[PRW|RAW]_HkOperationParameter</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21048" target="_blank">21048</a>:
+		   New header keywords: EXPT_TYP and REPT_TYP</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/21154" target="_blank">21154</a>:
+           Update parsing of fsd files in python for compatibility with python 3.6.7.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/20991" target="_blank">20991</a>:
+           Ignore the SCI_RAW_HkperationParameter for the HK conversion. There are no conversion parameters in the REF file.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 12.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/20820" target="_blank">20820</a>:
+           Update the comment of Header Keyword REPETIT".</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/20881" target="_blank">20881</a>:
+			   Bug fix: Columns OFFSET_X and OFFSET_Y in SCI_PRW_HkCentroid have wrong numbers.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/20932" target="_blank">20932</a>:
+           Convert the error on non-zero FHP in the first frame of a VC-file to INFO.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/20941" target="_blank">20941</a>:
+           Write a warning if a Extended or Default HK packet is discarded.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/20331" target="_blank">20331</a>:
+            Use the mail server mailhost.astro.unige.ch for alert emails.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/20991" target="_blank">20991</a>:
+            Decode the TM packet "SES DAT packet definition" (APID = 961, type = 220, sub-type = 6) to PRW FITS file.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 12.0.1</h4>
+<ul>
+    <li>bookkeeping
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/20111" target="_blank">20111</a>:
+           Update bookkeeping to handle 32 bit unsigned integers.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 12.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/18491 target="_blank">18491</a>:
+           Updated HK data structures from new vesion 6.03 of the Operational Database.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/19772 target="_blank">19972</a>:
+			   The TM(196,1) packet can be decoded by the HKprocessing classes.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/19850 target="_blank">19850</a>:
+			   Specify that the TIMESSY of "UTC" - columns is UTC.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 11.4.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li>Add the buildFileName method to the Python Doxygen documentation.</li>
+       </ul>   
+    </li>
+    <li>logger
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/19545 target="_blank">19545</a>:
+           Bugfix: The common_sw logger fails to send alert emails from python.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 11.4.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/19352 target="_blank">19352</a>:
+		   Change data type of column PI_UID in MPS_PRE_Visits table from uint16 to uint32.</li> 
+           <li><a href="https://redmine.isdc.unige.ch/issues/19272 target="_blank">19272</a>:
+		   Throw an obt_error exception while decoding a TM packet if an OBT value in the data field of the TM packet is less than 2000000000000.</li> 
+           <li><a href="https://redmine.isdc.unige.ch/issues/19467 target="_blank">19467</a>:
+		   New AOCS TM packet ASY30767: definition of data structure, update of the software to decode the TM packet.</li> 
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 11.4.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/19211 target="_blank">19211</a>:
+		   PIP_REP_VisitStatus has two new columns : STRAY_LIGHT, STRAY_LIGHT_ERROR and one new keyword: STL_LIM</li> 
+           <li><a href="https://redmine.isdc.unige.ch/issues/18708 target="_blank">18708</a>:
+			   Remove obsolete PIP_COR_BadPixelMap* data structures.</li> 
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 11.4.1</h4>
+<ul>
+    <li>ccsds_telemetry
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/19175 target="_blank">19175</a>:
+		     Ignore remaining bytes of last frame if only zeroes or start of idle packet to avaid reporting missing packets.</li> 
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 11.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/18989 target="_blank">18989</a>:
+			   SCI_RAW_HkCe : new header keyword: DATANAME.</li> 
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 11.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/18615 target="_blank">18615</a>:
+			   New data structures: REF_APP_PhotPixelMap.fsd REF_APP_PhotPixelMapLeft.fsd
+			   REF_APP_PhotPixelMapRight.fsd REF_APP_PhotPixelMapTop.fsd.</li> 
+           <li><a href="https://redmine.isdc.unige.ch/issues/18555 target="_blank">18555</a>:
+			   New data structures: SCI_RAW_UnstackedImageMetadate.</li> 
+		   <li>In SCI_PRW_UnstackedImageMetadata: Following the IFSW-SOC Interface document the data type of the 
+			  columns PHOTOMETRY1, PHOTOMETRY2, and PHOTOMETRY3 change from uint32 to float.  
+           <li><a href="https://redmine.isdc.unige.ch/issues/18617 target="_blank">18617</a>:
+   			   New data structures: PIP_COR_PixelFlagMapSubArray</li> 
+       </ul>   
+    </li>
+    <li>logger
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/18117 target="_blank">18117</a>:
+           Improved contents of alert emails</li>       
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 11.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/18454 target="_blank">18454</a>:
+			   Remove column LOS_TO_EARTH_ANGLE, see ColumnAngles.ifsd.
+           <li><a href="https://redmine.isdc.unige.ch/issues/18548 target="_blank">18548</a>:
+			   Remove columns REF_PIXX and REF_PIXY in SCI_COR_ImageMetadata.
+           <li><a href="https://redmine.isdc.unige.ch/issues/18498 target="_blank">18498</a>:
+           New data structures: SCI_CAL_Imagette, SCI_CAL_ImagetteMetadata, SCI_CAL_FullArray
+                                SCI_COR_Imagette, SCI_COR_ImagetteMetadata, SCI_COR_FullArray.</li>		    
+           <li><a href="https://redmine.isdc.unige.ch/issues/18504 target="_blank">18504</a>:
+           New header keywords in SCI_CAL_SubArray and SCI_COR_SubArray: ROUNDING,
+           NLIN_COR, RO_SCRPT, RO_HW, RO_FREQU</li>		    
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 11.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>        
+           <li><a href="https://redmine.isdc.unige.ch/issues/18370 target="_blank">18370</a>:
+           The unit of columns FLUX, FLUXERR, DARK and BACKGROUND in SCI_COR_Lightcurve changed from ADU to electrons.</li>		    
+           <li><a href="https://redmine.isdc.unige.ch/issues/18431 target="_blank">18431</a>:
+           New reference data structur: REF_APP_ReadOut.</li>		    
+          <li><a href="https://redmine.isdc.unige.ch/issues/18311 target="_blank">18311</a>:
+           New column in PIP_REP_OutOfLimits: UNIT.</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/18127 target="_blank">18127</a>:
+           Update of header keywords of the MCO_REP_DarkFrame* data structures.</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17497 target="_blank">17497</a>:
+           Remove old and not any more used HK columns.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17462 target="_blank">17462</a>:
+           Read PRP_VST1 and PRP_VSTN from MPS_PRE_Visits, if available, and write them to the log file.</li>
+       </ul>   
+    </li>
+    <li>program_params
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17462 target="_blank">17462</a>:
+           Add new optional argument to ProgramParams::LogProgramParams() for 
+           providing additional parameters to be written to the log file.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 11.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17944 target="_blank">17944</a>:
+           New column in PIP_REP_VisitStatus to report a CCD Margin error: CCD_MARGIN_ERROR</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17815 target="_blank">17815</a>:
+           Many new header keywords in PIP_REP_Image</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17373 target="_blank">17373</a>:
+           Bugfix: update template_init.cxx to correct a mistake in the declaration of the CheopsInit() function 
+           that does not return a ProgramParams object. Only programs that do not use the program_params module 
+           were affected by this bug.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 10.5.1</h4>
+<ul>
+    <li>makefiles
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17373 target="_blank">17373</a>:
+           New optional argument to CheopsInit() to turn off logging of program parameters and input files</li>
+       </ul>   
+    </li>
+
+    <li>program_params
+       <ul>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17373 target="_blank">17373</a>:
+           New optional argument to CheopsInit() to turn off logging of program parameters and input files</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 10.5</h4>
+This release should not be used for SOC ACC 2.5, but has to be used for the data processing of the SVT-3 data
+<ul>
+    <li>fits_data_model
+       <ul>         
+          <li>Update of the HK data structures from I_DB 2.4.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 10.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17447 target="_blank">17447</a>:
+           New Header Keywords NLIN_COR for CCD marings of RAW an PRW data structures</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17497 target="_blank">17497</a>:
+           Update data structures to use HK data from HK TM instead from CE.</li>
+       </ul>   
+    </li>
+
+    <li>utilities
+       <ul>
+         <li>Throw an exception if the GRADIENT of a OBT-UTC correlation file is NULL, i.e. NaN</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 10.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17367 target="_blank">17367</a>:
+           Remove obsolete data structures REF_APP_BlankLeftImage.fsd and REF_APP_BlankRightImage.fsd</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17343 target="_blank">17343</a>:
+           Do not copy the header keyword EXT_VER while a new table is created from an existing one.</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17482 target="_blank">17482</a>:
+           New Header Keywords for BadPixelMaps, created by the pipeline processing.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 10.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>         
+          <li><a href="https://redmine.isdc.unige.ch/issues/17258 target="_blank">17258</a>:
+           Remove columns V_TARG_ERR from MPS_PRE_Visits</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/17246 target="_blank">17246</a>:
+           New column in MPS_PRE_Visits: STRAY_LIGHT_THRESHOLD</li>
+       </ul>   
+    </li>
+    <li>program_params
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/17260 target="_blank">17260</a>:
+           Update all of ProgramParams' GetAs*() methods to work for job order parameters.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/17327 target="_blank">17327</a>:
+           A time Offset to an UTC of the year 1970 is now implemented.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16882 target="_blank">16882</a>:
+           TriggerFile class update for passing in the job order validity time when no TRIGGER file is present.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 10.1.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li>Remove SCI_COR_SubArray.cxx's dependency on the obsolete data structure PIP_COR_BadPixel.cxx from the makecheops file.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 10.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16640 target="_blank">14440</a>:
+           New data structures to store Bad Pixels detected by Quick Look and Data Reduction.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15724 target="_blank">15724</a>:
+           New header keywords: METHOD, METH_LIM in bad pixel reference files</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16789 target="_blank">16789</a>:
+           The columns ROLL_ANGLE, BACKGROUND and BACKGROUND_STD are removed from SCI_COR_ImageMetadata.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16955 target="_blank">16955</a>:
+           New header keyword DARK_RF in PIP_REP_DarkColumns.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/17107 target="_blank">17107</a>:
+           Update of header keywords to store the on-board data processing.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16313 target="_blank">16313</a>:
+           New column in MPS_PRE_Visits: NEXP_IMAGETTES</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16854 target="_blank">16854</a>:
+           Change the data type of columns UTC_TIME_START and UTC_TIME_STOP of PIP_REP_OutOfLimit from string to UTC.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16276 target="_blank">16276</a>:
+           New header keywords in EXT_[PRE,DRFT]_StarCatalogue: see KeywordTarget and KeywordSkyPos.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16371 target="_blank">16371</a>:
+           New columns for SCI_COR_Lightcurve and PIP_COR_Centroid: CENTROID_X, CENTROID_Y</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>
+         <li>Exclude 3rd party C++ libraries from the output of "make coverage".</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 10.0.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16725 target="_blank">16725</a>:
+           Update of OBT-UTC Time Correlation following changes in MOC-SOC ICD 3.3</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16913 target="_blank">16913</a>:
+           Missing header keyword GAIN_RF in PIP_REP_DetectedStars and PIP_REP_DetectedCosmics.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16911 target="_blank">16911</a>:
+           The usage of REF_APP_Limits is not reported in PIP_REP_OutOfLimit.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16908 target="_blank">16908</a>:
+           The usage of REF_APP_EventParamConversion is not reported in SCI_PRW_EventReport.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16893 target="_blank">16893</a>:
+           Update of the header keywords defining the used reference files in REF_{DRFT|APP}_BadPixelMapSubArray and REF_{DRFT|APP}_BadPixelMapFullArray.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 10.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16271 target="_blank">16271</a>:
+           Support to copy a FITS table by fits_data_model.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 9.3.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16593 target="_blank">16593</a>:
+           Associated data structures defining the CCD margins of the SubArrays have to be optional.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15181 target="_blank">15181</a>:
+           Added previously forgotten header keyword BPM_RF in data structure PIP_REP_MultiParameters</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16502 target="_blank">16502</a>:
+           Header keyword CONTA_ER removed from SCI_COR_Lightcurve</li>
+       </ul>   
+    </li>
+    <li>fits_dal
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16505 target="_blank">16505</a>:
+           New method: FitsDalTable::SetReadRow().</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16553 target="_blank">16553</a>:
+           Add the `const` specifier to the FitsDalHeader::GetFileName() method.</li>
+       </ul>   
+    </li>
+</ul>
+ 
+
+<h4>Release 9.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16458 target="_blank">16458</a>:
+           New header keywords: ROUNDING, NLIN_COR, RO_SCRPT, RO_HW, RO_FREQU in SCI_PRW_SubArray, SCI_PRW_SubArray,
+           SCI_PRW_FullArray, SCI_PRW_FullArray</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16049 target="_blank">16049</a>:
+           New header keywords ROUNDING and NLIN_COR in data structures SCI_PRW_SubArray, SCI_PRW_SubArray,
+           SCI_PRW_Imagette and SCI_RAW_Imagette.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15181 target="_blank">15181</a>:
+           Update header keywords that describe the used reference files.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15671 target="_blank">15671</a>:
+           Remove obsolete data structures: SCI_CAL_DarkColumn and SCI_CAL_DarkStddevColumn</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16132 target="_blank">16132</a>:
+           New data structure: PIP_REP_DarkColumns</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15759 target="_blank">15759</a>:
+           REF_APP_GainCorrection is updated to take the temperature dependency into account.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16270 target="_blank">16270</a>:
+           Removed and new data structures for Large and Reduced CCD margins</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16351 target="_blank">16351</a>:
+           The Compressed CE Header has two new parameters: ADC_N5V and ADC_TEMP1. This are added to following tables: SCI_CAL_ImageMetadata, SCI_COR_ImageMetadata, SCI_PRW_UnstackedImageMetadata and SCI_RAW_ImageMetadata</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16355 target="_blank">16355</a>:
+           The temperatures of the CE are provided as engineering values: Including in SCI_PRW_UnstackedImageMetadata ColumnCeHk instead of ColumnCeHkEncoded</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16371 target="_blank">16371</a>:
+           New columns in SCI_COR_Lightcurve: ROLL_ANGLE, LOCATION_X, LOCATION_Y.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16344 target="_blank">16344</a>:
+           Remove the PIP_TMP_* data structures.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15667 target="_blank">15667</a>:
+           Update the light-curve product structure to accommodate for several light curves.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16112 target="_blank">16112</a>:
+           Add a column to SCI_PRW/RAW_ImagetteMetadata to indicate the stacking number: NEXP.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15763 target="_blank">15763</a>:
+           Change data type of imagette - pixel from uint16 to uint32 to be able to store stacked imagettes.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/14795 target="_blank">14795</a>:
+           Remove the old CCD margin Data Structures from common_sw.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/14555 target="_blank">14555</a>:
+           Data structure SCI_COR_Aperture is removed.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16272 target="_blank">16272</a>:
+           New data structure: EXT_DRFT_StarCatalogue</li>
+       </ul>   
+    </li>
+    <li>fits_dal
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15574 target="_blank">15574</a>:
+           The 3rd dimension of a FTIS image can be resized, after the image was created.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15615 target="_blank">15615</a>:
+           Update make target 'release' to use a more flexible regex when grepping for the svn url in the output from 'svn info'.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16416 target="_blank">16416</a>:
+           Class VisitId shall allow for programme type 0</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/16346 target="_blank">16346</a>:
+           Improved documentation on BarycentricOffset class.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15780 target="_blank">15780</a>:
+           PassId's == operator now returns true when comparing two invalid PassIds.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 9.2.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li>Added updated SCI_PRW_HkAsy30759 and SCI_RAW_HkAsy30759 fsd files created from srdb_v241_SVT2. NB: some column names in the auto-generated .fsds for these two data structures contained dots. The dots were removed manually.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 9.2.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li>SCI_RAW_Hk and SCI_PRW_Hk files have been recreated from srdb_v241_SVT2.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 9.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15402 target="_blank">15402</a>:
+           Corrected typo in class name and extension name of data structure SOC_APP_VisitDataTimeOut.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15915 target="_blank">15915</a>:
+           The old CCD margin extensions are now optional in the SCI_RAW_FullArray.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15807 target="_blank">15807</a>:
+           The SOC pipeline version is read from $CHEOPS_SW/conf/pipeline_version, 
+           if the file exists, and inserted into the data product headers.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15652 target="_blank">15652</a>:
+           Breaking change: the xml schema of TRIGGER files (resources/trigger_file_schema.xsd) has a new mandatory attribute, PREV_PASS_ID, in the variable header.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15807 target="_blank">15807</a>:
+           The SOC pipeline version is read from $CHEOPS_SW/conf/pipeline_version, 
+           if the file exists, and inserted into the data product headers.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 9.1.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15832 target="_blank">15832</a>:
+           There can be a CUC time in the data field of a HK-TM packet.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 9.1.3</h4>
+<ul>
+    <li>fits_dal
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15579 target="_blank">15579</a>:
+           FitsDalImage::GetNull() and FitsDalImage::IsNull() changed to const member functions.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 9.1.2</h4>
+<ul>
+    <li>makefiles
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15770 target="_blank">15770</a>:
+           Log program params and file names after the log file stream has be created.</li>
+       </ul>   
+    </li>
+    <li>program_params
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15770 target="_blank">15770</a>:
+           Log program params and file names after the log file stream has be created.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15774 target="_blank">15774</a>:
+           Trigger files from executables with a file extension contained a dot in the file name.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 9.1.1</h4>
+<ul>
+    <li>makefiles
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15615 target="_blank">15615</a>:
+           The Makefile now looks for the RELEASE_VERSION in the makecheops file
+           in the current directory, in addition to parent directories.</li>
+       </ul>   
+    </li>
+
+</ul>
+
+
+<h4>Release 9.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15403 target="_blank">15403</a>:
+           New data structures to store DRAFT and APPROVED Bad Pixel Map and Dark Maps.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15402 target="_blank">15402</a>:
+           New data structure to store the time-out of the data processing with incomplete data.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/14905 target="_blank">14905</a>:
+           Support for NULL values in Python API IOHandler table readers.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15456 target="_blank">15456</a>:
+           BJD is related to JD and not to modified JD, i.e. an offset of 2400000.5 is applied.</li>
+       </ul>   
+    </li>
+    <li>bookkeeping
+       <ul>
+         <li>New possible data type of a bookkeeping: UTC</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 9.0.1</h4>
+<ul>
+    <li>fits_dal
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15376 target="_blank">15376</a>:
+           FITS header keywords TSCALx and TZEROx can be of data type double</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+       <ul>
+       	 <li>Problem in makecheops: SCI_CAL_SubArray depend on SCI_CAL_OverscanTop.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/15340 target="_blank">15340</a>:
+           Change function names of functions that get units and comments of header keywords and columns.</li>
+       </ul>   
+    </li>
+    <li>logger
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15279 target="_blank">15279</a>:
+           Use boost::null_deleter in the creation of log streams (which is the 
+           recommended approach) instead of boost::empty_deleter, which has been
+           deprecated since boost 1.55 and is removed in boost 1.59.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 9.0</h4>
+<ul>
+    <li>fits_dal
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15057 target="_blank">15057</a>:
+           Provide the unit of the columns. New method: GetColUnit()</li>
+       </ul>   
+    </li>
+
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15057 target="_blank">15057</a>:
+           Provide the unit of the columns and keywords. </li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15168 target="_blank">15168</a>:
+           Set NULL value of image to '0' for SCI_PRW_Imagette.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15028 target="_blank">15028</a>:
+           Column name IMAGE_REGION in PIP_REP_DetectedCosmics replaced by RELATED_DATA; bin_size changed to 32</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15059 target="_blank">15059</a>:
+           New data structure to store the QL parameters that should be provied in QL reports: SOC_APP_QLReportParameters</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15058 target="_blank">15058</a>:
+           New UNIT - keywords and columns to store the unit of QL parameters</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14995 target="_blank">14995</a>:
+           Change unit in REF_APP_DarkFrame from ADU/s to e-/s. Define keyword BUNIT for associated HDU of the CCD margins.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14995 target="_blank">14995</a>:
+           Dropping the margin associated HDUs from REF_APP_FlatField, because measurement 
+           is only possible for the exposed part of the CCD.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14314 target="_blank">14314</a>:
+           Update of PIP_REP_BadPixel for QL</li>
+       <li>Update of HK data structures for IDB 2.39 with instrument DB 2.2</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15295 target="_blank">15295</a>:
+           Add Python support for the new C++ methods getKey*Unit(), getKey*Com() and getCell*Unit().</li>
+       </ul>   
+    </li>
+    <li>logger
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15286 target="_blank">15286</a>:
+           Add the OBSID to the log file name.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15085 target="_blank">15085</a>:
+           Fix email sending for alert log messages</li>
+       </ul>   
+    </li>
+    <li>program_params
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/15293 target="_blank">15293</a>:
+           Write input files to the log</li>
+       </ul>   
+    </li>
+    <li>ccsds_telemetry
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14953 target="_blank">14953</a>:
+           New module to support tm_dump. Previously this software was a module of Preprocessing.</li>
+       </ul>   
+</ul>
+  
+
+<h4>Release 8.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14909 target="_blank">14909</a>:
+           new columns in SCI_RAW_ImageMetadata: LEFT_DARK_COL_MASK, RIGHT_DARK_COL_MASK</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14946 target="_blank">14946</a>:
+           Documentation for image products in the Python API referred to the 
+           non-existing method getDimensions instead of getSize that was not 
+           documented.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14876 target="_blank">14876</a>:
+           Bugfix: class VisitId now throws an exception if programme typs 1-9 are used as constructor arguments</li>
+       </ul>   
+    </li>
+
+</ul>
+
+<h4>Release 8.1.1</h4>
+<ul>
+    <li>fits_dal
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14849 target="_blank">14849</a>:
+           The header keyword TSCALx is not required any more to identify a column as unsigned short, int or long.</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14555 target="_blank">14555</a>:
+           SCI_COR_Aperture added for now, until an update of Data Reduction, which still used this data structure.</li>
+       </ul>   
+    </li>
+
+
+    <li>utilities
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14845 target="_blank">14845</a>:
+           OrbitInterpolation::interpolate segmentation faults when called from two different functions.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14878 target="_blank">14878</a>:
+           ValidRefFile never caches the reference file due to comparing differently assembled file name strings.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 8.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14372 target="_blank">14372</a>:
+           New header keyword RADESYS in all data structures that define a sky position.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14555 target="_blank">14555</a>:
+           SCI_COR_Aperture and SCI_COR_Diagnostic are not used any more and are removed.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14589 target="_blank">14589</a>:
+           Remove REF_APP_CCDGain from common_sw.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14824 target="_blank">14824</a>:
+           New column ROLL_ANGLE in SCI_COR_ImageMetadata.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14788 target="_blank">14788</a>:
+           Define the new data structures to store the CCD margin data.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14854 target="_blank">14854</a>:
+           The parameter of setCellVector...() shall be a const ref argument</li>
+       
+       <li>New header keyword STACKING in SubFrame and Imagette data structures.</li> 
+       </ul>   
+    </li>
+    <li>logger
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14607 target="_blank">14607</a>:
+           Alert log messages are now displayed as log level [A] instead of 
+           the same level as info messages [I]</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14501 target="_blank">14501</a>:
+           The default visit id is now an invalid visit id instead of (the  
+           obsolete) programme type 5 visit. If no visit id is provided, the  
+           visit id will not be included in the file name</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13055 target="_blank">13055</a>:
+           Provide different pointer by getFile() if REF file has changed.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+
+<h4>Release 8.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14234 target="_blank">14234</a>:
+           New data structures: REF_APP_WhiteCCDLocationPSF, REF_APP_WhiteCCDLocationPSFMetadata</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14185 target="_blank">14185</a>:
+          Update of SCI_CAL_DarkColumn, SCI_CAL_DarkStddevColumn, SCI_COR_SmearingRow and SCI_COR_SmearingRowError.
+          Removed SCI_COR_DarkColumn, SCI_COR_DarkStddevColumn</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12370 target="_blank">12370</a>:
+           Python API bugfix: classes BJD, MJD, OBT, PassId, UTC and VisitId now implement the __hash__() method 
+           correctly and hashes the same class attribute(s) that are compared in __eq__() instead of the object id.
+           This corrects a bug where, when these objects were used as dict keys, or in sets, each object was 
+           considered unique even though their class attributes had the same value. Now, objects having the same
+           values will be mapped to the same key, or set item. Because __hash__() shall only be implemented for 
+           immutable classes, the clear() method has been removed from the UTC class.</li>
+       </ul>   
+    </li>
+
+    <li>fits_dal
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14160 target="_blank">14160</a>:
+           previousAxis method to FitsDalImageIterator to step back one axis</li>
+       </ul>   
+    </li>
+
+    <li>utilities
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14321 target="_blank">14321</a>:
+           Bug fix in UTC constructor accepting number of seconds and fraction of seconds.
+           There was a problem if the fraction of seconds was between 0.184 and 0.18399995 </li>
+       </ul>   
+    </li>
+
+
+</ul>
+
+
+<h4>Release 7.4</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13298 target="_blank">13298</a>:
+           Clarify columns IMAGE_NUM and IMAGE_REGION</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13327 target="_blank">13327</a>:
+           Define a new reference file: REF_APP_FluxConversion</li>
+       <li>SCI_PRW_Hk* and SCI_RAW_Hk* fits schemas have been recreated using CHEOPS I-DB MIB 2.20</li>
+       </ul>   
+    </li>
+
+    <li>utilities
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11934 target="_blank">11934</a>:
+           The VisitID class is updated to accept the new range of Programmes Types (1 to 50).</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12948 target="_blank">12948</a>:
+           TriggerFile::WriteTriggerFile() now accepts the creation date as an optional argument.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/14081 target="_blank">14081</a>:
+           Class ValidRefFile now returns the reference file with the highest archive revision and 
+           processing number for a given time, instead of the file with the latest creation time. </li>
+       </ul>   
+
+    <li>bookkeeping
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13206 target="_blank">13206</a>:
+           New module: bookkeeping</li>
+       </ul>   
+    </li>
+
+</ul>
+
+
+<h4>Release 7.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11638 target="_blank">11638</a>:
+           Some new data structures, a few new header keywords and columns to store the errors calculated by Data Reduction</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13268 target="_blank">13268</a>:
+           New data structure: PIP_REP_BadPixel</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12838 target="_blank">12838</a>:
+           magV and magCHEOPS and their errors can be set by the Hk2RawProcessing class</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12578 target="_blank">12578</a>:
+           Update fsd files to store in the header the CHEOPS mag and the errors of CHEOPS mag and V mag.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13013 target="_blank">13013</a>:
+           Update fsd files to store in the header the CHEOPS mag and the errors of CHEOPS mag and V mag</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13263 target="_blank">13263</a>:
+           Different approach to store the GainCorrection formula in a REF file.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12925 target="_blank">12925</a>:
+           Removing of the const specifier from the return value declaration of vector column getters.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12863 target="_blank">12863</a>:
+           Remove columns CCD_ADU and CCD_ADU_ERR from EXT_PRE_StarCatalogue.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13187 target="_blank">13187</a>:
+       Change data_type of XPOS and YPOS in REF_APP_BadPixel from uint16 to int16 to be able to store negative XPOS values for pixels in the left margin area. </li>    
+       <li><a href="https://redmine.isdc.unige.ch/issues/13157 target="_blank">13157</a>:
+           Provide X_WINOFF and Y_WINOFF separately for each imagette.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13216 target="_blank">13216</a>:
+           Add columns CCD_TIMING_SCRIPT and PIC_DATA_OFFSET in the image metadata tables.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12801 target="_blank">12801</a>:
+           Remove column VISIT_COUNTER in MPS_PRE_Visits and MPS_PRE_VistContraints.</li>
+       <li>Python class operators addedB BJD (&lt;=, &gt;, &gt;=, ==, !=), MJD (&lt;=, &gt;, &gt;=, ==, !=), PassId (&lt;=, ==, !=), VisitId (&lt;=, ==, !=)</li>
+       </ul>   
+    </li>
+    <li>fits_dal
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13092 target="_blank">13092</a>:
+           Trivial const correctness and typedef patch for FitsDalImageIterator.</li>
+       </ul>   
+    </li>
+    <li>logger
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12941 target="_blank">12941</a>:
+           The log file name now contains the pass and/or visit id, if available, and the program version.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12841 target="_blank">12841</a>:
+           Make targets unit_test, coverage and coverage_jenkins now immediately 
+           exits with error if unit test compilation failed or any unit tests failed.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13055 target="_blank">13055</a>:
+           Ensure that ValidRefFile.getFile returns different pointer if the data structure has changed.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12959 target="_blank">12959</a>:
+           Sleep 1 second before writing the trigger file to disk, to ensure that the trigger file is the last output file to be created by the program.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12927 target="_blank">12927</a>:
+           Add new method TriggerFile::Empty(), which returns true if no TRIGGER file was read from the job order.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/13138 target="_blank">13138</a>:
+           The TriggerFile class' methods GetProgramId() and GetProgramType() are now deprecated and replaced by GetProgrammeId() and GetProgrammeType().</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12806 target="_blank">12806</a>:
+           Modification of the trigger file xml schema, which is not backwards compatible:
+           The OBSID has been added to the variable header. All other elements of 
+           the variable header have been renamed to be consistent with the 
+           corresponding header keywords in the fits schema definitions.</li>
+       </ul>   
+    </li>
+    <li>bookkeeping
+       <ul>
+           <li><a href="https://redmine.isdc.unige.ch/issues/13186 target="_blank">13186</a>:
+           Define and implement the unit_tests.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 7.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12352 target="_blank">12352</a>:
+           Remove columns LOS_TO_EARTH_ANGLE, LATITUDE, LONGITUDE from MPS_PRE_VisitConstraints.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12933 target="_blank">12933</a>:
+           Remove REP_TIME keyword from PIP_REP* data structures.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12918 target="_blank">12918</a>:
+           New column CONTA_LC_ERR in SCI_COR_Lightcurve</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11809 target="_blank">11809</a>:
+           New temporary data structure: PIP_TMP_OverscanTopCalibrated</li>
+       <li>Update of REF_APP_CCDLinearisation. It can now store the coefficients of the spline function.</li>   
+       <li>The bin_size of GAIN column of REF_APP_GainCorrection changed from 1014 to 256. </li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 7.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11809 target="_blank">11809</a>:
+           New data structures: PIP_TMP_IrradiatedExposure</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12784 target="_blank">12784</a>:
+           New data structures: SCI_CAL_OverscanLeftImage SCI_CAL_OverscanTopMean SCI_CAL_OverscanTopStddev SCI_CAL_OverscanTopImage SCI_CAL_OverscanTopMedian</li>
+       <li>Remove the metadata keyword PASS_ID from the RPT_RAW_Visit schema</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 7.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11809 target="_blank">11809</a>:
+           New data structures: PIP_TMP_BackgroundArray PIP_TMP_CorrectedPixelsArray PIP_TMP_CosmicsArray
+           PIP_TMP_CrazyPixelsArray PIP_TMP_DarkArray PIP_TMP_DeadPixelsArray PIP_TMP_HotPixelsArray SCI_COR_Diagnostic.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12675 target="_blank">12675</a>:
+           New header keywords RA_TARG, DEC_TARG, EQUINOX in SCIPCOR_Aperture.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12671 target="_blank">12671</a>:
+           Add angular distance to the target star in the star catalogue.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12586 target="_blank">12586</a>:
+           Remove the secondary extension SCI_COR_OverscanTopStddev from SCI_COR_SubArray.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12594 target="_blank">12594</a>:
+           Make the associated hdu PIP_COR_BadPixel of SCI_COR_SubArray optional.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12552 target="_blank">12552</a>:
+           Add additional Doxygen documentation for fits header keywords and table columns to Python fits_data_model.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 6.4.3</h4>
+<ul>
+    <li>fits_data_model
+       <ul> 
+       <li>Set default values for columns REF_PIXX and REF_PIXY of SCI_COR_Aperture to 0.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12518 target="_blank">12518</a>:
+           Increase length of SPECTRAL_TYPE column of MPS_PRE_Visits to 15 chars.</li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/12526 target="_blank">12526</a>:
+           Bugfix: fits images of type float would cause a segmentation fault in python interface.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 6.4.2</h4>
+<ul>
+    <li>fits_data_model
+       <ul> 
+       <li><a href="https://redmine.isdc.unige.ch/issues/12366 target="_blank">12366</a>:
+           PIP_REP_VisitStatus did not define the PassID in the header.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12291 target="_blank">12291</a>:
+           Header keywords TARGNAME, SPECTYPE, MAG_V, RA_TARG and DEC_TARG have been added to the PIP_REP_OutOfLimit data product.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/122891 target="_blank">12289</a>:
+           SCI_COR_Aperture is no longer an associated HDU of SCI_COR_SubArray.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 6.4.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul> 
+       <li><a href="https://redmine.isdc.unige.ch/issues/12339 target="_blank">12339</a>:
+           Set the units of the HK data of the CE in the data structures.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12352 target="_blank">12352</a>:
+           Add columns latitude, longitude and LOS_TO_EARTH_ANGLE in data structures 
+           AUX_RES_VisitConstraints and MPS_PRE_VisitConstraints.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12307 target="_blank">12307</a>:
+           New header keyword DATANAME in PIP_REP_DetectedStars, PIP_REP_DetectedCosmics and
+           PIP_REP_Image.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 6.4</h4>
+<ul>
+    <li>fits_dal
+       <ul> 
+       <li><a href="https://redmine.isdc.unige.ch/issues/11599 target="_blank">11599</a>:
+           Do not read rows after the last row from a FITS table in update mode.</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+       <ul> 
+       <li>Change all columns of REF_APP_VisitConstraints to bin_size=2 to store hard and soft limits</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11809 target="_blank">11809</a>:
+           New data structure: PIP_CAL_FlatField.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12002 target="_blank">12002</a>:
+           Define "0" as NULL value for SCI_RAW_Imagette</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12007 target="_blank">12007</a>:
+           PIP_REP_VisitStatus should not have column BJD</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12008 target="_blank">12008</a>:
+           The margin images of REF_APP_FlatField have to be 3-dimensional images.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12024 target="_blank">12024</a>:
+           Newe data structures: PIP_COR_BadPixel, SCI_COR_OverscanTopStddev, PIP_COR_BkgSLSubArray and PIP_COR_BkgSLImageMetadata.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12030 target="_blank">12030</a>:
+           New header keyword: CONTA_ER in SCI_COR_Lightcurve.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12050 target="_blank">12050</a>:
+           The data-type of columns CE_COUNTER is uint16 instead of uint16</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12051 target="_blank">12051</a>:
+           The unit of the column STRAY_LICHT in REF_APP_VisitContraints is photons/px/sec instead of photons</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12061 target="_blank">12061</a>:
+           Remove the WCS keywords in the SCI_CAL_ImageMetadata.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12064 target="_blank">12064</a>:
+           Update the time columns in PIP_COR_Centroid to use the same time columns as in SCI_CAL_ImageMetadata</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12140 target="_blank">12140</a>:
+           New reference file for the GAIN ADU/Electron.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12249 target="_blank">12249</a>:
+           Set more header keywords when using HkPrvFitsTable</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/12267 target="_blank">12267</a>:
+           ColumnCeHkEncoded.ifsd and ColumnCeHk.ifsd have their content exchanged.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul> 
+       <li><a href="https://redmine.isdc.unige.ch/issues/11373 target="_blank">11373</a>:
+           Python coverage reports now measure the unit tests' coverage of sources installed in $CHEOPS_SW/python/$PYTHON_COVERAGE, instead of ../../python. Note: do not add '../../python' to $PYTHONPATH in unit tests - it will result in 0% coverage.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 6.3.2</h4>
+<ul>
+    <li>makefiles
+       <ul> 
+       <li>Fix of the release_cheops_package file of version 6.3.1, which installed the software in trunk instead of in tags.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 6.3.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul> 
+       <li><a href="https://redmine.isdc.unige.ch/issues/11967 target="_blank">11967</a>:
+           Remove column LOS_TO_EARTH_ANGLE from the MPS_PRE_VisitConstraints data structure.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11946 target="_blank">11946</a>:
+           Add methods to set new keywords in hk2RawProcessing.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 6.3</h4>
+<ul>
+    <li>fits_dal
+       <ul> 
+         <li><a href="https://redmine.isdc.unige.ch/issues/11795 target="_blank">11795</a>:
+                 New method PrepareWriteRow() for overwriting existing table rows. Also available in Python API.</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+       <ul> 
+       <li><a href="https://redmine.isdc.unige.ch/issues/11885 target="_blank">11885</a>:
+           Change the possible values for the keywords datareduction steps</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11889 target="_blank">11889</a>:
+           Add the number of scheduled exposures per Visit in the MPS_PRE_Visits table.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11748 target="_blank">11748</a>:
+           HkTm2PrwProcessing::getHkPrwFitsTable returns null for HkAsy30720 packet is fixed.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11636 target="_blank">11636</a>:
+           New data structure: REF_APP_PixelScale.fsd.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11326 target="_blank">11326</a>:
+           New data structure: REF_APP_DarkColumns.fsd.</li>
+       <li><a href="https://redmine.isdc.unige.ch/issues/11785 target="_blank">11785</a>:
+           New header keywords:PI_UID, PRP_VST1, PRP_VSTN; remove deprecated keywords and columns.</li>
+          <li>New data structures to store the margin data of reference files.</li>
+          <li>Bug fix in RAW - HK generation, used by CHEOPSim.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul> 
+          <li><a href="https://redmine.isdc.unige.ch/issues/11800 target="_blank">11800</a>:
+                 Call BarycentricOffset::setEphemerisFileName() if an EXT_APP_DE1 data structure is present in the job order.</li>
+       </ul>   
+    </li>
+    <li>utilities
+       <ul> 
+          <li>The TRIGGER file schema now defines the default namespace "cheops:gs" for its xml instances.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 6.2</h4>
+<ul>
+    <li>makefiles
+       <ul> 
+         <li><a href="https://redmine.isdc.unige.ch/issues/11463 target="_blank">11463</a>:
+                 Read revision number from job-order file and the processing version from the trigger file and provide them to FitsDalHeader</li>
+       </ul>   
+    </li>
+
+
+    <li>fits_dal
+       <ul> 
+      	  <li><a href="https://redmine.isdc.unige.ch/issues/11463 target="_blank">11463</a>:
+                 Update of the data version in the filename and set the new header keywords ARCH_REV and PROC_NUM.</li>
+       </ul>   
+    </li>
+
+    <li>fits_data_model
+       <ul> 
+          <li>Updates ot follow the changes in IFSW-SOC ICD Issue 2</li>
+          <li>HK data structures created from CIS MIB verssion 2.1</li>
+      	  <li><a href="https://redmine.isdc.unige.ch/issues/11463 target="_blank">11463</a>:
+                 Update of the data version in the filename.</li>
+      	  <li><a href="https://redmine.isdc.unige.ch/issues/11462 target="_blank">11462</a>:
+                 New fsd files for the 'JPL Planetary Ephemeris DE200/LE200' FTIS file: EXT_APP_DE1, EXT_APP_DE2 and EXT_APP_DE3</li>
+
+          <li>Add the OBS_CAT keyword to all SCI_* and PIP_REP_* data structures.</li>
+          <li>Several new columns in EXT_PRE_StarCatalogue data structure. </li>
+       	  <li><a href="https://redmine.isdc.unige.ch/issues/11476 target="_blank">11476</a>:
+                   Remove AUX_RES_VisitConstraints as associated data structure from AUX_RES_Orbit.</li>
+          <li><a href="https://redmine.isdc.unige.ch/issues/11372 target="_blank">11372</a>:
+                   New header keyword: LC_QUAL in KeywordDataReductionSteps.ifsd file.</li>         
+
+         <li><a href="https://redmine.isdc.unige.ch/issues/11061 target="_blank">11061</a>:
+                   Change in data structure SCI_PRW_HkExtended the column name from HK_TEMP_FEE_VOD to HK_VOLT_FEE_VOD following latest CIS documentation.</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11468 target="_blank">11468</a>:
+                   Provide mean to set the OBSID header keyword in HkPrwFitsTable.</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11410 target="_blank">11410</a>:
+                   New keyword in oversampled PSF data structure: OVERSAMP</li>         
+       </ul>   
+    </li>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/11514 target="_blank">11514</a>:
+                   Define input and output processing versions in TRIGGER files.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/11462 target="_blank">11462</a>:
+                   Implementations of the MJD to BJD nad BJD to MJD conversion.</li>
+       </ul>
+    </li>
+</ul>
+
+<h4>Release 6.1</h4>
+<ul>
+    <li>makefiles
+       <ul>   
+         <li>Access new SOC_APP_LeapSeconds file from job-order file in template_init.cxx and template_init.py</li>
+       </ul>   
+    <li>fits_data_model
+       <ul>   
+         <li> New data structure: SOC_APP_LeapSeconds, deprecated data structure: REP_APP_LeapSeconds </li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/11372 target="_blank">11372</a>:
+                   Changes in KeywordCalibrationStepf.ifsd</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11361 target="_blank">11361</a>:
+                   Follow the update of HK parameters in the science TM.</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11327 target="_blank">11327</a>:
+                   Change OBS_DI to REQ_ID and MPS_VSIT to OBSID.</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11284 target="_blank">11284</a>:
+                   New data structure: PIP_REP_TrendParameters. New column IMAGE_REGION in PIP_REP_MultiParameters.fsd</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11311 target="_blank">11311</a>:
+                   Remove OBT_TIME column from AUX_RES_VisitConstraints.</li>         
+
+         <li> New data structure: EXT_PRE_StarCatalogue.fsd</li>
+         <li> new keyword: REQ_ID, OBSID deprecated keyword: PROG_ID, MPS_VSIT</li> 
+         <li><a href="https://redmine.isdc.unige.ch/issues/11166 target="_blank">11166</a>:
+                   Make FitsDalHeader::GetAttr() and FitsDalHeader::SetAttr() protected in fits_data_model classes.</li>         
+       </ul>
+       <li>utilities
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/11327 target="_blank">11327</a>:
+                   Use requestId instead of observationId in the VisitId class.</li>
+       </ul>   
+       <li>fits_dal
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/11072 target="_blank">11072</a>:
+                     Close a memory leak in ReadRow().</li>
+       </ul>   
+        <li>program_params
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/10658 target="_blank">10658</a>:
+                   ProgramParams now return the sensing time "Start" and "Stop" parameters of the job order formatted as valid UTC times.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 6.0</h4>
+<ul>
+    <li>fits_data_model
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/11121 target="_blank">11121</a>:
+                   New data product for QL cosmic rays.</li>         
+         <li>New keywords: X_WINOFF, Y_WINOFF. Deprecated keywords: X_ORIGIN, Y_ORIGIN</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/11061 target="_blank">11061</a>:
+                   SCI_RAW_HkExtended has column named HK_VOLT_FEE_VOD instead of HK_TEMP_FEE_VOD</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11081 target="_blank">11081</a>:
+                   Enable pickling and deep copy of fits header data types in Python; Add __str__() methods to utility classes for automatic string representation</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11163 target="_blank">11163</a>:
+                   Add methods that return bin size of vector columns; Add methods that return vector columns as std::vector</li>         
+         <li><a href="https://redmine.isdc.unige.ch/issues/11168 target="_blank">11168</a>:
+                   Add functionality for reading fits tables using astropy.table.Table</li>         
+       </ul>
+    <li>utilities
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/10960 target="_blank">10960</a>:
+                TriggerFile class: use only validity start/stop in fixed header. Validity start/stop in variable header is made optional in schema for backwards compatibility.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/11081 target="_blank">11081</a>:
+                PassId class: return default year, month, day and hour if PassId is invalid </li>
+       </ul>   
+    </li>    
+
+</ul>
+
+
+<h4>Release 5.2.1</h4>
+<ul>
+    <li>fits_data_model
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/11014 target="_blank">11014</a>:
+                    The unit of the Dark Frame is ADU/s</li>
+         <li>Bugfix: define dependencies between autogenerated .cxx files for data structure SIM_RAW_DoublePrecisionSubArray in makecheops file.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/11041 target="_blank">11041</a>:
+                    Angeles between target and sun, moon and earth lim are defined in the metadata table.</li>
+         
+       </ul>   
+
+</ul>
+
+<h4>Release 5.2</h4>
+<ul>
+    <li>fits_dal
+       <ul>   
+         <li>New method to write the current status in memory of an image or table in a new FITS file.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/10580 target="_blank">10580</a>:
+                   Random read access of rows in FITS tables.</li>
+       </ul>   
+    </li>  
+
+    <li>fits_data_model
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/10693 target="_blank">10693</a>:
+                   Update the Hk data structures using the MIB tables as source.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/10591 target="_blank">10591</a>:
+                   Update of the HK parameters in the metadata FITS tables of the images.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/10515 target="_blank">10515</a>:
+                   Set correct units for OBT columns and EXPTIME and TEXPTIME keywords.</li>
+         <li><a href="https://redmine.isdc.unige.ch/issues/10828 target="_blank">10828</a>:
+                   Python: keep fits image objects alive as long as any numpy arrays referencing its image data exist.</li>
+       </ul>   
+    </li>
+    <li>logger
+       <ul>   
+         <li><a href="https://redmine.isdc.unige.ch/issues/10690 target="_blank">10690</a>:
+                   Add functionality for reading the log file path from the job order's dynamic processing params.</li>
+       </ul>   
+    </li>
+    <li>makefiles
+       <ul>
+         <li><a href="https://redmine.isdc.unige.ch/issues/10901 target="_blank">10901</a>:
+                Generate Python coverage reports with the 'coverage3' tool instead of nosetests.</li>
+       </ul>   
+    </li>   
+    <li>program_params
+       <ul>   
+        <li><a href="https://redmine.isdc.unige.ch/issues/10691 target="_blank">10691</a>:
+                   Log program parameters and job order parameters.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/10677 target="_blank">10677</a>:
+                   Bugfix (python): input files were read twice when Time_Interval elements are present in the Input elements of the job order.</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 5.1</h4>
+<ul>
+    <li>makefiles
+        <ul>       
+        <li><a href="https://redmine.isdc.unige.ch/issues/10458 target="_blank">10458</a>:
+                    Read the OBT-reset-counter file in the init function.</li>
+       </ul>   
+    </li> 
+    <li>utilities
+        <ul>       
+            <li>Added optional argument to TriggerFile::WriteTriggerFile() for adding a 
+                "data name" to the file name of the trigger file.</li>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/10458 target="_blank">10458</a>:
+                    Update the OBT class: implementation of the OBT reset counter, apply changes of the iOBTUTC interface of the MOC-SOC ICD.</li>
+       </ul>   
+    </li> 
+    <li>fits_data_model
+        <ul>   
+	       <li><a href="https://redmine.isdc.unige.ch/issues/10458 target="_blank">10458</a>:
+	             Remove AUX_HIS_ObtUtcCorrelation.fsd, it is replaced by AUX_RES_ObtUtcCorrelation.fsd.
+	             New data sturcture: REF_APP_ObtReset.</li> 
+	       <li> Updated data structures: EXT_APP_SAAMap, MPS_PRE_VisitConstraint, PIP_REP_DetectedStars. </li> 
+	       <li> New data structures: SCI_PRW_EventReport, SCI_RAW_EventReport, REF_APP_EventEnumConversion, 
+	             REF_APP_EventParamConversion. </li>
+           <li><a href="https://redmine.isdc.unige.ch/issues/10519 target="_blank">10519</a>:
+                Change data type of ENUM column in REF_APP_HkEnumConversion to uint16.</li>
+       </ul>   
+    </li>  
+</ul>
+
+<h4>Release 5.0.1</h4>
+<ul>
+    <li>fits_data_model
+        <ul>   
+        	<li>Update MPS_PRE_Visits.fsd and PIP_REP_VisitStatus.fsd to follow the agreement 
+        	    on the criteria to define a visit as successful.</li>
+        	<li> Update of SIM_TRU_FlatField.fsd, SIM_TRU_SubArray.fsd. SIM_TRU_FullArray.fsd and
+				REF_APP_BadPixel.fsd</li>
+       </ul>   
+    </li>  
+</ul>
+
+
+
+<h4>Release 5.0</h4>
+<ul>
+    <li>all modules
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/10161 target="_blank">10161</a>:
+                    Change unit_test directory to tests/unit_test</li>
+       </ul>   
+    </li>
+    <li>fits_dal
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/9408 target="_blank">9408</a>:
+        			More methods in FitsDalImageIterator</li>
+       </ul>   
+    </li>
+    <li>fits_data_model
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/9944 target="_blank">9944</a>:
+                    Update the AUX_RES_ObtUtcCorrelation data structure to follow the MOC-SOC-ICD version 2.0.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9946 target="_blank">9946</a>:
+                    Remove the header keywords TEFF, LOGG and FEH from the SCI_COR_LightCurve data structure.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9990 target="_blank">9990</a>:
+                    Add TriggerFile class to Python interface.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/10158 target="_blank">10158</a>:
+                    Update data structures to store the data of the Compression Entity.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/10116 target="_blank">10116</a>:
+                    New data products for QL use.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/10117 target="_blank">10117</a>:
+                    HkPrwFitsTable with invalid timestamp in HK causes program termination</li>
+       </ul>   
+    </li>
+    <li>makefiles
+        <ul>       
+        <li><a href="https://redmine.isdc.unige.ch/issues/9032 target="_blank">9032</a>:
+                    Rename UNIT_TESTS varible to CXX_UNIT_TESTS. Note: this change is not backward compatible.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9929 target="_blank">9929</a>:
+                    Bugfix: the coverage target fails for python if the directory unit_test/coverage does not exist.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9990 target="_blank">9990</a>:
+                    CheopsExit moved from Program params to init files.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/10129 target="_blank">10129</a>:
+                    Include python modules not covered by unit tests in coverage reports.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/10249 target="_blank">10249</a>:
+                    Run Python unit tests using the command python3 -m "nose".</li>
+       </ul>
+    </li>  
+    <li>program_params
+        <ul>       
+        <li><a href="https://redmine.isdc.unige.ch/issues/9942 target="_blank">9942</a>:
+                    Accept multiple program parameters of the same type</li>
+       </ul>   
+    </li>  
+    <li>utilities
+        <ul>       
+        <li><a href="https://redmine.isdc.unige.ch/issues/9933 target="_blank">9933</a>:
+                    Implement &gt;, &gt;= and &lt;= comparison operators for all time classes.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9990 target="_blank">9990</a>:
+                    Add class for reading/writing monitor4EO trigger files.</li>
+        <li>accept program-type 05 in VisitId class</li>            
+       </ul>   
+    </li>  
+</ul>
+
+
+<h4>Release 4.4</h4>
+<ul>
+    <li>makefiles
+        <ul>       
+        <li><a href="https://redmine.isdc.unige.ch/issues/9880 target="_blank">9880</a>:
+                    Set the version number of programs identical to the release version.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9897 target="_blank">9897</a>:
+                    Do not specify the version number of xerces-c in Makefile.</li>
+       </ul>   
+    </li>    
+    <li>fits_data_model
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/9844 target="_blank">9844</a>:
+                    Access FITS images as numpy arrays in Python fits_data_model.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9856 target="_blank">9856</a>:
+                    New C++ open functions to open associated extensions.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9857 target="_blank">9857</a>:
+                    New Python open functions to open associated extensions.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9842 target="_blank">9842</a>:
+                    New data structure for on board calculated centroid.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9652 target="_blank">9652</a>:
+                    Define rsd files for a few report types.</li>
+       </ul>   
+    </li>    
+	<li>utilities
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9902 target="_blank">9902</a>:
+		            new constructor: OBT::OBT(int64_t obt);</li>
+       </ul>   
+    </li>    
+</ul>
+
+<h4>Release 4.3.2</h4>
+<ul>
+	<li>fits_data_model
+		<ul>     		
+        <li><a href="https://redmine.isdc.unige.ch/issues/9705 target="_blank">9705</a>:
+                    Add the associated HDUs for the CCD margins to SIM_RAW_DoublePrecisionSubArray.fsd data structure.</li>
+       </ul>   
+    </li>    
+</ul>
+
+
+<h4>Release 4.3.1</h4>
+<ul>
+    <li>makefiles
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/9585 target="_blank">9585</a>:
+                    Bug fix: Makefiles in the tests directory were not updated by the make_update target.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9600 target="_blank">9600</a>:
+                    Bug fix: target converage_jenkins fails in Python-only products because of cppcheck.</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/9598 target="_blank">9598</a>:
+                    Allow python unit tests to be located in the unit_test/bin directory.</li>
+       </ul>   
+	<li>fits_dal
+		<ul>     		
+        <li><a href="https://redmine.isdc.unige.ch/issues/9609 target="_blank">9609</a>:
+                    FitsDalTable::GetFitsColMetaData() shall return the list of metadata for the columns also when the FITS file was created.</li>
+       </ul>   
+    </li>    
+	<li>fits_data_model
+		<ul>     		
+        <li><a href="https://redmine.isdc.unige.ch/issues/9608 target="_blank">9608</a>:
+                    Endianness is not correctly considered while reading TM HK packets.</li>
+       </ul>   
+    </li>    
+</ul>
+
+<h4>Release 4.3</h4>
+<ul>
+	<li>makefiles
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9301 target="_blank">9301</a>:
+		            use /bin/bash to execute the command defined in the Makefile.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9287 target="_blank">9287</a>:
+		            Enable usage of Doxypypy for Python style documentation.</li>
+       </ul>   
+    </li>    
+	<li>fits_dal
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9304 target="_blank">9304</a>:
+		            Initialize variables for columns, which does not exist in a FITS any more.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9376 target="_blank">9376</a>:
+		            New method: FitsDalTable::GetFitsColMetaData() to return meta data of all columns.</li>
+       </ul>   
+    </li>    
+	<li>fits_data_model
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9390 target="_blank">9390</a>:
+		            Too short string columns in SCI_RAW_HkIfsw.fsd</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9387 target="_blank">9387</a>:
+		            New Data Structure: REF_APP_HKParamConversion</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9386 target="_blank">9386</a>:
+		            Define the BUNIT keyword for all images in the fsd files.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9290 target="_blank">9290</a>:
+                    Add support for Report Schema Definitions.</li>
+       </ul>   
+    </li>    
+	<li>utilities
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9541 target="_blank">9541</a>:
+		            OBT synchronisation bit has changed from MSB to LSB</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9407 target="_blank">9407</a>:
+		            Comparison operators for VisitId and PassId</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9302 target="_blank">9302</a>:
+		            New operators for time classes.</li>
+       </ul>   
+    </li>    
+</ul>
+
+
+<h4>Release 4.2</h4>
+<ul>
+	<li>makefiles
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9208 target="_blank">9208</a>:
+		            Operator == has to be replaced by = in Makefile.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9179 target="_blank">9179</a>:
+		            Define new rules to perform tests.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/9180 target="_blank">9180</a>:
+		            Pass value of PROC_CHN from job-order file to FitsDalHeader.</li>
+       </ul>   
+    </li>    
+    <li>program_params
+        <ul>     
+        <li><a href="https://redmine.isdc.unige.ch/issues/9178 target="_blank">9178</a>:
+                     Replace environment variables by their value in file names and directory names, that are defined in the job-order file.</li>
+        </ul>     
+
+	<li>fits_dal
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9181 target="_blank">9181</a>:
+		            Write PROC_CHN keyword when a FITS extension is created.</li>
+       </ul>   
+    </li>
+	<li>fits_data_model
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/9017 target="_blank">9017</a>:
+		            Definition of the data structures to store the data of the boundary areas of the CCD.</li>
+       </ul>   
+    </li>
+    <li>logger
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/9007 target="_blank">9007</a>:
+                    Bugfix: create log file only if a path is specified in log configuration.</li>
+       </ul>   
+    </li>
+</ul>
+
+
+<h4>Release 4.1.1</h4>
+<ul>
+	<li>fits_data_model
+		<ul>     		
+		<li>Changes required to add a method to set the PROC_CHN keyword in Hk2RawProcessing, 
+		    and to update the keywords in SIM_RAW_UnstackedSubArray.fsd so that the db=common 
+		    structure matches SCI_RAW_ImageMetaData</li>
+       </ul>   
+    </li>
+</ul>
+
+<h4>Release 4.1</h4>
+<ul>
+	<li>fits_dal
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/8916 target="_blank">8916</a>:
+		             Support of HkTm2PrwProcessing with a new method: FitsDalTable::ReAssign()</li>
+        </ul>     
+    </li>
+	<li>fits_data_model
+		<ul>     		
+		<li><a href="https://redmine.isdc.unige.ch/issues/8914 target="_blank">8914</a>:
+		             Base HK processing class to read fsd files.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/8916 target="_blank">8916</a>:
+		             Low level data processing of HK data from TM to PRW FITS tables.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/8915 target="_blank">8915</a>:
+		             Low level data processing to create RAW HK FTIS table, to be used by CHEOPSim.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/8954 target="_blank">8954</a>:
+		             Generate individual Boost Python files for each fits_data_model class to decrease compile time.</li>
+        </ul>     
+    </li>
+    <li>makefiles
+        <ul>            
+        <li><a href="https://redmine.isdc.unige.ch/issues/8939 target="_blank">8939</a>:
+                     Define python unit tests in the makecheops file</li>
+        </ul>     
+    </li>
+</ul>
+
+
+
+
+<h4>Release 4.0</h4>
+<ul>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/8719 target="_blank">8719</a>:
+		             Values of CHEOPSID, DATA_LVL and PROC_CHN keywords shall be identical in all HDU of one FITS file.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/8745 target="_blank">8745</a>:
+		             Two new data structures are defined: AUX_PRE_Orbit and AUX_RES_Orbit</li>
+        <li><a href="https://redmine.isdc.unige.ch/issues/8741 target="_blank">8741</a>:
+                     Make fits tables iterable in python for loops.</li>
+		</ul>     
+	</li>
+    <li>makefiles
+        <ul>     
+        <li><a href="https://redmine.isdc.unige.ch/issues/8816 target="_blank">8816</a>:
+                     Use default log config values if they cannot be read from the job order file.</li>
+        </ul>     
+    </li>
+    <li>program_params
+        <ul>     
+        <li><a href="https://redmine.isdc.unige.ch/issues/8813 target="_blank">8813</a>:
+                     Throw exception if GetInputFiles() is called for a struct that does not exist in the job order file.</li>
+        </ul>     
+    </li>
+</ul>
+
+
+<h4>Release 3.3</h4>
+
+<ul>
+
+	<li>utilities
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/8158 target="_blank">8158</a>:
+				     Use const in the cast from a time class to its native data type.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/8130 target="_blank">8130</a>:
+				     Updates to read and write PassId to FITS headers.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/8409 target="_blank">8409</a>:
+				     Rename of the version file to *_init.cpp; <BR>
+				     Finalize and test the UTC to MJD and MJD to UTC conversion.<br>
+				     Use leap-second file and time correlation file as provided by the job-order file.</li>
+		</ul>     
+	</li>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/8130 target="_blank">8130</a>:
+		             Define PassId header keywords, getKeyPassId and setKeyPassId functions. </li>
+  		<li><a href="https://redmine.isdc.unige.ch/issues/8127 target="_blank">8127</a>:
+		        Implementation of interface for accessing timely correct reference files.</li>
+  		<li><a href="https://redmine.isdc.unige.ch/issues/8456 target="_blank">8456</a>:
+		        There are now 7 PRW and 7 RAW housekeeing data structures defined.</li>
+ 
+		</ul>     
+	</li>
+	<li>logger
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/8133 target="_blank">8133</a>:
+				     Implementation of email alerts and the progress log level.</li>
+		</ul>     
+	</li>
+		        
+</ul>
+
+
+
+<h4>Release 3.2</h4>
+
+<b>This is a C++ release only. Do not use it with Python!</b>
+
+<ul>
+	<li>fits_dal
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/8005 target="_blank">8005</a>:
+			    Make destructor of FitsDalHeader class virtual.</li>
+		</ul>     
+	</li>
+
+	<li>utilities
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7717 target="_blank">7717</a>:
+				     Consolidate the API interface of the OBT, the UTC, the MJD and the BJD class.</li>
+		</ul>     
+	</li>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7721 target="_blank">7721</a>:
+		        Update of the createFitsFile functions</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7717 target="_blank">7717</a>:
+		        Read and write OBT, UTC, MJd and BJD keywords and columns.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7529 target="_blank">7529</a>:
+		        Update of fsd files with new keywords and columns to store times.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7719 target="_blank">7719</a>:
+		        Interface to access the timely correct reference file.</li>
+ 
+		</ul>     
+	</li>
+		        
+</ul>
+
+
+<h4>Release 3.1.1</h4>
+
+<ul>
+	<li>makefiles
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7518 target="_blank">7518</a>:
+				unit_test build does not link against project library COMPONENT_LIBS in Makefile</li>
+
+		</ul>     
+	</li>
+	<li>utilities
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7620 target="_blank">7620</a>:
+				implementation of new filename convention</li>
+		</ul>     
+	</li>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7620 target="_blank">7620</a>:
+				implementation of new filename convention in the unit_tests</li>
+		<li> Update data structures to store PSFs, defined for more temperatures.</li>	
+		</ul>     
+	</li>
+		        
+</ul>
+
+<h4>Release 3.1</h4>
+
+<ul>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7266 target="_blank">7266</a>:
+		        Two new data structures for out-of-limits.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7270 target="_blank">7270</a>:
+		        Two new data structures for instrument HK data are defined.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7278 target="_blank">7278</a>:
+		        Completed version of CreateFitsFile() functions and functions to add
+		        a next extension in a FITS files with CHEOPS compatible file-names.</li>
+		</ul>     
+	</li>
+	<li>program_params
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7280 target="_blank">7280</a>:
+				Use the format of the latest job-order file.<br>
+				Read xsd schema files from $CHEOPS_SW/resources.</li>
+
+		</ul>     
+	</li>
+		        
+</ul>
+
+<h4>Release 3.0</h4>
+
+<ul>
+	<li>fits_dal
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7056 target="_blank">7056</a>:
+			    Better error message if a new HDU cannot be created.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7053 target="_blank">7053</a>:
+			    NULL values of integer columns and images shall be supported.</li>
+		</ul>     
+	</li>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/7156 target="_blank">7156</a>:
+		        First version of CreateFitsFile() functions to create FITS files with 
+		        CHEOPS compatible file-names.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7057 target="_blank">7057</a>:
+		        Initialize the FITS columns with its NULL value or with 0.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/7053 target="_blank">7053</a>:
+			    NULL values of integer columns and images shall be supported</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6947 target="_blank">6947</a>:
+			    The data model classes do not provides the values of the 
+			    header keywords since the grouping of keywords was introduced.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6753 target="_blank">6753</a>:
+				Python interface for fits_data_model.</li>
+		</ul>     
+	</li>
+	<li>logger
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/6751 target="_blank">6751</a>:
+				Python interface for the logger module.</li>
+
+		</ul>     
+	</li>
+	<li>makefiles<ul> 
+		<li><a href="https://redmine.isdc.unige.ch/issues/6750 target="_blank">6750</a>:
+				Added LIB_TARGET2 and PYLIB_TARGET1 variables.</li>
+
+		</ul>     
+	</li>
+	<li>program_params
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/6751 target="_blank">6751</a>:
+				Python interface for the program_params module.</li>
+
+		</ul>     
+	</li>
+</ul>
+
+
+<h4>Release 2.5</h4>
+
+<ul>
+	<li>fits_data_model
+		<ul> New data structure used by the CHEOPSim: SIM_ANA_Noisecurve.fsd.
+		</ul>
+	</li>
+</ul>
+
+
+<h4>Release 2.4</h4>
+
+<ul>
+	<li>fits_data_model
+		<ul> Many updates and new fsd data structures.
+		</ul>
+	</li>
+</ul>
+
+
+<h4>Release 2.3</h4>
+
+<ul>
+	<li>fits_dal
+		<ul>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6101 target="_blank">6101</a>:
+			    Grouping if FITS header keywords</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6099 target="_blank">6099</a>:
+			    The order of the keysords in the FITS header is defined by the order in the fsd files.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6096" target="_blank">6096</a>:
+			    Verify the version of the data structure</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6076" target="_blank">6076</a>:
+			    Creation and Verification of the DATASUM and CHECKSUM keywords</li>
+		</ul>
+	</li>
+	<li>fits_data_model
+		<ul>     
+		<li><a href="https://redmine.isdc.unige.ch/issues/6363 target="_blank">6363</a>:
+			    Implement the discussed changes of the fsd FITS data structure definitions.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6280 target="_blank">6280</a>:
+			    The fits_data_model does not work with sting columns any more</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6229 target="_blank">6229</a>:
+			    Provide human readable data type names.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6141 target="_blank">6141</a>:
+			    Data structures should have a brief description and a full description.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6101 target="_blank">6101</a>:
+			    Grouping of FITS header keywords.</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/6096" target="_blank">6096</a>:
+			    Verify the version of the data structure.</li>
+		</ul>
+	</li>
+	<li>logger
+		<ul>
+		</ul>
+	</li>
+	<li>makefiles
+		<ul> 
+				<li><a href="https://redmine.isdc.unige.ch/issues/6084" target="_blank">6084</a>:
+			           Create link file of program_params_schema.xsd and job_order_schema.xsd</li>
+				<li><a href="https://redmine.isdc.unige.ch/issues/6310" target="_blank">6310</a>:
+			           Rename "MODULE" to "PRODUCT" in the release notes</li>
+		</ul>
+	</li>
+	<li>program_params
+		<ul>
+				<li><a href="https://redmine.isdc.unige.ch/issues/6265" target="_blank">6265</a>:
+			           Write a warning if there is no entry for the program in the job-order file.</li>
+		</ul>
+	</li>
+</ul>
+
+
+<h4>Release 2.2</h4>
+
+<ul>
+	<li>fits_dal
+		<ul>
+		<li><a href="https://redmine.isdc.unige.ch/issues/5739" target="_blank">5739</a>:
+			    Unit test for FITS tables</li>
+		<li><a href="https://redmine.isdc.unige.ch/issues/5783" target="_blank">5783</a>:
+			    The quotes around the string values of the keywords SVN_REV, STAMP and DATE were not set</li>
+		</ul>
+	</li>
+	<li>fits_data_model
+		<ul>     
+		</ul>
+	</li>
+	<li>logger
+		<ul>
+		</ul>
+	</li>
+	<li>makefiles
+		<ul> 
+		</ul>
+	</li>
+	<li>program_params
+		<ul>
+		</ul>
+	</li>
+</ul>
+
+
+<h4>Release 2.1</h4>
+
+<ul>
+	<li>fits_dal
+		<ul>
+		</ul>
+	</li>
+	<li>fits_data_model
+		<ul>     
+		</ul>
+	</li>
+	<li>logger
+		<ul>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5349" target="_blank">5349</a>:
+				Write output using the logger itself instead of cout.</li>
+		</ul>
+	</li>
+	<li>makefiles
+		<ul> 
+			<li><a href="https://redmine.isdc.unige.ch/issues/5348" target="_blank">5348</a>:
+				Create a symbolic link file of the schema files for the unit_tests</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5305" target="_blank">5305</a>:
+				Fix examples unit test in jenkins</li>
+		</ul>
+	</li>
+	<li>program_params
+		<ul>
+		</ul>
+	</li>
+</ul>
+
+<h4>Release 2.0</h4>
+
+
+<ul>
+	<li>fits_dal
+		<ul>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5249" target="_blank">5249</a>: 
+			       A FSD, defining an image with 64 bit integer pixels does not work</li>
+		</ul>
+	</li>
+	<li>fits_data_model
+		<ul>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5250" target="_blank">5250</a>: 
+			       a FSD definition with identical names for a table column and a header keyword does not work</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5241" target="_blank">5241</a>: 
+			       Provide doxygen version of FSD description</li>       
+		</ul>
+	</li>
+	<li>logger
+		<ul>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5261" target="_blank">5261</a>:
+				Search for settings.ini in ./resources</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5186" target="_blank">5186</a>:
+				Introduce Alert log level</li>
+		</ul>
+	</li>
+	<li>makefiles
+		<ul>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5269" target="_blank">5269</a>: 
+			       unit tests have to be linked with libpthread library on LINUX.</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5250" target="_blank">5259</a>: 
+			       It shall be possible to call unit test programs with program parameters.</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5185" target="_blank">5185</a>: 
+			       implementation of the coverage target</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5187" target="_blank">5187</a>: 
+			       Document the automatically created source code of FITS Data Model</li>
+       
+		</ul>
+	</li>
+	<li>program_params
+		<ul>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5260" target="_blank">5260</a>:
+				   Improve the error message when a value of a parameter is not defined.</li>
+			<li><a href="https://redmine.isdc.unige.ch/issues/5184" target="_blank">5184</a>:
+				   Implementation of unit tests.</li>
+
+		</ul>
+	</li>
+</ul>
+
+<h4>Release 1.0</h4>
+
+This is the first release of this component.
+
+<!-- a href="https://redmine.isdc.unige.ch/issues/4750"> makefile update</a></br>
+<a href="https://redmine.isdc.unige.ch/issues/4751"> program_params</a></br -->
+</p>
+
+<h3> Supported Platforms </h3>
+
+<p>
+The only supported platform is the <a href="https://svn.isdc.unige.ch/svn-cheops/01_management/documents/ecss/configuration_items/CHEOPS-UGE-SOC-CS-001_soc_configuration_items.xlsx" target="_blank">CHEOPS SOC Reference Platform</a>  
+</p>
+
+<b>OS</b>: CentOS 6.6<br />
+<b>Compiler</b>: gcc-c++ and devel 4.9.2
+
+<h3>Dependencies</h3>
+
+<b>3rd Party dependencies</b>
+<ul>
+<li>gcc-c++ and devel 4.9.2</li>
+<li>boost 1.57.0</li>
+<li>cfitsio and cfitsio-devel 3.3.7</li>
+<li>doxygen 1.8.9.1</li>
+<li>xerces-c 3.1.1</li>
+<li>xsd-4.0.0</li>
+<li>python 3.4</li>
+</ul>
+
+
+<b>Internal dependencies</b>
+<ul>
+<li>none</li>
+</ul>
+
+<h3> Code Coverage </h3>
+
+<table cellpadding="3" border ="1" cellspacing="0">
+  <tr><th>Module</th><th>Class coverage (%)</th><th>Line coverage (%)</th></tr>
+  <tr><td>bookkeeping</td><td>100</td><td>91</td></tr>
+  <tr><td>ccsds_telemetry</td><td>100</td><td>100</td></tr>
+  <tr><td>fits_dal</td><td>100</td><td>77</td></tr>
+  <tr><td>fits_data_model</td><td>100</td><td>82</td></tr>
+  <tr><td>logger</td><td>100</td><td>82</td></tr>
+  <tr><td>program_params</td><td>100</td><td>80</td></tr>
+  <tr><td>utilities</td><td>100</td><td>87</td></tr>
+</table>
+
+<h3> Implemented Requirements </h3>
+
+<table cellpadding="3" border ="1" cellspacing="0">
+ <tr> <th> ID </th> <th> Title </th> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-001 </td> <td> Programming Language </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-002 </td> <td> Scripting Language </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-003 </td> <td> Data Format </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-004 </td> <td> Data Structures </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-005 </td> <td> Access Methods </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-006 </td> <td> Fraction of a Data Structure </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-DAL-FUN-007 </td> <td> Multi User </td> </tr>
+
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-001 </td> <td> Software Configuration </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-002 </td> <td> Logging Functions </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-003 </td> <td> Build Utility </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-004 </td> <td> Building unit tests </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-005 </td> <td> Reporting tool </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-007 </td> <td> Limit check </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-008 </td> <td> Output of the limit check program </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-009 </td> <td> Access to program parameters </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-010 </td> <td> Provision of input data </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-011 </td> <td> Provision of output directory </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-012 </td> <td> Trigger file </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-013 </td> <td> Xml interface schema </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-014 </td> <td> Star catalogue </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-015 </td> <td> StarMap </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-UTIL-FUN-016 </td> <td> PI Notification </td> </tr>
+
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-001 </td> <td> Software Integration </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-002 </td> <td> Processing of Data Sets </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-003 </td> <td> Inspection </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-006 </td> <td> Alert API Functions </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-007 </td> <td> Alert levels </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-008 </td> <td> Alert e-mails </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-009 </td> <td> Alert Groups </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-PER-010 </td> <td> Alert delay </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-PER-010 </td> <td> Processing status </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-013 </td> <td> e-mail notification </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-015 </td> <td> Disable the sending of e-mails </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-015 </td> <td> Data Level Dependencies </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-016 </td> <td> Re-processing </td> </tr>
+
+
+ <tr> <td> CHEOPS-SOC-RS-INFR-VIS-FUN-001 </td> <td> Type of displays </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-VIS-FUN-002 </td> <td> Housekeeping Display </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-VIS-FUN-003 </td> <td> Image Display </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-VIS-FUN-004 </td> <td> Data </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-VIS-FUN-005 </td> <td> Data Levels </td> </tr>
+
+ <tr> <td> CHEOPS-SOC-RS-INFR-HW-OPS-003 </td> <td> Hardware during Mission Phases </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-HW-OPS-004 </td> <td> Development and Test Hardware </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-HW-OPS-005 </td> <td> Authentication System </td> </tr>
+
+</table>
+
+<h3> Not yet Implemented Requirements </h3>
+
+<table cellpadding="3" border ="1" cellspacing="0"> 
+
+ <tr> <th> ID </th> <th> Title </th> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-PER-011 </td> <td> Alert display </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-PROC-FUN-014 </td> <td> Forwarding the e-mail </td> </tr>
+ 
+ <tr> <td> CHEOPS-SOC-RS-INFR-HW-OPS-001 </td> <td> Operations Hardware </td> </tr>
+ <tr> <td> CHEOPS-SOC-RS-INFR-HW-OPS-002 </td> <td> Re-Processing Hardware </td> </tr>
+
+</table>
+
+
+
+</body>
+</html>

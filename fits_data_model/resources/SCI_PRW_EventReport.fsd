@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 10.0.1    16. 08. 2018 RRO #16908
+			- new header keyword: EV_PR_RF
+
+        version 5.1  01. 02. 2016 RRO
+           - new data structure
+-->   
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd"> 
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC     SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordPassVisit     	SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY ColumnTimeHKPrw        SYSTEM "ColumnTimeHKPrw.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_PRW_EventReport">
+        <brief> Event Reports, provided by Service 5 TM </brief>
+        <description> There is one row per reported event. All types of every 
+                      event IDs and of all severity levels are stored in 
+                      this table. </description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="10.0.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordPassVisit;   
+             <group description="Used reference files">
+    			<keyword name="EV_PR_RF"  data_type="string" default="N/A" comment="name of event parameter reference file"/>
+             </group>
+        </header>
+        
+        <table>
+            &ColumnTimeHKPrw;
+			<column name="SEVERITY"      data_type="uint8"  comment="severity level of event, 1-4" />
+			<column name="EVT_ID"        data_type="uint16" comment="ID of the event"/>
+			<column name="PARAM_1"       data_type="uint32" null="4294967295"  comment="value of parameter 1" />
+			<column name="PARAM_2"       data_type="uint32" null="4294967295"  comment="value of parameter 2" />
+			<column name="PARAM_3"       data_type="uint32" null="4294967295"  comment="value of parameter 3" />
+			<column name="PARAM_4"       data_type="uint32" null="4294967295"  comment="value of parameter 4" />
+			<column name="PARAM_5"       data_type="uint32" null="4294967295"  comment="value of parameter 5" />
+			<column name="PARAM_6"       data_type="uint32" null="4294967295"  comment="value of parameter 6" />
+			<column name="PARAM_7"       data_type="uint32" null="4294967295"  comment="value of parameter 7" />
+			<column name="PARAM_8"       data_type="uint32" null="4294967295"  comment="value of parameter 8" />
+			<column name="PARAM_9"       data_type="uint32" null="4294967295"  comment="value of parameter 9" />
+			<column name="PARAM_10"      data_type="uint32" null="4294967295"  comment="value of parameter 10" />
+			<column name="PARAM_11"      data_type="uint32" null="4294967295"  comment="value of parameter 11" />
+			<column name="PARAM_12"      data_type="uint32" null="4294967295"  comment="value of parameter 12" />
+			<column name="PARAM_13"      data_type="uint32" null="4294967295"  comment="value of parameter 13" />
+        </table>
+    </HDU>
+</FITS_schema>

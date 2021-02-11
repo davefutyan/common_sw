@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+-->
+
+<!DOCTYPE FITS_schema [
+    <!ENTITY KeywordDataLevel05     SYSTEM "KeywordDataLevel05.ifsd">
+    <!ENTITY KeywordProcChain       SYSTEM "KeywordProcChain.ifsd">
+    <!ENTITY KeywordCheops          SYSTEM "KeywordCheops.ifsd">
+    <!ENTITY KeywordValidity        SYSTEM "KeywordValidity.ifsd">
+    <!ENTITY KeywordPassVisit       SYSTEM "KeywordPassVisit.ifsd">
+    <!ENTITY KeywordTarget          SYSTEM "KeywordTarget.ifsd">
+    <!ENTITY KeywordSkyPos          SYSTEM "KeywordSkyPos.ifsd">
+    <!ENTITY ColumnTimeHKL05        SYSTEM "ColumnTimeHKL05.ifsd">
+    <!ENTITY KeywordPPReferenceFiles  SYSTEM "KeywordPPReferenceFiles.ifsd"> 
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="SCI_RAW_HkIbswPar">
+        <brief> L0.5 product : IBSW Parameters (SID = 5) </brief>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevel05;
+             &KeywordProcChain;
+             &KeywordCheops;
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit;
+             &KeywordSkyPos;
+             &KeywordPPReferenceFiles;
+       </header>
+
+        <table>
+            &ColumnTimeHKL05;
+            <column name="SEM_ON_CODE"     data_type="uint8"  comment="Code to be applied to the DPU FPGA to switch on the SEM"/>
+            <column name="SEM_OFF_CODE"    data_type="uint8"  comment="Code to be applied to the DPU FPGA to switch off the SEM"/>
+            <column name="ACQ_PH"          data_type="uint16" comment="Phase of acquisition algorthm notification within an image acquisition interval"/>
+            <column name="milFrameDelay"   data_type="uint32"/>
+            <column name="EL1_CHIP"        data_type="string" bin_size="5"   cal_curve="DPKT7026TM" comment="Flash chip where the first error log block is stored"/>
+            <column name="EL2_CHIP"        data_type="string" bin_size="5"   cal_curve="DPKT7026TM" comment="Flash chip where the second error log block is stored"/>
+            <column name="EL1_ADDR"        data_type="uint32" comment="Address of first error log block within the chip EL1_CHIP"/>
+            <column name="EL2_ADDR"        data_type="uint32" comment="Address of second error log block within the chip EL2_CHIP"/>
+            <column name="ERR_LOG_ENB"     data_type="uint8"  comment="Enable status of Error Log"/>
+            <column name="FBF_BLCK_WR_DUR" data_type="uint32" comment="Maximum period with which FBF write operations may be done (in cycles)"/>
+            <column name="FBF_BLCK_RD_DUR" data_type="uint32" comment="Maximum period with which FBF read operations may be done (in cycles)"/>
+            <column name="THR_MA_A_1"      data_type="float"  comment="Coefficient in formula for computation of average execution time"/>
+            <column name="THR_MA_A_2"      data_type="float"  comment="Coefficient in formula for computation of average execution time"/>
+            <column name="THR_MA_A_3"      data_type="float"  comment="Coefficient in formula for computation of average execution time"/>
+            <column name="THR_MA_A_4"      data_type="float"  comment="Coefficient in formula for computation of average execution time"/>
+            <column name="THR_MA_A_5"      data_type="float"  comment="Coefficient in formula for computation of average execution time"/>
+            <column name="OTA_TM1A_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM1A_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM1B_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM1B_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM2A_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM2A_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM2B_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM2B_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM3A_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM3A_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM3B_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM3B_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM4A_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM4A_RED"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM4B_NOM"    data_type="float"  unit="micA"/>
+            <column name="OTA_TM4B_RED"    data_type="float"  unit="micA"/>
+        </table>
+    </HDU>
+</FITS_schema>

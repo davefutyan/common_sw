@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+		version 13.1   03. 11. 2020 MBE
+			- #22841: Add T_EFF to KeywordTarget.ifsd
+
+		version 13.0  28. 08. 2020 MBE
+			- #22243: CHEOPS and Gaia magnitudes in the output data
+			- #22260: Clean-up epoch for attitude information
+
+       version 12.1.5  22. 05. 2020
+           - ABE #21321 Move the keywords PROVIDER and DESCRIP into KeywordFileAttributes.ifsd
+        
+		version 10.3    01. 11. 2018 RRO
+		    - #17482 new header keywords:
+		    	PROC_CHN, PASS_ID, PI_NAME, PI_UID, OBS_CAT, PROGTYPE, PROG_ID, REQ_ID
+		    	VISITCTR, OBSID, PRP_VST1, PRP_VSTN, RA_TARG, DEC_TARG, EQUINOX,
+		    	RADESYS, V_STRT_M, V_STOP_M
+
+ 		version 10.1     10. 09. 2018 RRO
+           - #16640 new data structure
+-->   
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelQL      SYSTEM "KeywordDataLevelQL.ifsd"> 
+    <!ENTITY KeywordProcChain        SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops           SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity         SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordTarget           SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordPassVisit        SYSTEM "KeywordPassVisit.ifsd"> 
+    <!ENTITY KeywordSkyPos           SYSTEM "KeywordSkyPos.ifsd"> 
+    <!ENTITY KeywordFileAttributes   SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="PIP_REP_BadPixelMapFullArray">
+        <brief>Bad Pixel Map of a Full-Array</brief>
+        <description>Pixels can have following values: -2: totally dead pixel, 
+                     -1 = partially dead pixel, 0 = good pixel, 1 = hot pixel, 
+                     2 = saturated pixel, 3 = telegraphic pixel</description>
+        <header>
+            <keyword name="EXT_VER"		data_type="string" default="13.1" comment="version of the data structure"/>
+             &KeywordDataLevelQL;
+             &KeywordProcChain;
+             &KeywordCheops; 
+             &KeywordValidity;
+             &KeywordTarget;
+             &KeywordPassVisit; 
+             &KeywordSkyPos;
+             &KeywordFileAttributes;
+            <group description="Bad Pixel Map attributes">
+                <keyword name="METHOD"    data_type="string" comment="applied method to detect bad pixels"/>
+                <keyword name="METH_LIM"  data_type="real"   comment="limit to detect bad pixels by the METHOD"/>
+            </group>
+            <group description="Used reference files">
+              <keyword name="GAIN_RF"  data_type="string" default="N/A" comment="name of Gain Correction reference file"/>
+              <keyword name="FF_RF"    data_type="string" default="N/A" comment="name of flat field reference file"/>
+              <keyword name="DARK_RF"  data_type="string" default="N/A" comment="name of dark frame reference file"/>
+            </group>
+            
+        </header>
+        <image data_type="int16">
+            <naxis>2</naxis>
+            <axis1 comment="X axis">1024</axis1>
+            <axis2 comment="Y axis">1024</axis2>
+        </image>
+    </HDU>
+
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="image">PIP_REP_BadPixelMapLeft</Associated_HDU>
+    	<Associated_HDU HDU_Type="image">PIP_REP_BadPixelMapRight</Associated_HDU>
+    	<Associated_HDU HDU_Type="image">PIP_REP_BadPixelMapTop</Associated_HDU>
+    </List_of_Associated_HDUs>
+
+</FITS_schema>

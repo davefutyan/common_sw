@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!--  includes -->
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevel2        SYSTEM "KeywordDataLevel2.ifsd"> 
+    <!ENTITY KeywordProcChain         SYSTEM "KeywordProcChain.ifsd"> 
+    <!ENTITY KeywordCheops            SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidity          SYSTEM "KeywordValidity.ifsd"> 
+    <!ENTITY KeywordTarget            SYSTEM "KeywordTarget.ifsd"> 
+    <!ENTITY KeywordVisit             SYSTEM "KeywordVisit.ifsd"> 
+    <!ENTITY KeywordSkyPosAngle       SYSTEM "KeywordSkyPosAngle.ifsd"> 
+]>
+
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="RPT_COR_DataReduction">
+        <brief>Defining the meta data of a Data Redcution report.</brief> 
+        <header>
+           <keyword name="EXT_VER"  data_type="string" default="4.4" comment="version of this rsd file."/>
+           <keyword name="RPT_TYPE" data_type="string"               comment="value taken from job-order file"/>
+           <keyword name="PRG_NAME" data_type="string"               comment="program creating this report"/>
+           <keyword name="PRG_VER"  data_type="string"               comment="version of program creating this report"/>
+           <keyword name="DATE"     data_type="string"               comment="time when the report is created"/>
+            &KeywordDataLevel2;
+            &KeywordProcChain;
+            &KeywordCheops; 
+            &KeywordValidity;
+            &KeywordTarget;
+            &KeywordVisit;
+            &KeywordSkyPosAngle;
+        </header>
+    </HDU>
+    
+</FITS_schema>

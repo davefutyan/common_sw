@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+        version 12.1.5  22. 05. 2020
+           - ABE #21321 New header keywords, see KeywordFileAttributes
+        
+        version 6.2  30. 08. 2016 RRO
+           - new data structure
+-->   
+
+
+<!DOCTYPE FITS_schema [ 
+    <!ENTITY KeywordDataLevelExt   SYSTEM "KeywordDataLevelExt.ifsd"> 
+    <!ENTITY KeywordCheops         SYSTEM "KeywordCheops.ifsd"> 
+    <!ENTITY KeywordValidityUTC    SYSTEM "KeywordValidityUTC.ifsd"> 
+    <!ENTITY KeywordFileAttributes SYSTEM "KeywordFileAttributes.ifsd">
+]>
+
+<FITS_schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="fits_data_model_schema.xsd">
+    <HDU extname="EXT_APP_DE1">
+        <brief> First extension of the JPL Planetary Ephemeris DE200/LE200 file</brief>
+        <description></description>
+        <header>
+            <keyword name="EXT_VER"  data_type="string" default="12.1.5" comment="version of the data structure"/>
+             &KeywordDataLevelExt;
+             &KeywordCheops; 
+             &KeywordValidityUTC;
+             &KeywordFileAttributes;
+        </header>
+        
+        <table>
+            <column name="Cname"       data_type="string" bin_size="6"  comment="Names of constants"/>
+            <column name="Cvalue"      data_type="double"               comment="Values of constants"/>
+       </table>
+    </HDU>
+    
+    <List_of_Associated_HDUs>
+    	<Associated_HDU HDU_Type="table" >EXT_APP_DE2</Associated_HDU>
+    	<Associated_HDU HDU_Type="table" >EXT_APP_DE3</Associated_HDU>
+    </List_of_Associated_HDUs>
+    
+    
+</FITS_schema>
