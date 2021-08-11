@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Earth_Explorer_File xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Earth_Explorer_Header>
+        <Fixed_Header>
+            <File_Name>CH_TU2010-11-22T00-00-00_EXT_APP_ObservationRequests_V0000</File_Name>
+            <File_Description>Observation Request</File_Description>
+            <Notes></Notes>
+            <Mission>CHEOPS</Mission>
+            <File_Class>TEST</File_Class>
+            <File_Type>EXT_APP_ObservationRequests</File_Type>
+            <Validity_Period>
+                <Validity_Start>UTC=2010-11-22T00:00:00</Validity_Start>
+                <Validity_Stop>UTC=2050-01-01T00:00:00</Validity_Stop>
+            </Validity_Period>
+            <File_Version>0001</File_Version>
+            <Source>
+                <System>PSO</System>
+                <Creator>PHT2</Creator>
+                <Creator_Version>001</Creator_Version>
+                <Creation_Date>UTC=2015-11-22T16:25:23</Creation_Date>
+            </Source>
+        </Fixed_Header>
+
+        <Variable_Header>
+            <Programme_Type>12</Programme_Type>
+        </Variable_Header>
+    </Earth_Explorer_Header>
+
+
+    <Data_Block type="xml">
+    
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!--             Time Critical Requests                    -->
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+        <List_of_Time_Critical_Requests count="1">
+        	<Time_Critical_Request>
+	            <Programme_ID>0001</Programme_ID>
+	            <Observation_Request_ID>0001</Observation_Request_ID>
+	            <Observation_Category>time critical</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">547</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">365</Proprietary_Period_Last_Visit>
+	            <Target_Name>HD 1461 b</Target_Name>
+	            <Spectral_Type>G0V</Spectral_Type>
+	            <Target_Magnitude unit="mag">06.64</Target_Magnitude>
+                <Target_Magnitude_Error unit="mag">0.04</Target_Magnitude_Error>
+	            <Readout_Mode>faint fast</Readout_Mode>
+                <Right_Ascension unit="deg">004.675000</Right_Ascension>
+                <Declination unit="deg">-08.053056</Declination>
+                <RA_Proper_Motion unit="mas/year">0.03</RA_Proper_Motion>
+                <DEC_Proper_Motion unit="mas/year">-0.4</DEC_Proper_Motion>
+                <Parallax unit="mas">34.4</Parallax>
+                <T_Eff unit="Kelvin">3400</T_Eff>
+                <Extinction unit="mag">0.4</Extinction>
+                <Earliest_Start unit="BJD">+00000.000000</Earliest_Start>
+                <Latest_End unit="BJD">+99999.000000</Latest_End>
+                <Exposure_Time unit="sec">+060.00</Exposure_Time>
+                <Repetition_Period unit="sec">120.0</Repetition_Period>
+                <Number_Stacked_Images>02</Number_Stacked_Images>
+                <Number_Stacked_Imagettes>1</Number_Stacked_Imagettes>
+                <Transit_Time unit="BJD">+05076.307551</Transit_Time>
+                <Transit_Period unit="days">+005.772700</Transit_Period>
+                <Visit_Duration unit="sec">+043200</Visit_Duration>
+                <Number_of_Visits>02</Number_of_Visits>
+                <Continuous_Visits>false</Continuous_Visits>
+                <Priority>001</Priority>
+                <Minimum_Effective_Duration unit="%">55</Minimum_Effective_Duration>
+                <Earliest_Observation_Start unit="phase">0.75</Earliest_Observation_Start>
+                <Latest_Observation_Start unit="phase">0.25</Latest_Observation_Start>
+                <List_of_Phase_Ranges count="2">
+                    <Phase_Range>
+                        <Start unit="phase">0.80</Start>
+                        <End unit="phase">0.85</End>
+                        <Minimum_Phase_Duration  unit="%">80</Minimum_Phase_Duration>
+                    </Phase_Range>
+                    <Phase_Range>
+                        <Start unit="phase">0.15</Start>
+                        <End unit="phase">0.2</End>
+                        <Minimum_Phase_Duration  unit="%">80</Minimum_Phase_Duration>
+                    </Phase_Range>
+                </List_of_Phase_Ranges>
+                <Fulfil_all_Phase_Ranges>false</Fulfil_all_Phase_Ranges>
+                <Send_Data_Taking_During_SAA>true</Send_Data_Taking_During_SAA>
+                <Send_Data_Taking_During_Earth_Constraints>false</Send_Data_Taking_During_Earth_Constraints>
+                <PITL>true</PITL>
+        	</Time_Critical_Request>
+        </List_of_Time_Critical_Requests>
+  
+  	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!--             Non Time Critical Requests                -->
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+    
+        <List_of_Non_Time_Critical_Requests count="2">
+        	<Non_Time_Critical_Request>
+	            <Programme_ID>41</Programme_ID>
+	            <Observation_Request_ID>0002</Observation_Request_ID>
+	            <Observation_Category>non time critical</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">547</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">365</Proprietary_Period_Last_Visit>
+   	            <Target_Name>HD 1461 b</Target_Name>
+	            <Spectral_Type>G0V</Spectral_Type>
+	            <Target_Magnitude unit="mag">06.64</Target_Magnitude>
+                <Target_Magnitude_Error unit="mag">0.04</Target_Magnitude_Error>
+                <Readout_Mode>bright</Readout_Mode>
+                <Right_Ascension unit="deg">004.675000</Right_Ascension>
+                <Declination unit="deg">-08.053056</Declination>
+                <RA_Proper_Motion unit="mas/year">0.03</RA_Proper_Motion>
+                <DEC_Proper_Motion unit="mas/year">-0.4</DEC_Proper_Motion>
+                <Parallax unit="mas">34.4</Parallax>
+                <T_Eff unit="Kelvin">3400</T_Eff>
+                <Extinction unit="mag">0.4</Extinction>
+                <Earliest_Start unit="BJD">+00000.000000</Earliest_Start>
+                <Latest_End unit="BJD">+99999.000000</Latest_End>
+                <Exposure_Time unit="sec">+060.00</Exposure_Time>
+                <Number_Stacked_Images>10</Number_Stacked_Images>
+                <Number_Stacked_Imagettes>2</Number_Stacked_Imagettes>
+                <Visit_Duration unit="sec">+043200</Visit_Duration>
+                <Number_of_Visits>02</Number_of_Visits>
+                <Continuous_Visits>false</Continuous_Visits>
+                <Priority>001</Priority>
+                <Minimum_Effective_Duration unit="%">44</Minimum_Effective_Duration>
+                <Send_Data_Taking_During_SAA>false</Send_Data_Taking_During_SAA>
+                <Send_Data_Taking_During_Earth_Constraints>false</Send_Data_Taking_During_Earth_Constraints>
+                <PITL>true</PITL>
+        	</Non_Time_Critical_Request>
+         	<Non_Time_Critical_Request>
+	            <Programme_ID>41</Programme_ID>
+	            <Observation_Request_ID>0012</Observation_Request_ID>
+	            <Observation_Category>non time critical</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">200</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">50</Proprietary_Period_Last_Visit>
+   	            <Target_Name>HD 1461 b</Target_Name>
+	            <Spectral_Type>G0V</Spectral_Type>
+                <Target_Magnitude unit="mag">06.64</Target_Magnitude>
+                <Target_Magnitude_Error unit="mag">0.04</Target_Magnitude_Error>
+	            <Readout_Mode>faint fast</Readout_Mode>
+                <Right_Ascension unit="deg">004.675000</Right_Ascension>
+                <Declination unit="deg">-08.053056</Declination>
+                <RA_Proper_Motion unit="mas/year">0.03</RA_Proper_Motion>
+                <DEC_Proper_Motion unit="mas/year">-0.4</DEC_Proper_Motion>
+                <Parallax unit="mas">34.4</Parallax>
+                <T_Eff unit="Kelvin">3400</T_Eff>
+                <Exposure_Time unit="sec">+060.00</Exposure_Time>
+                <Number_Stacked_Images>20</Number_Stacked_Images>
+                 <Number_Stacked_Imagettes>4</Number_Stacked_Imagettes>
+                <Visit_Duration unit="sec">+043200</Visit_Duration>
+                <Number_of_Visits>02</Number_of_Visits>
+                <Continuous_Visits>false</Continuous_Visits>
+                <Priority>001</Priority>
+                <Minimum_Effective_Duration unit="%">89</Minimum_Effective_Duration>
+                <Send_Data_Taking_During_SAA>true</Send_Data_Taking_During_SAA>
+                <Send_Data_Taking_During_Earth_Constraints>true</Send_Data_Taking_During_Earth_Constraints>
+                <PITL>true</PITL>
+        	</Non_Time_Critical_Request>
+        </List_of_Non_Time_Critical_Requests>
+    
+  	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!--                  M&C flat field Requests                    -->
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+        <List_of_MC_Flat_Field_Requests count="1">
+        	<MC_FlatField_Requests>
+	            <Programme_ID>0004</Programme_ID>
+	            <Observation_Request_ID>0301</Observation_Request_ID>
+	            <Observation_Category>flat field</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">0</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">0</Proprietary_Period_Last_Visit>
+	            <Target_Name>HD 1461 b</Target_Name>
+	            <Readout_Mode>faint</Readout_Mode>
+                <Right_Ascension unit="deg">004.675000</Right_Ascension>
+                <Declination unit="deg">-08.053056</Declination>
+                <Earliest_Start unit="BJD">+00000.000000</Earliest_Start>
+                <Latest_End unit="BJD">+99999.000000</Latest_End>
+                <Exposure_Time unit="sec">0.00</Exposure_Time>
+                <Number_Stacked_Images>1</Number_Stacked_Images>
+                <Number_Stacked_Imagettes>0</Number_Stacked_Imagettes>
+                <Number_of_Visits>25</Number_of_Visits>
+                <Continuous_Visits>true</Continuous_Visits>
+                <Number_of_Images>250</Number_of_Images>
+                <Priority>002</Priority>
+                <Window_Type>window</Window_Type>
+                <Window_Size_X unit = "pixel">150</Window_Size_X>
+                <Window_Size_Y unit = "pixel">150</Window_Size_Y>
+                <Margin_Mode>none</Margin_Mode>
+                <List_of_Visit_Offsets count = "3">
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">500</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">500</Visit_Offset_Y>
+                	</Visit_Offsets>
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">450</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">500</Visit_Offset_Y>
+                	</Visit_Offsets>
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">500</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">450</Visit_Offset_Y>
+                	</Visit_Offsets>
+                
+                </List_of_Visit_Offsets>
+                <PITL>false</PITL>
+        	</MC_FlatField_Requests>
+        </List_of_MC_Flat_Field_Requests>
+  
+  	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!--                  M&C Dark Requests                    -->
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+        <List_of_MC_Dark_Requests count="1">
+        	<MC_Dark_Requests>
+	            <Programme_ID>0004</Programme_ID>
+	            <Observation_Request_ID>0301</Observation_Request_ID>
+	            <Observation_Category>dark</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">0</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">0</Proprietary_Period_Last_Visit>
+	            <Target_Name>HD 1461 b</Target_Name>
+	            <Readout_Mode>ultrabright</Readout_Mode>
+	            <Readout_Mode>faint</Readout_Mode>
+                <Right_Ascension unit="deg">004.675000</Right_Ascension>
+                <Declination unit="deg">-08.053056</Declination>
+                <Earliest_Start unit="BJD">+00000.000000</Earliest_Start>
+                <Latest_End unit="BJD">+99999.000000</Latest_End>
+                <Exposure_Time unit="sec">0.00</Exposure_Time>
+                <Exposure_Time unit="sec">+060.00</Exposure_Time>
+                <Repetition_Period unit="sec">2.0</Repetition_Period>
+                <Repetition_Period unit="sec">60.0</Repetition_Period>
+                <Number_Stacked_Images>1</Number_Stacked_Images>
+                <Number_Stacked_Imagettes>0</Number_Stacked_Imagettes>
+                <Transit_Time unit="BJD">+05076.307551</Transit_Time>
+                <Transit_Period unit="days">+005.772700</Transit_Period>
+                <Number_of_Visits>2</Number_of_Visits>
+                <Continuous_Visits>true</Continuous_Visits>
+                <Number_of_Images>10</Number_of_Images>
+                <Number_of_Images>10</Number_of_Images>
+                <Priority>001</Priority>
+                <Earliest_Observation_Start unit="phase">0.75</Earliest_Observation_Start>
+                <Latest_Observation_Start unit="phase">0.25</Latest_Observation_Start>
+                <Window_Type>window</Window_Type>
+                <Window_Size_X unit = "pixel">150</Window_Size_X>
+                <Window_Size_Y unit = "pixel">150</Window_Size_Y>
+                <Window_Offset_X unit = "pixel">300</Window_Offset_X>
+                <Window_Offset_Y unit = "pixel">450</Window_Offset_Y>
+                <Margin_Mode>image</Margin_Mode>
+                <List_of_Visit_Offsets count = "3">
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">500</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">500</Visit_Offset_Y>
+                	</Visit_Offsets>
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">450</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">500</Visit_Offset_Y>
+                	</Visit_Offsets>
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">500</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">450</Visit_Offset_Y>
+                	</Visit_Offsets>
+                
+                </List_of_Visit_Offsets>
+                <List_of_Visit_Offsets count = "3">
+                 	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">500</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">500</Visit_Offset_Y>
+                	</Visit_Offsets>
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">450</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">500</Visit_Offset_Y>
+                	</Visit_Offsets>
+                	<Visit_Offsets>
+                		<Visit_Offset_X unit = "pixel">500</Visit_Offset_X>
+                		<Visit_Offset_Y unit = "pixel">450</Visit_Offset_Y>
+                	</Visit_Offsets>
+                </List_of_Visit_Offsets>
+                <PITL>false</PITL>
+        	</MC_Dark_Requests>
+        </List_of_MC_Dark_Requests>
+  
+    
+   	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+	<!--             Straylight Requests                       -->
+	<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+    
+    
+        <List_of_MC_Straylight_Requests count="2">
+        	<MC_Straylight_Requests>
+	            <Programme_ID>35</Programme_ID>
+	            <Observation_Request_ID>0004</Observation_Request_ID>
+	            <Observation_Category>straylight</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">0</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">0</Proprietary_Period_Last_Visit>
+   	            <Target_Name>Straylight Moon</Target_Name>
+                <Readout_Mode>bright</Readout_Mode>
+                <Readout_Mode>bright</Readout_Mode>
+                <Readout_Mode>faint</Readout_Mode>
+                <Right_Ascension unit="deg">004.645000</Right_Ascension>
+                <Right_Ascension unit="deg">004.05000</Right_Ascension>
+                <Right_Ascension unit="deg">004.675000</Right_Ascension>
+                <Declination unit="deg">-08.053056</Declination>
+                <Declination unit="deg">-08.163056</Declination>
+                <Declination unit="deg">-08.356856</Declination>
+                <Earliest_Start unit="BJD">+00000.000000</Earliest_Start>
+                <Latest_End unit="BJD">+99999.000000</Latest_End>
+                <Exposure_Time unit="sec">7.00</Exposure_Time>
+                <Exposure_Time unit="sec">11.50</Exposure_Time>
+                <Exposure_Time unit="sec">26.30</Exposure_Time>
+                <Number_Stacked_Images>1</Number_Stacked_Images>
+                <Number_Stacked_Imagettes>0</Number_Stacked_Imagettes>
+                <Number_of_Visits>03</Number_of_Visits>
+                <Continuous_Visits>true</Continuous_Visits>
+                <Number_of_Images>1</Number_of_Images>
+                <Priority>2</Priority>
+                <Window_Type>full frame</Window_Type>
+                <Avoid_Earth_Occultation>true</Avoid_Earth_Occultation>
+                <Send_Data_Taking_During_Earth_Constraints>true</Send_Data_Taking_During_Earth_Constraints>
+                <Respect_Moon_Exclusion_Angle>false</Respect_Moon_Exclusion_Angle>
+                <PITL>false</PITL>
+        	</MC_Straylight_Requests>
+         	<MC_Straylight_Requests>
+	            <Programme_ID>41</Programme_ID>
+	            <Observation_Request_ID>0234</Observation_Request_ID>
+	            <Observation_Category>straylight</Observation_Category>
+	            <Proprietary_Period_First_Visit unit="days">0</Proprietary_Period_First_Visit>
+	            <Proprietary_Period_Last_Visit unit="days">0</Proprietary_Period_Last_Visit>
+   	            <Target_Name>Straylight Planet</Target_Name>
+                <Readout_Mode>bright</Readout_Mode>
+                <Readout_Mode>bright</Readout_Mode>
+                <Readout_Mode>faint</Readout_Mode>
+                <Right_Ascension unit="deg">044.645000</Right_Ascension>
+                <Right_Ascension unit="deg">044.05000</Right_Ascension>
+                <Right_Ascension unit="deg">044.675000</Right_Ascension>
+                <Declination unit="deg">-18.053056</Declination>
+                <Declination unit="deg">-18.163056</Declination>
+                <Declination unit="deg">-18.356856</Declination>
+                <Earliest_Start unit="BJD">+00000.000000</Earliest_Start>
+                <Latest_End unit="BJD">+99999.000000</Latest_End>
+                <Exposure_Time unit="sec">7.00</Exposure_Time>
+                <Exposure_Time unit="sec">11.50</Exposure_Time>
+                <Exposure_Time unit="sec">26.30</Exposure_Time>
+                <Number_Stacked_Images>1</Number_Stacked_Images>
+                <Number_Stacked_Imagettes>0</Number_Stacked_Imagettes>
+                <Number_of_Visits>03</Number_of_Visits>
+                <Continuous_Visits>true</Continuous_Visits>
+                <Number_of_Images>1</Number_of_Images>
+                <Priority>001</Priority>
+                <Window_Type>window</Window_Type>
+                <Window_Size_X unit = "pixel">150</Window_Size_X>
+                <Window_Size_Y unit = "pixel">150</Window_Size_Y>
+                <Window_Offset_X unit = "pixel">240</Window_Offset_X>
+                <Window_Offset_Y unit = "pixel">790</Window_Offset_Y>
+                <Margin_Mode>total collapsed</Margin_Mode>
+                <Avoid_Earth_Occultation>false</Avoid_Earth_Occultation>
+                <Send_Data_Taking_During_Earth_Constraints>true</Send_Data_Taking_During_Earth_Constraints>
+                <Respect_Moon_Exclusion_Angle>true</Respect_Moon_Exclusion_Angle>
+                <PITL>false</PITL>
+        	</MC_Straylight_Requests>
+        </List_of_MC_Straylight_Requests>
+    
+    
+    </Data_Block>
+</Earth_Explorer_File>

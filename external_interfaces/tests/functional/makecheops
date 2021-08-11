@@ -1,0 +1,8 @@
+FUNCTIONAL_TESTS += test_iGSAvailability
+FUNCTIONAL_TESTS += test_iActivityPlan
+FUNCTIONAL_TESTS += test_iTCDefinition
+FUNCTIONAL_TESTS += test_orbit
+FUNCTIONAL_TESTS += test_iobtutc
+FUNCTIONAL_TESTS += test_ObservationRequests
+FUNCTIONAL_TESTS += test_Programmes
+FUNCTIONAL_TESTS += test_PHT1Programmes

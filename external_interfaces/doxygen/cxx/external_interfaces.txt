@@ -1,0 +1,30 @@
+/** ****************************************************************************
+   @defgroup External_Interfaces  External Interfaces
+   @author Reiner Rohlfs UGE
+  
+   @brief This module provides XML schema for external interfaces
+    
+  Currently schema file for following interfaces are provided:
+  
+  - Observation Programmes
+  - Observation Requestes
+  - Default Obs Req Parameters
+  - Default TC Parameters
+  - iManifest
+  - iOrbitEvents 
+  - iOBTUTC : OBT/UTC TIME CORRELATION
+  - iRefOrbit : REFERENCE ORBIT FILE 
+  - iPredictedOrbit : PREDICTED ORBITAL EPHEMERIDES 
+  - iRestitudOrbit : HISTORICAL ORBITAL EPHEMERIDES 
+  - iActivityConversionReport
+  - iActivityPlan
+  - iAlgorithms
+  - iGSAvailability
+  - iHKTMParameters
+  - iInstrument13
+  - iMOCConstraintCheckReport
+  - iPlatformRequest
+  - iTCDefinitionFile
+  - iTCReport
+
+ */

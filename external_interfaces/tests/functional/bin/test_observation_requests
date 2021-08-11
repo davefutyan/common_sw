@@ -1,0 +1,2 @@
+xmllint --noout --schema ../../resources/ext_app_observation_requests_schema.xsd ./resources/CH_TU2010-11-22T00-00-00_EXT_APP_ObservationRequests_V0000.xml
+exit $?

@@ -1,0 +1,914 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" >
+
+
+<!--  Change record
+
+	version 13.0 MBE
+		- #22338: CHEOPS and Gaia magnitudes in the output data
+
+	Version 11.4   
+	  - #19320 12. 08. 2019 RRO: set lower limit of Magnitude_type to 0 mag
+
+	Version 11.2
+	  - #18798 13. 05. 2019 RRO: The proprietary period for M&C visits are not
+	                             fixed to 0 days any more.
+
+	Version 11.1
+	  - #18678 29. 04. 2019 RRO : Parameter T_Eff is mandatory for time critical,
+	                              for non time critical, for flux sensitivity and 
+	                              for reference transit observations requests.
+
+    Version 10.2
+      - #17525 16. 11. 2018 RRO: New mandatory field for all observation 
+                                 categories: Number_Stacked_Imagettes
+    
+	Version 9.2.1
+	  - #16130 14. 05. 2018 RRO: Send_Data_Taking_During_Occultation changed to  
+	                             Send_Data_Taking_During_Earth_Constraints for 
+                                 ReferenceTransit
+	Version 9.2
+	  - #14368 25. 04. 2018 RRO: New tag for Time_Critical and MC_Reference_Transit
+	                             observation requests: Fulfil_all_Phase_Ranges
+	  - #16015 25. 04. 2018 RRO: Dark M&C Observation Requests have always 2 visits   
+	  - #15995 25. 04. 2018 RRO: The option "auto" of the Readout_Mode is removed.                        
+
+	Version 9.1 
+	  - #15344 26. 01. 2018 RRO: change data type of Number_of_Visits from 
+	                             xs:positiveInteger to xs:nonNegativeInteger to 
+	                             allow "0" as valid number.
+	  - #15243 07. 02. 3018 RRO: New parameter for straylight observations:
+	                             Respect_Moon_Exclusion_Angle                           
+	  - #15250 07. 02. 3018 RRO: New parameter for straylight observations:
+	                             Avoid_Earth_Occultation
+
+   Version 8.1 (consolidation of the MPS interfaces)
+      - #14731 The PI of a nominal science observation shall be able to 
+        define the Repetition Period
+      - #14827 The instrument has two new read-out modes: "auto" and "faint fast"  
+      - agreed to be the MPS baseline without tickets:
+	    - The Window_Offset_X and Window_Offset_Y has to be defined for dark
+	      observation categories in window mode. 
+	    - The three straylight observation category of different angles are
+	      merged to a single straylight observation category.   
+
+   Version 8.0
+      - #14196 new CCD Margin_Mode: none for flat field and psf monitoring
+      - #14112 Two readout modes for dark M&C observation requests
+      - agreed to be the MPS baseline without tickets:
+        - The straylight M&C observations with xsmall and small angles do not 
+          need a StarMap command any more. 
+        - The straylight M&C observations with xsmall and small angles will 
+          slew the satellite to different distances to the target, instead of 
+          waiting until the target moves nearer and nearer. 
+        - The straylight M&C observations with large angles should be at a 
+          definable position on the CCD and not on the same position as the 
+          previous visit. There is a related bug in the documents, they will be updated.
+        - The user shall be able to define the repetition time for M&C observations. 
+          If it is not defined the fasted possible repetition time shall be used. 
+      
+   Version 7.1
+	  - the maximum of a Per_Cent_type is 100 instead of 99
+	  - following tags are removed: Target_CHEOPSmagnitude, Target_CHEOPSmagnitude_Error,
+	    Respect_Moon_Exclusion_Angle, Store_Images_in_FBF, Avoid_SAA and 
+	    Avoid_Earth_Occultation
+	  - name of tag Send_Data_Taking_During_Occultation changed to Send_Data_Taking_During_Earth_Constraints  
+	  - remove List_of_Visit_Offsets from MC_Straylight_Small_Angles_Requests_type
+	    
+   Version 7.0
+      - pattern of System_type changed from "PSO|ESA|ST" to "PSO"
+      - pattern of Creator_type changed from "Phase2 Tool" to "PHT2"
+      - #11934: Programme_Type_type changed from an enumerated string to value="[1-4][0-9]"
+      - Time critical and Non time critical observation request:
+      	- remove Target_Star  
+      	- #12683 add Gaia_ID
+      	- change data type of Transit_Period from xs:float to xs:double    
+      	- restrict the values of Priority to 1,2 or 3    
+      	- change unit of the Minimum_Effective_Duration from seconds to per cent.
+      	- Earliest_Observation_Start and Latest_Observation_Start are mandatory and not optional any more
+        - remove Window_Size_X and Window_Size_Y 
+        - remove Margin_Mode     
+        - Send_Data_Taking_During_Occultation is not fixed any more to "false"  
+        - #13039 used agreed names for observation categories, window type and readout mode
+        - #12578 new tags: Target_Vmagnitude_Error, Target_CHEOPSmagnitude, Target_CHEOPSmagnitude_Error
+      - M&C Observation requests:
+        - removed old definition and replaced by new Observation Cateroties
+		
+-->
+
+
+<xs:element name="Earth_Explorer_File" type="Earth_Explorer_File_type" />
+
+<xs:complexType name="Earth_Explorer_File_type">
+    <xs:sequence>
+		<xs:element name="Earth_Explorer_Header" type="Earth_Explorer_Header_type" />
+		<xs:element name="Data_Block"            type="Data_Block_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+<xs:complexType name="Earth_Explorer_Header_type">
+    <xs:sequence>
+		<xs:element name="Fixed_Header"      type="Fixed_Header_type" />
+		<xs:element name="Variable_Header"   type="Variable_Header_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+<!--               Fixed header           -->
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="Fixed_Header_type">
+    <xs:sequence>
+		<xs:element name="File_Name"         type="File_Name_type" />
+		<xs:element name="File_Description"  type="xs:string" />
+		<xs:element name="Notes"             type="xs:string" />
+		<xs:element name="Mission"           type="Mission_type" />
+        <xs:element name="File_Class"        type="File_Class_type" />
+		<xs:element name="File_Type"         type="File_Type_type" />
+		<xs:element name="Validity_Period"   type="Validity_Period_type" />
+		<xs:element name="File_Version"      type="File_Version_type" />
+		<xs:element name="Source"            type="Source_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+
+<xs:simpleType name="File_Name_type">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="CH_TU((2[0-9]{3}))-((0[1-9])|(1[012]))-((0[1-9])|([12][0-9])|(3[01]))T(([01][0-9])|(2[0-3]))(-[0-5][0-9])(-[0-5][0-9])_EXT_APP_ObservationRequests_V([0-9]{4})"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:simpleType name="Mission_type">
+	<xs:restriction base="xs:string">
+    	<xs:pattern value="CHEOPS"/>
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="File_Class_type">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="OPER|TEST"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="File_Type_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="EXT_APP_ObservationRequests" />
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="Validity_Period_type">
+    <xs:sequence>
+		<xs:element name="Validity_Start"    type="UTCTime_type" />
+		<xs:element name="Validity_Stop"     type="UTCTime_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+<xs:simpleType name="UTCTime_type">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="UTC=(([1-2][0-9]{3}))-((0[1-9])|(1[012]))-((0[1-9])|([12][0-9])|(3[01]))T(([01][0-9])|(2[0-3]))(:[0-5][0-9])(:[0-5][0-9])"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="File_Version_type">
+	<xs:restriction base="xs:integer">
+		<xs:pattern value="[0-9]{4}"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="Source_type">
+    <xs:sequence>
+		<xs:element name="System"            type="System_type" />
+		<xs:element name="Creator"           type="Creator_type" />
+		<xs:element name="Creator_Version"   type="Creator_Version_type" />
+		<xs:element name="Creation_Date"      type="UTCTime_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+<xs:simpleType name="System_type">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="PSO"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="Creator_type">
+	<xs:annotation>
+		<xs:documentation>The  sub-system that created this file</xs:documentation>
+	</xs:annotation>
+	<xs:restriction base="xs:string">
+		<xs:pattern value="PHT2"/>
+	</xs:restriction>
+</xs:simpleType>
+<xs:simpleType name="Creator_Version_type">
+	<xs:restriction base="xs:integer">
+		<xs:pattern value="[0-9]{3}"/>
+	</xs:restriction>
+</xs:simpleType>
+
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+<!--            Variable header           -->
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+
+
+<xs:complexType name="Variable_Header_type">
+    <xs:sequence>
+		<xs:element name="Programme_Type"    type="Programme_Type_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+<xs:simpleType name="Programme_Type_type">
+     <xs:restriction base="xs:string">
+          <!--  10 - 19 : guaranteed time program -->
+          <!--  20 - 29 : guest observer program -->
+          <!--  30 - 39 : monitoring and characterization program -->
+          <!--  40 - 49 : discretionary program -->
+          <xs:pattern value="[1-4][0-9]"/>
+     </xs:restriction>
+</xs:simpleType>
+
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+<!--               Data block             -->
+<!-- ++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="Data_Block_type">
+	<xs:sequence>
+		<xs:element name="List_of_Time_Critical_Requests"            		type="List_of_Time_Critical_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_Non_Time_Critical_Requests"        		type="List_of_Non_Time_Critical_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_MC_Flat_Field_Requests"                   type="List_of_MC_FlatField_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_MC_Dark_Requests"                         type="List_of_MC_Dark_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_MC_Straylight_Requests"                   type="List_of_MC_Straylight_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_MC_PSF_Monitoring_Requests"               type="List_of_MC_PSF_Monitoring_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_MC_Flux_Sensitivity_Requests"             type="List_of_MC_Flux_Sensitivity_Requests_type" minOccurs="0"/>
+		<xs:element name="List_of_MC_Reference_Transit_Requests"            type="List_of_MC_Reference_Transit_Requests_type" minOccurs="0"/>
+	</xs:sequence>
+    <xs:attribute name="type" type="xs:string" use="required" fixed="xml"/>
+</xs:complexType>
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--             Time Critical Requests                    -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_Time_Critical_Requests_type">
+	<xs:sequence>
+		<xs:element name="Time_Critical_Request" type="Time_Critical_Request_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="Time_Critical_Request_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"   	type="ID_type" />
+		<xs:element name="Observation_Category"        	type="xs:string" fixed="time critical" />
+		<xs:element name="Proprietary_Period_First_Visit" 	type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"  	type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Gaia_ID"     					type="xs:string" minOccurs="0"/>
+		<xs:element name="Spectral_Type"   				type="xs:string" />
+		<xs:element name="Target_Magnitude"				type="Magnitude_type" />
+		<xs:element name="Target_Magnitude_Error"		type="Magnitude_Error_type" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+		
+		<xs:element name="RA_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="DEC_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="Parallax"  				   	type="Parallax_type" />
+		<xs:element name="T_Eff"  				       	type="T_Eff_type"/>
+		<xs:element name="Extinction"  				   	type="Extinction_type"  minOccurs="0" />
+
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" />
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" />
+		<xs:element name="Transit_Time"  				type="Time_type"/>
+		<xs:element name="Transit_Period"  				type="Time_Days_type" />
+		<xs:element name="Visit_Duration"  				type="Time_Sec_type" />
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="false" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Minimum_Effective_Duration"  	type="Per_Cent_type" />
+		<xs:element name="Earliest_Observation_Start"  	type="Phase_type" />
+		<xs:element name="Latest_Observation_Start"  	type="Phase_type" />
+		<xs:element name="List_of_Phase_Ranges" 		type="List_of_Phase_Ranges_type" minOccurs="0"/>
+		<xs:element name="Fulfil_all_Phase_Ranges" 	    type="xs:boolean" minOccurs="0"/>
+		<xs:element name="Send_Data_Taking_During_SAA" 	             type="xs:boolean" />
+		<xs:element name="Send_Data_Taking_During_Earth_Constraints" type="xs:boolean" />
+		<xs:element name="PITL" 	                    type="xs:boolean" />
+	</xs:sequence>
+</xs:complexType>
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--           Non Time Critical Requests                  -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_Non_Time_Critical_Requests_type">
+	<xs:sequence>
+		<xs:element name="Non_Time_Critical_Request" type="Non_Time_Critical_Request_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="Non_Time_Critical_Request_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="non time critical" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Gaia_ID"     					type="xs:string" minOccurs="0"/>
+		<xs:element name="Spectral_Type"   				type="xs:string" />
+		<xs:element name="Target_Magnitude"			type="Magnitude_type" />
+		<xs:element name="Target_Magnitude_Error"		type="Magnitude_Error_type" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+		
+		<xs:element name="RA_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="DEC_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="Parallax"  				    type="Parallax_type" />
+		<xs:element name="T_Eff"  				        type="T_Eff_type" />
+		<xs:element name="Extinction"  				    type="Extinction_type"  minOccurs="0" />
+		
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" />
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" />
+		<xs:element name="Visit_Duration"  				type="Time_Sec_type" />
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="false" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Minimum_Effective_Duration"  	type="Per_Cent_type" />
+		<xs:element name="Send_Data_Taking_During_SAA" 	             type="xs:boolean" />
+		<xs:element name="Send_Data_Taking_During_Earth_Constraints" type="xs:boolean" />
+		<xs:element name="PITL" 	                    type="xs:boolean" />
+	</xs:sequence>
+</xs:complexType>
+
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--              M&C Flat Field Requests                  -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_MC_FlatField_Requests_type">
+	<xs:sequence>
+		<xs:element name="MC_FlatField_Requests" type="MC_FlatField_Requests_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="MC_FlatField_Requests_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="flat field" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" fixed="1"/>
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" fixed="0"/>
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="true" />
+		<xs:element name="Number_of_Images"  			type="xs:positiveInteger" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Window_Type"  				type="Window_Type_type"  fixed="window"/>
+		<xs:element name="Window_Size_X"  				type="Pixel_type" />
+		<xs:element name="Window_Size_Y"  				type="Pixel_type" />
+		<xs:element name="Margin_Mode"  				type="Margin_Mode_None_type" />
+		<xs:element name="List_of_Visit_Offsets" 		type="List_of_Visit_Offsets_type" />
+		<xs:element name="PITL" 	                    type="xs:boolean" fixed="false" />
+	</xs:sequence>
+</xs:complexType>
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--              M&C Dark Requests                        -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_MC_Dark_Requests_type">
+	<xs:sequence>
+		<xs:element name="MC_Dark_Requests" type="MC_Dark_Requests_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="MC_Dark_Requests_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="dark" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" minOccurs="2" maxOccurs="2" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+		<xs:element name="Earliest_Start"  				type="Time_type" />
+		<xs:element name="Latest_End"  			    	type="Time_type" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" minOccurs="2" maxOccurs="2" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0" maxOccurs="2"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" fixed="1"/>
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" fixed="0"/>
+		<xs:element name="Transit_Time"  				type="Time_type"/>
+		<xs:element name="Transit_Period"  				type="Time_Days_type" />
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" fixed="2"/>
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="true" />
+		<xs:element name="Number_of_Images"  			type="xs:positiveInteger" minOccurs="2" maxOccurs="2"/>
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Earliest_Observation_Start"  	type="Phase_type" />
+		<xs:element name="Latest_Observation_Start"  	type="Phase_type" />
+		<xs:element name="Window_Type"  				type="Window_Type_type" />
+		<xs:element name="Window_Size_X"  				type="Pixel_type" minOccurs="0" />
+		<xs:element name="Window_Size_Y"  				type="Pixel_type" minOccurs="0" />
+		<xs:element name="Window_Offset_X"  			type="Pixel_type" minOccurs="0" />
+		<xs:element name="Window_Offset_Y"  			type="Pixel_type" minOccurs="0" />
+		<xs:element name="Margin_Mode"  				type="Margin_Mode_type" fixed="image"/>
+		<xs:element name="List_of_Visit_Offsets" 		type="List_of_Visit_Offsets_type" minOccurs="2" maxOccurs="2"/>
+		<xs:element name="PITL" 	                    type="xs:boolean" fixed="false" />
+	</xs:sequence>
+</xs:complexType>
+
+
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--    M&C Straylight Requests                            -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_MC_Straylight_Requests_type">
+	<xs:sequence>
+		<xs:element name="MC_Straylight_Requests" type="MC_Straylight_Requests_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="MC_Straylight_Requests_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="straylight" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" maxOccurs="unbounded"/>
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" maxOccurs="unbounded"/>
+		<xs:element name="Declination"  				type="Declination_type" maxOccurs="unbounded"/>
+
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" maxOccurs="unbounded"/>
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0" maxOccurs="unbounded"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" fixed="1"/>
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" fixed="0"/>
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="true" />
+		<xs:element name="Number_of_Images"  			type="xs:positiveInteger" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Window_Type"  				type="Window_Type_type" />
+		<xs:element name="Window_Size_X"  				type="Pixel_type" minOccurs="0" />
+		<xs:element name="Window_Size_Y"  				type="Pixel_type" minOccurs="0" />
+		<xs:element name="Window_Offset_X"  			type="Pixel_type" minOccurs="0" />
+		<xs:element name="Window_Offset_Y"  			type="Pixel_type" minOccurs="0" />
+		<xs:element name="Margin_Mode"  				type="Margin_Mode_type" minOccurs="0"/>
+		<xs:element name="Avoid_Earth_Occultation"      type="xs:boolean"  />
+        <xs:element name="Send_Data_Taking_During_Earth_Constraints" type="xs:boolean" fixed="true"/>
+		<xs:element name="Respect_Moon_Exclusion_Angle" type="xs:boolean"  />
+		<xs:element name="PITL" 	                    type="xs:boolean" fixed="false" />
+	</xs:sequence>
+</xs:complexType>
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--             M&C PSF Monitoring Requests               -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_MC_PSF_Monitoring_Requests_type">
+	<xs:sequence>
+		<xs:element name="MC_PSF_Monitoring_Requests" type="MC_PSF_Monitoring_Requests_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="MC_PSF_Monitoring_Requests_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="psf monitoring" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Gaia_ID"     					type="xs:string" minOccurs="0"/>
+		<xs:element name="Spectral_Type"   				type="xs:string" />
+		<xs:element name="Target_Magnitude"			type="Magnitude_type" />
+		<xs:element name="Target_Magnitude_Error"		type="Magnitude_Error_type" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+
+		<xs:element name="RA_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="DEC_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="Parallax"  				    type="Parallax_type" />
+		<xs:element name="T_Eff"  				        type="T_Eff_type"  minOccurs="0" />
+		<xs:element name="Extinction"  				    type="Extinction_type"  minOccurs="0" />
+		
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" fixed="1"/>
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" fixed="0"/>
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="true" />
+		<xs:element name="Number_of_Images"  			type="xs:positiveInteger" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Window_Type"  				type="Window_Type_type"  fixed="window"/>
+		<xs:element name="Window_Size_X"  				type="Pixel_type" />
+		<xs:element name="Window_Size_Y"  				type="Pixel_type" />
+		<xs:element name="Margin_Mode"  				type="Margin_Mode_All_type" />
+		<xs:element name="List_of_Visit_Offsets" 		type="List_of_Visit_Offsets_type" />
+		<xs:element name="PITL" 	                    type="xs:boolean" fixed="false" />
+	</xs:sequence>
+</xs:complexType>
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--             M&C Flux Sensitivity Requests             -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_MC_Flux_Sensitivity_Requests_type">
+	<xs:sequence>
+		<xs:element name="MC_Flux_Sensitivity_Requests" type="MC_Flux_Sensitivity_Requests_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+<xs:complexType name="MC_Flux_Sensitivity_Requests_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="flux sensitivity" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Gaia_ID"     					type="xs:string" minOccurs="0"/>
+		<xs:element name="Spectral_Type"   				type="xs:string" />
+		<xs:element name="Target_Magnitude"			type="Magnitude_type" />
+		<xs:element name="Target_Magnitude_Error"		type="Magnitude_Error_type" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+		
+		<xs:element name="RA_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="DEC_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="Parallax"  				    type="Parallax_type" />
+		<xs:element name="T_Eff"  				        type="T_Eff_type" />
+		<xs:element name="Extinction"  				    type="Extinction_type"  minOccurs="0" />
+		
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" />
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" />
+		<xs:element name="Visit_Duration"  				type="Time_Sec_type" />
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="false" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Minimum_Effective_Duration"  	type="Per_Cent_type" />
+		<xs:element name="Window_Size_X"  				type="Pixel_type" />
+		<xs:element name="Window_Size_Y"  				type="Pixel_type" />
+		<xs:element name="Window_Offset_X"  			type="Pixel_type" />
+		<xs:element name="Window_Offset_Y"  			type="Pixel_type" />
+		<xs:element name="Margin_Mode"  				type="Margin_Mode_type" />
+		<xs:element name="Send_Data_Taking_During_SAA" 	             type="xs:boolean" />
+		<xs:element name="Send_Data_Taking_During_Earth_Constraints" type="xs:boolean" />
+		<xs:element name="PITL" 	                    type="xs:boolean" />
+	</xs:sequence>
+</xs:complexType>
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<!--            M&C Reference Transit Requests             -->
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:complexType name="List_of_MC_Reference_Transit_Requests_type">
+	<xs:sequence>
+		<xs:element name="MC_Reference_Transit_Requests" type="MC_Reference_Transit_Requests_type" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>
+
+
+<xs:complexType name="MC_Reference_Transit_Requests_type">
+	<xs:sequence>
+		<xs:element name="Programme_ID"    				type="ID_type" />
+		<xs:element name="Observation_Request_ID"       type="ID_type" />
+		<xs:element name="Observation_Category"         type="xs:string" fixed="reference transit" />
+		<xs:element name="Proprietary_Period_First_Visit"  type="Proprietary_Period_type" />
+		<xs:element name="Proprietary_Period_Last_Visit"   type="Proprietary_Period_type" />
+		<xs:element name="Target_Name"     				type="xs:string" />
+		<xs:element name="Gaia_ID"     					type="xs:string" minOccurs="0"/>
+		<xs:element name="Spectral_Type"   				type="xs:string" />
+		<xs:element name="Target_Magnitude"			type="Magnitude_type" />
+		<xs:element name="Target_Magnitude_Error"		type="Magnitude_Error_type" />
+		<xs:element name="Readout_Mode" 		    	type="Readout_Mode_type" />
+		<xs:element name="Right_Ascension"  			type="Right_Ascension_type" />
+		<xs:element name="Declination"  				type="Declination_type" />
+		
+		<xs:element name="RA_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="DEC_Proper_Motion"  			type="Proper_Motion_type" />
+		<xs:element name="Parallax"  				    type="Parallax_type" />
+		<xs:element name="T_Eff"  				        type="T_Eff_type" />
+		<xs:element name="Extinction"  				    type="Extinction_type"  minOccurs="0" />
+
+		<xs:element name="Earliest_Start"  				type="Time_type"  minOccurs="0" />
+		<xs:element name="Latest_End"  			    	type="Time_type"  minOccurs="0" />
+		<xs:element name="Exposure_Time"  				type="Time_Sec_type" />
+		<xs:element name="Repetition_Period"    		type="Time_Sec_type" minOccurs="0"/>
+		<xs:element name="Number_Stacked_Images" 		type="xs:positiveInteger" />
+		<xs:element name="Number_Stacked_Imagettes" 	type="xs:nonNegativeInteger" />
+		<xs:element name="Transit_Time"  				type="Time_type"/>
+		<xs:element name="Transit_Period"  				type="Time_Days_type" />
+		<xs:element name="Visit_Duration"  				type="Time_Sec_type" />
+		<xs:element name="Number_of_Visits"  			type="xs:nonNegativeInteger" />
+		<xs:element name="Continuous_Visits"  			type="xs:boolean" fixed="false" />
+		<xs:element name="Priority"  					type="Priority_type" />
+		<xs:element name="Minimum_Effective_Duration"  	type="Per_Cent_type" />
+		<xs:element name="Earliest_Observation_Start"  	type="Phase_type" />
+		<xs:element name="Latest_Observation_Start"  	type="Phase_type" />
+		<xs:element name="List_of_Phase_Ranges" 		type="List_of_Phase_Ranges_type" minOccurs="0"/>
+		<xs:element name="Fulfil_all_Phase_Ranges" 	    type="xs:boolean" minOccurs="0"/>
+		<xs:element name="Window_Size_X"  				type="Pixel_type" />
+		<xs:element name="Window_Size_Y"  				type="Pixel_type" />
+		<xs:element name="Window_Offset_X"  			type="Pixel_type" />
+		<xs:element name="Window_Offset_Y"  			type="Pixel_type" />
+		<xs:element name="Margin_Mode"  				type="Margin_Mode_type" />
+
+		<xs:element name="Send_Data_Taking_During_SAA" 	             type="xs:boolean" />
+		<xs:element name="Send_Data_Taking_During_Earth_Constraints" type="xs:boolean" />
+		<xs:element name="PITL" 	                    type="xs:boolean" />
+	</xs:sequence>
+</xs:complexType>
+
+
+
+<!--  ++++++++++++++++++++++++++++++++++++++++++++++++ -->
+
+<xs:simpleType  name="ID_type">
+	<xs:restriction base="xs:integer">
+		<xs:minInclusive value="0" />
+		<xs:maxInclusive value="9999" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType  name="Proprietary_Period_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:nonNegativeInteger">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="days"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+
+<xs:simpleType name="Readout_Mode_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="faint" />  
+		<xs:enumeration value="bright" />  
+		<xs:enumeration value="ultrabright" />  
+		<xs:enumeration value="faint fast" />  
+	</xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType  name="Magnitude_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="Mag_Limits_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="mag"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="Mag_Limits_type">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="0" />
+		<xs:maxInclusive value="20" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType  name="Magnitude_Error_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="Mag_Error_Limits_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="mag"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="Mag_Error_Limits_type">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="0" />
+		<xs:maxInclusive value="1" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType  name="Right_Ascension_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="RA_Limits_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="deg"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="RA_Limits_type">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="0" />
+		<xs:maxExclusive value="360" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType  name="Declination_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="DEC_Limits_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="deg"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="DEC_Limits_type">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="-90" />
+		<xs:maxInclusive value="90" />
+    </xs:restriction>
+</xs:simpleType>
+
+<xs:complexType  name="Proper_Motion_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:double">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="mas/year"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType  name="Parallax_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:double">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="mas"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType  name="T_Eff_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:positiveInteger">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="Kelvin"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType  name="Extinction_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:double">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="mag"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+
+
+<xs:complexType  name="Time_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:double">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="BJD"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType  name="Time_Sec_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:float">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="sec"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:complexType  name="Time_Days_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="xs:double">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="days"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+
+<xs:simpleType  name="Priority_type">
+	<xs:restriction base="xs:integer">
+		<xs:minInclusive value="1" />
+		<xs:maxInclusive value="3" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType  name="Phase_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="Phase_Limit_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="phase"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="Phase_Limit_type">
+	<xs:restriction base="xs:float">
+		<xs:minInclusive value="0" />
+		<xs:maxInclusive value="1" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:simpleType name="Window_Type_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="full frame" />  
+		<xs:enumeration value="window" />  
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:complexType name="List_of_Visit_Offsets_type">
+    <xs:sequence>
+		<xs:element name="Visit_Offsets"    type="Visit_Offsets_type" minOccurs="1" maxOccurs="100" />
+    </xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>	
+
+<xs:complexType name="Visit_Offsets_type">
+    <xs:sequence>
+		<xs:element name="Visit_Offset_X"   type="Pixel_type" />
+		<xs:element name="Visit_Offset_Y" 	type="Pixel_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+<xs:complexType  name="Pixel_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="Pixel_Limits_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="pixel"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="Pixel_Limits_type">
+	<xs:restriction base="xs:integer">
+		<xs:minInclusive value="0" />
+		<xs:maxExclusive value="1024" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:simpleType name="Margin_Mode_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="image" />  
+		<xs:enumeration value="reduced" />  
+		<xs:enumeration value="total collapsed" />  
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="Margin_Mode_None_type">
+	<xs:restriction base="xs:string">
+		<xs:enumeration value="none" />  
+	</xs:restriction>
+</xs:simpleType>
+
+<xs:simpleType name="Margin_Mode_All_type">
+	<xs:union memberTypes="Margin_Mode_type  Margin_Mode_None_type" />
+</xs:simpleType>
+
+
+<xs:complexType  name="Per_Cent_type">   	
+ 	<xs:simpleContent>
+		<xs:extension base="Per_Cent_Limit_type">    
+    		<xs:attribute name="unit" type="xs:string" use="required" fixed="%"/>
+     	</xs:extension>
+    </xs:simpleContent>
+</xs:complexType>
+<xs:simpleType  name="Per_Cent_Limit_type">
+	<xs:restriction base="xs:integer">
+		<xs:minInclusive value="1" />
+		<xs:maxInclusive value="100" />
+    </xs:restriction>
+</xs:simpleType>
+
+
+<xs:complexType name="List_of_Phase_Ranges_type">
+    <xs:sequence>
+		<xs:element name="Phase_Range"    type="Phase_Range_type" maxOccurs="unbounded" />
+    </xs:sequence>
+	<xs:attribute name="count" type="xs:int" use="required" />
+</xs:complexType>	
+
+<xs:complexType name="Phase_Range_type">
+    <xs:sequence>
+		<xs:element name="Start"    				type="Phase_type" />
+		<xs:element name="End"        				type="Phase_type" />
+		<xs:element name="Minimum_Phase_Duration" 	type="Per_Cent_type" />
+    </xs:sequence>
+</xs:complexType>	
+
+
+</xs:schema>

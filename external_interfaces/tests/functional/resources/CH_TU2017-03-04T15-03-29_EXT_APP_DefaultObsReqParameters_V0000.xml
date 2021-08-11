@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Earth_Explorer_File xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <Earth_Explorer_Header>
+        <Fixed_Header>
+            <File_Name>CH_TU2017-03-04T15-03-29_EXT_APP_DefaultObsReqParameters_V0000</File_Name>
+            <File_Description>default observation request parameters</File_Description>
+            <Notes></Notes>
+            <Mission>CHEOPS</Mission>
+            <File_Class>TEST</File_Class>
+            <File_Type>EXT_APP_DefaultObsReqParameters</File_Type>
+            <Validity_Period>
+                <Validity_Start>UTC=2010-11-22T00:00:00</Validity_Start>
+                <Validity_Stop>UTC=2050-01-01T00:00:00</Validity_Stop>
+            </Validity_Period>
+            <File_Version>0000</File_Version>
+            <Source>
+                <System>ST</System>
+                <Creator>manual</Creator>
+                <Creator_Version>0001</Creator_Version>
+                <Creation_Date>UTC=2017-03-04T15:03:29</Creation_Date>
+            </Source>
+        </Fixed_Header>
+
+        <Variable_Header/>
+    </Earth_Explorer_Header>
+
+    <Data_Block type="xml">
+
+    	<Observation_Category_Parameters>
+    	
+	    	<Window_Offset_X               Observation_Category="default" unit="pixel"     >412</Window_Offset_X>
+	    	<Window_Offset_Y               Observation_Category="default" unit="pixel"     >412</Window_Offset_Y>
+	    	<Window_Size_X                 Observation_Category="default" unit="pixel"     >200</Window_Size_X>
+	    	<Window_Size_Y                 Observation_Category="default" unit="pixel"     >200</Window_Size_Y>
+	    	<Window_Shape                  Observation_Category="default"                  >rectangular</Window_Shape>
+	    	<Window_Shape                  Observation_Category="flat field"               >circular</Window_Shape>
+	    	<Window_Shape                  Observation_Category="psf monitoring"           >circular</Window_Shape>
+
+	    	<Imagettes_Size_X              Observation_Category="default" unit="pixel"     >35</Imagettes_Size_X>
+	    	<Imagettes_Size_Y              Observation_Category="default" unit="pixel"     >35</Imagettes_Size_Y>
+	    	<Imagettes_Shape               Observation_Category="default"                  >circular</Imagettes_Shape>
+	    	<Imagettes_Extraction_Strategy Observation_Category="default"                  >0</Imagettes_Extraction_Strategy>
+	    	<Imagettes_Extraction_Strategy Observation_Category="time critical"            >1</Imagettes_Extraction_Strategy>
+	    	<Imagettes_Extraction_Strategy Observation_Category="non time critical"        >1</Imagettes_Extraction_Strategy>
+	    	<Imagettes_Extraction_Strategy Observation_Category="flux sensitivity"         >1</Imagettes_Extraction_Strategy>
+	    	<Imagettes_Extraction_Strategy Observation_Category="reference transit"        >1</Imagettes_Extraction_Strategy>
+
+	    	<Margin_Mode                   Observation_Category="default"                  >reduced</Margin_Mode>
+	    	<Margin_Mode                   Observation_Category="non time critical"        >image</Margin_Mode>
+	    	<Margin_Dark_Left_Mask         Observation_Category="default"                  >0xfffa</Margin_Dark_Left_Mask>
+	    	<Margin_Dark_Left_Mask         Observation_Category="straylight"               >0xfbfe</Margin_Dark_Left_Mask>
+	    	<Margin_Dark_Right_Mask        Observation_Category="default"                  >0xfffa</Margin_Dark_Right_Mask>
+
+    	</Observation_Category_Parameters>
+
+    </Data_Block>
+</Earth_Explorer_File>
