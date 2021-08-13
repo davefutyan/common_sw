@@ -21,7 +21,20 @@ Before compiling common_sw, the following external packages need to be compiled 
 Python 3.6.5 or later is also required
 
 <h3>Installation</h3>
-Once the above third party software has been installed, the common_sw package can be installed as follows:
+The environment variable CHEOPS_SW needs to be defined by the user to specify the path of the installation.
 
-* cd common_sw
-* make install
+<br>The following additional environment variables need to be set:
+
+    export CHEOPS_TESTDATA=${CHEOPS_SW}
+    export PYTHONPATH=${CHEOPS_SW}/python:${CHEOPS_SW}/lib:${PYTHONPATH}
+    export EXT_INC_DIRS="-I${BOOST_PATH}/include -I${PYTHON_PATH}/include -I${CFITSIO_PATH}/include"
+    export EXT_LIB_DIRS="-Wl,-rpath,${BOOST_PATH}/lib -L${BOOST_PATH}/lib -L${PYTHON_PATH}/lib -L${CFITSIO_PATH}/lib"
+    export PATH=${PYTHON_PATH}/bin:${XERCES_PATH}/bin:${CHEOPS_SW}/bin:${PATH}
+    export LD_LIBRARY_PATH=${PYTHON_PATH}/lib:${BOOST_PATH}/lib:${CFITSIO_PATH}/lib:${XERCES_PATH}/lib:${CHEOPS_SW}/lib:${LD_LIBRARY_PATH}
+
+where PYTHON_PATH, BOOST_PATH, CFITSIO_PATH and XERCES_PATH are the paths to the installations of python, boost, cfitsio and xerces, respectively.
+
+common_sw can now be installed as follows:
+
+    cd common_sw
+    make install
