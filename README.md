@@ -1,5 +1,5 @@
 # common_sw
-CHEOPS software framework required by CHEOPSim
+CHEOPS software framework required by CHEOPSim, developed by Reiber Rholfs, Anja Bekkelien and Mathias beck at the University of Geneva
 
 <h3>Requirements</h3>
 The CHEOPS software framework can be compiled and run on linux or macOS. The CHEOPS deployment uses CentOs version 7.5.
