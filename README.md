@@ -2,7 +2,7 @@
 CHEOPS software framework required by CHEOPSim, developed by Reiner Rohlfs, Anja Bekkelien and Mathias Beck at the University of Geneva
 
 <h3>Requirements</h3>
-The CHEOPS software framework can be compiled and run on linux or macOS. The CHEOPS deployment uses CentOs version 7.5.
+The CHEOPS software framework can be installed on linux or macOS. The CHEOPS deployment uses CentOs version 7.5.
 
 <br>gcc 5.4.0 is required to compile the software: https://ftp.gnu.org/gnu/gcc/gcc-5.4.0/
 <br>The gcc installation in turn requires the following to be installed first:
