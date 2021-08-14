@@ -20,20 +20,26 @@ Before compiling common_sw, the following external packages need to be compiled 
 
 Python 3.6.5 or later is also required
 
+<h3>Environment</h3>
+The environment variable CHEOPS_SW needs to be defined by the user to specify a path for the installation, and the PATH, PYTHONPATH, and LD_LIBRARY_PATH environment variables need to be updated as follows:
+
+    export PYTHONPATH=${CHEOPS_SW}/python:${PYTHONPATH}
+    export PATH=${CHEOPS_SW}/bin:$PATH
+    export LD_LIBRARY_PATH=${CHEOPS_SW}/lib:${LD_LIBRARY_PATH}
+    
+Paths to the binaries for python, xerces-c and xsd must also be added to PATH
+<br>Paths to the libraries for python, boost, cfitsio and xerces-c must also be added to LD_LIBRARY_PATH
+
+In addition, the following environment variables need to be set:
+    
+    export EXT_INC_DIRS="-I${BOOST_INC_PATH} -I${PYTHON_INC_PATH} -I${CFITSIO_INC_PATH}"
+    export EXT_LIB_DIRS="-Wl,-rpath,${BOOST_LIB_PATH} -L${BOOST_LIB_PATH} -L${PYTHON_LIB_PATH} -L${CFITSIO_LIB_PATH}"
+
+where:
+ * PYTHON_INC_PATH, BOOST_INC_PATH, CFITSIO_INC_PATH are the paths to the include files for installations of python, boost and cfitsio, respectively.
+ * PYTHON_LIB_PATH, BOOST_LIB_PATH, CFITSIO_LIB_PATH are the paths to the shared libraries for installations of python, boost and cfitsio, respectively.
+
 <h3>Installation</h3>
-The environment variable CHEOPS_SW needs to be defined by the user to specify the path of the installation.
-
-<br>The following additional environment variables need to be set:
-
-    export CHEOPS_TESTDATA=${CHEOPS_SW}
-    export PYTHONPATH=${CHEOPS_SW}/python:${CHEOPS_SW}/lib:${PYTHONPATH}
-    export EXT_INC_DIRS="-I${BOOST_PATH}/include -I${PYTHON_PATH}/include -I${CFITSIO_PATH}/include"
-    export EXT_LIB_DIRS="-Wl,-rpath,${BOOST_PATH}/lib -L${BOOST_PATH}/lib -L${PYTHON_PATH}/lib -L${CFITSIO_PATH}/lib"
-    export PATH=${PYTHON_PATH}/bin:${XERCES_PATH}/bin:${CHEOPS_SW}/bin:${PATH}
-    export LD_LIBRARY_PATH=${PYTHON_PATH}/lib:${BOOST_PATH}/lib:${CFITSIO_PATH}/lib:${XERCES_PATH}/lib:${CHEOPS_SW}/lib:${LD_LIBRARY_PATH}
-
-where PYTHON_PATH, BOOST_PATH, CFITSIO_PATH and XERCES_PATH are the paths to the installations of python, boost, cfitsio and xerces, respectively.
-
 common_sw can now be installed as follows:
 
     cd common_sw
