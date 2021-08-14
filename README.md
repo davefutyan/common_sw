@@ -1,5 +1,5 @@
 # common_sw
-Software framework for [CHEOPS](https://cheops.unibe.ch), developed by Reiner Rohlfs, Anja Bekkelien and Mathias Beck at the University of Geneva, required by [CHEOPSim](https://github.com/davefutyan/CHEOPSim).
+Software framework for [CHEOPS](https://cheops.unibe.ch) science operations, developed by Reiner Rohlfs, Anja Bekkelien and Mathias Beck at the University of Geneva, required by [CHEOPSim](https://github.com/davefutyan/CHEOPSim).
 
 <h3>Requirements</h3>
 The CHEOPS software framework can be installed on linux or macOS. The CHEOPS deployment uses CentOs version 7.5.
